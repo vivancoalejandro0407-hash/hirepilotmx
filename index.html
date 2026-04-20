@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HirePilot MX — Consigue más entrevistas con IA</title>
+    <meta name="description" content="Optimiza tu CV para pasar filtros ATS, descubre cuánto deberías ganar y prepárate para ganar tu próxima entrevista. Gratis.">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pilotoempleo1.netlify.app">
+    <meta property="og:title" content="HirePilot MX — Tu CV optimizado para conseguir entrevistas">
+    <meta property="og:description" content="Estoy mejorando mi CV porque sigo en búsqueda… y esto me está ayudando mucho (además es gratis).">
+    <meta property="og:image" content="https://pilotoempleo1.netlify.app/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_MX">
+    
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://pilotoempleo1.netlify.app">
+    <meta name="twitter:title" content="HirePilot MX — Tu CV optimizado para conseguir entrevistas">
+    <meta name="twitter:description" content="Estoy mejorando mi CV porque sigo en búsqueda… y esto me está ayudando mucho (además es gratis).">
+    <meta name="twitter:image" content="https://pilotoempleo1.netlify.app/og-image.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        display: ['Plus Jakarta Sans', 'sans-serif'] 
+                    },
+                    colors: { 
+                        mexico: { 
+                            green: '#064e3b', 
+                            red: '#7f1d1d', 
+                            gold: '#b45309', 
+                            dark: '#0a0a0a', 
+                            slate: '#f8fafc' 
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        body { background-color: #ffffff; color: #0a0a0a; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .nav-link { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #0a0a0a; position: relative; transition: all 0.2s; cursor: pointer; background: none; border: none; }
+        .nav-link.active { color: #064e3b; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background-color: #064e3b; }
+        
+        .hero-title { line-height: 0.85; letter-spacing: -0.05em; }
+        .hero-title span.italic-grey { color: #e5e7eb; }
+        
+        .card-shadow { box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
+        
+        textarea, input { border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1rem; outline: none; transition: border 0.2s; }
+        textarea:focus, input:focus { border-color: #064e3b; }
+
+        .btn-copy { font-size: 9px; font-weight: 800; text-transform: uppercase; color: #b45309; cursor: pointer; }
+        .btn-copy:hover { text-decoration: underline; }
+
+        .upload-btn { border: 1px solid #064e3b; color: #064e3b; background: white; padding: 4px 10px; border-radius: 8px; font-size: 9px; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+        .upload-btn:hover { background: #064e3b; color: white; }
+
+        .passport-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(0,0,0,0.05); }
+        .passport-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
+        .premium-gradient { background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%); }
+        .social-btn { transition: all 0.2s; border: 1px solid #e5e7eb; padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .social-btn:hover { background-color: #f8fafc; border-color: #064e3b; }
+
+        /* Estilos del Slider de Activación Reversible */
+        .slider-container {
+            width: 280px;
+            height: 60px;
+            background: #f1f5f9;
+            border-radius: 30px;
+            position: relative;
+            padding: 5px;
+            user-select: none;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .slider-handle {
+            width: 50px;
+            height: 50px;
+            background: #0a0a0a;
+            border-radius: 25px;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+        .slider-handle:active { cursor: grabbing; }
+        .slider-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 0;
+            top: 0;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #94a3b8;
+            pointer-events: none;
+            padding-left: 40px;
+            transition: all 0.3s ease;
+        }
+        .slider-active-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #064e3b 0%, #10b981 100%);
+            width: 0%;
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .activated {
+            border-color: #064e3b;
+            background: #ecfdf5;
+            box-shadow: 0 0 25px rgba(6, 78, 59, 0.2);
+        }
+        .activated .slider-handle { 
+            background: #ffffff; 
+            color: #064e3b;
+        }
+        .activated .slider-text { 
+            color: white; 
+            padding-left: 0;
+            padding-right: 40px;
+        }
+
+        .red-arrow {
+            position: absolute;
+            top: -55px;
+            right: 80px;
+            animation: bounceArrow 1.5s infinite;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            pointer-events: none;
+            z-index: 20;
+            transition: opacity 0.3s ease;
+        }
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
+
+        .flow-step { position: relative; }
+        .flow-line { position: absolute; top: 50%; right: -2rem; width: 1.5rem; border-top: 2px dashed #e5e7eb; transform: translateY(-50%); }
+    </style>
+</head>
+<body class="font-sans text-mexico-dark">
+
+    <nav class="h-20 flex items-center bg-white border-b border-gray-50 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto w-full px-8 flex justify-between items-center">
+            <div class="cursor-pointer" onclick="switchTab('home')">
+                <h1 class="font-display text-xl italic font-extrabold leading-none tracking-tighter">HIREPILOT<span class="text-mexico-green">MX</span></h1>
+                <p class="text-[9px] uppercase tracking-widest text-gray-400 font-bold">by Alejandro Vivanco</p>
+            </div>
+            
+            <div class="flex items-center gap-6 lg:gap-8">
+                <button data-tab="home" onclick="switchTab('home')" class="nav-link active">Inicio</button>
+                <button data-tab="paso1" onclick="switchTab('paso1')" class="nav-link">Diagnóstico</button>
+                <button data-tab="paso2" onclick="switchTab('paso2')" class="nav-link">Radar</button>
+                <button data-tab="paso3" onclick="switchTab('paso3')" class="nav-link">Detector</button>
+                <button data-tab="pasoEntrevista" onclick="switchTab('pasoEntrevista')" class="nav-link text-mexico-gold">Entrenador</button>
+                <button data-tab="paso4" onclick="switchTab('paso4')" class="nav-link">La Telaraña</button>
+                <button data-tab="paso5" onclick="switchTab('paso5')" class="nav-link text-mexico-green">Pasaporte</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-8 pt-16 pb-20">
+
+        <div id="home" class="tab-content active">
+            <div class="flex flex-col items-start gap-12">
+                <div class="w-full">
+                    <span class="inline-block bg-[#f0f9f6] text-mexico-green text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-10">
+                        CONSIGUE MÁS ENTREVISTAS CON IA — GRATIS
+                    </span>
+                    <h2 class="hero-title font-display text-[80px] md:text-[100px] italic font-extrabold text-mexico-dark mb-10">
+                        Consigue mejores trabajos, <br> <span class="text-mexico-green">mejores sueldos</span><br>
+                        <span class="italic-grey">usando IA.</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg max-w-xl leading-snug mb-12 italic">
+                        HirePilot MX optimiza tu CV para pasar filtros ATS, investiga sueldos reales del mercado y te prepara palabra por palabra para ganar tu próxima entrevista.
+                    </p>
+                    
+                    <div class="w-full mb-16 overflow-x-auto pb-4">
+                        <p class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] mb-8">De CV ignorado a entrevista confirmada — en 4 pasos</p>
+                        <div class="flex items-center gap-8 min-w-[900px]">
+                            <div class="flow-step flex-1 bg-white border border-gray-100 p-6 rounded-3xl card-shadow">
+                                <div class="text-xs font-black text-mexico-green mb-2 italic">01. CV</div>
+                                <h4 class="text-sm font-black mb-1">¿Te están ignorando?</h4>
+                                <p class="text-[10px] text-gray-400 italic leading-tight">La IA detecta por qué tu CV no pasa los filtros y te dice exactamente qué corregir para que te llamen.</p>
+                                <div class="flow-line hidden md:block"></div>
+                            </div>
+                            <div class="flow-step flex-1 bg-white border border-gray-100 p-6 rounded-3xl card-shadow">
+                                <div class="text-xs font-black text-mexico-gold mb-2 italic">02. SUELDO</div>
+                                <h4 class="text-sm font-black mb-1">Negocia desde la fuerza</h4>
+                                <p class="text-[10px] text-gray-400 italic leading-tight">Conoce el rango real que pagan en esa empresa. Entra a negociar con números, no con esperanza.</p>
+                                <div class="flow-line hidden md:block"></div>
+                            </div>
+                            <div class="flow-step flex-1 bg-white border border-gray-100 p-6 rounded-3xl card-shadow">
+                                <div class="text-xs font-black text-mexico-red mb-2 italic">03. ENTREVISTA</div>
+                                <h4 class="text-sm font-black mb-1">Responde como experto</h4>
+                                <p class="text-[10px] text-gray-400 italic leading-tight">Genera respuestas STAR que demuestran resultados reales. El reclutador recordará tu nombre.</p>
+                                <div class="flow-line hidden md:block"></div>
+                            </div>
+                            <div class="flow-step flex-1 bg-mexico-dark p-6 rounded-3xl shadow-xl">
+                                <div class="text-xs font-black text-white mb-2 italic">04. OFERTA</div>
+                                <h4 class="text-sm font-black mb-1 text-white">Consigue la oferta</h4>
+                                <p class="text-[10px] text-gray-400 italic leading-tight">Descarga tu CV optimizado listo para enviar, más las guías para cerrar la negociación a tu favor.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="switchTab('paso1')" class="bg-mexico-dark text-white px-10 py-5 rounded-xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all">
+                        ANALIZAR MI CV GRATIS
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="paso1" class="tab-content max-w-5xl mx-auto italic">
+            <h2 class="text-4xl font-black mb-2 italic">Tu CV tiene 6 segundos para impresionar. ¿Los está usando?</h2>
+            <p class="text-gray-400 mb-10">Pega la vacante y tu CV. La IA te da un score real de compatibilidad y un plan exacto para que pases los filtros y te llamen.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="flex flex-col gap-4">
+                    <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest px-2">Descripción de la Vacante (Texto)</label>
+                    <textarea id="v-input" class="h-64 border-2 w-full text-sm leading-relaxed" placeholder="Pega aquí los requisitos de la vacante..."></textarea>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="flex justify-between items-center px-2">
+                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest">Tu Currículum Vitae</label>
+                        <button onclick="document.getElementById('file-cv').click()" class="upload-btn">SUBIR WORD/PDF</button>
+                        <input type="file" id="file-cv" class="hidden" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(this, 'c-input')">
+                    </div>
+                    <textarea id="c-input" class="h-64 border-2 w-full text-sm leading-relaxed" placeholder="Pega tu CV aquí o usa el botón de arriba para subir el archivo..."></textarea>
+                </div>
+            </div>
+
+
+
+            <!-- Bloqueo por límite -->
+            <div id="limite-bloqueado" class="hidden bg-mexico-dark text-white p-10 rounded-[40px] text-center mb-8">
+                <p class="text-mexico-gold font-black text-lg italic mb-3">Ya usaste tus 3 análisis gratuitos 🎯</p>
+                <p class="text-gray-400 text-sm italic mb-6">Pasaste el límite gratis — eso significa que lo estás usando. El plan Pro te da análisis ilimitados para cada vacante que te interese.</p>
+                <button onclick="switchTab('paso5')" class="bg-mexico-gold text-white px-10 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all">Desbloquear Análisis Ilimitados — $299/mes</button>
+            </div>
+
+            <!-- Contador de usos gratuitos -->
+            <div id="usos-container" class="mb-6 flex items-center justify-between bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">Análisis gratuitos disponibles</p>
+                <div id="usos-indicador" class="flex gap-2"></div>
+            </div>
+
+            <button onclick="auditar()" id="btn-ia" class="w-full bg-mexico-dark text-white py-6 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-all">Ver mi Score y qué mejorar</button>
+            
+            <div id="res-auditoria" class="hidden mt-12 space-y-8 animate-fadeIn">
+                <div id="score-container" class="bg-mexico-dark text-white p-10 rounded-[40px] shadow-2xl"></div>
+                <div class="bg-white p-10 rounded-[40px] border border-gray-100 card-shadow">
+                    <div class="flex justify-between items-center mb-6">
+                        <p class="text-[10px] font-black uppercase text-mexico-gold tracking-widest">Diagnóstico IA & Optimización</p>
+                        <div class="flex gap-4">
+                            <span class="btn-copy" onclick="copiar('star-txt-audit')">Copiar Recomendaciones</span>
+                        </div>
+                    </div>
+                    <div id="star-txt-audit" class="text-sm italic leading-relaxed text-gray-600"></div>
+                </div>
+                <!-- Botones de descarga -->
+                <div class="bg-[#f0f9f6] border border-mexico-green/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <p class="text-[10px] font-black uppercase text-mexico-green tracking-widest mb-1">Listos para descargar</p>
+                        <p class="text-sm font-black italic text-mexico-dark">Tu CV reescrito para esta vacante + Guía de Negociación</p>
+                        <p class="text-[10px] text-gray-400 italic mt-1">CV con marca de agua. Desbloquea la versión limpia lista para enviar con el plan Pro.</p>
+                    </div>
+                    <div class="flex flex-col gap-3 min-w-[200px]">
+                        <button onclick="descargarCV()" class="bg-mexico-dark text-white py-4 px-6 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all flex items-center justify-center gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Descargar CV (con marca)
+                        </button>
+                        <button onclick="descargarGuia()" class="border-2 border-mexico-green text-mexico-green py-4 px-6 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-mexico-green hover:text-white transition-all flex items-center justify-center gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Descargar Guía de Negociación
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conductor: siguiente paso -->
+            <div id="cta-siguiente-paso1" class="hidden mt-8 bg-mexico-dark text-white p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">¿Siguiente paso?</p>
+                    <p class="text-lg font-black italic">Ahora descubre cuánto deberías ganar en esa empresa.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El Radar de Sueldos te da el rango real del mercado para negociar con datos.</p>
+                </div>
+                <button onclick="switchTab('paso2')" class="bg-mexico-gold text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all whitespace-nowrap">
+                    Ver Radar de Sueldos →
+                </button>
+            </div>
+        </div>
+
+        <div id="paso2" class="tab-content max-w-5xl mx-auto italic py-10">
+            <h2 class="text-4xl font-black mb-2 italic text-mexico-green">Negocia con datos, no con esperanza.</h2>
+            <p class="text-gray-400 mb-10">Antes de pisar esa entrevista, descubre cuánto pagan realmente en esa empresa para ese puesto. Llega preparado para pedir lo que mereces.</p>
+            
+            <div class="bg-white p-10 rounded-[40px] border border-gray-100 card-shadow flex flex-col md:flex-row gap-6 mb-8">
+                <input id="e-in" type="text" class="flex-1" placeholder="Empresa destino (Ej: BBVA)">
+                <input id="p-in" type="text" class="flex-1" placeholder="Puesto (Ej: Senior Developer)">
+                <button id="btn-radar" onclick="llamarRadar()" class="bg-mexico-green text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg">Ver Sueldo Real</button>
+            </div>
+
+            <div id="res-radar" class="hidden space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div id="sueldo-res" class="bg-green-50 p-10 rounded-[40px] border border-green-100"></div>
+                    <div id="noticia-res" class="bg-amber-50 p-10 rounded-[40px] border border-amber-100"></div>
+                </div>
+                <div class="bg-white p-10 rounded-[40px] border border-gray-100 card-shadow italic text-sm text-gray-600">
+                    <p class="text-[10px] font-black uppercase text-mexico-gold mb-4">Cómo negociar este sueldo</p>
+                    <div id="neg-txt"></div>
+                </div>
+            </div>
+            <!-- Conductor: siguiente paso -->
+            <div class="mt-8 bg-[#fff8f0] border border-mexico-gold/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">¿Y la empresa es buena?</p>
+                    <p class="text-lg font-black italic text-mexico-dark">Investiga cómo tratan a su gente antes de ir a la entrevista.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El Detector analiza la reputación real de esa empresa en México.</p>
+                </div>
+                <button onclick="switchTab('paso3')" class="bg-mexico-dark text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all whitespace-nowrap">
+                    Investigar la Empresa →
+                </button>
+            </div>
+        </div>
+
+        <div id="paso3" class="tab-content max-w-5xl mx-auto italic py-10">
+            <div class="text-center mb-12">
+                <h2 class="text-6xl font-black mb-2 italic tracking-tighter">¿Vale la pena <span class="text-mexico-red">o es trampa?</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm italic">No aceptes una oferta a ciegas. Investiga cómo trata esa empresa a su gente antes de comprometer tu tiempo y tu carrera.</p>
+            </div>
+            
+            <div class="bg-white p-10 rounded-[40px] border border-gray-100 card-shadow mb-8">
+                <input id="empresa-clima" type="text" class="w-full mb-6 text-xl font-bold" placeholder="Nombre de la empresa...">
+                <button onclick="inquirir()" id="btn-inquisidor" class="w-full bg-mexico-red text-white py-6 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">Investigar esta empresa</button>
+            </div>
+
+            <div id="res-inquisidor" class="hidden space-y-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-[40px] border border-green-100 card-shadow">
+                        <p class="text-[10px] font-black uppercase text-mexico-green tracking-widest mb-6">✅ Por qué vale la pena</p>
+                        <div id="puntos-positivos" class="text-sm italic text-gray-700 leading-relaxed space-y-4"></div>
+                    </div>
+                    <div class="bg-white p-8 rounded-[40px] border border-red-100 card-shadow">
+                        <p class="text-[10px] font-black uppercase text-mexico-red tracking-widest mb-6">⚠️ Señales de alarma</p>
+                        <div id="puntos-negativos" class="text-sm italic text-gray-700 leading-relaxed space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Conductor: siguiente paso -->
+            <div class="mt-8 bg-[#f0f9f6] border border-mexico-green/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <p class="text-mexico-green text-[10px] font-black uppercase tracking-widest mb-1">Último paso antes de la entrevista</p>
+                    <p class="text-lg font-black italic text-mexico-dark">Prepara las respuestas que te van a dar la oferta.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El Entrenador convierte tus experiencias en argumentos que impresionan a cualquier reclutador.</p>
+                </div>
+                <button onclick="switchTab('pasoEntrevista')" class="bg-mexico-green text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all whitespace-nowrap">
+                    Entrenar para la Entrevista →
+                </button>
+            </div>
+        </div>
+
+        <div id="pasoEntrevista" class="tab-content max-w-5xl mx-auto italic py-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-4 italic tracking-tighter">La entrevista se gana <span class="text-mexico-gold">antes de entrar</span></h2>
+                <p class="text-gray-400">Prepara respuestas que demuestran resultados reales. Cuando el reclutador pregunte, tú ya tienes la respuesta perfecta lista.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="bg-white p-10 rounded-[50px] border border-gray-100 card-shadow">
+                    <div class="mb-8">
+                        <span class="text-[10px] font-black text-mexico-gold uppercase tracking-widest">De anécdota a argumento ganador</span>
+                        <h3 class="text-3xl font-black italic mt-2">Generador STAR</h3>
+                        <p class="text-xs text-gray-400 mt-2">Describe un reto que resolviste en el trabajo. La IA lo convierte en una respuesta estructurada que demuestra valor real y deja huella.</p>
+                    </div>
+                    <textarea id="star-experience" class="w-full h-32 mb-4 text-sm" placeholder="Ej: Reduje el tiempo de contratación en mi empresa anterior coordinando un nuevo proceso de entrevistas..."></textarea>
+                    <button onclick="generarSTAR()" id="btn-star" class="w-full bg-mexico-dark text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Generar Respuesta que Impresiona</button>
+                    <div id="res-star" class="hidden mt-6 p-6 bg-gray-50 rounded-3xl text-sm leading-relaxed text-gray-600 italic">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[9px] font-black uppercase text-mexico-gold">Tu Guion:</span>
+                            <span class="btn-copy" onclick="copiar('star-output')">Copiar</span>
+                        </div>
+                        <div id="star-output"></div>
+                    </div>
+                </div>
+                <div class="bg-mexico-dark text-white p-10 rounded-[50px] shadow-2xl relative overflow-hidden">
+                    <span class="text-[10px] font-black text-mexico-gold uppercase tracking-widest">Para la pregunta del dinero</span>
+                    <h3 class="text-3xl font-black italic mt-2">Frases que Funcionan</h3>
+                    <div class="mt-8 space-y-6">
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                            <p class="text-mexico-gold font-bold text-[10px] uppercase mb-1">Cuando pregunten pretensiones</p>
+                            <p class="text-[11px] italic opacity-80">"Basado en el valor de mercado para este rol en México, mi rango objetivo es de [X] a [Y]. Estoy abierto a hablar del paquete completo."</p>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                            <p class="text-mexico-gold font-bold text-[10px] uppercase mb-1">Cuando pregunten cuánto ganas</p>
+                            <p class="text-[11px] italic opacity-80">"Mi compensación actual responde a mi estructura anterior. Prefiero que hablemos del valor que voy a generar aquí."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Conductor: siguiente paso -->
+            <div class="mt-10 bg-mexico-dark text-white p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">Ya tienes todo listo</p>
+                    <p class="text-lg font-black italic">Descarga tu CV limpio y consigue la oferta.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El Pasaporte HirePilot te da acceso a todo lo que necesitas para cerrar el proceso.</p>
+                </div>
+                <button onclick="switchTab('paso5')" class="bg-mexico-gold text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all whitespace-nowrap">
+                    Ver mi Pasaporte →
+                </button>
+            </div>
+        </div>
+
+        <div id="paso4" class="tab-content max-w-5xl mx-auto italic py-10">
+            <h2 class="text-5xl font-black italic tracking-tighter">La <span class="text-mexico-gold">Telaraña</span></h2>
+            <p class="text-gray-400 mt-2">Cuando el proceso de RH es demasiado lento, tú ya tienes la oferta.</p>
+            <div class="mt-12 bg-mexico-dark text-white p-12 rounded-[50px] shadow-2xl text-center">
+                <h3 class="text-3xl font-black mb-6 text-mexico-gold">Contacta Directo al que Contrata</h3>
+                <p class="text-gray-400 max-w-xl mx-auto mb-10 italic leading-relaxed">Localiza el correo del director o gerente que toma la decisión. Genera un mensaje de contacto frío personalizado que abre puertas antes de que siquiera publiquen la vacante.</p>
+                <button onclick="switchTab('paso5')" class="bg-mexico-gold text-white px-12 py-6 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-mexico-gold/20">Quiero Acceso Pro</button>
+            </div>
+        </div>
+
+        <div id="paso5" class="tab-content max-w-6xl mx-auto italic py-10">
+
+
+
+            <!-- Protocolo Vivanco -->
+            <div id="hp-access" class="max-w-xs mb-10">
+                <div id="hp-form" class="flex items-center gap-2">
+                    <input id="hp-code" type="password" placeholder="código de acceso" style="font-size:11px; padding:8px 14px; border:1px solid #e5e7eb; border-radius:10px; outline:none; width:160px; color:#374151;" onkeydown="if(event.key==='Enter') activarDevMode(this.value)">
+                    <button onclick="activarDevMode(document.getElementById('hp-code').value)" style="font-size:10px; font-weight:900; color:#064e3b; background:none; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em;">Activar</button>
+                </div>
+            </div>
+
+            <div class="text-center mb-16">
+                <h2 class="text-6xl font-black italic tracking-tighter mb-4">Deja de aplicar. <span class="text-mexico-gold">Empieza a conseguir.</span></h2>
+                <p class="text-gray-400">Elige el plan que necesitas. Sin compromisos.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto mb-16 relative">
+                <!-- Glow effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-red-500/10 to-mexico-gold/10 rounded-[40px] blur-xl"></div>
+                
+                <div class="relative bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] border-2 border-red-500/30 p-8 rounded-[40px] flex flex-col md:flex-row items-center gap-8 shadow-2xl">
+                    
+                    <div class="absolute top-4 left-4 flex items-center gap-2">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        </span>
+                        <span class="text-red-400 text-[9px] font-black uppercase tracking-widest">Precio especial activo</span>
+                    </div>
+
+                    <div class="red-arrow" id="arrow-hint">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 4V16M12 16L7 11M12 16L17 11" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="text-[8px] font-black text-red-500 uppercase tracking-tighter text-center">¡DESLIZA!</p>
+                    </div>
+
+                    <div class="text-5xl mt-4">😤</div>
+                    <div class="flex-1 text-center md:text-left">
+                        <p class="text-red-400 text-[10px] font-black uppercase tracking-widest mb-2">Suficiente de mandar CVs sin respuesta</p>
+                        <h4 class="text-2xl font-black italic mb-2 text-white">Es momento de cambiar la estrategia.</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed italic">Desliza y accede al plan completo <strong class="text-white">a precio especial</strong>. Sin códigos, sin condiciones.</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <span class="text-gray-600 line-through text-sm">$599</span>
+                            <span class="text-mexico-gold font-black text-2xl">$299</span>
+                            <span class="text-gray-500 text-xs">MXN/mes</span>
+                        </div>
+                    </div>
+                    
+                    <div id="subsidio-slider" class="slider-container">
+                        <div class="slider-active-bg" id="slider-bg"></div>
+                        <div class="slider-text" id="slider-label">Desliza para aplicar</div>
+                        <div class="slider-handle" id="slider-handle">
+                            <svg id="slider-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                <div class="passport-card p-12 rounded-[60px] bg-white flex flex-col relative border-2 border-mexico-green/5 ring-4 ring-mexico-green/5">
+                    <div class="absolute top-6 right-8 bg-mexico-green text-white text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
+                        Sin tarjeta requerida
+                    </div>
+                    <div class="mb-10">
+                        <span class="text-[10px] font-black text-mexico-green uppercase tracking-widest">Diagnóstico gratuito</span>
+                        <h3 class="text-4xl font-black italic mb-4">Plan Básico</h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-6xl font-black tracking-tighter">$0</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">PESOS MXN</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-6 flex-1 mb-6">
+                        <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
+                            <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
+                            <span><strong>Vista previa de tu CV optimizado:</strong> Ve cómo quedaría tu CV con marca de agua. La versión lista para enviar requiere el plan completo.</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
+                            <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
+                            <span><strong>Diagnóstico de compatibilidad:</strong> Descubre por qué no te llaman y qué necesitas corregir. El plan de corrección completo está en Pro.</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
+                            <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
+                            <span><strong>Ejemplo de respuesta STAR:</strong> Mira cómo funciona la técnica. Genera respuestas ilimitadas con el plan completo.</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
+                            <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
+                            <span><strong>Guía de Negociación básica:</strong> El manual introductorio. La guía táctica completa con casos reales está en Pro.</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
+                            <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
+                            <span><strong>Perfil LinkedIn — diagnóstico inicial:</strong> Sabe si tu perfil atrae reclutadores. La optimización completa está en Pro.</span>
+                        </li>
+                    </ul>
+                    <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 mb-6">
+                        <p class="text-[11px] text-gray-600 italic text-center">🔒 Para descargar tu CV listo para enviar y aplicar a vacantes reales, desbloquea el plan completo.</p>
+                    </div>
+                    <div class="mt-auto pt-8 border-t border-gray-100">
+                        <p class="text-[10px] font-black uppercase text-mexico-dark mb-1 text-center">COMPARTE Y DESBLOQUEA TU CV LISTO PARA ENVIAR</p>
+                        <p class="text-[9px] text-gray-400 text-center italic mb-5">Ayuda a un colega a conseguir mejores entrevistas. Ellos ganan, tú descargas.</p>
+                        <div class="grid grid-cols-4 gap-3 mb-8">
+                            <button onclick="compartirLinkedIn()" class="social-btn text-blue-600 text-sm font-black bg-blue-50/30 border-blue-100" title="Compartir en LinkedIn">in</button>
+                            <button onclick="compartirX()" class="social-btn text-black font-black text-sm bg-gray-50 border-gray-200" title="Compartir en X">X</button>
+                            <button onclick="compartirFacebook()" class="social-btn text-blue-800 text-sm font-black bg-blue-50/30 border-blue-100" title="Compartir en Facebook">f</button>
+                            <button onclick="compartirWhatsApp()" class="social-btn text-green-600 text-sm font-black bg-green-50/30 border-green-100" title="Compartir por WhatsApp">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                            </button>
+                        </div>
+                        <button onclick="descargarCVdesdePasaporte()" class="w-full py-6 rounded-2xl bg-mexico-dark text-white font-black text-[11px] uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-black/10">Descargar CV Optimizado (con marca)</button>
+                        <button onclick="descargarGuia()" class="w-full mt-3 py-4 rounded-2xl border-2 border-gray-200 text-gray-600 font-black text-[11px] uppercase tracking-widest hover:border-mexico-green hover:text-mexico-green transition-all">Descargar Guía de Negociación</button>
+                    </div>
+                </div>
+
+                <div class="passport-card premium-gradient p-10 rounded-[60px] shadow-2xl flex flex-col relative overflow-hidden border-2 border-mexico-gold/40">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-mexico-gold/20 blur-3xl rounded-full"></div>
+                    <div class="mb-6 relative z-10">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[10px] font-black text-mexico-gold uppercase tracking-widest">Plan Principal — El más elegido</span>
+                            <span id="label-subsidio" class="hidden bg-white text-mexico-green text-[8px] px-3 py-1 rounded-full font-black uppercase tracking-widest">Precio Especial</span>
+                        </div>
+                        <h3 class="text-3xl font-black italic mb-1 text-white">Plan Completo</h3>
+                        <p class="text-white/50 text-[11px] italic mb-3">CV listo. Sin bloqueos. Con respaldo humano.</p>
+                        <div class="flex items-baseline gap-2 text-white">
+                            <span id="price-pro" class="text-5xl font-black tracking-tighter">$599</span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-white/50">MXN / MES</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 flex-1 mb-6 relative z-10">
+                        <li class="flex items-start gap-3 text-sm font-bold text-white">
+                            <span class="text-mexico-gold mt-0.5">★</span>
+                            <span>CV sin marca de agua — listo para enviar hoy mismo</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm font-bold text-white">
+                            <span class="text-mexico-gold mt-0.5">★</span>
+                            <span>Análisis ilimitados — aplica a todas las vacantes que quieras</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm font-bold text-white">
+                            <span class="text-mexico-gold mt-0.5">★</span>
+                            <span><strong class="text-mexico-gold">Reporte revisado por Alejandro Vivanco</strong> — +15 años en RH, feedback real, no IA</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm font-bold text-white">
+                            <span class="text-mexico-gold mt-0.5">★</span>
+                            <span>Plantillas premium de CV y carta de presentación</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm font-bold text-white">
+                            <span class="text-mexico-gold mt-0.5">★</span>
+                            <span><strong class="text-mexico-gold">La Telaraña</strong> — base de datos exclusiva: nombres, puestos, correos y LinkedIn de decisores reales en empresas mexicanas.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm font-bold text-white">
+                            <span class="text-mexico-gold mt-0.5">★</span>
+                            <span>Soporte por WhatsApp — respuesta en menos de 24h</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm font-bold text-white">
+                            <span class="text-mexico-gold mt-0.5">🛡️</span>
+                            <span class="text-mexico-gold">Garantía 60 días: más entrevistas o te devolvemos el dinero.</span>
+                        </li>
+                    </ul>
+                    <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="w-full py-6 rounded-[30px] bg-mexico-gold text-white font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-mexico-gold/30 hover:scale-[1.02] transition-all relative z-10">Quiero Conseguir Entrevistas — Empezar Ahora</button>
+                    <!-- MercadoPago badge -->
+                    <div class="flex items-center justify-center gap-2 mt-4 relative z-10">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#009EE3"/><path d="M6 12.5C6 9.46 8.46 7 11.5 7c1.74 0 3.28.8 4.3 2.05L18 7.5C16.5 5.65 14.14 4.5 11.5 4.5 7.08 4.5 3.5 8.08 3.5 12.5S7.08 20.5 11.5 20.5c2.64 0 5-1.15 6.5-2.98l-2.2-2.02A4.485 4.485 0 0 1 11.5 17C8.46 17 6 14.54 6 12.5z" fill="white"/></svg>
+                        <p class="text-[9px] text-white/40 uppercase font-bold tracking-widest">Pago seguro vía MercadoPago · Tarjeta · OXXO · SPEI</p>
+                    </div>
+                    <p class="text-[8px] text-white/30 text-center mt-2 uppercase font-bold tracking-widest relative z-10">SSL Encriptado · Cancela cuando quieras · Garantía 60 días</p>
+                </div>
+            </div><!-- /grid cols-2 -->
+        </div><!-- /paso5 -->
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-100 mt-20 py-12 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
+            
+            <!-- Acerca de Alejandro -->
+            <div class="max-w-sm">
+                <h4 class="font-display text-sm italic font-extrabold tracking-tighter mb-3">HIREPILOT<span class="text-mexico-green">MX</span></h4>
+                <p class="text-[11px] text-gray-400 leading-relaxed italic mb-4">
+                    Creado por <strong class="text-mexico-dark">Alejandro Vivanco</strong>, estratega en Capital Humano con más de 15 años diseñando planes que fortalecen culturas, reducen riesgos y convierten el talento en ventaja competitiva. HirePilot MX nació de esa experiencia: una herramienta que pone la inteligencia del mercado laboral en manos de cualquier profesional.
+                </p>
+                <a href="https://www.linkedin.com/in/vivancoalejandro/" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-mexico-green hover:underline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    Ver perfil de Alejandro
+                </a>
+            </div>
+
+            <!-- Links legales -->
+            <div class="flex flex-col items-start md:items-end gap-4">
+                <p class="text-[9px] uppercase tracking-widest text-gray-300 font-bold">Legal</p>
+                <div class="flex gap-6">
+                    <button onclick="document.getElementById('modal-terminos').classList.remove('hidden')" class="text-[10px] text-gray-400 hover:text-mexico-green font-bold uppercase tracking-wider transition-colors">Términos y Condiciones</button>
+                    <button onclick="document.getElementById('modal-privacidad').classList.remove('hidden')" class="text-[10px] text-gray-400 hover:text-mexico-green font-bold uppercase tracking-wider transition-colors">Aviso de Privacidad</button>
+                </div>
+                <p class="text-[9px] text-gray-300 uppercase tracking-widest">© 2025 HirePilot MX · Todos los derechos reservados</p>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL TÉRMINOS Y CONDICIONES -->
+    <div id="modal-terminos" class="hidden fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[40px] max-w-2xl w-full max-h-[80vh] overflow-y-auto p-10 shadow-2xl relative">
+            <button onclick="document.getElementById('modal-terminos').classList.add('hidden')" class="absolute top-6 right-8 text-gray-400 hover:text-black font-black text-xl">✕</button>
+            <h2 class="text-2xl font-black italic mb-6 text-mexico-dark">Términos y Condiciones</h2>
+            <div class="text-xs text-gray-600 leading-relaxed space-y-4 italic">
+                <p><strong class="text-mexico-dark not-italic">1. Aceptación de los términos.</strong> Al acceder y utilizar HirePilot MX, usted acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguno de ellos, le pedimos que no utilice el servicio.</p>
+                <p><strong class="text-mexico-dark not-italic">2. Descripción del servicio.</strong> HirePilot MX es una herramienta de orientación profesional asistida por inteligencia artificial. Su propósito es apoyar al usuario en la optimización de su perfil laboral, análisis de compatibilidad con vacantes y preparación para entrevistas. No garantizamos la obtención de empleo ni resultados específicos.</p>
+                <p><strong class="text-mexico-dark not-italic">3. Uso aceptable.</strong> El usuario se compromete a utilizar HirePilot MX únicamente para fines lícitos y personales. Queda prohibido el uso del servicio para actividades fraudulentas, suplantación de identidad o cualquier acto contrario a la ley mexicana.</p>
+                <p><strong class="text-mexico-dark not-italic">4. Propiedad intelectual.</strong> Todo el contenido, diseño, código y marca de HirePilot MX son propiedad exclusiva de Alejandro Vivanco. Queda prohibida su reproducción total o parcial sin autorización expresa por escrito.</p>
+                <p><strong class="text-mexico-dark not-italic">5. Limitación de responsabilidad.</strong> HirePilot MX y sus creadores no se responsabilizan por decisiones laborales tomadas con base en los resultados generados por la IA. Los análisis son orientativos y no constituyen asesoría legal, contable ni de recursos humanos certificada.</p>
+                <p><strong class="text-mexico-dark not-italic">6. Inteligencia Artificial.</strong> Las respuestas generadas por la herramienta son producidas por modelos de lenguaje (IA) y pueden contener imprecisiones. El usuario es responsable de verificar la información antes de aplicarla en decisiones profesionales reales.</p>
+                <p><strong class="text-mexico-dark not-italic">7. Modificaciones.</strong> Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuado del servicio implica la aceptación de los términos vigentes.</p>
+                <p><strong class="text-mexico-dark not-italic">8. Jurisdicción.</strong> Estos términos se rigen por las leyes de los Estados Unidos Mexicanos. Cualquier controversia será resuelta ante los tribunales competentes de Guadalajara, Jalisco, México.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL AVISO DE PRIVACIDAD -->
+    <div id="modal-privacidad" class="hidden fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[40px] max-w-2xl w-full max-h-[80vh] overflow-y-auto p-10 shadow-2xl relative">
+            <button onclick="document.getElementById('modal-privacidad').classList.add('hidden')" class="absolute top-6 right-8 text-gray-400 hover:text-black font-black text-xl">✕</button>
+            <h2 class="text-2xl font-black italic mb-6 text-mexico-dark">Aviso de Privacidad</h2>
+            <div class="text-xs text-gray-600 leading-relaxed space-y-4 italic">
+                <p><strong class="text-mexico-dark not-italic">Responsable del tratamiento de datos.</strong> Alejandro Vivanco, con domicilio en Zapopan, Jalisco, México, es el responsable del tratamiento de sus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).</p>
+                <p><strong class="text-mexico-dark not-italic">Datos que recopilamos.</strong> HirePilot MX procesa únicamente los textos que usted ingresa voluntariamente (descripción de vacante y contenido de CV) para generar los análisis solicitados. No almacenamos, vendemos ni compartimos esta información con terceros.</p>
+                <p><strong class="text-mexico-dark not-italic">Finalidad del tratamiento.</strong> Los datos ingresados se utilizan exclusivamente para generar el análisis de compatibilidad ATS, radar de sueldos y guiones de entrevista solicitados por el usuario. No se utilizan para ninguna otra finalidad.</p>
+                <p><strong class="text-mexico-dark not-italic">Transferencia de datos a IA.</strong> Para generar los análisis, el texto ingresado se envía de forma segura a la API de Anthropic (Claude), proveedor de inteligencia artificial. Este procesamiento está sujeto a la política de privacidad de Anthropic. No compartimos información identificable con otros terceros.</p>
+                <p><strong class="text-mexico-dark not-italic">Derechos ARCO.</strong> Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse al tratamiento de sus datos personales (Derechos ARCO). Para ejercerlos, puede contactarnos en: <strong class="not-italic text-mexico-green">hirepilotmx@gmail.com</strong></p>
+                <p><strong class="text-mexico-dark not-italic">Cookies y datos de navegación.</strong> Este sitio puede utilizar cookies técnicas para su correcto funcionamiento. No utilizamos cookies de rastreo publicitario.</p>
+                <p><strong class="text-mexico-dark not-italic">Seguridad.</strong> Implementamos medidas técnicas razonables para proteger la información que transita por nuestra plataforma. La comunicación se realiza mediante protocolo HTTPS encriptado.</p>
+                <p><strong class="text-mexico-dark not-italic">Cambios al aviso.</strong> Nos reservamos el derecho de actualizar este aviso en cualquier momento. La versión vigente estará siempre disponible en este sitio.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ─── CONFIGURACIÓN DE IA (Claude via Netlify Functions) ──────────────
+        async function callAI(prompt) {
+            const res = await fetch("/.netlify/functions/ai", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ prompt })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error("Error IA");
+            return data.text;
+        }
+
+        async function callAIWithPDF(systemPrompt, pdfBase64, vacante) {
+            const res = await fetch("/.netlify/functions/ai", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    pdf: pdfBase64,
+                    system: systemPrompt,
+                    prompt: "Analiza el match ATS entre el CV adjunto y esta vacante. Vacante: " + vacante
+                })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error("Error IA");
+            return data.text;
+        }
+
+        // ─── NAVEGACIÓN ───────────────────────────────────────────────────────
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
+            const btn = document.querySelector('.nav-link[data-tab="' + tabId + '"]');
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        window.switchTab = switchTab;
+
+        // ─── LIMPIEZA DE TEXTO PDF ───────────────────────────────────────────
+        function limpiarTextoPDF(txt) {
+            return txt
+                .replace(/-(\n\s*)/g, '')
+                .replace(/\b([A-Z\xC0-\xD6\xD8-\xDE])(?: ([A-Z\xC0-\xD6\xD8-\xDE])){2,}\b/g, function(m){ return m.replace(/ /g, ''); })
+                .replace(/^[>]\s*/gm, '- ')
+                .replace(/(%|°)([A-Za-záéíóúÁÉÍÓÚñÑ])/g, '$1 $2')
+                .replace(/([a-záéíóúñ])([A-ZÁÉÍÓÚÑ][a-záéíóúñ])/g, '$1 $2')
+                .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+                .replace(/\uFFFD/g, '')
+                .replace(/[ \t]{2,}/g, ' ')
+                .replace(/\n{3,}/g, '\n\n')
+                .split('\n').map(function(l){ return l.trim(); }).join('\n')
+                .trim();
+        }
+
+        // ─── LECTOR DE ARCHIVOS ───────────────────────────────────────────────
+        // Guarda el PDF como base64 para mandarlo directo a Claude
+        let pdfBase64Store = null;
+
+        async function handleFileUpload(input, targetId) {
+            const file = input.files[0];
+            if (!file) return;
+            const targetTextArea = document.getElementById(targetId);
+            targetTextArea.value = "";
+            targetTextArea.placeholder = "LEYENDO DOCUMENTO...";
+            try {
+                if (file.type === "application/pdf") {
+                    // Convertir a base64 y guardar para usarlo en el prompt
+                    const base64 = await new Promise(function(res, rej) {
+                        const r = new FileReader();
+                        r.onload = function() { res(r.result.split(",")[1]); };
+                        r.onerror = function() { rej(new Error("Error leyendo archivo")); };
+                        r.readAsDataURL(file);
+                    });
+                    pdfBase64Store = base64;
+                    targetTextArea.value = "[PDF cargado: " + file.name + "]";
+                    targetTextArea.placeholder = "";
+                } else {
+                    pdfBase64Store = null;
+                    const text = await file.text();
+                    targetTextArea.value = text || "[ARCHIVO CARGADO: " + file.name + "]";
+                }
+            } catch (err) {
+                alert("Error al cargar archivo. Intenta pegando el texto manualmente.");
+            } finally {
+                targetTextArea.placeholder = "";
+            }
+        }
+        window.handleFileUpload = handleFileUpload;
+
+        // ─── AUDITORÍA ATS ────────────────────────────────────────────────────
+        async function auditar() {
+            // Verificar límite de usos (saltarse si dev mode)
+            if (!isDevMode() && getUsos() >= MAX_USOS) {
+                document.getElementById('btn-ia').classList.add('hidden');
+                document.getElementById('limite-bloqueado').classList.remove('hidden');
+                return;
+            }
+
+            const v = document.getElementById('v-input').value;
+            const c = document.getElementById('c-input').value;
+            if (!v || !c) return alert("Completa los dos campos para continuar.");
+            const btn = document.getElementById('btn-ia');
+            btn.innerText = "CRUZANDO DATOS..."; btn.disabled = true;
+            try {
+                const vTrunc = v.slice(0, 2000);
+                const systemPrompt = 'Eres un experto en ATS. Responde ÚNICAMENTE con JSON válido sin bloques de código ni texto extra. Formato: {"match": 75, "analisis": "texto"}';
+
+                let text;
+                if (pdfBase64Store) {
+                    // PDF disponible: mandarlo como documento a Claude
+                    text = await callAIWithPDF(systemPrompt, pdfBase64Store, vTrunc);
+                } else {
+                    const cvTrunc = c.slice(0, 6000);
+                    text = await callAI(systemPrompt + ' CV: ' + cvTrunc + ' VACANTE: ' + vTrunc);
+                }
+
+                let data;
+                try {
+                    const jsonMatch = text.match(/\{[\s\S]*\}/);
+                    if (!jsonMatch) throw new Error("no json");
+                    data = JSON.parse(jsonMatch[0]);
+                } catch(parseErr) {
+                    const vShort = v.slice(0, 800);
+                    const cvShort = pdfBase64Store ? '[ver PDF adjunto]' : c.slice(0, 2000);
+                    const retry = await callAI('Responde SOLO con este JSON exacto sin nada más: {"match": NUMBER, "analisis": "STRING"}. CV: ' + cvShort + ' VACANTE: ' + vShort);
+                    const retryMatch = retry.match(/\{[\s\S]*\}/);
+                    if (!retryMatch) throw new Error("Respuesta inesperada de IA");
+                    data = JSON.parse(retryMatch[0]);
+                }
+
+                // Guardar datos para el PDF
+                lastCVData = { cv: c, vacante: v, analisis: data.analisis, score: data.match };
+
+                document.getElementById('score-container').innerHTML = '<p class="text-[10px] uppercase text-mexico-gold tracking-widest mb-2">Compatibilidad ATS</p><h3 class="text-6xl font-black italic">' + data.match + '%</h3>';
+                document.getElementById('star-txt-audit').innerText = data.analisis;
+                document.getElementById('res-auditoria').classList.remove('hidden');
+                // Mostrar CTA conductor al siguiente paso
+                const ctaSig = document.getElementById('cta-siguiente-paso1');
+                if (ctaSig) ctaSig.classList.remove('hidden');
+
+                // Incrementar contador y actualizar indicador (no en dev mode)
+                if (!isDevMode()) {
+                    incrementarUso();
+                    actualizarIndicador();
+                }
+
+                const restantes = MAX_USOS - getUsos();
+                if (restantes === 0) {
+                    btn.innerText = "Análisis agotados — Ver Plan Pro";
+                    btn.onclick = () => switchTab('paso5');
+                } else {
+                    btn.innerText = `RE-AUDITAR (${restantes} restante${restantes !== 1 ? 's' : ''})`;
+                }
+                btn.disabled = false;
+            } catch (e) {
+                alert("Error al conectar con la IA. Verifica tu conexión e intenta de nuevo.");
+                console.error(e);
+                btn.innerText = "Ver mi Score y qué mejorar"; btn.disabled = false;
+            }
+        }
+        window.auditar = auditar;
+
+        // ─── SIMULADOR STAR ───────────────────────────────────────────────────
+        async function generarSTAR() {
+            const exp = document.getElementById('star-experience').value;
+            if (!exp) return alert("Describe tu experiencia primero.");
+            const btn = document.getElementById('btn-star');
+            btn.innerText = "REDACTANDO..."; btn.disabled = true;
+            try {
+                const text = await callAI('Crea un guion de respuesta STAR detallado y estructurado para esta experiencia laboral: "' + exp + '". Usa los títulos: Situación, Tarea, Acción, Resultado.');
+                document.getElementById('star-output').innerText = text;
+                document.getElementById('res-star').classList.remove('hidden');
+            } catch (e) {
+                alert("Error al conectar con la IA. Intenta de nuevo.");
+                console.error(e);
+            }
+            btn.innerText = "Generar Guion STAR"; btn.disabled = false;
+        }
+        window.generarSTAR = generarSTAR;
+
+        // ─── RADAR DE SUELDOS ─────────────────────────────────────────────────
+        async function llamarRadar() {
+            const e = document.getElementById('e-in').value;
+            const p = document.getElementById('p-in').value;
+            if (!e || !p) return alert("Ingresa empresa y puesto.");
+            const btn = document.getElementById('btn-radar');
+            btn.innerText = "ESCANEANDO..."; btn.disabled = true;
+            try {
+                const prompt = 'Investiga el sueldo para el puesto "' + p + '" en la empresa "' + e + '" en México. Responde ÚNICAMENTE con JSON válido sin bloques de código: {"sueldo": "$XX,XXX - $XX,XXX MXN/mes", "noticia": "Insight breve sobre el mercado laboral para este puesto", "negociacion": "Guía táctica de 3 puntos para negociar el sueldo"}';
+                const text = await callAI(prompt);
+                const jsonMatch = text.match(/\{[\s\S]*\}/);
+                if (!jsonMatch) throw new Error("Respuesta inesperada");
+                const data = JSON.parse(jsonMatch[0]);
+                document.getElementById('sueldo-res').innerHTML = '<p class="text-[10px] uppercase mb-4">Sueldo Estimado</p><p class="text-4xl font-black text-mexico-green">' + data.sueldo + '</p>';
+                document.getElementById('noticia-res').innerHTML = '<p class="text-[10px] uppercase mb-4">Insight de Mercado</p><p class="text-xs italic">' + data.noticia + '</p>';
+                document.getElementById('neg-txt').innerText = data.negociacion;
+                document.getElementById('res-radar').classList.remove('hidden');
+            } catch (e) {
+                alert("Error al conectar con la IA. Intenta de nuevo.");
+                console.error(e);
+            }
+            btn.innerText = "Escanear"; btn.disabled = false;
+        }
+        window.llamarRadar = llamarRadar;
+
+        // ─── DETECTOR DE HUMO ─────────────────────────────────────────────────
+        async function inquirir() {
+            const emp = document.getElementById('empresa-clima').value;
+            if (!emp) return alert("Escribe el nombre de la empresa.");
+            const btn = document.getElementById('btn-inquisidor');
+            btn.innerText = "AUDITANDO..."; btn.disabled = true;
+            try {
+                const prompt = 'Analiza la reputación laboral de la empresa "' + emp + '" en México. Responde ÚNICAMENTE con JSON válido sin bloques de código: {"positivos": "Lista de 3-4 atributos positivos como empleador", "negativos": "Lista de 3-4 riesgos o aspectos negativos reportados por empleados"}';
+                const text = await callAI(prompt);
+                const jsonMatch = text.match(/\{[\s\S]*\}/);
+                if (!jsonMatch) throw new Error("Respuesta inesperada");
+                const data = JSON.parse(jsonMatch[0]);
+                document.getElementById('puntos-positivos').innerText = data.positivos;
+                document.getElementById('puntos-negativos').innerText = data.negativos;
+                document.getElementById('res-inquisidor').classList.remove('hidden');
+            } catch (e) {
+                alert("Error al conectar con la IA. Intenta de nuevo.");
+                console.error(e);
+            }
+            btn.innerText = "Auditar Historial"; btn.disabled = false;
+        }
+        window.inquirir = inquirir;
+
+        // ─── CONTADOR DE USOS GRATUITOS ───────────────────────────────────────
+        const MAX_USOS = 10;
+        const DEV_CODE = 'manager007';
+
+        try {
+            if (localStorage.getItem('hirepilot_version') !== 'v2') {
+                localStorage.removeItem('hirepilot_usos');
+                localStorage.setItem('hirepilot_version', 'v2');
+            }
+        } catch(e) {}
+
+        function isDevMode() {
+            try { return localStorage.getItem('hirepilot_dev') === 'true'; } catch(e) { return false; }
+        }
+
+        function activarDevMode(codigo) {
+            if (codigo === DEV_CODE) {
+                try { localStorage.setItem('hirepilot_dev', 'true'); } catch(e) {}
+                try { localStorage.removeItem('hirepilot_usos'); } catch(e) {}
+                actualizarIndicador();
+                document.getElementById('hp-access').innerHTML = '<span style="font-size:11px; font-weight:900; color:#064e3b; letter-spacing:0.05em;">🔐 Protocolo Vivanco activado</span>';
+            } else {
+                const input = document.getElementById('hp-code');
+                input.style.borderColor = '#ef4444';
+                input.value = '';
+                input.placeholder = 'código incorrecto';
+                setTimeout(() => { input.style.borderColor = '#e5e7eb'; input.placeholder = 'código de acceso'; }, 2000);
+            }
+        }
+        window.activarDevMode = activarDevMode;
+
+
+
+        function getUsos() {
+            try { return parseInt(localStorage.getItem('hirepilot_usos') || '0'); } catch(e) { return 0; }
+        }
+        function incrementarUso() {
+            const usos = getUsos() + 1;
+            try { localStorage.setItem('hirepilot_usos', usos); } catch(e) {}
+            return usos;
+        }
+        function actualizarIndicador() {
+            const usos = getUsos();
+            const restantes = MAX_USOS - usos;
+            const el = document.getElementById('usos-indicador');
+            if (!el) return;
+            el.innerHTML = '';
+            for (let i = 0; i < MAX_USOS; i++) {
+                const dot = document.createElement('div');
+                dot.className = i < usos
+                    ? 'w-4 h-4 rounded-full bg-gray-200'
+                    : 'w-4 h-4 rounded-full bg-mexico-green';
+                el.appendChild(dot);
+            }
+            if (restantes === 0) {
+                document.getElementById('btn-ia').classList.add('hidden');
+                document.getElementById('limite-bloqueado').classList.remove('hidden');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarIndicador();
+            // Mostrar estado en panel si dev mode activo
+            if (_devMode) {
+                const panel = document.getElementById('hp-access');
+                if (panel) panel.innerHTML = '<span style="font-size:11px; font-weight:900; color:#064e3b; letter-spacing:0.05em;">🔐 Modo ilimitado activado</span>';
+            }
+        });
+
+        // ─── VARIABLES GLOBALES PARA PDF ──────────────────────────────────────
+        let lastCVData = { cv: '', vacante: '', analisis: '', score: 0 };
+
+        // ─── GENERADOR DE CV CAMPEÓN CON MARCA DE AGUA ───────────────────────
+        async function descargarCV() {
+            const { cv, vacante, analisis, score } = lastCVData;
+            if (!cv) return alert("Primero realiza un análisis de tu CV en la sección Diagnóstico.");
+
+            const { jsPDF } = window.jspdf;
+
+            const btns = document.querySelectorAll('[onclick="descargarCV()"], [onclick="descargarCVdesdePasaporte()"]');
+            btns.forEach(b => { b.innerText = 'OPTIMIZANDO CV...'; b.disabled = true; });
+
+            // ── PRE-LIMPIAR el CV ANTES de mandarlo a la IA ──
+            const cvLimpio = cv
+                // Quitar espacios entre letras mayúsculas: "F O R M A" -> "FORMA"
+                .replace(/\b([A-ZÁÉÍÓÚÑ]) (?=[A-ZÁÉÍÓÚÑ] [A-ZÁÉÍÓÚÑ])/g, '$1')
+                .replace(/\b([A-ZÁÉÍÓÚÑ]) ([A-ZÁÉÍÓÚÑ])\b/g, '$1$2')
+                // Convertir > a guion
+                .replace(/^>\s*/gm, '- ')
+                .replace(/\s>\s/g, ' - ')
+                // Quitar caracteres raros
+                .replace(/[^\x00-\x7FáéíóúÁÉÍÓÚñÑüÜ\n]/g, ' ')
+                // Limpiar espacios múltiples
+                .replace(/[ \t]{2,}/g, ' ')
+                .trim();
+
+            let resultado = { cvTexto: cvLimpio, atsScore: score };
+            try {
+                const raw = await callAI(
+                    `Eres un experto en CVs ejecutivos. Reescribe este CV en formato Harvard ATS profesional.
+
+REGLAS:
+- Cada seccion en su propia linea
+- Bullets solo con guion: "- logro"
+- Secciones en MAYUSCULAS: PERFIL PROFESIONAL, EXPERIENCIA LABORAL, etc
+- Logros con numeros y porcentajes
+- Verbos de accion: Lidere, Implemente, Reduje, Optimice
+- Keywords de la vacante integradas naturalmente
+- NUNCA espacios entre letras de una palabra
+- NUNCA el simbolo ">"
+
+VACANTE: ${vacante.substring(0, 500)}
+CV A REESCRIBIR: ${cvLimpio.substring(0, 2000)}
+
+Devuelve SOLO el CV reescrito en texto plano, sin explicaciones:`
+                );
+
+                // ── Limpiar texto recibido ──
+                let cvTexto = raw
+                    .replace(/```[\s\S]*?```/g, '')
+                    .replace(/`/g, '')
+                    .replace(/^>\s*/gm, '- ')
+                    .replace(/\s*>\s*/g, ' - ')
+                    .replace(/\b([A-ZÁÉÍÓÚÑ]) ([A-ZÁÉÍÓÚÑ]) ([A-ZÁÉÍÓÚÑ])\b/g, '$1$2$3')
+                    .replace(/\b([A-ZÁÉÍÓÚÑ]) ([A-ZÁÉÍÓÚÑ])\b/g, '$1$2')
+                    .replace(/[ \t]{2,}/g, ' ')
+                    .replace(/([^\n])(- [A-Z])/g, '$1\n$2')
+                    .trim();
+
+                if (cvTexto.length < 200) cvTexto = cvLimpio;
+
+                resultado.cvTexto = cvTexto;
+                resultado.atsScore = Math.min(score + 5, 95);
+            } catch(e) {
+                console.error('Error generando CV:', e);
+                alert('Error al generar el CV. Intenta de nuevo.');
+                btns.forEach(b => { b.innerText = 'Descargar CV (con marca)'; b.disabled = false; });
+                return;
+            }
+
+            // ── RENDERIZAR PDF — FORMATO HARVARD ATS ──
+            const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+            const margin = 60;
+            const pageW = doc.internal.pageSize.getWidth();
+            const pageH = doc.internal.pageSize.getHeight();
+            const contentW = pageW - margin * 2;
+            let y = margin;
+
+            const addPage = () => {
+                doc.addPage();
+                y = margin;
+            };
+
+            const checkSpace = (needed) => {
+                if (y + needed > pageH - 55) addPage();
+            };
+
+            // Normalizar texto — doble limpieza
+            const cvTextoLimpio = (resultado.cvTexto || cv)
+                .replace(/\r\n/g, '\n')
+                .replace(/\r/g, '\n')
+                .replace(/^>\s*/gm, '- ')
+                .replace(/\s*>\s*/g, ' - ')
+                .replace(/\b([A-ZÁÉÍÓÚÑ]) ([A-ZÁÉÍÓÚÑ]) ([A-ZÁÉÍÓÚÑ])\b/g, '$1$2$3')
+                .replace(/\b([A-ZÁÉÍÓÚÑ]) ([A-ZÁÉÍÓÚÑ])\b/g, '$1$2')
+                .replace(/[ \t]{2,}/g, ' ')
+                .trim();
+
+            // Limpiar y separar líneas
+            const lineas = cvTextoLimpio
+                .split('\n')
+                .map(l => l.trim())
+                .filter(Boolean);
+
+            // Detectores
+            const SECCIONES = ['PERFIL', 'EXPERIENCIA', 'HABILIDADES', 'EDUCACION', 'EDUCACIÓN', 'LOGROS', 'FORMACION', 'FORMACIÓN', 'CERTIFICACION', 'CERTIFICACIÓN', 'IDIOMAS', 'COMPETENCIAS', 'OBJETIVO'];
+            const normalize = t => t.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const esSeccion = t => SECCIONES.some(s => normalize(t).startsWith(s)) && t.length < 60;
+            const esContacto = t => (t.includes('|') || t.includes('@') || /\d{8,}/.test(t)) && t.length < 200;
+            const esBullet = t => /^[-•·*]/.test(t);
+            const esSubtitulo = t => t.includes('—') || (t.includes('|') && !esContacto(t)) || /\d{4}/.test(t);
+
+            let idx = 0;
+
+            // ── 1. NOMBRE ──
+            if (lineas[idx]) {
+                // Separar nombre del título si están en la misma línea
+                const nombreLinea = lineas[idx].split('|')[0].split('  ')[0].trim();
+                doc.setFontSize(22);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(10, 10, 10);
+                const nombreW = doc.splitTextToSize(nombreLinea, contentW - 90);
+                doc.text(nombreW, margin, y);
+                y += nombreW.length * 26;
+                idx++;
+            }
+
+            // ── 2. TÍTULO PROFESIONAL (si existe separado) ──
+            if (lineas[idx] && !esContacto(lineas[idx]) && !esSeccion(lineas[idx]) && idx === 1) {
+                const posibleTitulo = lineas[idx];
+                if (posibleTitulo.length < 80 && !esBullet(posibleTitulo)) {
+                    doc.setFontSize(11);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(6, 78, 59);
+                    doc.text(posibleTitulo, margin, y);
+                    y += 16;
+                    idx++;
+                }
+            }
+
+            // ── 3. CONTACTO ──
+            // Buscar línea de contacto en las próximas 4 líneas
+            for (let i = idx; i < Math.min(idx + 4, lineas.length); i++) {
+                if (esContacto(lineas[i])) {
+                    y += 4;
+                    doc.setFontSize(9);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(80, 80, 80);
+                    const cW = doc.splitTextToSize(lineas[i], contentW);
+                    doc.text(cW, margin, y);
+                    y += cW.length * 12 + 6;
+                    idx = i + 1;
+                    break;
+                }
+            }
+
+            // Línea divisoria bajo header
+            doc.setDrawColor(6, 78, 59);
+            doc.setLineWidth(2);
+            doc.line(margin, y, pageW - margin, y);
+            y += 16;
+
+            // ── 4. RESTO DEL CV ──
+            for (let i = idx; i < lineas.length; i++) {
+                const linea = lineas[i];
+
+                // ENCABEZADO DE SECCIÓN
+                if (esSeccion(linea)) {
+                    checkSpace(40);
+                    y += 6;
+                    doc.setFontSize(10);
+                    doc.setFont('helvetica', 'bold');
+                    doc.setTextColor(6, 78, 59);
+                    doc.text(linea.toUpperCase(), margin, y);
+                    y += 4;
+                    doc.setDrawColor(200, 200, 200);
+                    doc.setLineWidth(0.5);
+                    doc.line(margin, y, pageW - margin, y);
+                    y += 12;
+                    continue;
+                }
+
+                // SUBTÍTULO (empresa — puesto | fechas)
+                if (esSubtitulo(linea) && !esBullet(linea) && linea.length < 120) {
+                    checkSpace(20);
+                    doc.setFontSize(9.5);
+                    doc.setFont('helvetica', 'bold');
+                    doc.setTextColor(30, 30, 30);
+                    const stW = doc.splitTextToSize(linea, contentW);
+                    doc.text(stW, margin, y);
+                    y += stW.length * 13 + 2;
+                    continue;
+                }
+
+                // BULLET
+                if (esBullet(linea)) {
+                    const texto = linea.replace(/^[-•·*]\s*/, '');
+                    const bW = doc.splitTextToSize(texto, contentW - 14);
+                    checkSpace(bW.length * 12 + 4);
+                    doc.setFontSize(9);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(50, 50, 50);
+                    doc.text('-', margin + 3, y);
+                    doc.text(bW, margin + 14, y);
+                    y += bW.length * 12 + 3;
+                    continue;
+                }
+
+                // TEXTO NORMAL
+                const tW = doc.splitTextToSize(linea, contentW);
+                checkSpace(tW.length * 12 + 2);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(60, 60, 60);
+                doc.text(tW, margin, y);
+                y += tW.length * 12 + 3;
+            }
+
+            // ── SCORE ATS BADGE ──
+            doc.setPage(1);
+            doc.setFillColor(6, 78, 59);
+            doc.roundedRect(pageW - 98, margin - 10, 80, 36, 5, 5, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(7);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SCORE ATS', pageW - 58, margin + 4, { align: 'center' });
+            doc.setFontSize(16);
+            doc.text(`${resultado.atsScore || score}%`, pageW - 58, margin + 22, { align: 'center' });
+
+            // ── MARCA DE AGUA: UNA SOLA VEZ POR PÁGINA, CENTRADA, DISCRETA ──
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let p = 1; p <= totalPages; p++) {
+                doc.setPage(p);
+                // Texto diagonal único centrado
+                doc.saveGraphicsState();
+                doc.setGState(new doc.GState({ opacity: 0.06 }));
+                doc.setFontSize(28);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(6, 78, 59);
+                doc.text('HIREPILOT MX', pageW / 2, pageH / 2, { align: 'center', angle: 35 });
+                doc.restoreGraphicsState();
+
+                // Footer discreto solo en la última página
+                if (p === totalPages) {
+                    doc.setFontSize(6.5);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(180, 83, 9);
+                    doc.text('Generado con HirePilot MX · pilotoempleo1.netlify.app · Versión gratuita', pageW / 2, pageH - 18, { align: 'center' });
+                }
+            }
+
+            // ── MOSTRAR MEJORAS APLICADAS EN EL UI ──
+            if (resultado.mejoras && resultado.mejoras.length > 0) {
+                const mejEl = document.getElementById('star-txt-audit');
+                if (mejEl) {
+                    const mejHtml = '<strong style="color:#064e3b">✓ Mejoras aplicadas al CV:</strong><br>' +
+                        resultado.mejoras.map(m => `• ${m}`).join('<br>') +
+                        '<br><br>' + mejEl.innerText;
+                    mejEl.innerHTML = mejHtml;
+                }
+            }
+
+            doc.save('CV-HirePilotMX-Optimizado.pdf');
+            btns.forEach(b => { b.innerText = 'Descargar CV (con marca)'; b.disabled = false; });
+        }
+        window.descargarCV = descargarCV;
+
+        // ─── GENERADOR GUÍA DE NEGOCIACIÓN PDF ───────────────────────────────
+        function descargarGuia() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+            const pageW = doc.internal.pageSize.getWidth();
+            const pageH = doc.internal.pageSize.getHeight();
+            const margin = 50;
+
+            // Header
+            doc.setFillColor(6, 78, 59);
+            doc.rect(0, 0, pageW, 80, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(22);
+            doc.setFont('helvetica', 'bold');
+            doc.text('GUÍA DE NEGOCIACIÓN SALARIAL', margin, 35);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('HirePilot MX — El manual para ganar más dinero', margin, 58);
+
+            let y = 110;
+
+            const secciones = [
+                {
+                    titulo: '01. ANTES DE LA ENTREVISTA',
+                    items: [
+                        '✓ Investiga el rango salarial en el Radar de Sueldos MX antes de cualquier conversación.',
+                        '✓ Define tu número mínimo aceptable y tu número objetivo. Nunca empieces por el mínimo.',
+                        '✓ Investiga la empresa: ¿creció? ¿tiene fondeo? ¿expandió operaciones? Más info = más poder.',
+                        '✓ Prepara 3 logros cuantificados que justifiquen tu número. Ej: "Reduje costos un 23% en 6 meses".',
+                    ]
+                },
+                {
+                    titulo: '02. FRASES QUE FUNCIONAN',
+                    items: [
+                        '💬 Cuando pregunten "¿cuánto ganas?" → "Mi compensación actual responde a mi estructura anterior; prefiero hablar del valor que aportaré aquí."',
+                        '💬 Cuando pregunten "¿cuáles son tus pretensiones?" → "Basado en el mercado para este rol en México y mi experiencia, mi rango objetivo es de $X a $Y, abierto a beneficios."',
+                        '💬 Cuando ofrezcan menos de tu mínimo → "Valoro mucho la oferta. ¿Hay flexibilidad para acercarnos a [tu número]? Tengo [logro concreto] que creo justifica ese ajuste."',
+                        '💬 Para pedir tiempo → "Me gustaría revisar los detalles completos antes de dar mi respuesta. ¿Puedo confirmar en 24-48 horas?"',
+                    ]
+                },
+                {
+                    titulo: '03. ERRORES QUE CUESTAN DINERO',
+                    items: [
+                        '✗ Dar un número primero. Siempre que puedas, deja que ellos hablen primero.',
+                        '✗ Aceptar en el momento. Siempre pide tiempo para "revisar la oferta completa".',
+                        '✗ Negociar solo el sueldo base. Los bonos, vacaciones, home office y desarrollo también tienen valor.',
+                        '✗ Disculparte por pedir más. Negociar es profesional, no arrogante.',
+                        '✗ Revelar que tienes urgencia económica. Mantén el poder en la conversación.',
+                    ]
+                },
+                {
+                    titulo: '04. BENEFICIOS QUE PUEDES NEGOCIAR',
+                    items: [
+                        '→ Días de vacaciones adicionales (el mínimo legal es bajo, pide más)',
+                        '→ Bono de desempeño o firma (sign-on bonus)',
+                        '→ Días de home office por semana',
+                        '→ Presupuesto para capacitación o certificaciones',
+                        '→ Revisión salarial en 6 meses en lugar de 12',
+                        '→ Seguro médico mayor para familia',
+                        '→ Vales de despensa o gasolina',
+                    ]
+                },
+                {
+                    titulo: '05. DESPUÉS DE LA OFERTA',
+                    items: [
+                        '✓ Pide la oferta por escrito antes de renunciar a tu trabajo actual.',
+                        '✓ Compara el paquete completo, no solo el sueldo bruto.',
+                        '✓ Si hay múltiples ofertas, puedes usarlas como palanca (con ética).',
+                        '✓ Una vez aceptado, cumple tu palabra. La reputación vale más que un ciclo de nómina.',
+                    ]
+                }
+            ];
+
+            for (const seccion of secciones) {
+                if (y > pageH - 120) {
+                    doc.addPage();
+                    y = margin;
+                    // Mini header en páginas siguientes
+                    doc.setFillColor(6, 78, 59);
+                    doc.rect(0, 0, 8, pageH, 'F');
+                }
+
+                // Título sección
+                doc.setFillColor(240, 249, 246);
+                doc.roundedRect(margin, y - 14, pageW - margin * 2, 22, 4, 4, 'F');
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(6, 78, 59);
+                doc.text(seccion.titulo, margin + 10, y);
+                y += 20;
+
+                for (const item of seccion.items) {
+                    if (y > pageH - 60) {
+                        doc.addPage();
+                        y = margin;
+                        doc.setFillColor(6, 78, 59);
+                        doc.rect(0, 0, 8, pageH, 'F');
+                    }
+                    doc.setFontSize(8.5);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(60, 60, 60);
+                    const wrapped = doc.splitTextToSize(item, pageW - margin * 2 - 10);
+                    doc.text(wrapped, margin + 10, y);
+                    y += wrapped.length * 13 + 4;
+                }
+                y += 16;
+            }
+
+            // Footer todas las páginas
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let p = 1; p <= totalPages; p++) {
+                doc.setPage(p);
+                doc.setFontSize(7);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(180, 83, 9);
+                doc.text('HirePilot MX · pilotoempleo1.netlify.app · Creado por Alejandro Vivanco', pageW / 2, pageH - 20, { align: 'center' });
+            }
+
+            doc.save('Guia-Negociacion-HirePilotMX.pdf');
+        }
+        window.descargarGuia = descargarGuia;
+
+        // ─── DESCARGA DESDE PASAPORTE ─────────────────────────────────────────
+        function descargarCVdesdePasaporte() {
+            if (!lastCVData.cv) {
+                // No hay análisis previo — llevar al diagnóstico
+                const ir = confirm("Para generar tu CV optimizado primero necesitas hacer el análisis en la sección Diagnóstico. ¿Ir ahora?");
+                if (ir) switchTab('paso1');
+                return;
+            }
+            // Ya hay datos — generar directo
+            descargarCV();
+        }
+        window.descargarCVdesdePasaporte = descargarCVdesdePasaporte;
+
+        // ─── COPIAR AL PORTAPAPELES ───────────────────────────────────────────
+        function copiar(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).catch(() => {
+                const el = document.createElement('textarea');
+                el.value = text; document.body.appendChild(el);
+                el.select(); document.execCommand('copy');
+                document.body.removeChild(el);
+            });
+        }
+        window.copiar = copiar;
+
+        // ─── COMPARTIR EN REDES SOCIALES ──────────────────────────────────────
+        const shareURL = 'https://pilotoempleo1.netlify.app';
+        const shareURLenc = encodeURIComponent(shareURL);
+
+        // Mensajes por red — todos usan la frase viral base
+        const msgWhatsApp = encodeURIComponent(
+            'Estoy mejorando mi CV porque sigo en búsqueda… y esto me está ayudando mucho (además es gratis) 👇\n\n' +
+            '✅ Analiza si tu CV pasa los filtros ATS\n' +
+            '✅ Descubre cuánto deberías estar ganando\n' +
+            '✅ Prepara tus respuestas de entrevista\n\n' +
+            shareURL
+        );
+        const msgX = encodeURIComponent(
+            'Estoy mejorando mi CV porque sigo en búsqueda… y esto me está ayudando mucho (además es gratis) 🎯\n\n' +
+            '→ Pasa filtros ATS\n→ Radar de sueldos reales\n→ Entrenador de entrevistas\n\n' +
+            shareURL
+        );
+        const msgLinkedIn = encodeURIComponent(
+            'Estoy mejorando mi CV porque sigo en búsqueda… y esto me está ayudando mucho.\n\n' +
+            'HirePilot MX analiza tu CV contra la vacante, te da un score real de compatibilidad y lo reescribe optimizado para pasar filtros ATS. Es gratis.\n\n' +
+            'Si estás en búsqueda activa o quieres saber por qué no te llaman, vale la pena probarlo 👇\n\n' +
+            shareURL
+        );
+
+        function compartirLinkedIn() {
+            // LinkedIn solo permite compartir URL — el OG tag hace el trabajo visual
+            window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + shareURLenc, '_blank');
+        }
+        function compartirX() {
+            window.open('https://twitter.com/intent/tweet?text=' + msgX, '_blank');
+        }
+        function compartirFacebook() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + shareURLenc, '_blank');
+        }
+        function compartirWhatsApp() {
+            window.open('https://wa.me/?text=' + msgWhatsApp, '_blank');
+        }
+        window.compartirLinkedIn = compartirLinkedIn;
+        window.compartirX = compartirX;
+        window.compartirFacebook = compartirFacebook;
+        window.compartirWhatsApp = compartirWhatsApp;
+
+        // ─── SLIDER DE SUBSIDIO ───────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', function () {
+            const handle = document.getElementById('slider-handle');
+            const container = document.getElementById('subsidio-slider');
+            const bg = document.getElementById('slider-bg');
+            const label = document.getElementById('slider-label');
+            const pricePro = document.getElementById('price-pro');
+            const badgeSubsidio = document.getElementById('label-subsidio');
+            const arrowHint = document.getElementById('arrow-hint');
+            const sliderIcon = document.getElementById('slider-icon');
+            if (!handle || !container) return;
+
+            let isDragging = false;
+            let startX = 0;
+            const offset = 5;
+
+            const startDrag = function (e) {
+                isDragging = true;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                startX = clientX - handle.offsetLeft;
+                handle.style.transition = 'none';
+                bg.style.transition = 'none';
+            };
+
+            const onDrag = function (e) {
+                if (!isDragging) return;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const maxScroll = container.clientWidth - handle.clientWidth - offset;
+                let x = clientX - startX;
+                if (x < offset) x = offset;
+                if (x > maxScroll) x = maxScroll;
+                handle.style.left = x + 'px';
+                const progress = ((x - offset) / (maxScroll - offset)) * 100;
+                bg.style.width = progress + '%';
+            };
+
+            const endDrag = function () {
+                if (!isDragging) return;
+                isDragging = false;
+                const maxScroll = container.clientWidth - handle.clientWidth - offset;
+                const currentX = parseInt(handle.style.left) || offset;
+                handle.style.transition = 'left 0.3s cubic-bezier(0.25, 1, 0.5, 1)';
+                bg.style.transition = 'width 0.3s cubic-bezier(0.25, 1, 0.5, 1)';
+                if (currentX > maxScroll * 0.7) {
+                    container.classList.add('activated');
+                    handle.style.left = maxScroll + 'px';
+                    bg.style.width = '100%';
+                    label.innerText = "¡SUBSIDIO APLICADO!";
+                    pricePro.innerText = "$299";
+                    badgeSubsidio.classList.remove('hidden');
+                    arrowHint.style.opacity = '0';
+                    sliderIcon.innerHTML = '<path d="M20 6L9 17l-5-5"/>';
+                } else {
+                    container.classList.remove('activated');
+                    handle.style.left = offset + 'px';
+                    bg.style.width = '0%';
+                    label.innerText = "Desliza para aplicar";
+                    pricePro.innerText = "$599";
+                    badgeSubsidio.classList.add('hidden');
+                    arrowHint.style.opacity = '1';
+                    sliderIcon.innerHTML = '<path d="m9 18 6-6-6-6"/>';
+                }
+            };
+
+            handle.addEventListener('mousedown', startDrag);
+            window.addEventListener('mousemove', onDrag);
+            window.addEventListener('mouseup', endDrag);
+            handle.addEventListener('touchstart', startDrag, { passive: true });
+            window.addEventListener('touchmove', onDrag, { passive: true });
+            window.addEventListener('touchend', endDrag);
+        });
+    </script>
+</body>
+</html>
