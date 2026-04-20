@@ -1042,24 +1042,25 @@
             let resultado = { cvTexto: cvLimpio, atsScore: score };
             try {
                 const raw = await callAI(
-                    `Eres un experto en CVs ejecutivos y optimizacion ATS. Reescribe este CV adaptando su lenguaje y keywords al vocabulario exacto de la vacante, sin inventar experiencias ni cambiar los hechos.
+                    `Eres un experto en CVs ejecutivos y optimizacion ATS. Tu trabajo es crear el mejor CV posible adaptado a la vacante. El candidato esta pagando por un resultado profesional de alto nivel.
 
-REGLAS:
-- Incluye TODA la experiencia laboral del CV original, sin omitir ninguna empresa
-- Adapta el perfil y competencias usando las palabras clave exactas de la vacante
-- Cada seccion en su propia linea
-- Bullets solo con guion: "- logro"
-- Secciones en MAYUSCULAS: PERFIL PROFESIONAL, EXPERIENCIA LABORAL, FORMACION ACADEMICA, COMPETENCIAS, HERRAMIENTAS
-- Logros con numeros y porcentajes del CV original
-- Verbos de accion: Lidere, Implemente, Reduje, Optimice
+REGLAS OBLIGATORIAS — NO NEGOCIABLES:
+- Incluye TODA la experiencia laboral sin omitir ninguna empresa ni puesto
+- Conserva SIEMPRE la seccion LOGROS CLAVE con todos los porcentajes y numeros del CV original
+- Conserva keywords estrategicas del CV original aunque no esten en la vacante: HRBP, titulos ejecutivos, certificaciones
+- Adapta el perfil, competencias y bullets usando las palabras clave exactas de la vacante
+- Conserva la frase personal o tagline del candidato si existe
+- Secciones en MAYUSCULAS: PERFIL PROFESIONAL, LOGROS CLAVE, EXPERIENCIA LABORAL, FORMACION ACADEMICA, COMPETENCIAS, HERRAMIENTAS
+- Bullets con guion: "- logro con numero o resultado"
+- Verbos de accion en pasado: Lidere, Implemente, Reduje, Optimice, Desarrolle
 - NUNCA espacios entre letras de una palabra
 - NUNCA el simbolo ">"
-- NO omitas ninguna empresa de la trayectoria
+- Minimo 2 bullets por empresa con numeros o resultados concretos
 
 VACANTE: ${vacante.substring(0, 800)}
 CV A REESCRIBIR: ${cvLimpio.substring(0, 6000)}
 
-Devuelve SOLO el CV reescrito en texto plano, sin explicaciones:`
+Devuelve SOLO el CV reescrito en texto plano, sin explicaciones ni comentarios:`
                 );
 
                 // ── Limpiar texto recibido ──
