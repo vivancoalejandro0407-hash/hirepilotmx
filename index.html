@@ -188,7 +188,7 @@
                 <button data-tab="paso2" onclick="switchTab('paso2')" class="nav-link">Radar</button>
                 <button data-tab="paso3" onclick="switchTab('paso3')" class="nav-link">Detector</button>
                 <button data-tab="pasoEntrevista" onclick="switchTab('pasoEntrevista')" class="nav-link text-mexico-gold">Entrenador</button>
-                <button data-tab="paso4" onclick="switchTab('paso4')" class="nav-link">La Telaraña</button>
+                
                 <button data-tab="paso5" onclick="switchTab('paso5')" class="nav-link text-mexico-green">Pasaporte</button>
             </div>
         </div>
@@ -347,6 +347,21 @@
                 <button id="btn-radar" onclick="llamarRadar()" class="bg-mexico-green text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg">Ver Sueldo Real</button>
             </div>
 
+            <!-- Radar de sueldos por puesto (gratis, con web search) -->
+            <div class="bg-[#f0f9f6] border border-mexico-green/20 p-8 rounded-[40px] mb-8">
+                <p class="text-[10px] font-black uppercase text-mexico-green tracking-widest mb-1">Radar Gratis — Solo por puesto</p>
+                <h3 class="text-xl font-black italic mb-2">¿Cuánto pagan en México para tu puesto?</h3>
+                <p class="text-xs text-gray-400 italic mb-6">Consultamos Glassdoor, Indeed, Computrabajo y LinkedIn para darte el rango real del mercado.</p>
+                <div class="flex flex-col md:flex-row gap-4 mb-4">
+                    <input id="puesto-gratis" type="text" class="flex-1" placeholder="Tu puesto (Ej: Gerente de Recursos Humanos)">
+                    <input id="ciudad-gratis" type="text" class="w-40" placeholder="Ciudad (Ej: CDMX)">
+                    <button id="btn-radar-gratis" onclick="radarGratis()" class="bg-mexico-green text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest whitespace-nowrap">Ver Sueldos</button>
+                </div>
+                <div id="res-radar-gratis" class="hidden mt-4 space-y-4">
+                    <div id="radar-gratis-resultado" class="bg-white p-6 rounded-3xl border border-green-100 text-sm italic text-gray-700 leading-relaxed"></div>
+                </div>
+            </div>
+
             <div id="res-radar" class="hidden space-y-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div id="sueldo-res" class="bg-green-50 p-10 rounded-[40px] border border-green-100"></div>
@@ -456,22 +471,14 @@
             </div>
         </div>
 
-        <div id="paso4" class="tab-content max-w-5xl mx-auto italic py-10">
-            <h2 class="text-5xl font-black italic tracking-tighter">La <span class="text-mexico-gold">Telaraña</span></h2>
-            <p class="text-gray-400 mt-2">Cuando el proceso de RH es demasiado lento, tú ya tienes la oferta.</p>
-            <div class="mt-12 bg-mexico-dark text-white p-12 rounded-[50px] shadow-2xl text-center">
-                <h3 class="text-3xl font-black mb-6 text-mexico-gold">Contacta Directo al que Contrata</h3>
-                <p class="text-gray-400 max-w-xl mx-auto mb-10 italic leading-relaxed">Localiza el correo del director o gerente que toma la decisión. Genera un mensaje de contacto frío personalizado que abre puertas antes de que siquiera publiquen la vacante.</p>
-                <button onclick="switchTab('paso5')" class="bg-mexico-gold text-white px-12 py-6 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-mexico-gold/20">Quiero Acceso Pro</button>
-            </div>
-        </div>
+
 
         <div id="paso5" class="tab-content max-w-6xl mx-auto italic py-10">
 
 
 
-            <!-- Protocolo Vivanco -->
-            <div id="hp-access" class="max-w-xs mb-10">
+            <!-- Protocolo Vivanco (oculto) -->
+            <div id="hp-access" class="max-w-xs mb-10" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
                 <div id="hp-form" class="flex items-center gap-2">
                     <input id="hp-code" type="password" placeholder="código de acceso" style="font-size:11px; padding:8px 14px; border:1px solid #e5e7eb; border-radius:10px; outline:none; width:160px; color:#374151;" onkeydown="if(event.key==='Enter') activarDevMode(this.value)">
                     <button onclick="activarDevMode(document.getElementById('hp-code').value)" style="font-size:10px; font-weight:900; color:#064e3b; background:none; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em;">Activar</button>
@@ -542,32 +549,28 @@
                     <ul class="space-y-6 flex-1 mb-6">
                         <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
                             <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
-                            <span><strong>Vista previa de tu CV optimizado:</strong> Ve cómo quedaría tu CV con marca de agua. La versión lista para enviar requiere el plan completo.</span>
+                            <span><strong>10 diagnósticos de compatibilidad ATS</strong> — cada análisis detecta por qué no te llaman y genera tu CV optimizado descargable para esa vacante</span>
                         </li>
                         <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
                             <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
-                            <span><strong>Diagnóstico de compatibilidad:</strong> Descubre por qué no te llaman y qué necesitas corregir. El plan de corrección completo está en Pro.</span>
+                            <span><strong>Generador de respuestas STAR</strong> — convierte tus experiencias en argumentos que impresionan a cualquier reclutador</span>
                         </li>
                         <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
                             <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
-                            <span><strong>Ejemplo de respuesta STAR:</strong> Mira cómo funciona la técnica. Genera respuestas ilimitadas con el plan completo.</span>
+                            <span><strong>Guía de Negociación básica</strong> — aprende a negociar tu sueldo con datos reales del mercado</span>
                         </li>
                         <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
                             <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
-                            <span><strong>Guía de Negociación básica:</strong> El manual introductorio. La guía táctica completa con casos reales está en Pro.</span>
-                        </li>
-                        <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
-                            <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
-                            <span><strong>Perfil LinkedIn — diagnóstico inicial:</strong> Sabe si tu perfil atrae reclutadores. La optimización completa está en Pro.</span>
+                            <span><strong>Radar de sueldos gratis</strong> — rango salarial real de tu puesto consultando Glassdoor, Indeed, Computrabajo y más</span>
                         </li>
                     </ul>
                     <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 mb-6">
-                        <p class="text-[11px] text-gray-600 italic text-center">🔒 Para descargar tu CV listo para enviar y aplicar a vacantes reales, desbloquea el plan completo.</p>
+                        <p class="text-[11px] text-gray-600 italic text-center">¿Quieres feedback humano real + LinkedIn auditado + contactos directos? Eso está en el Plan Completo.</p>
                     </div>
                     <div class="mt-auto pt-8 border-t border-gray-100">
-                        <p class="text-[10px] font-black uppercase text-mexico-dark mb-1 text-center">COMPARTE Y DESBLOQUEA TU CV LISTO PARA ENVIAR</p>
-                        <p class="text-[9px] text-gray-400 text-center italic mb-5">Ayuda a un colega a conseguir mejores entrevistas. Ellos ganan, tú descargas.</p>
-                        <div class="grid grid-cols-4 gap-3 mb-8">
+                        <p class="text-[10px] font-black uppercase text-mexico-dark mb-1 text-center">COMPARTE CON ALGUIEN EN BÚSQUEDA</p>
+                        <p class="text-[9px] text-gray-400 text-center italic mb-5">Ayuda a un colega a conseguir más entrevistas.</p>
+                        <div class="grid grid-cols-4 gap-3 mb-6">
                             <button onclick="compartirLinkedIn()" class="social-btn text-blue-600 text-sm font-black bg-blue-50/30 border-blue-100" title="Compartir en LinkedIn">in</button>
                             <button onclick="compartirX()" class="social-btn text-black font-black text-sm bg-gray-50 border-gray-200" title="Compartir en X">X</button>
                             <button onclick="compartirFacebook()" class="social-btn text-blue-800 text-sm font-black bg-blue-50/30 border-blue-100" title="Compartir en Facebook">f</button>
@@ -575,8 +578,8 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                             </button>
                         </div>
-                        <button onclick="descargarCVdesdePasaporte()" class="w-full py-6 rounded-2xl bg-mexico-dark text-white font-black text-[11px] uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-black/10">Descargar CV Optimizado (con marca)</button>
-                        <button onclick="descargarGuia()" class="w-full mt-3 py-4 rounded-2xl border-2 border-gray-200 text-gray-600 font-black text-[11px] uppercase tracking-widest hover:border-mexico-green hover:text-mexico-green transition-all">Descargar Guía de Negociación</button>
+                        <button onclick="descargarCVdesdePasaporte()" class="w-full py-6 rounded-2xl bg-mexico-dark text-white font-black text-[11px] uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-black/10 mb-3">⬇ Descargar CV Optimizado (con marca)</button>
+                        <button onclick="descargarGuia()" class="w-full py-4 rounded-2xl border-2 border-gray-200 text-gray-600 font-black text-[11px] uppercase tracking-widest hover:border-mexico-green hover:text-mexico-green transition-all">Descargar Guía de Negociación</button>
                     </div>
                 </div>
 
@@ -597,34 +600,38 @@
                     <ul class="space-y-4 flex-1 mb-6 relative z-10">
                         <li class="flex items-start gap-3 text-sm font-bold text-white">
                             <span class="text-mexico-gold mt-0.5">★</span>
-                            <span>CV sin marca de agua — listo para enviar hoy mismo</span>
+                            <span><strong class="text-mexico-gold">CV reescrito y revisado por un experto en RH</strong> — entregado en menos de 24 horas, sin marca de agua, listo para enviar</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm font-bold text-white">
                             <span class="text-mexico-gold mt-0.5">★</span>
-                            <span>Análisis ilimitados — aplica a todas las vacantes que quieras</span>
+                            <span><strong class="text-mexico-gold">Análisis personal de tu perfil completo</strong> — revisamos tu trayectoria y te decimos exactamente qué destacar y qué ocultar según la vacante</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm font-bold text-white">
                             <span class="text-mexico-gold mt-0.5">★</span>
-                            <span><strong class="text-mexico-gold">Reporte revisado por Alejandro Vivanco</strong> — +15 años en RH, feedback real, no IA</span>
+                            <span><strong class="text-mexico-gold">Auditoría de tu LinkedIn</strong> — consejos concretos para que reclutadores te encuentren y te escriban ellos a ti</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm font-bold text-white">
                             <span class="text-mexico-gold mt-0.5">★</span>
-                            <span>Plantillas premium de CV y carta de presentación</span>
+                            <span>Análisis ilimitados de vacantes con IA — aplica a cuantas quieras</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm font-bold text-white">
                             <span class="text-mexico-gold mt-0.5">★</span>
-                            <span><strong class="text-mexico-gold">La Telaraña</strong> — base de datos exclusiva: nombres, puestos, correos y LinkedIn de decisores reales en empresas mexicanas.</span>
+                            <span>Acceso directo por WhatsApp — preguntas, dudas y seguimiento personal</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm font-bold text-white">
-                            <span class="text-mexico-gold mt-0.5">★</span>
-                            <span>Soporte por WhatsApp — respuesta en menos de 24h</span>
+                            <span class="text-mexico-gold mt-0.5">💎</span>
+                            <span><strong class="text-mexico-gold">La Telaraña</strong> — base de datos exclusiva de decisores reales en empresas mexicanas: nombres, puestos, correos y LinkedIn de quien realmente contrata</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm font-bold text-white">
                             <span class="text-mexico-gold mt-0.5">🛡️</span>
                             <span class="text-mexico-gold">Garantía 60 días: más entrevistas o te devolvemos el dinero.</span>
                         </li>
                     </ul>
-                    <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="w-full py-6 rounded-[30px] bg-mexico-gold text-white font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-mexico-gold/30 hover:scale-[1.02] transition-all relative z-10">Quiero Conseguir Entrevistas — Empezar Ahora</button>
+                    <div class="bg-white/5 border border-mexico-gold/20 rounded-2xl p-4 mb-5 relative z-10">
+                        <p class="text-[10px] text-mexico-gold font-black uppercase tracking-widest mb-1">¿Cómo funciona?</p>
+                        <p class="text-[11px] text-white/60 italic leading-relaxed">Pagas → nos contactas por WhatsApp con tu CV y la vacante → un experto en RH lo revisa y te entrega todo optimizado en menos de 24 horas.</p>
+                    </div>
+                    <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="w-full py-6 rounded-[30px] bg-mexico-gold text-white font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-mexico-gold/30 hover:scale-[1.02] transition-all relative z-10">Quiero más entrevistas — Empezar Ahora →</button>
                     <!-- MercadoPago badge -->
                     <div class="flex items-center justify-center gap-2 mt-4 relative z-10">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#009EE3"/><path d="M6 12.5C6 9.46 8.46 7 11.5 7c1.74 0 3.28.8 4.3 2.05L18 7.5C16.5 5.65 14.14 4.5 11.5 4.5 7.08 4.5 3.5 8.08 3.5 12.5S7.08 20.5 11.5 20.5c2.64 0 5-1.15 6.5-2.98l-2.2-2.02A4.485 4.485 0 0 1 11.5 17C8.46 17 6 14.54 6 12.5z" fill="white"/></svg>
@@ -817,7 +824,9 @@
         window.handleFileUpload = handleFileUpload;
 
         // ─── AUDITORÍA ATS ────────────────────────────────────────────────────
+        let _auditando = false;
         async function auditar() {
+            if (_auditando) return; // evitar doble click
             // Verificar límite de usos (saltarse si dev mode)
             if (!isDevMode() && getUsos() >= MAX_USOS) {
                 document.getElementById('btn-ia').classList.add('hidden');
@@ -830,6 +839,7 @@
             if (!v || !c) return alert("Completa los dos campos para continuar.");
             const btn = document.getElementById('btn-ia');
             btn.innerText = "CRUZANDO DATOS..."; btn.disabled = true;
+            _auditando = true;
             try {
                 const vTrunc = v.slice(0, 2000);
                 // Calcular score deterministico por conteo de keywords
@@ -870,6 +880,12 @@
                 // Guardar datos para el PDF
                 lastCVData = { cv: c, vacante: v, analisis: data.analisis, score: data.match, cvRegenerado: null };
 
+                // Incrementar contador AQUÍ (una sola vez, antes del cuestionario)
+                if (!isDevMode()) {
+                    incrementarUso();
+                    actualizarIndicador();
+                }
+
                 document.getElementById('score-container').innerHTML = '<p class="text-[10px] uppercase text-mexico-gold tracking-widest mb-2">Compatibilidad ATS</p><h3 class="text-6xl font-black italic">' + data.match + '%</h3>';
                 document.getElementById('star-txt-audit').innerText = data.analisis;
                 document.getElementById('res-auditoria').classList.remove('hidden');
@@ -877,14 +893,8 @@
                 const ctaSig = document.getElementById('cta-siguiente-paso1');
                 if (ctaSig) ctaSig.classList.remove('hidden');
 
-                // Generar cuestionario con keywords faltantes
+                // Generar cuestionario con keywords faltantes (no cobra uso extra)
                 await generarCuestionario(data.analisis);
-
-                // Incrementar contador y actualizar indicador (no en dev mode)
-                if (!isDevMode()) {
-                    incrementarUso();
-                    actualizarIndicador();
-                }
 
                 const restantes = MAX_USOS - getUsos();
                 if (restantes === 0) {
@@ -894,10 +904,12 @@
                     btn.innerText = `RE-AUDITAR (${restantes} restante${restantes !== 1 ? 's' : ''})`;
                 }
                 btn.disabled = false;
+                _auditando = false;
             } catch (e) {
                 alert("Error al conectar con la IA. Verifica tu conexión e intenta de nuevo.");
                 console.error(e);
                 btn.innerText = "Ver mi Score y qué mejorar"; btn.disabled = false;
+                _auditando = false;
             }
         }
         window.auditar = auditar;
@@ -1070,6 +1082,77 @@
             btn.innerText = "Generar Guion STAR"; btn.disabled = false;
         }
         window.generarSTAR = generarSTAR;
+
+        // ─── RADAR GRATIS (solo puesto, con web search) ──────────────────────
+        async function radarGratis() {
+            const puesto = document.getElementById('puesto-gratis').value.trim();
+            const ciudad = document.getElementById('ciudad-gratis').value.trim() || 'México';
+            if (!puesto) return alert('Escribe tu puesto para continuar.');
+            const btn = document.getElementById('btn-radar-gratis');
+            btn.innerText = 'BUSCANDO...'; btn.disabled = true;
+            try {
+                const prompt = `Busca en internet el rango salarial actual para el puesto "${puesto}" en ${ciudad}, México. Consulta fuentes como Glassdoor, Indeed, Computrabajo, OCC Mundial y LinkedIn. Responde ÚNICAMENTE con JSON válido sin bloques de código: {"rango_bajo": "XX,XXX", "rango_alto": "XX,XXX", "promedio": "XX,XXX", "moneda": "MXN/mes", "fuentes": "Glassdoor, Indeed, Computrabajo", "insight": "Observación breve del mercado para este puesto en México", "consejo": "Un consejo concreto para negociar mejor este sueldo"}`;
+
+                const res = await fetch("/.netlify/functions/ai", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({ prompt, web_search: true })
+                });
+                const data = await res.json();
+                const raw = data.text || '';
+                const m = raw.match(/\{[\s\S]*\}/);
+                if (!m) throw new Error('sin json');
+                const d = JSON.parse(m[0]);
+
+                document.getElementById('radar-gratis-resultado').innerHTML =
+                    '<div style="margin-bottom:16px;">' +
+                        '<p style="font-size:10px;font-weight:900;text-transform:uppercase;color:#b45309;letter-spacing:0.1em;margin-bottom:4px;">Rango Salarial — ' + puesto + ' en ' + ciudad + '</p>' +
+                        '<p style="font-size:28px;font-weight:900;color:#064e3b;font-style:italic;">$' + d.rango_bajo + ' — $' + d.rango_alto + ' <span style="font-size:12px;color:#9ca3af;font-weight:600;">' + d.moneda + '</span></p>' +
+                        '<p style="font-size:11px;color:#6b7280;margin-top:2px;">Promedio: <strong style="color:#0a0a0a;">$' + d.promedio + ' ' + d.moneda + '</strong></p>' +
+                    '</div>' +
+                    '<div style="background:#f0fdf4;border-radius:12px;padding:12px;margin-bottom:10px;">' +
+                        '<p style="font-size:10px;font-weight:800;color:#064e3b;margin-bottom:4px;">📊 Insight de mercado</p>' +
+                        '<p style="font-size:11px;color:#374151;font-style:italic;">' + d.insight + '</p>' +
+                    '</div>' +
+                    '<div style="background:#fffbeb;border-radius:12px;padding:12px;margin-bottom:10px;">' +
+                        '<p style="font-size:10px;font-weight:800;color:#b45309;margin-bottom:4px;">💡 Consejo para negociar</p>' +
+                        '<p style="font-size:11px;color:#374151;font-style:italic;">' + d.consejo + '</p>' +
+                    '</div>' +
+                    '<p style="font-size:9px;color:#d1d5db;margin-top:8px;">Fuentes consultadas: ' + d.fuentes + '</p>';
+
+                document.getElementById('res-radar-gratis').classList.remove('hidden');
+            } catch(e) {
+                console.error(e);
+                // Fallback sin web search
+                try {
+                    const prompt2 = `Basándote en tu conocimiento del mercado laboral mexicano, da el rango salarial para "${puesto}" en ${ciudad}, México. Responde ÚNICAMENTE con JSON válido: {"rango_bajo": "XX,XXX", "rango_alto": "XX,XXX", "promedio": "XX,XXX", "moneda": "MXN/mes", "fuentes": "Glassdoor, Indeed, Computrabajo (estimado)", "insight": "Observación del mercado", "consejo": "Consejo para negociar"}`;
+                    const raw2 = await callAI(prompt2);
+                    const m2 = raw2.match(/\{[\s\S]*\}/);
+                    if (!m2) throw new Error('sin json fallback');
+                    const d2 = JSON.parse(m2[0]);
+                    document.getElementById('radar-gratis-resultado').innerHTML =
+                        '<div style="margin-bottom:16px;">' +
+                            '<p style="font-size:10px;font-weight:900;text-transform:uppercase;color:#b45309;letter-spacing:0.1em;margin-bottom:4px;">Rango Salarial — ' + puesto + ' en ' + ciudad + '</p>' +
+                            '<p style="font-size:28px;font-weight:900;color:#064e3b;font-style:italic;">$' + d2.rango_bajo + ' — $' + d2.rango_alto + ' <span style="font-size:12px;color:#9ca3af;font-weight:600;">' + d2.moneda + '</span></p>' +
+                            '<p style="font-size:11px;color:#6b7280;margin-top:2px;">Promedio: <strong style="color:#0a0a0a;">$' + d2.promedio + ' ' + d2.moneda + '</strong></p>' +
+                        '</div>' +
+                        '<div style="background:#f0fdf4;border-radius:12px;padding:12px;margin-bottom:10px;">' +
+                            '<p style="font-size:10px;font-weight:800;color:#064e3b;margin-bottom:4px;">📊 Insight de mercado</p>' +
+                            '<p style="font-size:11px;color:#374151;font-style:italic;">' + d2.insight + '</p>' +
+                        '</div>' +
+                        '<div style="background:#fffbeb;border-radius:12px;padding:12px;margin-bottom:10px;">' +
+                            '<p style="font-size:10px;font-weight:800;color:#b45309;margin-bottom:4px;">💡 Consejo para negociar</p>' +
+                            '<p style="font-size:11px;color:#374151;font-style:italic;">' + d2.consejo + '</p>' +
+                        '</div>' +
+                        '<p style="font-size:9px;color:#d1d5db;margin-top:8px;">Fuentes: ' + d2.fuentes + '</p>';
+                    document.getElementById('res-radar-gratis').classList.remove('hidden');
+                } catch(e2) {
+                    alert('Error al consultar sueldos. Intenta de nuevo.');
+                }
+            }
+            btn.innerText = 'Ver Sueldos'; btn.disabled = false;
+        }
+        window.radarGratis = radarGratis;
 
         // ─── RADAR DE SUELDOS ─────────────────────────────────────────────────
         async function llamarRadar() {
@@ -1636,6 +1719,108 @@ Devuelve SOLO el CV reescrito en texto plano, sin explicaciones ni comentarios:`
             'Si estás en búsqueda activa o quieres saber por qué no te llaman, vale la pena probarlo 👇\n\n' +
             shareURL
         );
+
+        // ─── DESCARGA CV SIN MARCA DE AGUA ───────────────────────────────────
+        async function descargarCVSinMarca() {
+            const { cv, vacante, analisis, score, cvRegenerado } = lastCVData;
+            if (!cv) return alert("Primero realiza un análisis de tu CV en la sección Diagnóstico.");
+
+            const { jsPDF } = window.jspdf;
+            const btn = document.querySelector('[onclick="descargarCVSinMarca()"]');
+            if (btn) { btn.innerText = 'GENERANDO...'; btn.disabled = true; }
+
+            // Usar cvRegenerado si existe, sino generar con IA
+            let cvTextoFinal;
+            if (cvRegenerado && cvRegenerado.length > 200) {
+                cvTextoFinal = cvRegenerado;
+            } else {
+                const cvLimpio = cv.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '').replace(/[ \t]{2,}/g, ' ').trim();
+                try {
+                    const raw = await callAI(
+                        'Reescribe este CV en formato ATS profesional adaptado a la vacante. Secciones en MAYUSCULAS, bullets con guion, verbos de accion. NUNCA el simbolo >. VACANTE: ' + vacante.substring(0, 600) + ' CV: ' + cvLimpio.substring(0, 5000) + ' Devuelve SOLO el CV en texto plano.'
+                    );
+                    cvTextoFinal = raw.replace(/```[\s\S]*?```/g, '').replace(/`/g, '').trim();
+                    if (cvTextoFinal.length < 200) cvTextoFinal = cvLimpio;
+                } catch(e) {
+                    cvTextoFinal = cv;
+                }
+            }
+
+            // Generar PDF sin marca de agua
+            const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+            const margin = 60;
+            const pageW = doc.internal.pageSize.getWidth();
+            const pageH = doc.internal.pageSize.getHeight();
+            const contentW = pageW - margin * 2;
+            let y = margin;
+
+            const lineas = cvTextoFinal.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
+            const SECCIONES = ['PERFIL', 'EXPERIENCIA', 'HABILIDADES', 'EDUCACION', 'EDUCACIÓN', 'LOGROS', 'FORMACION', 'FORMACIÓN', 'CERTIFICACION', 'CERTIFICACIÓN', 'IDIOMAS', 'COMPETENCIAS', 'OBJETIVO', 'HERRAMIENTAS'];
+            const normalize = t => t.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const esSeccion = t => SECCIONES.some(s => normalize(t).startsWith(s)) && t.length < 60;
+            const esContacto = t => (t.includes('|') || t.includes('@') || /\d{8,}/.test(t)) && t.length < 200;
+            const esBullet = t => /^[-•·*]/.test(t);
+            const esSubtitulo = t => (t.includes('—') || (t.includes('|') && !esContacto(t)) || /\d{4}/.test(t)) && !esBullet(t) && t.length < 120;
+            const checkSpace = (n) => { if (y + n > pageH - 55) { doc.addPage(); y = margin; } };
+
+            let idx = 0;
+            if (lineas[idx]) {
+                const nombre = lineas[idx].split('|')[0].split('  ')[0].trim();
+                doc.setFontSize(22); doc.setFont('helvetica', 'bold'); doc.setTextColor(10,10,10);
+                const nW = doc.splitTextToSize(nombre, contentW - 90);
+                doc.text(nW, margin, y); y += nW.length * 26; idx++;
+            }
+            if (lineas[idx] && !esContacto(lineas[idx]) && !esSeccion(lineas[idx]) && idx === 1 && lineas[idx].length < 80 && !esBullet(lineas[idx])) {
+                doc.setFontSize(11); doc.setFont('helvetica', 'normal'); doc.setTextColor(6,78,59);
+                doc.text(lineas[idx], margin, y); y += 16; idx++;
+            }
+            for (let i = idx; i < Math.min(idx + 4, lineas.length); i++) {
+                if (esContacto(lineas[i])) {
+                    y += 4; doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(80,80,80);
+                    const cW = doc.splitTextToSize(lineas[i], contentW);
+                    doc.text(cW, margin, y); y += cW.length * 12 + 6; idx = i + 1; break;
+                }
+            }
+            doc.setDrawColor(6,78,59); doc.setLineWidth(2); doc.line(margin, y, pageW - margin, y); y += 16;
+
+            for (let i = idx; i < lineas.length; i++) {
+                const linea = lineas[i];
+                if (esSeccion(linea)) {
+                    checkSpace(40); y += 6;
+                    doc.setFontSize(10); doc.setFont('helvetica','bold'); doc.setTextColor(6,78,59);
+                    doc.text(linea.toUpperCase(), margin, y); y += 4;
+                    doc.setDrawColor(200,200,200); doc.setLineWidth(0.5); doc.line(margin, y, pageW - margin, y); y += 12;
+                } else if (esSubtitulo(linea)) {
+                    checkSpace(20);
+                    doc.setFontSize(9.5); doc.setFont('helvetica','bold'); doc.setTextColor(30,30,30);
+                    const stW = doc.splitTextToSize(linea, contentW);
+                    doc.text(stW, margin, y); y += stW.length * 13 + 2;
+                } else if (esBullet(linea)) {
+                    const texto = linea.replace(/^[-•·*]\s*/, '');
+                    const bW = doc.splitTextToSize(texto, contentW - 14);
+                    checkSpace(bW.length * 12 + 4);
+                    doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(50,50,50);
+                    doc.text('-', margin + 3, y); doc.text(bW, margin + 14, y); y += bW.length * 12 + 3;
+                } else {
+                    const tW = doc.splitTextToSize(linea, contentW);
+                    checkSpace(tW.length * 12 + 2);
+                    doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(60,60,60);
+                    doc.text(tW, margin, y); y += tW.length * 12 + 3;
+                }
+            }
+
+            // Footer limpio (SIN marca de agua)
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let p = 1; p <= totalPages; p++) {
+                doc.setPage(p);
+                doc.setFontSize(7); doc.setFont('helvetica','normal'); doc.setTextColor(180,180,180);
+                doc.text('Creado con HirePilot MX', pageW / 2, pageH - 20, { align: 'center' });
+            }
+
+            doc.save('CV-Optimizado-HirePilotMX.pdf');
+            if (btn) { btn.innerText = '⬇ Descargar CV Sin Marca de Agua'; btn.disabled = false; }
+        }
+        window.descargarCVSinMarca = descargarCVSinMarca;
 
         function compartirLinkedIn() {
             // LinkedIn solo permite compartir URL — el OG tag hace el trabajo visual
