@@ -868,7 +868,7 @@
                 if (ctaSig) ctaSig.classList.remove('hidden');
 
                 // Generar cuestionario con keywords faltantes
-                await generarCuestionario(data.analisis, data.keywords || []);
+                await generarCuestionario(data.analisis);
 
                 // Incrementar contador y actualizar indicador (no en dev mode)
                 if (!isDevMode()) {
@@ -893,155 +893,145 @@
         window.auditar = auditar;
 
         // ─── CUESTIONARIO INTELIGENTE ────────────────────────────────────────
-        let _keywordsFaltantes = [];
-        let _empresasCV = [];
+        var _preguntas = [];
+        var _respuestas = {};
 
-        async function generarCuestionario(analisis, keywordsArr) {
-            // Extraer empresas del CV para las opciones
-            const c = document.getElementById('c-input').value;
-            const empresasMatch = c.match(/(?:Grupo|Acuarios|Sandstorm|Comuxpress|Iusacell|UVEM|Nail|Hawk|[\w\s]+(?:S\.A\.|S\.A|Corp|Corporativo)[\w\s,\.]*)/gi) || [];
-
-            // Pedir a la IA que genere las preguntas basadas en el análisis
-            const v = document.getElementById('v-input').value;
-            const cvText = c.slice(0, 3000);
+        async function generarCuestionario(analisis) {
+            var c = document.getElementById('c-input').value;
+            var v = document.getElementById('v-input').value;
             try {
-                const preguntasRaw = await callAI(
-                    'Basado en este analisis ATS: "' + analisis + '" y estas keywords faltantes: ' + JSON.stringify(keywordsArr) + 
-                    '. Genera preguntas SI/NO para el candidato sobre si tiene esa experiencia. ' +
-                    'El CV del candidato es: ' + cvText.slice(0, 1500) +
-                    '. Responde SOLO con JSON valido: {"preguntas": [{"keyword": "SAP", "pregunta": "¿Has trabajado con SAP para nomina?", "empresas": ["Grupo Hawk", "Acuarios Michin"]}, ...]} ' +
-                    'Incluye en "empresas" las 2-3 empresas mas relevantes del CV donde podria haber usado esa herramienta. Maximo 6 preguntas.'
-                );
-                const match = preguntasRaw.match(/\{[\s\S]*\}/);
-                if (!match) return;
-                const preguntasData = JSON.parse(match[0]);
-                _keywordsFaltantes = preguntasData.preguntas || [];
-                if (_keywordsFaltantes.length === 0) return;
-                mostrarCuestionario(_keywordsFaltantes);
+                var prompt = 'Eres un experto en CVs. Analiza este CV y esta vacante e identifica hasta 7 skills o herramientas que la vacante pide pero que NO estan claramente mencionadas en el CV. Para cada una genera una pregunta directa al candidato para saber si la tiene. Incluye las empresas del CV donde seria mas probable que la haya usado. CV: ' + c.slice(0, 2000) + ' VACANTE: ' + v.slice(0, 1000) + ' Responde SOLO con este JSON sin texto extra: {"preguntas":[{"id":"p1","keyword":"SAP","pregunta":"Tienes experiencia usando SAP para nomina?","empresas":["Grupo Hawk","Acuarios Michin"]}]}';
+                var raw = await callAI(prompt);
+                var m = raw.match(/\{[\s\S]*\}/);
+                if (!m) return;
+                var data = JSON.parse(m[0]);
+                _preguntas = data.preguntas || [];
+                if (_preguntas.length === 0) return;
+                renderCuestionario();
             } catch(e) {
-                console.error('Error generando cuestionario:', e);
+                console.error('Error cuestionario:', e);
             }
         }
 
-        function mostrarCuestionario(preguntas) {
-            const container = document.getElementById('cuestionario-container');
-            const lista = document.getElementById('preguntas-list');
+        function renderCuestionario() {
+            var lista = document.getElementById('preguntas-list');
+            if (!lista) return;
             lista.innerHTML = '';
+            _respuestas = {};
 
-            preguntas.forEach(function(p, i) {
-                const div = document.createElement('div');
-                div.className = 'border border-gray-100 rounded-2xl p-6';
-                div.innerHTML = 
-                    '<p class="text-sm font-black text-mexico-dark mb-3">' + p.pregunta + '</p>' +
-                    '<div class="flex flex-wrap gap-2 mb-3">' +
-                        '<button onclick="responderSi(' + i + ', this)" class="btn-respuesta px-4 py-2 rounded-xl border-2 border-gray-200 text-xs font-black text-gray-500 hover:border-mexico-green hover:text-mexico-green transition-all">Sí, lo tengo</button>' +
-                        '<button onclick="responderNo(' + i + ', this)" class="btn-respuesta px-4 py-2 rounded-xl border-2 border-gray-200 text-xs font-black text-gray-500 hover:border-red-300 hover:text-red-400 transition-all">No lo tengo</button>' +
+            _preguntas.forEach(function(p, i) {
+                var empresasBtns = (p.empresas || []).map(function(emp) {
+                    var id = 'emp_' + i + '_' + emp.replace(/\s/g,'_');
+                    return '<button type="button" id="' + id + '" onclick="toggleEmp(' + i + ',\'' + emp.replace(/'/g,'') + '\')" style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;border:1px solid #e5e7eb;background:white;cursor:pointer;margin:2px;">' + emp + '</button>';
+                }).join('');
+
+                lista.innerHTML += '<div style="border:1px solid #f0f0f0;border-radius:16px;padding:20px;margin-bottom:12px;" id="q_' + i + '">' +
+                    '<p style="font-size:12px;font-weight:800;margin-bottom:10px;">' + p.pregunta + '</p>' +
+                    '<div style="display:flex;gap:8px;margin-bottom:8px;">' +
+                        '<button type="button" onclick="respSi(' + i + ')" id="si_' + i + '" style="font-size:10px;font-weight:900;padding:6px 16px;border-radius:10px;border:2px solid #e5e7eb;background:white;cursor:pointer;">SI, lo tengo</button>' +
+                        '<button type="button" onclick="respNo(' + i + ')" id="no_' + i + '" style="font-size:10px;font-weight:900;padding:6px 16px;border-radius:10px;border:2px solid #e5e7eb;background:white;cursor:pointer;">No lo tengo</button>' +
                     '</div>' +
-                    '<div id="empresas-' + i + '" class="hidden flex-wrap gap-2 mt-3">' +
-                        '<p class="text-[10px] font-black uppercase text-gray-400 tracking-widest w-full mb-2">¿En qué empresa(s)?</p>' +
-                                                p.empresas.map(function(emp) {
-                            var empSafe = emp.replace(/['"<>]/g, '');
-                            return '<button onclick="toggleEmpresa(' + i + ', this, &quot;' + empSafe + '&quot;)" class="btn-empresa px-3 py-1.5 rounded-lg border border-gray-200 text-[10px] font-bold text-gray-500 hover:border-mexico-green hover:text-mexico-green transition-all">' + emp + '</button>';
-                        }).join('') +
-                        '<div class="w-full mt-2"><input type="text" id="otra-empresa-' + i + '" placeholder="Otra empresa..." style="font-size:11px; padding:6px 12px; border:1px solid #e5e7eb; border-radius:8px; outline:none; width:160px;" /></div>' +
-                    '</div>';
-                lista.appendChild(div);
+                    '<div id="emps_' + i + '" style="display:none;margin-top:8px;">' +
+                        '<p style="font-size:10px;font-weight:700;color:#9ca3af;margin-bottom:6px;">En que empresa(s)?</p>' +
+                        '<div style="display:flex;flex-wrap:wrap;gap:4px;">' + empresasBtns + '</div>' +
+                        '<input type="text" id="otra_' + i + '" placeholder="Otra empresa..." style="margin-top:8px;font-size:11px;padding:6px 12px;border:1px solid #e5e7eb;border-radius:8px;outline:none;width:150px;">' +
+                    '</div>' +
+                '</div>';
             });
 
-            container.classList.remove('hidden');
+            document.getElementById('cuestionario-container').classList.remove('hidden');
         }
 
-        function responderSi(i, btn) {
-            _keywordsFaltantes[i].respuesta = 'si';
-            btn.parentElement.querySelectorAll('.btn-respuesta').forEach(function(b) { b.classList.remove('border-mexico-green','text-mexico-green','border-red-300','text-red-400'); b.classList.add('border-gray-200','text-gray-500'); });
-            btn.classList.remove('border-gray-200','text-gray-500');
-            btn.classList.add('border-mexico-green','text-mexico-green');
-            document.getElementById('empresas-' + i).classList.remove('hidden');
-            document.getElementById('empresas-' + i).classList.add('flex');
+        function respSi(i) {
+            _respuestas[i] = _respuestas[i] || {};
+            _respuestas[i].tiene = true;
+            _respuestas[i].empresas = _respuestas[i].empresas || [];
+            document.getElementById('si_' + i).style.cssText += ';border-color:#064e3b;color:#064e3b;';
+            document.getElementById('no_' + i).style.cssText += ';border-color:#e5e7eb;color:#6b7280;';
+            document.getElementById('emps_' + i).style.display = 'block';
         }
 
-        function responderNo(i, btn) {
-            _keywordsFaltantes[i].respuesta = 'no';
-            _keywordsFaltantes[i].empresasSeleccionadas = [];
-            btn.parentElement.querySelectorAll('.btn-respuesta').forEach(function(b) { b.classList.remove('border-mexico-green','text-mexico-green','border-red-300','text-red-400'); b.classList.add('border-gray-200','text-gray-500'); });
-            btn.classList.remove('border-gray-200','text-gray-500');
-            btn.classList.add('border-red-300','text-red-400');
-            document.getElementById('empresas-' + i).classList.add('hidden');
-            document.getElementById('empresas-' + i).classList.remove('flex');
+        function respNo(i) {
+            _respuestas[i] = { tiene: false, empresas: [] };
+            document.getElementById('no_' + i).style.cssText += ';border-color:#ef4444;color:#ef4444;';
+            document.getElementById('si_' + i).style.cssText += ';border-color:#e5e7eb;color:#6b7280;';
+            document.getElementById('emps_' + i).style.display = 'none';
         }
 
-        function toggleEmpresa(i, btn, empresa) {
-            if (!_keywordsFaltantes[i].empresasSeleccionadas) _keywordsFaltantes[i].empresasSeleccionadas = [];
-            const idx = _keywordsFaltantes[i].empresasSeleccionadas.indexOf(empresa);
+        function toggleEmp(i, emp) {
+            _respuestas[i] = _respuestas[i] || { tiene: true, empresas: [] };
+            var arr = _respuestas[i].empresas;
+            var idx = arr.indexOf(emp);
+            var btnId = 'emp_' + i + '_' + emp.replace(/\s/g,'_');
+            var btn = document.getElementById(btnId);
             if (idx === -1) {
-                _keywordsFaltantes[i].empresasSeleccionadas.push(empresa);
-                btn.classList.add('border-mexico-green','text-mexico-green');
-                btn.classList.remove('border-gray-200','text-gray-500');
+                arr.push(emp);
+                if (btn) { btn.style.borderColor = '#064e3b'; btn.style.color = '#064e3b'; }
             } else {
-                _keywordsFaltantes[i].empresasSeleccionadas.splice(idx, 1);
-                btn.classList.remove('border-mexico-green','text-mexico-green');
-                btn.classList.add('border-gray-200','text-gray-500');
+                arr.splice(idx, 1);
+                if (btn) { btn.style.borderColor = '#e5e7eb'; btn.style.color = '#6b7280'; }
             }
         }
-        window.responderSi = responderSi;
-        window.responderNo = responderNo;
-        window.toggleEmpresa = toggleEmpresa;
+
+        window.respSi = respSi;
+        window.respNo = respNo;
+        window.toggleEmp = toggleEmp;
 
         async function regenerarCV() {
-            const btn = document.getElementById('btn-regenerar');
-            btn.innerText = 'REGENERANDO CV...'; btn.disabled = true;
+            var confirmadas = [];
+            _preguntas.forEach(function(p, i) {
+                var r = _respuestas[i];
+                if (!r || !r.tiene) return;
+                var otras = document.getElementById('otra_' + i);
+                var otrasVal = otras && otras.value.trim() ? [otras.value.trim()] : [];
+                var emps = (r.empresas || []).concat(otrasVal);
+                confirmadas.push({ keyword: p.keyword, empresas: emps });
+            });
 
-            // Compilar respuestas
-            const respuestas = _keywordsFaltantes
-                .filter(function(p) { return p.respuesta === 'si'; })
-                .map(function(p, i) {
-                    const otraEmpresaEl = document.getElementById('otra-empresa-' + _keywordsFaltantes.indexOf(p));
-                    const otraEmpresa = otraEmpresaEl && otraEmpresaEl.value ? otraEmpresaEl.value : '';
-                    const empresas = (p.empresasSeleccionadas || []).concat(otraEmpresa ? [otraEmpresa] : []);
-                    return p.keyword + (empresas.length > 0 ? ' (en: ' + empresas.join(', ') + ')' : '');
-                });
-
-            if (respuestas.length === 0) {
-                alert('Responde al menos una pregunta con "Sí lo tengo" para regenerar tu CV.');
-                btn.innerText = 'Regenerar CV con mis respuestas →'; btn.disabled = false;
+            if (confirmadas.length === 0) {
+                alert('Responde al menos una pregunta con SI para regenerar tu CV.');
                 return;
             }
 
-            const c = document.getElementById('c-input').value;
-            const v = document.getElementById('v-input').value;
-            const cvLimpio = limpiarTextoPDF(c).substring(0, 6000);
+            var btn = document.getElementById('btn-regenerar');
+            btn.innerText = 'REGENERANDO...'; btn.disabled = true;
+
+            var c = document.getElementById('c-input').value;
+            var v = document.getElementById('v-input').value;
+            var cvBase = limpiarTextoPDF(c).substring(0, 5000);
+            var vacante = v.substring(0, 600);
+
+            var listaConf = confirmadas.map(function(x) {
+                return x.keyword + (x.empresas.length ? ' (empresa: ' + x.empresas.join(', ') + ')' : '');
+            }).join(' | ');
+
+            var promptFinal = 'Reescribe este CV en formato ATS profesional incorporando las siguientes experiencias CONFIRMADAS por el candidato en las empresas indicadas. NO inventes nada que no este confirmado. EXPERIENCIAS A AGREGAR: ' + listaConf + '. REGLAS: incluye TODA la trayectoria sin omitir empresas, conserva LOGROS CLAVE con porcentajes, conserva HRBP, agrega keywords confirmadas en bullets de la empresa correcta, secciones MAYUSCULAS, bullets con guion y verbos de accion, SIN simbolo >. VACANTE: ' + vacante + ' CV BASE: ' + cvBase + ' Devuelve SOLO el CV en texto plano.';
 
             try {
-                var instruccion = 'Eres un experto en CVs ejecutivos y ATS. Reescribe este CV incorporando las experiencias confirmadas por el candidato. NO inventes nada.';
-                var experiencias = 'EXPERIENCIAS CONFIRMADAS: ' + respuestas.join(', ');
-                var reglas = 'REGLAS: Incluye TODA la trayectoria. Conserva LOGROS CLAVE con porcentajes. Conserva HRBP. Agrega las experiencias en bullets de la empresa indicada. Secciones MAYUSCULAS. Bullets con guion. NUNCA simbolo >.';
-                var promptRegen = instruccion + ' ' + experiencias + ' ' + reglas + ' VACANTE: ' + v.substring(0, 600) + ' CV BASE: ' + cvLimpio + ' Devuelve SOLO el CV en texto plano sin explicaciones.';
-                const raw = await callAI(promptRegen);
+                var raw = await callAI(promptFinal);
+                if (!raw || raw.length < 100) throw new Error('Respuesta vacia');
 
-                // Guardar nuevo CV
                 lastCVData.cv = c;
                 lastCVData.vacante = v;
                 lastCVData.analisis = raw;
 
-                // Mostrar confirmación
-                document.getElementById('cuestionario-container').innerHTML = 
-                    '<div class="text-center py-4">' +
-                    '<p class="text-mexico-green font-black text-lg italic mb-2">✅ CV actualizado con tus respuestas</p>' +
-                    '<p class="text-xs text-gray-400">Descarga tu nuevo CV optimizado abajo</p>' +
+                document.getElementById('cuestionario-container').innerHTML =
+                    '<div style="text-align:center;padding:20px;">' +
+                    '<p style="color:#064e3b;font-weight:900;font-size:16px;">CV actualizado con tus experiencias confirmadas</p>' +
+                    '<p style="color:#9ca3af;font-size:11px;margin-top:4px;">Descarga tu CV mejorado abajo</p>' +
                     '</div>';
 
-                // Scroll a descarga
-                document.getElementById('res-auditoria').querySelector('.bg-\[\#f0f9f6\]').scrollIntoView({ behavior: 'smooth' });
-
             } catch(e) {
-                alert('Error al regenerar. Intenta de nuevo.');
-                console.error(e);
+                console.error('Error regenerar:', e);
+                alert('Error al regenerar. Detalle: ' + e.message);
             }
-            btn.innerText = 'Regenerar CV con mis respuestas →'; btn.disabled = false;
+            btn.innerText = 'Regenerar CV con mis respuestas'; btn.disabled = false;
         }
         window.regenerarCV = regenerarCV;
 
-        // ─── SIMULADOR STAR ───────────────────────────────────────────────────
+
+
+                // ─── SIMULADOR STAR ───────────────────────────────────────────────────
         async function generarSTAR() {
             const exp = document.getElementById('star-experience').value;
             if (!exp) return alert("Describe tu experiencia primero.");
