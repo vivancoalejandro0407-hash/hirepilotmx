@@ -910,7 +910,7 @@
             var c = document.getElementById('c-input').value;
             var v = document.getElementById('v-input').value;
             try {
-                var prompt = 'Eres un experto en CVs. Analiza este CV y esta vacante e identifica hasta 7 skills o herramientas que la vacante pide pero que NO estan claramente mencionadas en el CV. Para cada una genera una pregunta directa al candidato para saber si la tiene. Incluye las empresas del CV donde seria mas probable que la haya usado. CV: ' + c.slice(0, 2000) + ' VACANTE: ' + v.slice(0, 1000) + ' Responde SOLO con este JSON sin texto extra: {"preguntas":[{"id":"p1","keyword":"SAP","pregunta":"Tienes experiencia usando SAP para nomina?","empresas":["Grupo Hawk","Acuarios Michin"]}]}';
+                var prompt = 'Eres un experto en CVs ATS. Lee la vacante con atencion y extrae UNICAMENTE las skills, herramientas, certificaciones o requisitos que esten ESCRITOS LITERALMENTE en el texto de la vacante. PROHIBIDO inferir, suponer o agregar nada que no este textualmente en la vacante. Despues revisa cuales de esas skills NO aparecen claramente en el CV. Para cada skill faltante genera una pregunta directa. Incluye las empresas reales del CV donde pudo haberla usado. Maximo 6 preguntas. CV: ' + c.slice(0, 3000) + ' VACANTE (lee cada palabra): ' + v.slice(0, 2000) + ' Responde SOLO con este JSON sin texto extra, sin inventar skills que no esten en la vacante: {"preguntas":[{"id":"p1","keyword":"SAP","pregunta":"Tienes experiencia usando SAP para nomina?","empresas":["Grupo Hawk","Acuarios Michin"]}]}';
                 var raw = await callAI(prompt);
                 var m = raw.match(/\{[\s\S]*\}/);
                 if (!m) return;
