@@ -293,6 +293,17 @@
                     </div>
                     <div id="star-txt-audit" class="text-sm italic leading-relaxed text-gray-600"></div>
                 </div>
+                <!-- Cuestionario para subir score -->
+                <div id="cuestionario-container" class="hidden bg-white border border-gray-100 p-10 rounded-[40px] card-shadow">
+                    <p class="text-[10px] font-black uppercase text-mexico-green tracking-widest mb-2">Sube tu score respondiendo esto</p>
+                    <h3 class="text-xl font-black italic mb-2">¿Tienes estas experiencias?</h3>
+                    <p class="text-xs text-gray-400 italic mb-8">La IA detectó keywords que faltan en tu CV. Dinos si las tienes y en qué empresa — las incorporamos exactamente donde corresponden.</p>
+                    <div id="preguntas-list" class="space-y-6 mb-8"></div>
+                    <button onclick="regenerarCV()" id="btn-regenerar" class="w-full bg-mexico-green text-white py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:opacity-90 transition-all">
+                        Regenerar CV con mis respuestas →
+                    </button>
+                </div>
+
                 <!-- Botones de descarga -->
                 <div class="bg-[#f0f9f6] border border-mexico-green/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
@@ -821,7 +832,7 @@
             btn.innerText = "CRUZANDO DATOS..."; btn.disabled = true;
             try {
                 const vTrunc = v.slice(0, 2000);
-                const systemPrompt = 'Eres un experto en optimizacion de CVs para sistemas ATS. Tu objetivo es ayudar al candidato a adaptar su CV para maximizar sus posibilidades de pasar los filtros automaticos de la vacante. El score mide que tan bien el CV usa las palabras clave y el lenguaje de la vacante, NO si el candidato esta sobredimensionado. Un candidato senior puede y debe adaptar su CV a cualquier vacante usando el vocabulario exacto del puesto. Analiza que keywords de la vacante faltan en el CV y como incorporarlas. Responde UNICAMENTE con JSON valido sin bloques de codigo ni texto extra. Formato: {"match": 75, "analisis": "texto"}';
+                const systemPrompt = 'Eres un experto en optimizacion de CVs para sistemas ATS. Analiza que keywords de la vacante faltan en el CV. El score mide que tan bien el CV usa las palabras clave de la vacante, NO si el candidato esta sobredimensionado. Responde UNICAMENTE con JSON valido sin bloques de codigo ni texto extra. Formato exacto: {"match": 75, "analisis": "texto del analisis", "keywords_faltantes": ["keyword1", "keyword2", "keyword3"]} — keywords_faltantes debe ser un array de 5 a 8 terminos especificos que aparecen en la vacante pero no en el CV.';
 
                 let text;
                 if (pdfBase64Store) {
@@ -856,6 +867,9 @@
                 const ctaSig = document.getElementById('cta-siguiente-paso1');
                 if (ctaSig) ctaSig.classList.remove('hidden');
 
+                // Generar cuestionario con keywords faltantes
+                await generarCuestionario(data.analisis, data.keywords || []);
+
                 // Incrementar contador y actualizar indicador (no en dev mode)
                 if (!isDevMode()) {
                     incrementarUso();
@@ -877,6 +891,155 @@
             }
         }
         window.auditar = auditar;
+
+        // ─── CUESTIONARIO INTELIGENTE ────────────────────────────────────────
+        let _keywordsFaltantes = [];
+        let _empresasCV = [];
+
+        async function generarCuestionario(analisis, keywordsArr) {
+            // Extraer empresas del CV para las opciones
+            const c = document.getElementById('c-input').value;
+            const empresasMatch = c.match(/(?:Grupo|Acuarios|Sandstorm|Comuxpress|Iusacell|UVEM|Nail|Hawk|[\w\s]+(?:S\.A\.|S\.A|Corp|Corporativo)[\w\s,\.]*)/gi) || [];
+
+            // Pedir a la IA que genere las preguntas basadas en el análisis
+            const v = document.getElementById('v-input').value;
+            const cvText = c.slice(0, 3000);
+            try {
+                const preguntasRaw = await callAI(
+                    'Basado en este analisis ATS: "' + analisis + '" y estas keywords faltantes: ' + JSON.stringify(keywordsArr) + 
+                    '. Genera preguntas SI/NO para el candidato sobre si tiene esa experiencia. ' +
+                    'El CV del candidato es: ' + cvText.slice(0, 1500) +
+                    '. Responde SOLO con JSON valido: {"preguntas": [{"keyword": "SAP", "pregunta": "¿Has trabajado con SAP para nomina?", "empresas": ["Grupo Hawk", "Acuarios Michin"]}, ...]} ' +
+                    'Incluye en "empresas" las 2-3 empresas mas relevantes del CV donde podria haber usado esa herramienta. Maximo 6 preguntas.'
+                );
+                const match = preguntasRaw.match(/\{[\s\S]*\}/);
+                if (!match) return;
+                const preguntasData = JSON.parse(match[0]);
+                _keywordsFaltantes = preguntasData.preguntas || [];
+                if (_keywordsFaltantes.length === 0) return;
+                mostrarCuestionario(_keywordsFaltantes);
+            } catch(e) {
+                console.error('Error generando cuestionario:', e);
+            }
+        }
+
+        function mostrarCuestionario(preguntas) {
+            const container = document.getElementById('cuestionario-container');
+            const lista = document.getElementById('preguntas-list');
+            lista.innerHTML = '';
+
+            preguntas.forEach(function(p, i) {
+                const div = document.createElement('div');
+                div.className = 'border border-gray-100 rounded-2xl p-6';
+                div.innerHTML = 
+                    '<p class="text-sm font-black text-mexico-dark mb-3">' + p.pregunta + '</p>' +
+                    '<div class="flex flex-wrap gap-2 mb-3">' +
+                        '<button onclick="responderSi(' + i + ', this)" class="btn-respuesta px-4 py-2 rounded-xl border-2 border-gray-200 text-xs font-black text-gray-500 hover:border-mexico-green hover:text-mexico-green transition-all">Sí, lo tengo</button>' +
+                        '<button onclick="responderNo(' + i + ', this)" class="btn-respuesta px-4 py-2 rounded-xl border-2 border-gray-200 text-xs font-black text-gray-500 hover:border-red-300 hover:text-red-400 transition-all">No lo tengo</button>' +
+                    '</div>' +
+                    '<div id="empresas-' + i + '" class="hidden flex-wrap gap-2 mt-3">' +
+                        '<p class="text-[10px] font-black uppercase text-gray-400 tracking-widest w-full mb-2">¿En qué empresa(s)?</p>' +
+                                                p.empresas.map(function(emp) {
+                            var empSafe = emp.replace(/['"<>]/g, '');
+                            return '<button onclick="toggleEmpresa(' + i + ', this, &quot;' + empSafe + '&quot;)" class="btn-empresa px-3 py-1.5 rounded-lg border border-gray-200 text-[10px] font-bold text-gray-500 hover:border-mexico-green hover:text-mexico-green transition-all">' + emp + '</button>';
+                        }).join('') +
+                        '<div class="w-full mt-2"><input type="text" id="otra-empresa-' + i + '" placeholder="Otra empresa..." style="font-size:11px; padding:6px 12px; border:1px solid #e5e7eb; border-radius:8px; outline:none; width:160px;" /></div>' +
+                    '</div>';
+                lista.appendChild(div);
+            });
+
+            container.classList.remove('hidden');
+        }
+
+        function responderSi(i, btn) {
+            _keywordsFaltantes[i].respuesta = 'si';
+            btn.parentElement.querySelectorAll('.btn-respuesta').forEach(function(b) { b.classList.remove('border-mexico-green','text-mexico-green','border-red-300','text-red-400'); b.classList.add('border-gray-200','text-gray-500'); });
+            btn.classList.remove('border-gray-200','text-gray-500');
+            btn.classList.add('border-mexico-green','text-mexico-green');
+            document.getElementById('empresas-' + i).classList.remove('hidden');
+            document.getElementById('empresas-' + i).classList.add('flex');
+        }
+
+        function responderNo(i, btn) {
+            _keywordsFaltantes[i].respuesta = 'no';
+            _keywordsFaltantes[i].empresasSeleccionadas = [];
+            btn.parentElement.querySelectorAll('.btn-respuesta').forEach(function(b) { b.classList.remove('border-mexico-green','text-mexico-green','border-red-300','text-red-400'); b.classList.add('border-gray-200','text-gray-500'); });
+            btn.classList.remove('border-gray-200','text-gray-500');
+            btn.classList.add('border-red-300','text-red-400');
+            document.getElementById('empresas-' + i).classList.add('hidden');
+            document.getElementById('empresas-' + i).classList.remove('flex');
+        }
+
+        function toggleEmpresa(i, btn, empresa) {
+            if (!_keywordsFaltantes[i].empresasSeleccionadas) _keywordsFaltantes[i].empresasSeleccionadas = [];
+            const idx = _keywordsFaltantes[i].empresasSeleccionadas.indexOf(empresa);
+            if (idx === -1) {
+                _keywordsFaltantes[i].empresasSeleccionadas.push(empresa);
+                btn.classList.add('border-mexico-green','text-mexico-green');
+                btn.classList.remove('border-gray-200','text-gray-500');
+            } else {
+                _keywordsFaltantes[i].empresasSeleccionadas.splice(idx, 1);
+                btn.classList.remove('border-mexico-green','text-mexico-green');
+                btn.classList.add('border-gray-200','text-gray-500');
+            }
+        }
+        window.responderSi = responderSi;
+        window.responderNo = responderNo;
+        window.toggleEmpresa = toggleEmpresa;
+
+        async function regenerarCV() {
+            const btn = document.getElementById('btn-regenerar');
+            btn.innerText = 'REGENERANDO CV...'; btn.disabled = true;
+
+            // Compilar respuestas
+            const respuestas = _keywordsFaltantes
+                .filter(function(p) { return p.respuesta === 'si'; })
+                .map(function(p, i) {
+                    const otraEmpresaEl = document.getElementById('otra-empresa-' + _keywordsFaltantes.indexOf(p));
+                    const otraEmpresa = otraEmpresaEl && otraEmpresaEl.value ? otraEmpresaEl.value : '';
+                    const empresas = (p.empresasSeleccionadas || []).concat(otraEmpresa ? [otraEmpresa] : []);
+                    return p.keyword + (empresas.length > 0 ? ' (en: ' + empresas.join(', ') + ')' : '');
+                });
+
+            if (respuestas.length === 0) {
+                alert('Responde al menos una pregunta con "Sí lo tengo" para regenerar tu CV.');
+                btn.innerText = 'Regenerar CV con mis respuestas →'; btn.disabled = false;
+                return;
+            }
+
+            const c = document.getElementById('c-input').value;
+            const v = document.getElementById('v-input').value;
+            const cvLimpio = limpiarTextoPDF(c).substring(0, 6000);
+
+            try {
+                var instruccion = 'Eres un experto en CVs ejecutivos y ATS. Reescribe este CV incorporando las experiencias confirmadas por el candidato. NO inventes nada.';
+                var experiencias = 'EXPERIENCIAS CONFIRMADAS: ' + respuestas.join(', ');
+                var reglas = 'REGLAS: Incluye TODA la trayectoria. Conserva LOGROS CLAVE con porcentajes. Conserva HRBP. Agrega las experiencias en bullets de la empresa indicada. Secciones MAYUSCULAS. Bullets con guion. NUNCA simbolo >.';
+                var promptRegen = instruccion + ' ' + experiencias + ' ' + reglas + ' VACANTE: ' + v.substring(0, 600) + ' CV BASE: ' + cvLimpio + ' Devuelve SOLO el CV en texto plano sin explicaciones.';
+                const raw = await callAI(promptRegen);
+
+                // Guardar nuevo CV
+                lastCVData.cv = c;
+                lastCVData.vacante = v;
+                lastCVData.analisis = raw;
+
+                // Mostrar confirmación
+                document.getElementById('cuestionario-container').innerHTML = 
+                    '<div class="text-center py-4">' +
+                    '<p class="text-mexico-green font-black text-lg italic mb-2">✅ CV actualizado con tus respuestas</p>' +
+                    '<p class="text-xs text-gray-400">Descarga tu nuevo CV optimizado abajo</p>' +
+                    '</div>';
+
+                // Scroll a descarga
+                document.getElementById('res-auditoria').querySelector('.bg-\[\#f0f9f6\]').scrollIntoView({ behavior: 'smooth' });
+
+            } catch(e) {
+                alert('Error al regenerar. Intenta de nuevo.');
+                console.error(e);
+            }
+            btn.innerText = 'Regenerar CV con mis respuestas →'; btn.disabled = false;
+        }
+        window.regenerarCV = regenerarCV;
 
         // ─── SIMULADOR STAR ───────────────────────────────────────────────────
         async function generarSTAR() {
