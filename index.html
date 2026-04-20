@@ -760,16 +760,38 @@
             targetTextArea.placeholder = "LEYENDO DOCUMENTO...";
             try {
                 if (file.type === "application/pdf") {
-                    // Convertir a base64 y guardar para usarlo en el prompt
-                    const base64 = await new Promise(function(res, rej) {
-                        const r = new FileReader();
-                        r.onload = function() { res(r.result.split(",")[1]); };
-                        r.onerror = function() { rej(new Error("Error leyendo archivo")); };
-                        r.readAsDataURL(file);
-                    });
-                    pdfBase64Store = base64;
-                    targetTextArea.value = "[PDF cargado: " + file.name + "]";
-                    targetTextArea.placeholder = "";
+                    // Extraer texto con pdf.js (funciona siempre)
+                    const arrayBuffer = await file.arrayBuffer();
+                    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+                    const pdf = await loadingTask.promise;
+                    let fullText = '';
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const textContent = await page.getTextContent();
+                        let pageText = '';
+                        let lastY = null;
+                        for (const item of textContent.items) {
+                            if (lastY !== null && Math.abs(item.transform[5] - lastY) > 5) pageText += '\n';
+                            pageText += item.str + ' ';
+                            lastY = item.transform[5];
+                        }
+                        fullText += pageText + '\n';
+                    }
+                    fullText = limpiarTextoPDF(fullText);
+                    targetTextArea.value = fullText;
+
+                    // Guardar base64 SOLO si el PDF es menor a 700KB
+                    if (file.size < 700000) {
+                        const base64 = await new Promise(function(res, rej) {
+                            const r = new FileReader();
+                            r.onload = function() { res(r.result.split(",")[1]); };
+                            r.onerror = function() { rej(new Error("Error")); };
+                            r.readAsDataURL(file);
+                        });
+                        pdfBase64Store = base64;
+                    } else {
+                        pdfBase64Store = null;
+                    }
                 } else {
                     pdfBase64Store = null;
                     const text = await file.text();
@@ -984,9 +1006,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             actualizarIndicador();
             // Mostrar estado en panel si dev mode activo
-            if (_devMode) {
+            if (isDevMode()) {
                 const panel = document.getElementById('hp-access');
-                if (panel) panel.innerHTML = '<span style="font-size:11px; font-weight:900; color:#064e3b; letter-spacing:0.05em;">🔐 Modo ilimitado activado</span>';
+                if (panel) panel.innerHTML = '<span style="font-size:11px; font-weight:900; color:#064e3b; letter-spacing:0.05em;">🔐 Protocolo Vivanco activado</span>';
             }
         });
 
