@@ -821,7 +821,7 @@
             btn.innerText = "CRUZANDO DATOS..."; btn.disabled = true;
             try {
                 const vTrunc = v.slice(0, 2000);
-                const systemPrompt = 'Eres un experto en ATS. Responde ÚNICAMENTE con JSON válido sin bloques de código ni texto extra. Formato: {"match": 75, "analisis": "texto"}';
+                const systemPrompt = 'Eres un experto en optimizacion de CVs para sistemas ATS. Tu objetivo es ayudar al candidato a adaptar su CV para maximizar sus posibilidades de pasar los filtros automaticos de la vacante. El score mide que tan bien el CV usa las palabras clave y el lenguaje de la vacante, NO si el candidato esta sobredimensionado. Un candidato senior puede y debe adaptar su CV a cualquier vacante usando el vocabulario exacto del puesto. Analiza que keywords de la vacante faltan en el CV y como incorporarlas. Responde UNICAMENTE con JSON valido sin bloques de codigo ni texto extra. Formato: {"match": 75, "analisis": "texto"}';
 
                 let text;
                 if (pdfBase64Store) {
@@ -1042,20 +1042,22 @@
             let resultado = { cvTexto: cvLimpio, atsScore: score };
             try {
                 const raw = await callAI(
-                    `Eres un experto en CVs ejecutivos. Reescribe este CV en formato Harvard ATS profesional.
+                    `Eres un experto en CVs ejecutivos y optimizacion ATS. Reescribe este CV adaptando su lenguaje y keywords al vocabulario exacto de la vacante, sin inventar experiencias ni cambiar los hechos.
 
 REGLAS:
+- Incluye TODA la experiencia laboral del CV original, sin omitir ninguna empresa
+- Adapta el perfil y competencias usando las palabras clave exactas de la vacante
 - Cada seccion en su propia linea
 - Bullets solo con guion: "- logro"
-- Secciones en MAYUSCULAS: PERFIL PROFESIONAL, EXPERIENCIA LABORAL, etc
-- Logros con numeros y porcentajes
+- Secciones en MAYUSCULAS: PERFIL PROFESIONAL, EXPERIENCIA LABORAL, FORMACION ACADEMICA, COMPETENCIAS, HERRAMIENTAS
+- Logros con numeros y porcentajes del CV original
 - Verbos de accion: Lidere, Implemente, Reduje, Optimice
-- Keywords de la vacante integradas naturalmente
 - NUNCA espacios entre letras de una palabra
 - NUNCA el simbolo ">"
+- NO omitas ninguna empresa de la trayectoria
 
-VACANTE: ${vacante.substring(0, 500)}
-CV A REESCRIBIR: ${cvLimpio.substring(0, 2000)}
+VACANTE: ${vacante.substring(0, 800)}
+CV A REESCRIBIR: ${cvLimpio.substring(0, 6000)}
 
 Devuelve SOLO el CV reescrito en texto plano, sin explicaciones:`
                 );
