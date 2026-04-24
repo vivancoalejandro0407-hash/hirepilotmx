@@ -268,6 +268,9 @@
 
 
             <!-- Bloqueo por límite -->
+            <div id="aviso-limite" class="hidden bg-amber-50 border border-amber-300 text-amber-800 px-6 py-4 rounded-2xl text-sm font-semibold mb-4 text-center">
+                ⚠️ Ojo, te queda 1 crédito de cortesía. Tu perfil tiene errores que te están costando entrevistas.
+            </div>
             <div id="limite-bloqueado" class="hidden bg-mexico-dark text-white p-10 rounded-[40px] text-center mb-8">
                 <p class="text-mexico-gold font-black text-lg italic mb-3">Ya usaste tus 3 análisis gratuitos 🎯</p>
                 <p class="text-gray-400 text-sm italic mb-6">Pasaste el límite gratis — eso significa que lo estás usando. El plan Pro te da análisis ilimitados para cada vacante que te interese.</p>
@@ -549,7 +552,7 @@
                     <ul class="space-y-6 flex-1 mb-6">
                         <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
                             <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
-                            <span><strong>10 diagnósticos de compatibilidad ATS</strong> — cada análisis detecta por qué no te llaman y genera tu CV optimizado descargable para esa vacante</span>
+                            <span><strong>3 análisis de cortesía</strong> — cada análisis detecta por qué no te llaman y genera tu CV optimizado descargable para esa vacante</span>
                         </li>
                         <li class="flex items-start gap-4 text-xs font-bold text-gray-600">
                             <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green">✓</div>
@@ -1203,7 +1206,7 @@
         window.inquirir = inquirir;
 
         // ─── CONTADOR DE USOS GRATUITOS ───────────────────────────────────────
-        const MAX_USOS = 10;
+        const MAX_USOS = 3;
         const DEV_CODE = 'manager007';
 
         try {
@@ -1256,9 +1259,19 @@
                     : 'w-4 h-4 rounded-full bg-mexico-green';
                 el.appendChild(dot);
             }
+            // Advertencia cuando queda 1 crédito (usos === MAX_USOS - 1)
+            const avisoEl = document.getElementById('aviso-limite');
+            if (avisoEl) {
+                if (usos === MAX_USOS - 1) {
+                    avisoEl.classList.remove('hidden');
+                } else {
+                    avisoEl.classList.add('hidden');
+                }
+            }
             if (restantes === 0) {
                 document.getElementById('btn-ia').classList.add('hidden');
                 document.getElementById('limite-bloqueado').classList.remove('hidden');
+                switchTab('paso5');
             }
         }
         document.addEventListener('DOMContentLoaded', function() {
