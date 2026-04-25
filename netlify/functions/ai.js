@@ -10,6 +10,15 @@ exports.handler = async function (event) {
   try {
     const body = JSON.parse(event.body);
 
+    // Detectar tipo de llamada para limitar tokens
+    // CV generation = heavy (1500), everything else = light (1000)
+    const prompt = body.prompt || "";
+    const isCV = prompt.includes("Reescribe este CV") || 
+                 prompt.includes("CV A REESCRIBIR") ||
+                 prompt.includes("CV BASE") ||
+                 prompt.includes("Devuelve SOLO el CV");
+    const maxTokens = isCV ? 1500 : 1000;
+
     let messages;
 
     if (body.pdf) {
@@ -38,7 +47,7 @@ exports.handler = async function (event) {
 
     const response = await client.messages.create({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 4000,
+      max_tokens: maxTokens,
       system:
         body.system ||
         "Eres un asistente experto en recursos humanos y optimizacion de CVs para el mercado laboral mexicano.",
