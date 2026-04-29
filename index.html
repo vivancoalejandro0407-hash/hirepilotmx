@@ -670,19 +670,6 @@
                     <div class="passport-card premium-gradient p-10 rounded-[50px] shadow-2xl flex flex-col relative overflow-hidden border-2 border-mexico-gold/40">
                         <div class="absolute -top-10 -right-10 w-40 h-40 bg-mexico-gold/20 blur-3xl rounded-full"></div>
 
-                        <!-- Timer banner arriba -->
-                        <div id="timer-box" class="bg-red-500/20 border border-red-400/30 rounded-2xl px-4 py-2 mb-5 flex items-center gap-3 relative z-10">
-                            <span class="text-red-300 text-base">⏱</span>
-                            <div class="flex-1">
-                                <p class="text-[9px] font-black uppercase tracking-widest text-red-300">Precio de lanzamiento expira en:</p>
-                                <p id="countdown-timer" class="text-lg font-black text-white tracking-widest">47:59:59</p>
-                            </div>
-                            <div id="timer-expired" class="hidden text-right">
-                                <p class="text-[9px] font-black uppercase text-red-300">Precio expirado</p>
-                                <p class="text-xs font-black text-white">Ahora $399/mes</p>
-                            </div>
-                        </div>
-
                         <div class="mb-5 relative z-10">
                             <span class="text-[10px] font-black text-mexico-gold uppercase tracking-widest">🔥 Precio de Lanzamiento</span>
                             <h3 class="text-3xl font-black italic mb-1 text-white mt-1">Plan Entrevista Garantizada</h3>
@@ -1449,45 +1436,6 @@ REGLAS DE COMUNICACIÓN:
     window.inquirir = inquirir;
 
     // ══════════════════════════════════════════════════════════════════
-    // ══════════════════════════════════════════════════════════════════
-    // COUNTDOWN TIMER 48 HRS
-    // ══════════════════════════════════════════════════════════════════
-    function initTimer() {
-        const KEY = 'hirepilot_timer_end';
-        const DURATION = 48 * 60 * 60 * 1000;
-        let endTime;
-        try {
-            endTime = parseInt(localStorage.getItem(KEY));
-            if (!endTime || isNaN(endTime)) {
-                endTime = Date.now() + DURATION;
-                localStorage.setItem(KEY, endTime);
-            }
-        } catch(e) { endTime = Date.now() + DURATION; }
-
-        function update() {
-            const diff = endTime - Date.now();
-            const timerEl = document.getElementById('countdown-timer');
-            const timerExpired = document.getElementById('timer-expired');
-            const pricePro = document.getElementById('price-pro');
-            const btnComprar = document.getElementById('btn-comprar');
-            if (!timerEl) return;
-            if (diff <= 0) {
-                timerEl.classList.add('hidden');
-                if (timerExpired) timerExpired.classList.remove('hidden');
-                if (pricePro) pricePro.innerText = '$399';
-                if (btnComprar) btnComprar.innerText = 'Empezar por $399 →';
-                return;
-            }
-            const hrs = Math.floor(diff / 3600000);
-            const mins = Math.floor((diff % 3600000) / 60000);
-            const secs = Math.floor((diff % 60000) / 1000);
-            timerEl.innerText = String(hrs).padStart(2,'0') + ':' + String(mins).padStart(2,'0') + ':' + String(secs).padStart(2,'0');
-            setTimeout(update, 1000);
-        }
-        update();
-    }
-    document.addEventListener('DOMContentLoaded', initTimer);
-
     // CONTADOR DE USOS GRATUITOS — LÍMITE 3
     // ══════════════════════════════════════════════════════════════════
     const MAX_USOS = 5;
