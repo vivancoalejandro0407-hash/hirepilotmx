@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HirePilotMX — Consigue más entrevistas con IA</title>
-    <meta name="description" content="Optimiza tu CV para pasar filtros ATS, descubre cuánto deberías ganar y prepárate para ganar tu próxima entrevista. Gratis.">
+    <meta name="description" content="Analiza tu CV con IA entrenada con 15 años de criterio real de reclutamiento en México. Descubre por qué te ignoran y consigue más entrevistas.">
     
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pilotoempleo1.netlify.app">
-    <meta property="og:title" content="HirePilotMX — Tu CV optimizado para conseguir entrevistas">
-    <meta property="og:description" content="Estoy mejorando mi CV porque sigo en búsqueda… y esto me está ayudando mucho (además es gratis).">
+    <meta property="og:title" content="HirePilotMX — Descubre por qué te ignoran y consigue más entrevistas">
+    <meta property="og:description" content="IA entrenada con 15 años de criterio real de reclutamiento en México. Analiza tu CV, negocia con datos reales y llega a la entrevista con ventaja.">
     <meta property="og:image" content="https://pilotoempleo1.netlify.app/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -19,8 +19,8 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://pilotoempleo1.netlify.app">
-    <meta name="twitter:title" content="HirePilotMX — Tu CV optimizado para conseguir entrevistas">
-    <meta name="twitter:description" content="Estoy mejorando mi CV porque sigo en búsqueda… y esto me está ayudando mucho (además es gratis).">
+    <meta name="twitter:title" content="HirePilotMX — Descubre por qué te ignoran y consigue más entrevistas">
+    <meta name="twitter:description" content="IA entrenada con 15 años de criterio real de reclutamiento en México. Analiza tu CV, negocia con datos reales y llega a la entrevista con ventaja.">
     <meta name="twitter:image" content="https://pilotoempleo1.netlify.app/og-image.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
@@ -205,8 +205,8 @@
                     Análisis ilimitados — $199 →
                 </button>
             </div>
-            <h2 class="text-4xl font-black mb-2 italic">Tu CV tiene 6 segundos para impresionar. ¿Los está usando bien?</h2>
-            <p class="text-gray-400 mb-10">Pega la vacante y tu CV. En segundos sabes exactamente por qué no te están llamando — y qué cambiar para que empiecen a hacerlo.</p>
+            <h2 class="text-4xl font-black mb-2 italic">Tu CV tiene 6 segundos. El reclutador decide en ese tiempo — yo te digo exactamente qué está fallando.</h2>
+            <p class="text-gray-400 mb-10">Pega la vacante y tu CV. La IA entrenada con 15 años de criterio real de contratación te dice qué corregir para que empiecen a llamarte.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div class="flex flex-col gap-4">
@@ -289,7 +289,23 @@
                 <div id="usos-indicador" class="flex gap-2"></div>
             </div>
 
-            <button onclick="auditar()" id="btn-ia" class="w-full bg-mexico-dark text-white py-6 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-all">Analizar mi CV ahora →</button>
+            <!-- SEGMENTACIÓN: tiempo en búsqueda — personaliza el upgrade copy -->
+            <div id="segmentacion-busqueda" class="mb-6 bg-gray-50 border border-gray-100 rounded-2xl px-6 py-5">
+                <p class="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-3">¿Cuánto tiempo llevas en búsqueda activa?</p>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="seleccionarTiempo('nuevo')" id="seg-nuevo" class="text-[10px] font-black px-5 py-2.5 rounded-xl border-2 border-gray-200 bg-white hover:border-mexico-green hover:text-mexico-green transition-all">
+                        Menos de 1 mes
+                    </button>
+                    <button onclick="seleccionarTiempo('activo')" id="seg-activo" class="text-[10px] font-black px-5 py-2.5 rounded-xl border-2 border-gray-200 bg-white hover:border-mexico-gold hover:text-mexico-gold transition-all">
+                        1 a 3 meses
+                    </button>
+                    <button onclick="seleccionarTiempo('urgente')" id="seg-urgente" class="text-[10px] font-black px-5 py-2.5 rounded-xl border-2 border-gray-200 bg-white hover:border-mexico-red hover:text-mexico-red transition-all">
+                        Más de 3 meses
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="auditar()" id="btn-ia" class="w-full bg-mexico-dark text-white py-6 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-all">Descubrir por qué no me llaman →</button>
             
             <!-- ── RESULTADOS ── -->
             <div id="res-auditoria" class="hidden mt-12 space-y-8">
@@ -440,8 +456,8 @@
              PASO 2 — RADAR DE SUELDOS
         ══════════════════════════════════════════════ -->
         <div id="paso2" class="tab-content max-w-5xl mx-auto italic py-10">
-            <h2 class="text-4xl font-black mb-2 italic text-mexico-green">Negocia con datos, no con esperanza.</h2>
-            <p class="text-gray-400 mb-10">Antes de pisar esa entrevista, descubre cuánto pagan realmente en esa empresa para ese puesto. Llega preparado para pedir lo que mereces.</p>
+            <h2 class="text-4xl font-black mb-2 italic text-mexico-green">El que llega con datos negocia. El que llega con esperanza, acepta lo que le ofrecen.</h2>
+            <p class="text-gray-400 mb-10">Descubre cuánto pagan realmente en esa empresa para ese puesto. Antes de la entrevista, no después.</p>
 
             <!-- Radar gratis por puesto — PRIMERO -->
             <div class="bg-[#f0f9f6] border border-mexico-green/20 p-8 rounded-[40px] mb-8">
@@ -526,7 +542,7 @@
         <div id="paso3" class="tab-content max-w-5xl mx-auto italic py-10">
             <div class="text-center mb-12">
                 <h2 class="text-6xl font-black mb-2 italic tracking-tighter">¿Vale la pena <span class="text-mexico-red">o es trampa?</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-sm italic">No pierdas una tarde entera en una empresa que paga mal, trata mal a su gente o ya tiene problemas internos. Investiga primero.</p>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm italic">He visto a buenos candidatos perder meses en procesos de empresas que nunca iban a contratarlos. Investiga antes de comprometer tu tiempo.</p>
             </div>
             <div class="bg-white p-10 rounded-[40px] border border-gray-100 card-shadow mb-8">
                 <input id="empresa-clima" type="text" class="w-full mb-6 text-xl font-bold" placeholder="Nombre de la empresa...">
@@ -566,8 +582,8 @@
         <div id="pasoEntrevista" class="tab-content max-w-5xl mx-auto italic py-10">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-black mb-4 italic tracking-tighter">La entrevista se gana <span class="text-mexico-gold">antes de entrar</span></h2>
-                <p class="text-gray-400">Prepara respuestas que demuestran resultados reales. Cuando el reclutador pregunte, tú ya tienes la respuesta lista — no improvisas, no te quedas en blanco.</p>
-                    <p class="text-[11px] font-black italic text-mexico-gold mt-3">No es IA genérica. Usa el criterio de quien estuvo 15 años del otro lado de la mesa evaluando candidatos en empresas de aquí.</p>
+                <p class="text-gray-400">He entrevistado a cientos de candidatos. Los que ganan no improvisan — llegan con sus argumentos preparados. Esto te da exactamente eso.</p>
+                <p class="text-[11px] font-black italic text-mexico-gold mt-3">No es IA genérica. Usa el criterio de quien estuvo 15 años del otro lado decidiendo quién pasa y quién no.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="bg-white p-10 rounded-[50px] border border-gray-100 card-shadow">
@@ -1122,12 +1138,20 @@ REGLAS DE COMUNICACIÓN:
             const usosActuales = getUsos();
             const restantesAhora = MAX_USOS - usosActuales;
 
-            // 1. Actualizar banner inline inmediato
+            // 1. Actualizar banner inline con copy personalizado por tiempo en búsqueda
             const upgrade = document.getElementById('upgrade-post-analisis');
             if (upgrade) {
                 upgrade.classList.remove('hidden');
+                const copySegmentado = getCopyUpgradePorTiempo(score);
                 const pUpgrade = upgrade.querySelector('p.text-lg');
                 const pSub = upgrade.querySelector('p.text-xs');
+                const btnUpgrade = upgrade.querySelector('button');
+
+                // Aplicar copy segmentado
+                if (pUpgrade) pUpgrade.innerText = copySegmentado.titulo;
+                if (pSub) pSub.innerText = copySegmentado.sub;
+
+                // Sobrescribir si es último crédito o agotado
                 if (restantesAhora === 1 && pUpgrade && pSub) {
                     pUpgrade.innerText = '⚠️ Te queda 1 análisis gratis. ¿Lo vas a desperdiciar en la vacante equivocada?';
                     pSub.innerText = 'Con el plan completo analizas todas las vacantes que quieras — sin límite. Por $199/mes.';
@@ -1137,19 +1161,66 @@ REGLAS DE COMUNICACIÓN:
                 }
             }
 
-            // 2. Modal con delay de 4s — aparece cuando el usuario ya leyó el resultado
-            // Solo en el PRIMER análisis (máximo impacto emocional, máxima intención)
+            // 2. Modal con delay de 4s — solo en el PRIMER análisis
             if (usosActuales === 1) {
                 setTimeout(function() {
                     mostrarModalUpgrade(score, isCLevel);
                 }, 4000);
             }
 
-            // 3. Sticky bar que aparece al hacer scroll después del resultado
+            // 3. Sticky bar al scroll
             activarStickyBar(restantesAhora);
         }
     }
     window.renderResultados = renderResultados;
+
+    // ══════════════════════════════════════════════════════════════════
+    // SEGMENTACIÓN POR TIEMPO EN BÚSQUEDA
+    // Personaliza el copy del upgrade según urgencia del usuario
+    // ══════════════════════════════════════════════════════════════════
+    var _tiempoBusqueda = 'activo'; // default
+
+    function seleccionarTiempo(tipo) {
+        _tiempoBusqueda = tipo;
+        var btns = { 'nuevo': 'seg-nuevo', 'activo': 'seg-activo', 'urgente': 'seg-urgente' };
+        var colores = { 'nuevo': '#064e3b', 'activo': '#b45309', 'urgente': '#7f1d1d' };
+        Object.keys(btns).forEach(function(t) {
+            var el = document.getElementById(btns[t]);
+            if (!el) return;
+            if (t === tipo) {
+                el.style.borderColor = colores[tipo];
+                el.style.color = colores[tipo];
+                el.style.background = '#f9fafb';
+            } else {
+                el.style.borderColor = '#e5e7eb';
+                el.style.color = '#6b7280';
+                el.style.background = 'white';
+            }
+        });
+    }
+    window.seleccionarTiempo = seleccionarTiempo;
+
+    function getCopyUpgradePorTiempo(score) {
+        if (_tiempoBusqueda === 'urgente') {
+            return {
+                titulo: 'Llevas más de 3 meses. Cada semana sin entrevistas tiene un costo real.',
+                sub: 'El plan completo te da análisis ilimitados para cada vacante que te interese. $199/mes — menos de lo que ganas en un día cuando consigas trabajo.',
+                cta: 'Salir de esta situación — $199/mes →'
+            };
+        } else if (_tiempoBusqueda === 'nuevo') {
+            return {
+                titulo: 'Buen momento para corregir la estrategia antes de perder semanas.',
+                sub: 'Con análisis ilimitados puedes optimizar tu CV para cada vacante que te interese — sin desperdiciar aplicaciones.',
+                cta: 'Conseguir más entrevistas — $199/mes →'
+            };
+        } else {
+            return {
+                titulo: '¿Cuántas vacantes más necesitas analizar para conseguir esa entrevista?',
+                sub: '5 análisis no alcanzan para una búsqueda real. Análisis ilimitados por $199/mes.',
+                cta: 'Conseguir análisis ilimitados — $199 →'
+            };
+        }
+    }
 
     // ══════════════════════════════════════════════════════════════════
     // MOMENTO 1 — MODAL POST-RESULTADO (4s delay, primer análisis)
@@ -1434,39 +1505,51 @@ REGLAS DE COMUNICACIÓN:
         lista.innerHTML = '';
         _respuestas = {};
         _preguntas.forEach(function(p, i) {
-            var empresasBtns = (p.empresas || []).map(function(emp) {
-                var id = 'emp_' + i + '_' + emp.replace(/\s/g,'_');
-                return '<button type="button" id="' + id + '" onclick="toggleEmp(' + i + ',\'' + emp.replace(/'/g,'') + '\')" style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;border:1px solid #e5e7eb;background:white;cursor:pointer;margin:2px;">' + emp + '</button>';
-            }).join('');
+            // Detectar si la skill es un idioma o habilidad personal (no necesita empresa)
+            var esIdioma = /ingles|inglés|idioma|lenguaje|language|english|frances|francés|aleman|alemán/i.test(p.keyword + ' ' + p.pregunta);
+            var empresasBtns = (!esIdioma && p.empresas && p.empresas.length > 0)
+                ? (p.empresas || []).map(function(emp) {
+                    var id = 'emp_' + i + '_' + emp.replace(/\s/g,'_');
+                    return '<button type="button" id="' + id + '" onclick="toggleEmp(' + i + ',\'' + emp.replace(/'/g,'') + '\')" style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;border:1px solid #e5e7eb;background:white;cursor:pointer;margin:2px;">' + emp + '</button>';
+                }).join('')
+                : '';
+
+            var selectorEmpresa = !esIdioma && empresasBtns
+                ? '<div id="emps_' + i + '" style="display:none;margin-top:8px;">' +
+                    '<p style="font-size:10px;font-weight:700;color:#9ca3af;margin-bottom:6px;">¿En qué empresa(s) la usaste?</p>' +
+                    '<div style="display:flex;flex-wrap:wrap;gap:4px;">' + empresasBtns + '</div>' +
+                    '<input type="text" id="otra_' + i + '" placeholder="Otra empresa..." style="margin-top:8px;font-size:11px;padding:6px 12px;border:1px solid #e5e7eb;border-radius:8px;outline:none;width:150px;">' +
+                  '</div>'
+                : '<div id="emps_' + i + '" style="display:none;"></div>';
+
             lista.innerHTML += '<div style="border:1px solid #f0f0f0;border-radius:16px;padding:20px;margin-bottom:12px;" id="q_' + i + '">' +
                 '<p style="font-size:12px;font-weight:800;margin-bottom:10px;">' + p.pregunta + '</p>' +
                 '<div style="display:flex;gap:8px;margin-bottom:8px;">' +
-                    '<button type="button" onclick="respSi(' + i + ')" id="si_' + i + '" style="font-size:10px;font-weight:900;padding:6px 16px;border-radius:10px;border:2px solid #e5e7eb;background:white;cursor:pointer;">SI, lo tengo</button>' +
+                    '<button type="button" onclick="respSi(' + i + ',' + esIdioma + ')" id="si_' + i + '" style="font-size:10px;font-weight:900;padding:6px 16px;border-radius:10px;border:2px solid #e5e7eb;background:white;cursor:pointer;">Sí, lo tengo</button>' +
                     '<button type="button" onclick="respNo(' + i + ')" id="no_' + i + '" style="font-size:10px;font-weight:900;padding:6px 16px;border-radius:10px;border:2px solid #e5e7eb;background:white;cursor:pointer;">No lo tengo</button>' +
                 '</div>' +
-                '<div id="emps_' + i + '" style="display:none;margin-top:8px;">' +
-                    '<p style="font-size:10px;font-weight:700;color:#9ca3af;margin-bottom:6px;">En qué empresa(s)?</p>' +
-                    '<div style="display:flex;flex-wrap:wrap;gap:4px;">' + empresasBtns + '</div>' +
-                    '<input type="text" id="otra_' + i + '" placeholder="Otra empresa..." style="margin-top:8px;font-size:11px;padding:6px 12px;border:1px solid #e5e7eb;border-radius:8px;outline:none;width:150px;">' +
-                '</div>' +
+                selectorEmpresa +
             '</div>';
         });
         document.getElementById('cuestionario-container').classList.remove('hidden');
     }
 
-    function respSi(i) {
+    function respSi(i, esIdioma) {
         _respuestas[i] = _respuestas[i] || {};
         _respuestas[i].tiene = true;
         _respuestas[i].empresas = _respuestas[i].empresas || [];
-        document.getElementById('si_' + i).style.cssText += ';border-color:#064e3b;color:#064e3b;';
-        document.getElementById('no_' + i).style.cssText += ';border-color:#e5e7eb;color:#6b7280;';
-        document.getElementById('emps_' + i).style.display = 'block';
+        document.getElementById('si_' + i).style.cssText += ';border-color:#064e3b;color:#064e3b;background:#f0fdf4;';
+        document.getElementById('no_' + i).style.cssText += ';border-color:#e5e7eb;color:#6b7280;background:white;';
+        // Solo mostrar selector de empresas si NO es idioma y tiene empresas
+        var empsDiv = document.getElementById('emps_' + i);
+        if (empsDiv && !esIdioma) empsDiv.style.display = 'block';
     }
     function respNo(i) {
         _respuestas[i] = { tiene: false, empresas: [] };
-        document.getElementById('no_' + i).style.cssText += ';border-color:#ef4444;color:#ef4444;';
-        document.getElementById('si_' + i).style.cssText += ';border-color:#e5e7eb;color:#6b7280;';
-        document.getElementById('emps_' + i).style.display = 'none';
+        document.getElementById('no_' + i).style.cssText += ';border-color:#ef4444;color:#ef4444;background:#fef2f2;';
+        document.getElementById('si_' + i).style.cssText += ';border-color:#e5e7eb;color:#6b7280;background:white;';
+        var empsDiv = document.getElementById('emps_' + i);
+        if (empsDiv) empsDiv.style.display = 'none';
     }
     function toggleEmp(i, emp) {
         _respuestas[i] = _respuestas[i] || { tiene: true, empresas: [] };
