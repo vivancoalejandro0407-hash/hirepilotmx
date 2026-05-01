@@ -66,6 +66,13 @@
         
         .card-shadow { box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
         
+        /* CAMBIO 5: En mobile, $199 aparece antes que $0 */
+        @media (max-width: 767px) {
+            .planes-grid { display: flex; flex-direction: column; }
+            .plan-basico { order: 2; }
+            .plan-pago { order: 1; }
+        }
+        
         textarea, input { border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1rem; outline: none; transition: border 0.2s; }
         textarea:focus, input:focus { border-color: #064e3b; }
 
@@ -131,21 +138,21 @@
             <div class="flex flex-col items-start gap-12">
                 <div class="w-full">
                     <span class="inline-block bg-[#f0f9f6] text-mexico-green text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-10">
-                        CONSIGUE MÁS ENTREVISTAS CON IA — GRATIS
+                        ⚡ Cada semana sin entrevistas son ingresos que no entran — esto lo cambia
                     </span>
-                    <p class="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-4">Miles de profesionales en México ya dejaron de aplicar a ciegas ↓</p>
+                    <p class="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-4">Llevas semanas mandando CVs. Nadie te llama. Eso no es mala suerte — es estrategia equivocada. ↓</p>
                     <h2 class="hero-title font-display text-[80px] md:text-[100px] italic font-extrabold text-mexico-dark mb-10">
-                        Consigue mejores trabajos, <br> <span class="text-mexico-green">mejores sueldos</span><br>
-                        <span class="italic-grey">usando IA.</span>
+                        Deja de ser ignorado.<br> <span class="text-mexico-green">Consigue entrevistas</span><br>
+                        <span class="italic-grey">esta semana.</span>
                     </h2>
                     <p class="text-gray-400 text-lg max-w-xl leading-snug mb-6 italic">
-                        Optimiza tu CV para pasar filtros ATS, descubre sueldos reales y prepárate para ganar tu próxima entrevista. La herramienta que los propios reclutadores usan cuando son ellos los que buscan trabajo.
+                        HirePilotMX no es un chatbot genérico. Está entrenada con el criterio real de quien pasó 15 años contratando y rechazando candidatos en empresas de aquí — sabe exactamente qué hace que un reclutador descarte tu CV en 6 segundos, porque quien la creó lo hizo miles de veces.
                     </p>
                     <p class="text-mexico-green font-black text-sm italic max-w-xl mb-12">
-                        Para que el talento real deje de ser invisible.
+                        Si tu sueldo objetivo es $25,000/mes, cada semana sin entrevistas son $6,250 que no entran a tu cuenta.
                     </p>
                     <div class="w-full mb-16 overflow-x-auto pb-4">
-                        <p class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] mb-8">De CV ignorado a entrevista confirmada — en 4 pasos</p>
+                        <p class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] mb-8">Cómo pasas de CV ignorado a entrevista confirmada — en 4 pasos</p>
                         <div class="flex items-center gap-8 min-w-[900px]">
                             <div class="flow-step flex-1 bg-white border border-gray-100 p-6 rounded-3xl card-shadow">
                                 <div class="text-xs font-black text-mexico-green mb-2 italic">01. CV</div>
@@ -172,9 +179,15 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="switchTab('paso1')" class="bg-mexico-dark text-white px-10 py-5 rounded-xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all">
-                        ANALIZAR MI CV GRATIS
+                    <!-- CAMBIO: Hero CTAs - primario a planes, secundario a herramienta -->
+                    <button onclick="switchTab('paso5')" class="bg-mexico-dark text-white px-10 py-5 rounded-xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all">
+                        Empezar a conseguir entrevistas — $199/mes →
                     </button>
+                    <!-- NUEVO: microcopy + entrada gratis -->
+                    <p class="text-[10px] text-gray-400 italic mt-3">
+                        ¿Quieres probar primero? 
+                        <button onclick="switchTab('paso1')" class="underline text-mexico-green font-black hover:opacity-70 transition-all">Analiza tu CV gratis — 5 análisis incluidos</button>
+                    </p>
                 </div>
             </div>
         </div>
@@ -183,8 +196,17 @@
              PASO 1 — DIAGNÓSTICO ATS
         ══════════════════════════════════════════════ -->
         <div id="paso1" class="tab-content max-w-5xl mx-auto italic">
-            <h2 class="text-4xl font-black mb-2 italic">Tu CV tiene 6 segundos para impresionar. ¿Los está usando?</h2>
-            <p class="text-gray-400 mb-10">Pega la vacante y tu CV. En segundos sabes por qué no te están llamando — y exactamente qué cambiar para que empiecen a hacerlo.</p>
+            <!-- NUEVO: barra de urgencia contextual al inicio del tab -->
+            <div id="barra-urgencia-top" class="mb-6 bg-[#fff8f0] border border-mexico-gold/30 rounded-2xl px-5 py-3 flex items-center justify-between gap-4">
+                <p class="text-[10px] font-black text-mexico-gold uppercase tracking-widest">
+                    ⚡ Plan gratuito — <span id="label-creditos-top">5 análisis disponibles</span>
+                </p>
+                <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="text-[9px] font-black text-mexico-dark uppercase tracking-widest border border-mexico-dark px-4 py-1.5 rounded-lg hover:bg-mexico-dark hover:text-white transition-all whitespace-nowrap">
+                    Análisis ilimitados — $199 →
+                </button>
+            </div>
+            <h2 class="text-4xl font-black mb-2 italic">Tu CV tiene 6 segundos para impresionar. ¿Los está usando bien?</h2>
+            <p class="text-gray-400 mb-10">Pega la vacante y tu CV. En segundos sabes exactamente por qué no te están llamando — y qué cambiar para que empiecen a hacerlo.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div class="flex flex-col gap-4">
@@ -198,25 +220,64 @@
                         <input type="file" id="file-cv" class="hidden" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(this, 'c-input')">
                     </div>
                     <textarea id="c-input" class="h-64 border-2 w-full text-sm leading-relaxed" placeholder="Pega tu CV aquí o usa el botón de arriba para subir el archivo..."></textarea>
+                    <!-- CAMBIO 2: privacidad visible en punto de mayor vulnerabilidad -->
+                    <p class="text-[9px] text-gray-400 italic px-2">🔒 Tu CV no se almacena en nuestros servidores — solo tú lo ves. Se procesa en tiempo real y se elimina al instante.</p>
                 </div>
             </div>
 
             <!-- Aviso uso #2: queda 1 crédito -->
             <div id="aviso-limite" class="hidden mb-4">
-                <div class="bg-amber-50 border-2 border-amber-400 rounded-2xl px-6 py-5 flex items-start gap-4">
-                    <span class="text-2xl mt-0.5">⚡</span>
-                    <div>
-                        <p class="text-amber-900 font-black text-sm italic">Te queda 1 crédito.</p>
-                        <p class="text-amber-800 text-xs italic mt-1">Estás a un análisis de optimizar tu futuro. <strong>Úsalo en la vacante más importante.</strong></p>
+                <div class="bg-amber-50 border-2 border-amber-400 rounded-2xl px-6 py-5 flex flex-col md:flex-row items-start md:items-center gap-4">
+                    <span class="text-2xl mt-0.5 flex-shrink-0">⚡</span>
+                    <div class="flex-1">
+                        <p class="text-amber-900 font-black text-sm italic">Este es tu último análisis gratuito.</p>
+                        <p class="text-amber-800 text-xs italic mt-1">Úsalo en la vacante más importante. Después de este, necesitas el plan completo — <strong>$199/mes con análisis ilimitados.</strong></p>
+                        <p class="text-amber-700 text-[9px] mt-1">Si tu sueldo objetivo es $20,000/mes, $199 es menos de lo que ganas en un día de trabajo.</p>
                     </div>
+                    <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="bg-mexico-dark text-white px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest whitespace-nowrap hover:bg-black transition-all flex-shrink-0">
+                        Entrar al plan completo →
+                    </button>
                 </div>
             </div>
 
-            <!-- Bloqueo uso #3 agotado -->
+            <!-- Bloqueo uso agotado — decisión inline, no redirect -->
+            <!-- MOMENTO 3: Sesgo de escasez temporal + Pérdida concreta + Anclaje social -->
             <div id="limite-bloqueado" class="hidden bg-mexico-dark text-white p-10 rounded-[40px] text-center mb-8">
-                <p class="text-mexico-gold font-black text-xl italic mb-2">Ya usaste tus 5 análisis gratuitos 🎯</p>
-                <p class="text-gray-400 text-sm italic mb-6 max-w-md mx-auto">Pasaste el límite gratis — eso significa que lo estás usando en serio.<br>El plan Pro te da análisis ilimitados para cada vacante que te interese.</p>
-                <button onclick="switchTab('paso5')" class="bg-mexico-gold text-white px-10 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all">Desbloquear Análisis Ilimitados — $299/mes</button>
+                <p class="text-mexico-gold font-black text-xl italic mb-2">Agotaste tus 5 análisis gratuitos.</p>
+                <p class="text-gray-400 text-sm italic mb-1 max-w-md mx-auto">Lo que ya hiciste funcionó — ahora necesitas hacerlo con cada vacante que te interese.</p>
+
+                <!-- NUEVO: contador de vacantes perdidas — sesgo de pérdida continua -->
+                <div class="bg-white/5 border border-red-500/30 rounded-2xl p-4 max-w-sm mx-auto mb-5">
+                    <p class="text-red-400 text-[10px] font-black uppercase tracking-widest mb-1">⏱ Lo que estás perdiendo ahora mismo</p>
+                    <p class="text-white text-xs italic">Cada día sin el plan completo es una vacante que no analizas, un sueldo que no negocias, una entrevista que no consigues.</p>
+                    <p class="text-mexico-gold font-black text-sm mt-2">Si tu sueldo objetivo es $20,000/mes, $199 es menos de lo que ganas en un día de trabajo.</p>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 max-w-sm mx-auto mb-5">
+                    <div class="flex items-baseline justify-center gap-3 mb-1">
+                        <span class="text-5xl font-black text-mexico-gold">$199</span>
+                        <span class="text-xs text-white/40 uppercase font-bold">MXN/mes</span>
+                    </div>
+                    <p class="text-white/40 text-[10px] italic mb-2">Análisis ilimitados · Sin cobro automático sorpresa · Cancela cuando quieras</p>
+
+                    <!-- NUEVO: Garantía como eliminador de riesgo ANTES del botón -->
+                    <div class="bg-mexico-green/10 border border-mexico-green/30 rounded-xl p-3 mb-4">
+                        <p class="text-mexico-green text-[10px] font-black uppercase tracking-widest">🛡️ Compromiso de resultados</p>
+                        <p class="text-white/60 text-[10px] italic mt-1">Si en 60 días no consigues más entrevistas, reembolso completo. Sin formularios. Sin pretextos.</p>
+                    </div>
+
+                    <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="w-full bg-mexico-gold text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
+                        Empezar a conseguir entrevistas — $199 →
+                    </button>
+                    <p class="text-[9px] text-white/30 mt-3 uppercase tracking-widest">🔒 Tarjeta · OXXO · SPEI · Procesado por Mercado Pago</p>
+                </div>
+
+                <!-- NUEVO: Testimonio + prueba social en el momento de mayor decisión -->
+                <div class="max-w-sm mx-auto bg-white/5 rounded-2xl p-4 mb-3">
+                    <p class="text-white/70 text-[11px] italic">"Al día siguiente me emplearon."</p>
+                    <p class="text-white/40 text-[9px] mt-1 uppercase tracking-widest">Juan José Cruz M. · Quality Manager · Querétaro ★★★★★</p>
+                </div>
+                <p class="text-[9px] text-white/20 italic max-w-xs mx-auto">Úsalo hoy. Cancela el día que consigas trabajo.</p>
             </div>
 
             <!-- Contador de usos gratuitos -->
@@ -235,6 +296,24 @@
 
                 <!-- Score container — título dinámico C-Level vs ATS -->
                 <div id="score-container" class="bg-mexico-dark text-white p-10 rounded-[40px] shadow-2xl"></div>
+
+                <!-- ══ UPGRADE POST-ANÁLISIS — Trigger emocional en momento de mayor intención ══ -->
+                <div id="upgrade-post-analisis" class="hidden bg-mexico-dark text-white p-8 rounded-[40px] border-2 border-mexico-gold/40 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">La herramienta está funcionando</p>
+                        <p class="text-lg font-black italic">¿Cuántas vacantes más necesitas analizar para conseguir esa entrevista?</p>
+                        <p class="text-gray-400 text-xs italic mt-1">5 análisis no alcanzan para una búsqueda real. Análisis ilimitados por $199/mes.</p>
+                        <p class="text-white/30 text-[9px] mt-2 uppercase tracking-widest">Tarjeta · OXXO · SPEI · Cancela cuando quieras</p>
+                    </div>
+                    <!-- Desktop: botón grande -->
+                    <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="hidden md:block bg-mexico-gold text-white px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all whitespace-nowrap shadow-xl flex-shrink-0">
+                        Conseguir análisis ilimitados — $199 →
+                    </button>
+                    <!-- Mobile: botón compacto full-width -->
+                    <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="md:hidden w-full bg-mexico-gold text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
+                        Análisis ilimitados — $199 →
+                    </button>
+                </div>
 
                 <!-- Diagnóstico IA -->
                 <div class="bg-white p-10 rounded-[40px] border border-gray-100 card-shadow">
@@ -289,18 +368,20 @@
                             </div>
                         </div>
                         <!-- Overlay de bloqueo encima -->
+                        <!-- CAMBIO: precio corregido $299→$199, CTA más directo -->
                         <div class="pro-blur-overlay">
                             <svg class="w-8 h-8 text-gray-400 mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                             </svg>
                             <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Tabulador Exacto + Estrategia de Negociación</p>
-                            <p class="text-[11px] text-gray-400 italic mb-4 max-w-xs">Candidatos que negocian con datos cierran en promedio 22% más arriba que los que van a ciegas.</p>
-                            <button onclick="switchTab('paso5')"
+                            <p class="text-[11px] text-gray-400 italic mb-4 max-w-xs">Candidatos que negocian con datos cierran hasta 22% más arriba. Tu número exacto está aquí.</p>
+                            <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')"
                                 class="bg-mexico-dark text-white px-8 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-lg">
-                                🔓 Desbloquear Análisis Salarial Pro y Estrategia de Negociación
+                                🔓 Ver cuánto me deben pagar — $199/mes
                             </button>
-                            <p class="text-[9px] text-gray-400 mt-3">Plan Completo — $299 MXN/mes</p>
+                            <!-- CAMBIO: precio corregido -->
+                            <p class="text-[9px] text-gray-400 mt-3">Plan completo · $199 MXN/mes · Tarjeta, OXXO o SPEI</p>
                         </div>
                     </div>
                 </div>
@@ -317,19 +398,23 @@
                 </div>
 
                 <!-- Botones de descarga -->
+                <!-- CAMBIO: jerarquía visual invertida — upgrade es el CTA principal -->
                 <div class="bg-[#f0f9f6] border border-mexico-green/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
                         <p class="text-[10px] font-black uppercase text-mexico-green tracking-widest mb-1">Tu CV optimizado está listo</p>
                         <p id="lbl-descarga" class="text-sm font-black italic text-mexico-dark">CV reescrito para esta vacante</p>
-                        <p class="text-[10px] text-gray-400 italic mt-1">⚠️ Versión con marca de agua — el reclutador verá el sello HirePilotMX.</p>
+                        <p class="text-[10px] text-gray-400 italic mt-1">⚠️ Esta versión lleva el sello HirePilotMX — el reclutador lo verá.</p>
+                        <!-- NUEVO: microcopy de pérdida -->
+                        <p class="text-[10px] text-mexico-gold font-black italic mt-2">Descárgalo limpio con el plan completo — $199/mes.</p>
                     </div>
                     <div class="flex flex-col gap-3 min-w-[220px]">
+                        <!-- CAMBIO: upgrade es el primer botón, sin marca va primero -->
+                        <button onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="bg-mexico-gold text-white py-4 px-6 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                            🔓 Descargar SIN marca — $199/mes
+                        </button>
                         <button onclick="descargarCV()" class="bg-mexico-dark text-white py-4 px-6 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all flex items-center justify-center gap-2">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                             Descargar (con marca de agua)
-                        </button>
-                        <button onclick="switchTab('paso5')" class="bg-mexico-gold text-white py-4 px-6 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-2">
-                            🔓 Descargar sin marca — $199/mes
                         </button>
                         <button onclick="descargarGuia()" class="border-2 border-mexico-green text-mexico-green py-3 px-6 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-mexico-green hover:text-white transition-all flex items-center justify-center gap-2">
                             Descargar Guía de Negociación
@@ -341,12 +426,12 @@
             <!-- Conductor: siguiente paso -->
             <div id="cta-siguiente-paso1" class="hidden mt-8 bg-mexico-dark text-white p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">¿Siguiente paso?</p>
-                    <p class="text-lg font-black italic">Ahora descubre cuánto deberías ganar en esa empresa.</p>
-                    <p class="text-gray-400 text-xs italic mt-1">El Radar de Sueldos te da el rango real del mercado para negociar con datos.</p>
+                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">Siguiente paso</p>
+                    <p class="text-lg font-black italic">Ahora descubre cuánto deberían pagarte en esa empresa.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El Radar de Sueldos te da el rango real del mercado para que negocies con datos, no con esperanza.</p>
                 </div>
                 <button onclick="switchTab('paso2')" class="bg-mexico-gold text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all whitespace-nowrap">
-                    Ver Radar de Sueldos →
+                    Ver cuánto deberían pagarme →
                 </button>
             </div>
         </div>
@@ -404,9 +489,9 @@
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                     </svg>
                     <p class="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1">Sueldo exacto por empresa</p>
-                    <p class="text-[11px] text-gray-400 italic mb-4 text-center max-w-xs">Descubre exactamente cuánto paga esa empresa para ese puesto — antes de tu entrevista.</p>
+                    <p class="text-[11px] text-gray-400 italic mb-4 text-center max-w-xs">Los candidatos que negocian con datos reales cierran hasta 22% más arriba que los que van a ciegas. Tu tabulador exacto está aquí.</p>
                     <button onclick="switchTab('paso5')" class="bg-mexico-dark text-white px-8 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-lg">
-                        🔓 Desbloquear por $199/mes
+                        🔓 Ver cuánto me deben pagar — $199/mes
                     </button>
                 </div>
             </div>
@@ -425,12 +510,12 @@
             <!-- Conductor -->
             <div class="mt-8 bg-[#fff8f0] border border-mexico-gold/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">¿Y la empresa es buena?</p>
-                    <p class="text-lg font-black italic text-mexico-dark">Investiga cómo tratan a su gente antes de ir a la entrevista.</p>
-                    <p class="text-gray-400 text-xs italic mt-1">El Detector analiza la reputación real de esa empresa en México.</p>
+                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">Antes de ir a esa entrevista</p>
+                    <p class="text-lg font-black italic text-mexico-dark">Investiga si esa empresa vale tu tiempo antes de comprometerte.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El Detector analiza cómo tratan a su gente, qué dicen los que ya trabajaron ahí y si hay señales de alarma.</p>
                 </div>
                 <button onclick="switchTab('paso3')" class="bg-mexico-dark text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all whitespace-nowrap">
-                    Investigar la Empresa →
+                    Auditar la empresa antes de ir →
                 </button>
             </div>
         </div>
@@ -441,7 +526,7 @@
         <div id="paso3" class="tab-content max-w-5xl mx-auto italic py-10">
             <div class="text-center mb-12">
                 <h2 class="text-6xl font-black mb-2 italic tracking-tighter">¿Vale la pena <span class="text-mexico-red">o es trampa?</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-sm italic">No aceptes una oferta a ciegas. Investiga cómo trata esa empresa a su gente antes de comprometer tu tiempo y tu carrera.</p>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm italic">No pierdas una tarde entera en una empresa que paga mal, trata mal a su gente o ya tiene problemas internos. Investiga primero.</p>
             </div>
             <div class="bg-white p-10 rounded-[40px] border border-gray-100 card-shadow mb-8">
                 <input id="empresa-clima" type="text" class="w-full mb-6 text-xl font-bold" placeholder="Nombre de la empresa...">
@@ -466,11 +551,11 @@
             <div class="mt-8 bg-[#f0f9f6] border border-mexico-green/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                     <p class="text-mexico-green text-[10px] font-black uppercase tracking-widest mb-1">Último paso antes de la entrevista</p>
-                    <p class="text-lg font-black italic text-mexico-dark">Prepara las respuestas que te van a dar la oferta.</p>
-                    <p class="text-gray-400 text-xs italic mt-1">El Entrenador convierte tus experiencias en los argumentos que cierran la oferta.</p>
+                    <p class="text-lg font-black italic text-mexico-dark">Prepara las respuestas que cierran la oferta — no las que solo describen lo que hacías.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El Entrenador convierte tus experiencias reales en argumentos que el reclutador no olvida.</p>
                 </div>
                 <button onclick="switchTab('pasoEntrevista')" class="bg-mexico-green text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all whitespace-nowrap">
-                    Entrenar para la Entrevista →
+                    Preparar mis respuestas ganadoras →
                 </button>
             </div>
         </div>
@@ -481,8 +566,8 @@
         <div id="pasoEntrevista" class="tab-content max-w-5xl mx-auto italic py-10">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-black mb-4 italic tracking-tighter">La entrevista se gana <span class="text-mexico-gold">antes de entrar</span></h2>
-                <p class="text-gray-400">Prepara respuestas que demuestran resultados reales. Cuando el reclutador pregunte, tú ya tienes la respuesta preparada.</p>
-                    <p class="text-[11px] font-black italic text-mexico-gold mt-3">No es IA genérica. Está entrenada con el criterio de quien ha estado del otro lado de la mesa por 15 años.</p>
+                <p class="text-gray-400">Prepara respuestas que demuestran resultados reales. Cuando el reclutador pregunte, tú ya tienes la respuesta lista — no improvisas, no te quedas en blanco.</p>
+                    <p class="text-[11px] font-black italic text-mexico-gold mt-3">No es IA genérica. Usa el criterio de quien estuvo 15 años del otro lado de la mesa evaluando candidatos en empresas de aquí.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="bg-white p-10 rounded-[50px] border border-gray-100 card-shadow">
@@ -519,12 +604,12 @@
             <!-- Conductor -->
             <div class="mt-10 bg-mexico-dark text-white p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">Ya tienes todo listo</p>
-                    <p class="text-lg font-black italic">Descarga tu CV limpio y consigue la oferta.</p>
-                    <p class="text-gray-400 text-xs italic mt-1">El Pasaporte HirePilotMX te da acceso a todo lo que necesitas para cerrar el proceso.</p>
+                    <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-1">Ya tienes todo para cerrar el proceso</p>
+                    <p class="text-lg font-black italic">Descarga tu CV sin marca de agua y consigue la oferta.</p>
+                    <p class="text-gray-400 text-xs italic mt-1">El plan completo te da CV limpio, análisis ilimitados y garantía de 60 días — por $199/mes.</p>
                 </div>
                 <button onclick="switchTab('paso5')" class="bg-mexico-gold text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all whitespace-nowrap">
-                    Ver mi Pasaporte →
+                    Obtener mi CV sin marca y cerrar →
                 </button>
             </div>
         </div>
@@ -536,15 +621,21 @@
 
             <!-- ① PAIN — Título -->
             <div class="text-center mb-16 max-w-3xl mx-auto">
-                <span class="inline-block bg-red-50 text-red-500 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-wider mb-6">El mercado no te rechaza — te ignora. Hay diferencia.</span>
-                <h2 class="text-5xl md:text-6xl font-black italic tracking-tighter mb-4">Deja de aplicar. <span class="text-mexico-gold">Empieza a conseguir.</span></h2>
-                <p class="text-gray-400 text-sm leading-relaxed">Cada CV que mandas sin estrategia es un mes más de espera. Esto cambia hoy.</p>
+                <span class="inline-block bg-red-50 text-red-500 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-wider mb-6">El mercado no te rechaza — te ignora. Hay diferencia. Y se corrige.</span>
+                <h2 class="text-5xl md:text-6xl font-black italic tracking-tighter mb-4">Deja de aplicar a ciegas. <span class="text-mexico-gold">Empieza a conseguir entrevistas.</span></h2>
+                <p class="text-gray-400 text-sm leading-relaxed">Cada CV que mandas sin estrategia es una semana más de espera. Y cada semana tiene un costo real.</p>
             </div>
 
-            <!-- ② PRUEBA SOCIAL — Testimonios -->
-            <div class="max-w-5xl mx-auto mb-16">
-                <p class="text-center text-[10px] font-black uppercase tracking-widest text-gray-400 mb-8">Lo que dicen quienes ya lo probaron</p>
+            <!-- ② PRUEBA SOCIAL — 2 testimonios de mayor impacto, reordenados -->
+            <!-- ORDEN: Juan José primero (resultado concreto: "al día siguiente me emplearon")
+                        Manuel segundo (comparación con competencia + autoridad de Director)
+                        Bárbara y Carlos eliminados de esta vista — vagos, sin resultado medible -->
+            <div class="max-w-5xl mx-auto mb-10">
+                <!-- CAMBIO 1: números propios reales -->
+                <p class="text-center text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Resultados reales de personas que dejaron de ser ignoradas</p>
+                <p class="text-center text-[10px] text-mexico-green font-black italic mb-8">Más de 125 análisis realizados en los primeros 7 días de lanzamiento.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- #1: Resultado más concreto y rápido — "al día siguiente me emplearon" -->
                     <div class="bg-white border border-gray-100 rounded-[40px] p-8 card-shadow">
                         <div class="flex items-center gap-1 mb-4">
                             <span class="text-mexico-gold text-sm">★★★★★</span>
@@ -558,32 +649,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white border border-gray-100 rounded-[40px] p-8 card-shadow">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-mexico-gold text-sm">★★★★★</span>
-                        </div>
-                        <p class="text-sm italic text-gray-700 leading-relaxed mb-6">"¡Está increíble! Lo que más me sorprendió fue el apartado del sueldo — por fin dejas de aplicar a ciegas."</p>
-                        <div class="flex items-center gap-3 border-t border-gray-100 pt-4">
-                            <div class="w-10 h-10 rounded-full bg-mexico-green flex items-center justify-center font-black text-white text-sm">BC</div>
-                            <div>
-                                <p class="font-black text-xs text-mexico-dark">Bárbara Chaparro</p>
-                                <p class="text-[10px] text-gray-400 italic">Head of HR · CHRO · Ciudad de México</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white border border-gray-100 rounded-[40px] p-8 card-shadow">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-mexico-gold text-sm">★★★★★</span>
-                        </div>
-                        <p class="text-sm italic text-gray-700 leading-relaxed mb-6">"Definitivamente sí toma los elementos clave de la vacante y alinea tu CV a ellos."</p>
-                        <div class="flex items-center gap-3 border-t border-gray-100 pt-4">
-                            <div class="w-10 h-10 rounded-full bg-mexico-green flex items-center justify-center font-black text-white text-sm">CC</div>
-                            <div>
-                                <p class="font-black text-xs text-mexico-dark">Carlos Cámara Muñoz</p>
-                                <p class="text-[10px] text-gray-400 italic">Gerente de Recursos Humanos · Ciudad de México</p>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- #2: Autoridad + comparación con competencia — refuerza decisión de pagar -->
                     <div class="bg-white border border-gray-100 rounded-[40px] p-8 card-shadow">
                         <div class="flex items-center gap-1 mb-4">
                             <span class="text-mexico-gold text-sm">★★★★★</span>
@@ -598,34 +664,26 @@
                         </div>
                     </div>
                 </div>
+                <!-- CAMBIO 3: industrias cubiertas — elimina objeción "¿funcionará para mi industria?" -->
+                <p class="text-center text-[9px] text-gray-400 italic mt-6">Usado por profesionales en tecnología, manufactura, servicios financieros, construcción, telecomunicaciones y retail.</p>
             </div>
 
-            <!-- ③ AUTORIDAD — Quién es Alejandro -->
-            <div class="max-w-5xl mx-auto mb-16">
-                <div class="bg-mexico-dark text-white rounded-[40px] p-10 md:p-14 flex flex-col md:flex-row items-start gap-10">
-                    <div class="flex-shrink-0">
-                        <div class="w-20 h-20 rounded-full bg-mexico-green flex items-center justify-center font-black text-white text-2xl">AV</div>
-                    </div>
-                    <div>
-                        <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-3">Quién está detrás de HirePilotMX</p>
-                        <h3 class="text-2xl font-black italic mb-4 text-white">Llevo 15 años tomando decisiones de contratación.<br>Sé exactamente por qué te ignoran.<br>Y cómo hacer que eso cambie.</h3>
-                        <p class="text-gray-400 text-sm italic leading-relaxed mb-3">En 15 años tomé miles de decisiones de contratación. Sé exactamente qué hace que un candidato pase — y qué hace que lo descarten en 6 segundos.</p>
-                        <p class="text-gray-400 text-sm italic leading-relaxed mb-6">La mayoría llega con <strong class="text-white">talento real y estrategia equivocada.</strong> Eso se corrige.</p>
-                        <p class="text-[11px] text-white/60 italic leading-relaxed">15 años · 650+ colaboradores · Manufactura, Entretenimiento, Construcción, Servicios y Telecomunicaciones · Lic. Administración UAG · Maestría en RH Tec Milenio</p>
-                    </div>
-                </div>
+            <!-- ③ LÍNEA PUENTE — entre prueba social y oferta -->
+            <!-- Variante elegida: activa continuidad lógica + elimina la pregunta "¿pero funcionará conmigo?" -->
+            <div class="max-w-3xl mx-auto text-center mb-14">
+                <p class="text-xl font-black italic text-mexico-dark">Ya lo está haciendo por otros.<br><span class="text-mexico-green">Tu turno es ahora.</span></p>
             </div>
 
-            <!-- ④ SOLUCIÓN — Planes $0 y $299 -->
+            <!-- ④ SOLUCIÓN — Planes $0 y $199 -->
             <div class="max-w-5xl mx-auto mb-6">
-                <p class="text-center text-[10px] font-black uppercase tracking-widest text-gray-400 mb-10">Elige tu punto de entrada — sin compromisos</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <p class="text-center text-[10px] font-black uppercase tracking-widest text-gray-400 mb-10">¿Cuánto te está costando cada semana más sin entrevistas?</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 planes-grid">
 
                     <!-- Plan Básico -->
-                    <div class="passport-card p-10 rounded-[50px] bg-white flex flex-col relative border border-gray-100 card-shadow">
+                    <div class="passport-card p-10 rounded-[50px] bg-white flex flex-col relative border border-gray-100 card-shadow plan-basico">
                         <div class="absolute top-6 right-8 bg-mexico-green text-white text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Sin tarjeta requerida</div>
                         <div class="mb-8">
-                            <span class="text-[10px] font-black text-mexico-green uppercase tracking-widest">Empieza gratis</span>
+                            <span class="text-[10px] font-black text-mexico-green uppercase tracking-widest">Prueba gratuita — 5 análisis</span>
                             <h3 class="text-3xl font-black italic mb-3">Plan Básico</h3>
                             <div class="flex items-baseline gap-2">
                                 <span class="text-5xl font-black tracking-tighter">$0</span>
@@ -635,85 +693,99 @@
                         <ul class="space-y-4 flex-1 mb-6">
                             <li class="flex items-start gap-3 text-xs font-bold text-gray-600">
                                 <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green flex-shrink-0">✓</div>
-                                <span><strong>5 análisis con IA</strong> — detecta por qué no te llaman y genera tu CV optimizado para cada vacante</span>
+                                <span><strong>5 análisis con IA</strong> — para ver cómo funciona antes de decidir</span>
                             </li>
                             <li class="flex items-start gap-3 text-xs font-bold text-gray-600">
                                 <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green flex-shrink-0">✓</div>
-                                <span><strong>Generador STAR</strong> — convierte tus experiencias en respuestas que impresionan</span>
+                                <span><strong>Generador STAR básico</strong> — convierte una experiencia en argumento</span>
                             </li>
-                            <li class="flex items-start gap-3 text-xs font-bold text-gray-600">
-                                <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green flex-shrink-0">✓</div>
-                                <span><strong>Guía de Negociación</strong> — aprende a pedir más sueldo con datos reales</span>
+                            <li class="flex items-start gap-3 text-xs font-bold text-gray-400 line-through">
+                                <div class="bg-gray-100 p-1 rounded-md text-gray-300 flex-shrink-0">✗</div>
+                                <span>Análisis ilimitados por vacante</span>
                             </li>
-                            <li class="flex items-start gap-3 text-xs font-bold text-gray-600">
-                                <div class="bg-mexico-green/10 p-1 rounded-md text-mexico-green flex-shrink-0">✓</div>
-                                <span><strong>Radar de sueldos gratis</strong> — rango real del mercado para tu puesto</span>
+                            <li class="flex items-start gap-3 text-xs font-bold text-gray-400 line-through">
+                                <div class="bg-gray-100 p-1 rounded-md text-gray-300 flex-shrink-0">✗</div>
+                                <span>Radar de sueldos por empresa específica</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-xs font-bold text-gray-400 line-through">
+                                <div class="bg-gray-100 p-1 rounded-md text-gray-300 flex-shrink-0">✗</div>
+                                <span>CV sin marca de agua</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-xs font-bold text-gray-400 line-through">
+                                <div class="bg-gray-100 p-1 rounded-md text-gray-300 flex-shrink-0">✗</div>
+                                <span>Garantía de resultados</span>
                             </li>
                         </ul>
                         <div class="border-t border-gray-100 pt-6">
-                            <p class="text-[10px] font-black uppercase text-mexico-dark mb-1 text-center">COMPARTE CON ALGUIEN EN BÚSQUEDA</p>
-                            <p class="text-[9px] text-gray-400 text-center italic mb-4">Ayuda a un colega a conseguir más entrevistas.</p>
-                            <div class="grid grid-cols-4 gap-3 mb-5">
-                                <button onclick="compartirLinkedIn()" class="social-btn text-blue-600 text-sm font-black bg-blue-50/30 border-blue-100" title="LinkedIn">in</button>
-                                <button onclick="compartirX()" class="social-btn text-black font-black text-sm bg-gray-50 border-gray-200" title="X">X</button>
-                                <button onclick="compartirFacebook()" class="social-btn text-blue-800 text-sm font-black bg-blue-50/30 border-blue-100" title="Facebook">f</button>
-                                <button onclick="compartirWhatsApp()" class="social-btn text-green-600 text-sm font-black bg-green-50/30 border-green-100" title="WhatsApp">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-                                </button>
-                            </div>
                             <button onclick="descargarCVdesdePasaporte()" class="w-full py-5 rounded-2xl bg-mexico-dark text-white font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all mb-3">⬇ Descargar CV Optimizado (con marca)</button>
                             <button onclick="descargarGuia()" class="w-full py-4 rounded-2xl border-2 border-gray-200 text-gray-600 font-black text-[10px] uppercase tracking-widest hover:border-mexico-green hover:text-mexico-green transition-all">Descargar Guía de Negociación</button>
                         </div>
                     </div>
 
                     <!-- Plan Entrevista Garantizada -->
-                    <div class="passport-card premium-gradient p-10 rounded-[50px] shadow-2xl flex flex-col relative overflow-hidden border-2 border-mexico-gold/40">
+                    <div class="passport-card premium-gradient p-10 rounded-[50px] shadow-2xl flex flex-col relative overflow-hidden border-2 border-mexico-gold/40 plan-pago">
                         <div class="absolute -top-10 -right-10 w-40 h-40 bg-mexico-gold/20 blur-3xl rounded-full"></div>
 
                         <div class="mb-5 relative z-10">
-                            <span class="text-[10px] font-black text-mexico-gold uppercase tracking-widest">🔥 Precio de Lanzamiento</span>
-                            <h3 class="text-3xl font-black italic mb-1 text-white mt-1">Plan Entrevista Garantizada</h3>
-                            <p class="text-white/50 text-[11px] italic mb-4">Más entrevistas en 60 días — o te devolvemos tu dinero.</p>
-                            <div class="flex items-baseline gap-3 text-white">
-                                <span class="text-2xl font-black line-through text-white/30">$599</span>
-                                <span id="price-pro" class="text-5xl font-black tracking-tighter text-mexico-gold">$199</span>
-                                <span class="text-xs font-bold uppercase tracking-widest text-white/50">MXN / MES</span>
+                            <span class="text-[10px] font-black text-mexico-gold uppercase tracking-widest">Plan Entrevista Garantizada</span>
+                            <h3 class="text-3xl font-black italic mb-1 text-white mt-1">Consigue entrevistas.<br>Análisis ilimitados para cada vacante.</h3>
+                            <div class="flex flex-col gap-1 text-white mt-4 mb-2">
+                                <div class="flex items-baseline gap-3">
+                                    <span id="price-pro" class="text-5xl font-black tracking-tighter text-mexico-gold">$199</span>
+                                    <span class="text-xs font-bold uppercase tracking-widest text-white/50">MXN / MES</span>
+                                </div>
+                                <p class="text-white/50 text-[11px] italic mt-1">Si tu sueldo objetivo es $20,000/mes, $199 es menos de lo que ganas en un día de trabajo.</p>
                             </div>
                         </div>
 
-                        <ul class="space-y-4 flex-1 mb-6 relative z-10">
+                        <ul class="space-y-4 flex-1 mb-8 relative z-10">
                             <li class="flex items-start gap-3 text-sm font-bold text-white">
                                 <span class="text-mexico-gold mt-0.5 flex-shrink-0">★</span>
-                                <span><strong class="text-mexico-gold">CV optimizado con IA ilimitado</strong> — analiza cuantas vacantes quieras, cada vez más afinado</span>
+                                <span><strong class="text-mexico-gold">Análisis de CV ilimitado</strong> — cada vacante que te interese, analizada y optimizada con criterio real de reclutador</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-white">
                                 <span class="text-mexico-gold mt-0.5 flex-shrink-0">★</span>
-                                <span><strong class="text-mexico-gold">Prep de entrevista ilimitada</strong> — respuestas STAR listas para cada proceso</span>
+                                <span><strong class="text-mexico-gold">Preparación de entrevista ilimitada</strong> — respuestas STAR listas para cada proceso, no improvisas</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-white">
                                 <span class="text-mexico-gold mt-0.5 flex-shrink-0">★</span>
-                                <span><strong class="text-mexico-gold">Radar de sueldos por empresa</strong> — entra a negociar con datos, no con esperanza</span>
+                                <span><strong class="text-mexico-gold">Radar de sueldos por empresa</strong> — entra a negociar con números reales, no con esperanza</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-white">
                                 <span class="text-mexico-gold mt-0.5 flex-shrink-0">★</span>
-                                <span><strong class="text-mexico-gold">Detector de empresas</strong> — investiga si vale la pena antes de invertir tu tiempo</span>
+                                <span><strong class="text-mexico-gold">Detector de empresas</strong> — sabe si vale tu tiempo antes de gastar una tarde en esa entrevista</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-white">
                                 <span class="text-mexico-gold mt-0.5 flex-shrink-0">💎</span>
-                                <span><strong class="text-mexico-gold">La Telaraña</strong> — contactos directos de quien realmente contrata en México</span>
+                                <span><strong class="text-mexico-gold">La Telaraña</strong> — acceso a la red personal de Alejandro: headhunters, reclutadores y tomadores de decisión que contratan en México. Llegas directo a quien decide.</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-white">
                                 <span class="text-mexico-gold mt-0.5 flex-shrink-0">🛡️</span>
-                                <span><strong class="text-mexico-gold">Garantía real 60 días</strong> — más entrevistas o te devolvemos el dinero. Sin preguntas.</span>
+                                <span><strong class="text-mexico-gold">Compromiso de resultados — 60 días</strong> — si no consigues más entrevistas, reembolso completo.</span>
                             </li>
                         </ul>
 
-                        <button id="btn-comprar" onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="w-full py-6 rounded-[30px] bg-mexico-gold text-white font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-mexico-gold/30 hover:scale-[1.02] transition-all relative z-10">Quiero más entrevistas — Empezar por $199 →</button>
+                        <button id="btn-comprar" onclick="window.open('https://mpago.la/1tAxVZ9', '_blank')" class="w-full py-6 rounded-[30px] bg-mexico-gold text-white font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-mexico-gold/30 hover:scale-[1.02] transition-all relative z-10">Conseguir más entrevistas — $199/mes →</button>
                         <div class="flex items-center justify-center gap-2 mt-4 relative z-10">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#009EE3"/><path d="M6 12.5C6 9.46 8.46 7 11.5 7c1.74 0 3.28.8 4.3 2.05L18 7.5C16.5 5.65 14.14 4.5 11.5 4.5 7.08 4.5 3.5 8.08 3.5 12.5S7.08 20.5 11.5 20.5c2.64 0 5-1.15 6.5-2.98l-2.2-2.02A4.485 4.485 0 0 1 11.5 17C8.46 17 6 14.54 6 12.5z" fill="white"/></svg>
-                            <p class="text-[9px] text-white/40 uppercase font-bold tracking-widest">Pago seguro · Tarjeta · OXXO · SPEI</p>
+                            <p class="text-[9px] text-white/50 uppercase font-bold tracking-widest">Tarjeta · OXXO · SPEI · Cancela cuando quieras</p>
                         </div>
-                        <p class="text-[8px] text-white/30 text-center mt-2 uppercase font-bold tracking-widest relative z-10">SSL Encriptado · Cancela cuando quieras</p>
+                        <p class="text-[9px] text-white/40 text-center mt-3 italic relative z-10">"Al día siguiente me emplearon." — Juan José Cruz M., Quality Manager, Querétaro ★★★★★</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ⑤ AUTORIDAD — Quién es Alejandro (MOVIDO: después del precio, refuerza, no retrasa) -->
+            <div class="max-w-5xl mx-auto mb-16 mt-16">
+                <div class="bg-mexico-dark text-white rounded-[40px] p-10 md:p-14 flex flex-col md:flex-row items-start gap-10">
+                    <div class="flex-shrink-0">
+                        <div class="w-20 h-20 rounded-full bg-mexico-green flex items-center justify-center font-black text-white text-2xl">AV</div>
+                    </div>
+                    <div>
+                        <p class="text-mexico-gold text-[10px] font-black uppercase tracking-widest mb-3">Quién está detrás de HirePilotMX</p>
+                        <h3 class="text-2xl font-black italic mb-4 text-white">Vi miles de CVs. Rechacé candidatos con talento por errores evitables.<br>HirePilotMX nació para que eso no te pase a ti.</h3>
+                        <p class="text-gray-400 text-sm italic leading-relaxed mb-6">La mayoría llega con <strong class="text-white">talento real y estrategia equivocada.</strong> Eso se corrige — si sabes exactamente qué está fallando. Eso es lo que hace esta herramienta.</p>
+                        <p class="text-[11px] text-white/60 italic leading-relaxed">15 años · 650+ colaboradores contratados · Manufactura, Entretenimiento, Construcción, Telecomunicaciones · Lic. Administración UAG · Maestría en RH Tec Milenio</p>
                     </div>
                 </div>
             </div>
@@ -721,49 +793,49 @@
             <!-- ⑤ UPSELL — Sesión Élite $2,499 -->
             <div class="max-w-5xl mx-auto mt-16 mb-16">
                 <div class="text-center mb-8">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-mexico-gold mb-2">⚡ Solo 3 lugares disponibles por semana</p>
-                    <h3 class="text-3xl font-black italic text-mexico-dark">Cupo limitado. Criterio real. Resultado garantizado.</h3>
-                    <p class="text-gray-400 text-sm italic mt-2">15 años contratando en México me enseñaron algo que ningún algoritmo sabe: el candidato que entra no siempre es el más capaz — es el que mejor supo presentarse. En esta sesión te digo exactamente cómo hacerlo.</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-mexico-gold mb-2">⚡ Para quien no puede darse el lujo de esperar otro mes</p>
+                    <h3 class="text-3xl font-black italic text-mexico-dark">No es para quien está tanteando el terreno. Es para quien ya sabe lo que vale.</h3>
+                    <p class="text-gray-400 text-sm italic mt-2">15 años contratando en empresas de aquí me enseñaron algo que ningún algoritmo sabe: el candidato que entra no siempre es el más capaz — es el que mejor supo presentarse. En 60 minutos te enseño exactamente cómo hacerlo.</p>
                 </div>
                 <div class="bg-white border-2 border-mexico-green/20 rounded-[50px] p-10 md:p-14 card-shadow">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                         <div>
                             <span class="text-[10px] font-black text-mexico-green uppercase tracking-widest">Asesoría Ejecutiva · Cupo Limitado</span>
                             <h4 class="text-3xl font-black italic mb-2 text-mexico-dark mt-1">Sesión Élite</h4>
-                            <p class="text-gray-500 text-sm italic mb-6">Para quien ya sabe lo que vale<br>y necesita que el mercado también lo vea.</p>
+                            <p class="text-gray-500 text-sm italic mb-6">Para quien lleva semanas en búsqueda<br>y quiere resultados esta semana — no en dos meses.</p>
                             <div class="flex items-baseline gap-2 mb-8">
                                 <span class="text-5xl font-black tracking-tighter text-mexico-dark">$2,499</span>
                                 <span class="text-xs text-gray-400 font-bold uppercase">MXN · pago único</span>
                             </div>
                             <div class="bg-[#f0f9f6] border border-mexico-green/20 rounded-2xl p-4 mb-6">
-                                <p class="text-[10px] text-mexico-green font-black uppercase tracking-widest mb-1">La matemática es simple</p>
-                                <p class="text-[11px] text-gray-600 italic">Una semana de trabajo conseguido te regresa 10x la inversión.</p>
+                                <p class="text-[10px] text-mexico-green font-black uppercase tracking-widest mb-1">La matemática es directa</p>
+                                <p class="text-[11px] text-gray-600 italic">Sueldo objetivo $20k/mes → recuperas la sesión en 3 días de trabajo.<br>Sueldo objetivo $30k/mes → en 2 días.<br>Cada semana sin esa oferta te cuesta más que esta sesión.</p>
                             </div>
                             <button onclick="window.open('https://mpago.la/1fPTLFX', '_blank')" class="w-full py-5 rounded-2xl bg-mexico-green text-white font-black text-[11px] uppercase tracking-widest hover:opacity-90 transition-all shadow-lg">
-                                Reservar mi lugar →
+                                Acortar mi búsqueda — reservar sesión →
                             </button>
-                            <p class="text-[9px] text-gray-400 text-center mt-3 italic">Solo 3 lugares por semana · Fines de semana</p>
+                            <p class="text-[9px] text-gray-400 text-center mt-3 italic">Solo 3 lugares por semana · Confirmación inmediata por WhatsApp · Pago por transferencia o tarjeta</p>
                         </div>
                         <ul class="space-y-4">
                             <li class="flex items-start gap-3 text-sm font-bold text-gray-700">
                                 <span class="text-mexico-green mt-0.5 flex-shrink-0">✓</span>
-                                <span><strong>Sesión 1:1 de 60 min por Zoom</strong> — diagnóstico completo de tu situación, estrategia personalizada y mapa de empresas objetivo</span>
+                                <span><strong>Sesión 1:1 de 60 min por Zoom</strong> — diagnóstico completo, estrategia personalizada y mapa de empresas objetivo para tu perfil específico</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-gray-700">
                                 <span class="text-mexico-green mt-0.5 flex-shrink-0">✓</span>
-                                <span><strong>CV optimizado</strong> — entregado después de la sesión, sin marca de agua, listo para enviar</span>
+                                <span><strong>CV optimizado sin marca de agua</strong> — entregado 24h después, listo para mandar</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-gray-700">
                                 <span class="text-mexico-green mt-0.5 flex-shrink-0">✓</span>
-                                <span><strong>Guía Maestra de LinkedIn</strong> — documento paso a paso para que reclutadores te encuentren y te escriban ellos</span>
+                                <span><strong>Guía Maestra de LinkedIn</strong> — paso a paso para que reclutadores te encuentren y te escriban ellos a ti</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-gray-700">
                                 <span class="text-mexico-green mt-0.5 flex-shrink-0">✓</span>
-                                <span><strong>Acceso a La Telaraña</strong> — contactos directos de quien realmente contrata en tu industria</span>
+                                <span><strong>Acceso a La Telaraña</strong> — la red personal de Alejandro: headhunters, reclutadores y tomadores de decisión que contratan en tu industria. Llegas directo a quien decide, no a un formulario.</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm font-bold text-gray-700">
                                 <span class="text-mexico-green mt-0.5 flex-shrink-0">✓</span>
-                                <span><strong>Seguimiento WhatsApp 30 días</strong> — feedback de entrevistas y ajustes en tiempo real</span>
+                                <span><strong>Seguimiento WhatsApp 30 días</strong> — feedback en tiempo real después de cada entrevista, con Alejandro directamente</span>
                             </li>
                         </ul>
                     </div>
@@ -791,7 +863,7 @@
             <div class="max-w-sm">
                 <h4 class="font-display text-sm italic font-extrabold tracking-tighter mb-3">HIREPILOT<span class="text-mexico-green">MX</span></h4>
                 <p class="text-[11px] text-gray-400 leading-relaxed italic mb-4">
-                    Creado por <strong class="text-mexico-dark">Alejandro Vivanco</strong> — 15 años contratando y rechazando en México. HirePilotMX nació de esa experiencia: para que el talento real deje de ser invisible.
+                    Creado por <strong class="text-mexico-dark">Alejandro Vivanco</strong> — 15 años contratando y rechazando en empresas de aquí. HirePilotMX nació de esa experiencia: para que el talento real deje de perderse por estrategia equivocada.
                 </p>
                 <a href="https://www.linkedin.com/in/vivancoalejandro/" target="_blank" rel="noopener noreferrer"
                    class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-mexico-green hover:underline">
@@ -1043,8 +1115,158 @@ REGLAS DE COMUNICACIÓN:
         document.getElementById('res-auditoria').classList.remove('hidden');
         const ctaSig = document.getElementById('cta-siguiente-paso1');
         if (ctaSig) ctaSig.classList.remove('hidden');
+
+        // ── TRIGGER EMOCIONAL POST-ANÁLISIS ──
+        // Sesgo: Sunk Cost + Pérdida de Progreso + Ventana de Oportunidad
+        if (!isDevMode()) {
+            const usosActuales = getUsos();
+            const restantesAhora = MAX_USOS - usosActuales;
+
+            // 1. Actualizar banner inline inmediato
+            const upgrade = document.getElementById('upgrade-post-analisis');
+            if (upgrade) {
+                upgrade.classList.remove('hidden');
+                const pUpgrade = upgrade.querySelector('p.text-lg');
+                const pSub = upgrade.querySelector('p.text-xs');
+                if (restantesAhora === 1 && pUpgrade && pSub) {
+                    pUpgrade.innerText = '⚠️ Te queda 1 análisis gratis. ¿Lo vas a desperdiciar en la vacante equivocada?';
+                    pSub.innerText = 'Con el plan completo analizas todas las vacantes que quieras — sin límite. Por $199/mes.';
+                } else if (restantesAhora <= 0 && pUpgrade && pSub) {
+                    pUpgrade.innerText = 'Agotaste los análisis gratuitos. El plan completo es ilimitado.';
+                    pSub.innerText = '$199/mes · Tarjeta, OXXO o SPEI · Sin cobro automático sorpresa.';
+                }
+            }
+
+            // 2. Modal con delay de 4s — aparece cuando el usuario ya leyó el resultado
+            // Solo en el PRIMER análisis (máximo impacto emocional, máxima intención)
+            if (usosActuales === 1) {
+                setTimeout(function() {
+                    mostrarModalUpgrade(score, isCLevel);
+                }, 4000);
+            }
+
+            // 3. Sticky bar que aparece al hacer scroll después del resultado
+            activarStickyBar(restantesAhora);
+        }
     }
     window.renderResultados = renderResultados;
+
+    // ══════════════════════════════════════════════════════════════════
+    // MOMENTO 1 — MODAL POST-RESULTADO (4s delay, primer análisis)
+    // Sesgo: Progreso invertido — "ya invertiste tiempo, no lo pierdas"
+    // ══════════════════════════════════════════════════════════════════
+    function mostrarModalUpgrade(score, isCLevel) {
+        if (document.getElementById('modal-upgrade-trigger')) return; // ya existe
+        const scoreMsg = score >= 75
+            ? 'Tu CV está bien posicionado para esta vacante.'
+            : score >= 55
+            ? 'Tu CV tiene margen real de mejora para esta vacante.'
+            : 'Tu CV necesita ajustes importantes para pasar el filtro.';
+
+        const modal = document.createElement('div');
+        modal.id = 'modal-upgrade-trigger';
+        modal.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,0.75);backdrop-filter:blur(4px);padding:20px;';
+        modal.innerHTML = `
+            <div style="background:#0a0a0a;border:2px solid rgba(180,83,9,0.4);border-radius:40px;padding:40px;max-width:440px;width:100%;text-align:center;position:relative;">
+                <button onclick="cerrarModalUpgrade()" style="position:absolute;top:16px;right:20px;background:none;border:none;color:#6b7280;font-size:18px;font-weight:900;cursor:pointer;">✕</button>
+                <p style="font-size:10px;font-weight:900;color:#b45309;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">Análisis completado</p>
+                <h3 style="font-size:22px;font-weight:900;font-style:italic;color:white;line-height:1.2;margin-bottom:8px;">${scoreMsg}<br><span style="color:#b45309;">¿Cuántas vacantes más tienes en mente?</span></h3>
+                <p style="font-size:12px;color:#9ca3af;font-style:italic;margin-bottom:24px;">Te quedan <strong style="color:white;">${MAX_USOS - getUsos()} análisis gratis</strong>. Una búsqueda real necesita más.<br>Cada vacante diferente necesita su propio análisis.</p>
+                <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:16px;margin-bottom:20px;">
+                    <p style="font-size:11px;color:#9ca3af;font-style:italic;margin-bottom:4px;">Análisis ilimitados · Radar de sueldos · Sin cobro sorpresa</p>
+                    <p style="font-size:36px;font-weight:900;color:#b45309;margin:0;">$199 <span style="font-size:12px;color:#6b7280;font-weight:600;">MXN/mes</span></p>
+                </div>
+                <button onclick="window.open('https://mpago.la/1tAxVZ9','_blank')" style="width:100%;background:#b45309;color:white;padding:16px;border-radius:20px;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;border:none;cursor:pointer;margin-bottom:10px;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                    Conseguir análisis ilimitados — $199 →
+                </button>
+                <p style="font-size:9px;color:#4b5563;text-transform:uppercase;letter-spacing:0.1em;">Tarjeta · OXXO · SPEI · Cancela cuando quieras</p>
+                <p style="font-size:9px;color:#9ca3af;font-style:italic;margin-top:6px;">🔒 Tu CV no se almacena en nuestros servidores — solo tú lo ves.</p>
+                <button onclick="cerrarModalUpgrade()" style="display:block;margin:12px auto 0;font-size:10px;color:#4b5563;background:none;border:none;cursor:pointer;text-decoration:underline;">Continuar con mis análisis gratuitos</button>
+            </div>`;
+        document.body.appendChild(modal);
+    }
+    function cerrarModalUpgrade() {
+        const m = document.getElementById('modal-upgrade-trigger');
+        if (m) m.remove();
+    }
+    window.mostrarModalUpgrade = mostrarModalUpgrade;
+    window.cerrarModalUpgrade = cerrarModalUpgrade;
+
+    // ══════════════════════════════════════════════════════════════════
+    // MOMENTO 1B — STICKY BAR (aparece al scroll después del resultado)
+    // Sesgo: Exposición continua al precio sin bloquear la experiencia
+    // ══════════════════════════════════════════════════════════════════
+    let stickyBarActiva = false;
+    function activarStickyBar(restantes) {
+        if (stickyBarActiva || document.getElementById('sticky-upgrade-bar')) return;
+        stickyBarActiva = true;
+
+        const bar = document.createElement('div');
+        bar.id = 'sticky-upgrade-bar';
+        bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:8888;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.25,1,0.5,1);';
+
+        const urgencyText = restantes <= 1
+            ? `⚡ Último análisis gratis — después es $199/mes`
+            : `${restantes} análisis gratis restantes — plan completo: $199/mes`;
+
+        bar.innerHTML = `
+            <div style="background:#0a0a0a;border-top:2px solid rgba(180,83,9,0.5);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1280px;margin:0 auto;">
+                <p style="font-size:11px;font-weight:900;color:white;font-style:italic;margin:0;">${urgencyText}</p>
+                <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
+                    <p style="font-size:9px;color:#6b7280;text-transform:uppercase;margin:0;">Tarjeta · OXXO · SPEI</p>
+                    <button onclick="window.open('https://mpago.la/1tAxVZ9','_blank')" style="background:#b45309;color:white;padding:8px 20px;border-radius:12px;font-weight:900;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;border:none;cursor:pointer;white-space:nowrap;">
+                        Análisis ilimitados — $199 →
+                    </button>
+                    <button onclick="document.getElementById('sticky-upgrade-bar').style.transform='translateY(100%)'" style="background:none;border:none;color:#4b5563;cursor:pointer;font-size:14px;font-weight:900;">✕</button>
+                </div>
+            </div>`;
+        document.body.appendChild(bar);
+
+        // Aparece al hacer scroll 200px después del resultado
+        const onScroll = function() {
+            if (window.scrollY > 200) {
+                bar.style.transform = 'translateY(0)';
+                window.removeEventListener('scroll', onScroll);
+            }
+        };
+        window.addEventListener('scroll', onScroll);
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // MOMENTO 2 — INTERCEPTOR ANTES DEL ÚLTIMO ANÁLISIS
+    // Sesgo: Anticipación de pérdida — "va a perder acceso antes de usarlo"
+    // Se activa al PRESIONAR el botón cuando quedan exactamente 0 usos después
+    // ══════════════════════════════════════════════════════════════════
+    function interceptarUltimoUso() {
+        if (isDevMode()) return false;
+        const usos = getUsos();
+        if (usos !== MAX_USOS - 1) return false; // Solo cuando es el ÚLTIMO
+
+        // Mostrar modal de interceptación ANTES de hacer el análisis
+        const modal = document.createElement('div');
+        modal.id = 'modal-ultimo-uso';
+        modal.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,0.8);backdrop-filter:blur(4px);padding:20px;';
+        modal.innerHTML = `
+            <div style="background:white;border-radius:40px;padding:40px;max-width:420px;width:100%;text-align:center;position:relative;">
+                <p style="font-size:10px;font-weight:900;color:#ef4444;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">⚠️ Último análisis gratuito</p>
+                <h3 style="font-size:20px;font-weight:900;font-style:italic;color:#0a0a0a;line-height:1.2;margin-bottom:12px;">Estás a punto de usar tu último análisis gratis.<br><span style="color:#064e3b;">¿Ya tienes el plan completo?</span></h3>
+                <p style="font-size:12px;color:#6b7280;font-style:italic;margin-bottom:20px;">Si entras al plan ahora, este análisis <strong style="color:#0a0a0a;">no cuenta contra tu cuota</strong> — tienes análisis ilimitados desde el momento en que pagas.</p>
+                <button onclick="window.open('https://mpago.la/1tAxVZ9','_blank')" style="width:100%;background:#0a0a0a;color:white;padding:16px;border-radius:20px;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;border:none;cursor:pointer;margin-bottom:10px;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                    Entrar al plan completo — $199/mes →
+                </button>
+                <p style="font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">Tarjeta · OXXO · SPEI · Cancela cuando quieras</p>
+                <button onclick="usarUltimoYContinuar()" style="display:block;margin:0 auto;font-size:10px;color:#9ca3af;background:none;border:none;cursor:pointer;text-decoration:underline;">Usar mi último análisis gratis y continuar</button>
+            </div>`;
+        document.body.appendChild(modal);
+        return true; // Interceptado — no ejecutar auditar() todavía
+    }
+
+    function usarUltimoYContinuar() {
+        const m = document.getElementById('modal-ultimo-uso');
+        if (m) m.remove();
+        auditar(); // Ahora sí ejecuta el análisis
+    }
+    window.usarUltimoYContinuar = usarUltimoYContinuar;
 
     // ══════════════════════════════════════════════════════════════════
     // GANCHO DEL DINERO — VALIDACIÓN SALARIAL
@@ -1093,6 +1315,10 @@ REGLAS DE COMUNICACIÓN:
     let _auditando = false;
     async function auditar() {
         if (_auditando) return;
+
+        // MOMENTO 2: Interceptar si es el último análisis gratis
+        if (interceptarUltimoUso()) return;
+
         if (!isDevMode() && getUsos() >= MAX_USOS) {
             document.getElementById('btn-ia').classList.add('hidden');
             document.getElementById('limite-bloqueado').classList.remove('hidden');
@@ -1484,18 +1710,36 @@ REGLAS DE COMUNICACIÓN:
             dot.className = i < usos ? 'w-4 h-4 rounded-full bg-gray-200' : 'w-4 h-4 rounded-full bg-mexico-green';
             el.appendChild(dot);
         }
-        // Aviso en uso #2 (queda 1 crédito)
+
+        // NUEVO: actualizar barra de urgencia superior con créditos restantes
+        const labelTop = document.getElementById('label-creditos-top');
+        const barraUrgencia = document.getElementById('barra-urgencia-top');
+        if (labelTop && barraUrgencia) {
+            if (restantes <= 0) {
+                labelTop.innerText = '0 análisis restantes — plan agotado';
+                barraUrgencia.classList.remove('border-mexico-gold/30', 'bg-[#fff8f0]');
+                barraUrgencia.classList.add('border-red-400', 'bg-red-50');
+            } else if (restantes === 1) {
+                labelTop.innerText = '⚠️ ÚLTIMO análisis gratuito';
+                barraUrgencia.classList.remove('border-mexico-gold/30', 'bg-[#fff8f0]');
+                barraUrgencia.classList.add('border-amber-400', 'bg-amber-50');
+            } else {
+                labelTop.innerText = restantes + ' de 5 análisis restantes';
+            }
+        }
+
+        // Aviso en uso #4 (queda 1 crédito)
         const avisoEl = document.getElementById('aviso-limite');
         if (avisoEl) {
             if (usos === MAX_USOS - 1) { avisoEl.classList.remove('hidden'); }
             else { avisoEl.classList.add('hidden'); }
         }
-        // Bloqueo total en uso #3
+        // Bloqueo total en uso agotado — mostrar inline, NO redirigir
         if (restantes <= 0) {
             const btnIA = document.getElementById('btn-ia');
             if (btnIA) btnIA.classList.add('hidden');
             document.getElementById('limite-bloqueado').classList.remove('hidden');
-            switchTab('paso5');
+            document.getElementById('limite-bloqueado').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
     document.addEventListener('DOMContentLoaded', function() {
