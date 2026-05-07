@@ -3,790 +3,653 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HirePilotMX — Sesión Élite</title>
-<meta name="description" content="Tu CV tiene 6 segundos. Esto es lo que ve el sistema. Sesión Élite con Alejandro Vivanco — 15 años contratando en México.">
+<title>HirePilotMX — Tu CV tiene 6 segundos</title>
+<meta name="description" content="Descubre exactamente cómo te evalúa el sistema — CV + LinkedIn. Sesión Élite con Alejandro Vivanco, 15 años contratando en México.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#050505;--black2:#0d0d0d;--black3:#141414;
+  --gold:#c9952a;--gold2:#e8b84b;
+  --white:#fafaf8;--white2:#e8e4dc;
+  --gray:#5a5a5a;--border:rgba(255,255,255,0.06);--border2:rgba(201,149,42,0.25);
+  --red:#e53e3e;--green:#16a34a;--yellow:#ca8a04;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
 
-:root {
-  --black:   #050505;
-  --black2:  #0d0d0d;
-  --black3:  #141414;
-  --black4:  #1c1c1c;
-  --gold:    #c9952a;
-  --gold2:   #e8b84b;
-  --gold3:   #f5d07a;
-  --white:   #fafaf8;
-  --white2:  #e8e4dc;
-  --gray:    #5a5a5a;
-  --gray2:   #3a3a3a;
-  --border:  rgba(255,255,255,0.06);
-  --border2: rgba(201,149,42,0.25);
-  --red:     #e53e3e;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:68px;background:rgba(5,5,5,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;}
+.logo span{color:var(--gold);}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:10px 24px;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+.nav-cta:hover{background:var(--gold);color:var(--black);}
 
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--black);
-  color: var(--white);
-  overflow-x: hidden;
-}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 56px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 80% 30%,rgba(201,149,42,0.06) 0%,transparent 70%);}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:14px;}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,96px);font-weight:300;line-height:0.88;letter-spacing:-0.02em;margin-bottom:24px;}
+.hero-title .gold{color:var(--gold);font-style:italic;}
+.hero-title .dim{color:rgba(255,255,255,0.18);}
+.hero-sub{font-size:15px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);margin-bottom:28px;}
+.hero-sub strong{color:var(--white2);font-weight:400;}
+.hero-badge{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.08em;}
+.hero-badge span{color:var(--red);}
 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 56px; height: 68px;
-  background: rgba(5,5,5,0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--white);
-}
-.logo span { color: var(--gold); }
-.nav-cta {
-  background: transparent;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  padding: 10px 24px; border-radius: 2px;
-  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
-  text-transform: uppercase; text-decoration: none;
-  transition: all 0.3s;
-}
-.nav-cta:hover { background: var(--gold); color: var(--black); }
+/* ATS WIDGET */
+.ats-widget{border:1px solid var(--border2);background:var(--black2);padding:36px;position:relative;}
+.ats-widget::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.widget-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.widget-label::before{content:'';width:16px;height:1px;background:var(--gold);}
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 140px 56px 100px;
-  position: relative; overflow: hidden;
-  background: var(--black);
-}
-.hero-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background: 
-    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,149,42,0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,149,42,0.03) 0%, transparent 60%);
-}
-.hero-line {
-  position: absolute; top: 0; left: 56px; bottom: 0;
-  width: 1px; background: linear-gradient(to bottom, transparent, var(--border), transparent);
-}
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 32px;
-  display: flex; align-items: center; gap: 14px;
-}
-.hero-eyebrow::before {
-  content: ''; display: inline-block;
-  width: 40px; height: 1px; background: var(--gold);
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(70px, 11vw, 150px);
-  font-weight: 300; line-height: 0.88;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  margin-bottom: 36px;
-}
-.hero-title .gold { color: var(--gold); font-style: italic; }
-.hero-title .dim { color: rgba(255,255,255,0.25); }
-.hero-sub {
-  font-size: clamp(15px, 1.8vw, 18px);
-  font-weight: 300; line-height: 1.8;
-  color: rgba(255,255,255,0.45);
-  max-width: 480px; margin-bottom: 56px;
-}
-.hero-sub strong { color: var(--white2); font-weight: 400; }
-.hero-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: var(--gold); color: var(--black);
-  padding: 18px 36px; border-radius: 2px;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; text-decoration: none;
-  transition: all 0.3s;
-}
-.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
-.hero-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--gray); letter-spacing: 0.08em;
-}
-.hero-badge span { color: var(--red); }
+.ats-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px;}
+.ats-mini{padding:12px 14px;border:1px solid var(--border);background:var(--black3);cursor:pointer;transition:all 0.2s;position:relative;}
+.ats-mini:hover{border-color:rgba(201,149,42,0.3);}
+.ats-mini.selected{border-color:var(--gold);}
+.ats-mini.selected::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);}
+.ats-mini-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:2px;transition:color 0.2s;}
+.ats-mini[data-ats="workforce"] .ats-mini-name{color:#4a90d9;}
+.ats-mini[data-ats="talentcore"] .ats-mini-name{color:#5ba85a;}
+.ats-mini[data-ats="hireflow"] .ats-mini-name{color:var(--gold);}
+.ats-mini[data-ats="apexrecruit"] .ats-mini-name{color:#c0392b;}
+.ats-mini.selected .ats-mini-name{color:var(--white)!important;}
+.ats-mini-sector{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);}
 
-/* ── DIVIDER ── */
-.section-divider {
-  height: 1px; background: var(--border); margin: 0;
-}
+.upload-zone{border:1px dashed var(--border);padding:24px 16px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;margin-bottom:14px;background:var(--black3);}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--gold);border-style:solid;}
+.upload-zone.has-file{border-color:var(--gold);border-style:solid;}
+#file-input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.upload-icon{font-size:26px;margin-bottom:6px;}
+.upload-text{font-size:13px;font-weight:400;color:var(--white2);margin-bottom:3px;}
+.upload-sub{font-size:11px;color:var(--gray);}
+.upload-filename{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-top:6px;}
 
-/* ── PROBLEMA ── */
-.problema {
-  padding: 120px 56px;
-  background: var(--black2);
-  position: relative;
-}
-.problema-inner { max-width: 900px; }
-.label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 28px;
-  display: flex; align-items: center; gap: 14px;
-}
-.label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
-.problema-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 6vw, 80px);
-  font-weight: 300; line-height: 0.9;
-  margin-bottom: 56px; color: var(--white);
-}
-.problema-items { display: flex; flex-direction: column; }
-.problema-item {
-  display: grid; grid-template-columns: 80px 1fr;
-  gap: 0; padding: 36px 0;
-  border-top: 1px solid var(--border);
-}
-.problema-item:last-child { border-bottom: 1px solid var(--border); }
-.problema-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px; font-weight: 300; color: var(--border);
-  line-height: 1; padding-top: 4px;
-  transition: color 0.3s;
-}
-.problema-item:hover .problema-num { color: var(--gold); }
-.problema-content {}
-.problema-head {
-  font-size: 16px; font-weight: 600; color: var(--white);
-  margin-bottom: 8px; letter-spacing: 0.02em;
-}
-.problema-body {
-  font-size: 14px; font-weight: 300; line-height: 1.8;
-  color: rgba(255,255,255,0.4);
-}
+.btn-analyze{width:100%;padding:17px;background:var(--gold);color:var(--black);border:none;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-analyze:hover:not(:disabled){background:var(--gold2);}
+.btn-analyze:disabled{opacity:0.3;cursor:not-allowed;}
 
-/* ── ALEJANDRO ── */
-.alejandro {
-  padding: 120px 56px;
-  background: var(--black);
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 100px; align-items: center;
-  max-width: 1300px; margin: 0 auto;
-}
-.ale-left {}
-.ale-tag-top {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 28px;
-  display: flex; align-items: center; gap: 14px;
-}
-.ale-tag-top::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
-.ale-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 5vw, 72px);
-  font-weight: 300; line-height: 0.9;
-  color: var(--white); margin-bottom: 32px;
-}
-.ale-title em { color: var(--gold); font-style: italic; }
-.ale-body {
-  font-size: 15px; font-weight: 300; line-height: 1.9;
-  color: rgba(255,255,255,0.45); margin-bottom: 40px;
-}
-.ale-body strong { color: var(--white2); font-weight: 400; }
-.ale-stats {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border);
-}
-.ale-stat {
-  padding: 24px; background: var(--black2); text-align: center;
-}
-.ale-stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px; font-weight: 300; color: var(--gold);
-  line-height: 1; margin-bottom: 4px;
-}
-.ale-stat-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gray);
-}
+.sdiv{height:1px;background:var(--border);}
 
-.ale-right {}
-.ale-quote-card {
-  border: 1px solid var(--border2);
-  padding: 48px; position: relative;
-  background: var(--black2);
-}
-.ale-quote-mark {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 120px; line-height: 0.6;
-  color: var(--gold); opacity: 0.3;
-  margin-bottom: 16px; display: block;
-}
-.ale-quote-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(18px, 2.5vw, 24px);
-  font-weight: 300; font-style: italic;
-  line-height: 1.6; color: var(--white2);
-  margin-bottom: 32px;
-}
-.ale-quote-author {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold);
-}
+/* ANALYZING */
+.analyzing-section{display:none;padding:80px 56px;background:var(--black2);text-align:center;}
+.analyzing-section.active{display:block;animation:fadeUp 0.5s ease both;}
+.prog-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.prog-wrap{height:2px;background:var(--border);margin-bottom:48px;overflow:hidden;}
+.prog-bar{height:100%;background:var(--gold);width:0%;transition:width 0.4s ease;}
+.mockup{max-width:680px;margin:0 auto;border:1px solid var(--border);overflow:hidden;}
+.mock-topbar{height:36px;display:flex;align-items:center;padding:0 14px;gap:7px;background:#111;border-bottom:1px solid rgba(255,255,255,0.04);}
+.m-dot{width:10px;height:10px;border-radius:50%;}
+.mock-name{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);margin-left:8px;}
+.mock-body{padding:28px;background:#fafafa;}
+.mock-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #eee;}
+.mock-cand-name{font-size:16px;font-weight:700;color:#111;}
+.mock-cand-pos{font-size:11px;color:#999;margin-top:3px;}
+.mock-score{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid #eee;transition:all 0.8s;}
+.mock-score-num{font-size:22px;font-weight:900;line-height:1;color:#ccc;}
+.mock-score-lbl{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:#ccc;}
+.mock-flags{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.mock-flag{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:4px;font-size:12px;opacity:0;transform:translateX(-8px);transition:all 0.4s;}
+.mock-flag.show{opacity:1;transform:translateX(0);}
+.mock-flag.red{background:#fff5f5;color:#c53030;}
+.mock-flag.yellow{background:#fffff0;color:#744210;}
+.mock-flag.green{background:#f0fff4;color:#276749;}
+.mock-decision{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:4px;opacity:0;transition:opacity 0.5s;}
+.mock-decision.show{opacity:1;}
+.mock-decision.reject{background:#fff5f5;}
+.mock-decision.approve{background:#f0fff4;}
+.mock-decision.warn{background:#fffff0;}
+.mock-dec-text{font-size:13px;font-weight:700;}
+.mock-dec-btn{padding:8px 18px;border-radius:3px;border:none;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;cursor:default;}
 
-/* ── SESIÓN ── */
-.sesion {
-  padding: 120px 56px;
-  background: var(--black2);
-}
-.sesion-inner { max-width: 1200px; margin: 0 auto; }
-.sesion-header { margin-bottom: 80px; }
-.sesion-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 8vw, 110px);
-  font-weight: 300; line-height: 0.88;
-  color: var(--white);
-}
-.sesion-title em { color: var(--gold); font-style: italic; }
-.sesion-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border);
-  margin-bottom: 80px;
-}
-.sesion-item {
-  padding: 40px 36px;
-  background: var(--black);
-  transition: background 0.3s;
-  position: relative;
-}
-.sesion-item:hover { background: var(--black3); }
-.sesion-item::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: transparent; transition: background 0.3s;
-}
-.sesion-item:hover::before { background: var(--gold); }
-.sesion-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px; font-weight: 300; color: var(--border);
-  line-height: 1; margin-bottom: 20px;
-  transition: color 0.3s;
-}
-.sesion-item:hover .sesion-num { color: rgba(201,149,42,0.3); }
-.sesion-item-title {
-  font-size: 14px; font-weight: 600; color: var(--white);
-  margin-bottom: 10px; letter-spacing: 0.02em;
-}
-.sesion-item-desc {
-  font-size: 13px; font-weight: 300; line-height: 1.7;
-  color: rgba(255,255,255,0.35);
-}
+/* LINKEDIN */
+.linkedin-section{display:none;padding:80px 56px;background:var(--black);}
+.linkedin-section.active{display:block;animation:fadeUp 0.6s ease both;}
+.li-inner{max-width:680px;margin:0 auto;}
+.label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.label::before{content:'';width:24px;height:1px;background:var(--gold);}
+.li-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;}
+.li-input{width:100%;padding:16px 20px;background:var(--black2);border:1px solid var(--border);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color 0.3s;margin-bottom:14px;}
+.li-input:focus{border-color:var(--gold);}
+.li-input::placeholder{color:var(--gray);}
+.btn-li{width:100%;padding:17px;background:var(--gold);color:var(--black);border:none;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-bottom:10px;}
+.btn-li:hover:not(:disabled){background:var(--gold2);}
+.btn-li:disabled{opacity:0.3;cursor:not-allowed;}
+.btn-skip{width:100%;padding:15px;background:transparent;border:1px solid var(--border);color:rgba(255,255,255,0.3);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.btn-skip:hover{border-color:var(--gold);color:var(--gold);}
 
-/* ── CASOS ── */
-.casos {
-  padding: 120px 56px;
-  background: var(--black);
-}
-.casos-inner { max-width: 1200px; margin: 0 auto; }
-.casos-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 8vw, 110px);
-  font-weight: 300; line-height: 0.88;
-  color: var(--white); margin-bottom: 80px;
-}
-.casos-title em { color: var(--gold); font-style: italic; }
-.casos-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border);
-}
-.caso-card {
-  padding: 40px 36px;
-  background: var(--black2);
-  transition: background 0.3s;
-  position: relative; overflow: hidden;
-}
-.caso-card:hover { background: var(--black3); }
-.caso-card::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-  background: transparent; transition: background 0.3s;
-}
-.caso-card:hover::after { background: var(--gold); }
-.caso-industry {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 16px;
-}
-.caso-role {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400; color: var(--white);
-  margin-bottom: 4px; line-height: 1.2;
-}
-.caso-location {
-  font-size: 12px; color: var(--gray); margin-bottom: 28px;
-}
-.caso-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
-.caso-before {
-  font-size: 13px; font-weight: 300; line-height: 1.7;
-  color: rgba(255,255,255,0.3); margin-bottom: 16px;
-}
-.caso-before strong { color: rgba(255,255,255,0.5); font-weight: 400; }
-.caso-after {
-  font-size: 13px; font-weight: 300; line-height: 1.7;
-  color: rgba(255,255,255,0.6);
-}
-.caso-after strong { color: var(--gold); font-weight: 500; }
+/* RESULTS */
+.results-section{display:none;padding:80px 56px;background:var(--black2);}
+.results-section.active{display:block;animation:fadeUp 0.6s ease both;}
+.verdict-wrap{text-align:center;margin-bottom:56px;}
+.verdict-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;}
+.verdict-eyebrow::before,.verdict-eyebrow::after{content:'';width:24px;height:1px;background:var(--gold);}
+.verdict-main{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,100px);font-weight:300;line-height:0.88;margin-bottom:16px;}
+.verdict-main.red{color:var(--red);}
+.verdict-main.yellow{color:var(--yellow);}
+.verdict-main.green{color:var(--green);}
+.verdict-score{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:300;color:rgba(255,255,255,0.2);margin-bottom:16px;}
+.verdict-score span{color:var(--white2);}
+.verdict-problem{font-size:15px;font-weight:300;font-style:italic;color:rgba(255,255,255,0.4);max-width:600px;margin:0 auto;line-height:1.8;}
 
-/* ── PRECIO ── */
-.precio {
-  padding: 120px 56px;
-  background: var(--black2);
-}
-.precio-inner { max-width: 900px; margin: 0 auto; }
-.precio-header { text-align: center; margin-bottom: 80px; }
-.precio-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 8vw, 100px);
-  font-weight: 300; line-height: 0.88;
-  color: var(--white); margin-bottom: 16px;
-}
-.precio-title em { color: var(--gold); font-style: italic; }
-.precio-sub {
-  font-size: 15px; font-weight: 300;
-  color: rgba(255,255,255,0.35); line-height: 1.7;
-}
+.incons-block{margin:0 auto 48px;max-width:900px;}
+.incons-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.incons-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);}
+.incon-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.incon-cell{padding:16px 20px;background:var(--black3);}
+.incon-cell.li-cell{border-left:2px solid var(--red);}
+.incon-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:5px;}
+.incon-cell.li-cell .incon-lbl{color:rgba(229,62,62,0.6);}
+.incon-val{font-size:13px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.5;}
+.incon-cell.li-cell .incon-val{color:rgba(255,255,255,0.7);}
 
-.precio-cards { display: flex; flex-direction: column; gap: 2px; }
+.result-secs{max-width:900px;margin:0 auto 48px;display:flex;flex-direction:column;gap:1px;background:var(--border);}
+.result-sec{background:var(--black);}
+.rs-head{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid var(--border);}
+.rs-title{font-size:14px;font-weight:500;}
+.rs-score{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;}
+.rs-score.bad{color:var(--red);}
+.rs-score.ok{color:var(--yellow);}
+.rs-score.good{color:var(--green);}
+.rs-body{padding:16px 22px;}
+.rs-finding{display:flex;align-items:flex-start;gap:12px;padding:9px 0;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.45);border-bottom:1px solid rgba(255,255,255,0.03);}
+.rs-finding:last-child{border-bottom:none;}
 
-.precio-card {
-  border: 1px solid var(--border);
-  padding: 56px; position: relative;
-  background: var(--black);
-  transition: border-color 0.3s;
-}
-.precio-card:hover { border-color: rgba(201,149,42,0.3); }
-.precio-card.directiva {
-  border-color: var(--border2);
-  background: var(--black2);
-}
+.cta-result{max-width:860px;margin:0 auto;border:1px solid var(--border2);padding:56px;text-align:center;background:var(--black);position:relative;overflow:hidden;}
+.cta-result::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,149,42,0.05) 0%,transparent 70%);}
+.cta-result-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:300;line-height:0.9;margin-bottom:16px;}
+.cta-result-title em{color:var(--gold);font-style:italic;}
+.cta-result-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto 36px;line-height:1.8;}
+.cta-result-sub strong{color:var(--white2);font-weight:400;}
+.btn-wa-big{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:var(--black);padding:20px 48px;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+.btn-wa-big:hover{background:var(--gold2);transform:translateY(-2px);}
+.cta-scarcity{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-top:16px;}
+.cta-scarcity span{color:var(--red);}
 
-.precio-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 24px; display: block;
-}
-.precio-badge.directiva-badge { color: var(--gold2); }
+/* STATIC SECTIONS */
+.sec-pad{padding:100px 56px;}
+.sec-dark{background:var(--black);}
+.sec-dark2{background:var(--black2);}
+.sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
+.sec-label::before{content:'';width:24px;height:1px;background:var(--gold);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:0.88;color:var(--white);margin-bottom:60px;}
+.sec-title em{color:var(--gold);font-style:italic;}
 
-.precio-tier {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 300; color: var(--white);
-  margin-bottom: 8px; line-height: 1;
-}
-.precio-tier em { color: var(--gold); font-style: italic; }
+.ale-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto;}
+.ale-body{font-size:15px;font-weight:300;line-height:1.9;color:rgba(255,255,255,0.4);margin-bottom:24px;}
+.ale-body strong{color:var(--white2);font-weight:400;}
+.ale-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:0;}
+.ale-stat{padding:22px;background:var(--black2);text-align:center;}
+.ale-stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--gold);line-height:1;}
+.ale-stat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);}
+.ale-quote{border:1px solid var(--border2);padding:44px;background:var(--black2);}
+.ale-qmark{font-family:'Cormorant Garamond',serif;font-size:90px;line-height:0.6;color:var(--gold);opacity:0.3;margin-bottom:14px;}
+.ale-qtext{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,23px);font-weight:300;font-style:italic;line-height:1.6;color:var(--white2);margin-bottom:22px;}
+.ale-qauthor{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
 
-.precio-amount {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(56px, 8vw, 96px);
-  font-weight: 300; line-height: 1;
-  color: var(--gold); margin-bottom: 4px;
-}
-.precio-amount.directiva { color: var(--gold2); }
-.precio-note {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--gray); letter-spacing: 0.1em;
-  margin-bottom: 40px;
-}
-.precio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
+.sesion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);max-width:1100px;margin:0 auto;}
+.sesion-item{padding:36px 30px;background:var(--black);transition:background 0.3s;position:relative;}
+.sesion-item:hover{background:var(--black3);}
+.sesion-item:hover::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--gold);}
+.sesion-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--border);line-height:1;margin-bottom:14px;transition:color 0.3s;}
+.sesion-item:hover .sesion-num{color:rgba(201,149,42,0.25);}
+.sesion-item-title{font-size:14px;font-weight:600;margin-bottom:8px;}
+.sesion-item-desc{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.35);}
 
-.precio-includes { margin-bottom: 40px; }
-.precio-include {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 12px 0;
-  font-size: 14px; font-weight: 300; line-height: 1.6;
-  color: rgba(255,255,255,0.5);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-.precio-include:last-child { border-bottom: none; }
-.precio-include::before {
-  content: '—'; color: var(--gold); flex-shrink: 0;
-  font-weight: 300; margin-top: 1px;
-}
-.precio-include.highlight { color: var(--white2); }
+.casos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);max-width:1100px;margin:0 auto;}
+.caso-card{padding:34px 30px;background:var(--black2);transition:background 0.3s;position:relative;overflow:hidden;}
+.caso-card:hover{background:var(--black3);}
+.caso-card:hover::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);}
+.caso-industry{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.caso-role{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;margin-bottom:4px;line-height:1.2;}
+.caso-loc{font-size:12px;color:var(--gray);margin-bottom:18px;}
+.caso-div{height:1px;background:var(--border);margin-bottom:16px;}
+.caso-before{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.3);margin-bottom:10px;}
+.caso-before strong{color:rgba(255,255,255,0.5);font-weight:400;}
+.caso-after{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.6);}
+.caso-after strong{color:var(--gold);font-weight:500;}
 
-.btn-wa {
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  background: var(--gold); color: var(--black);
-  padding: 20px 40px; width: 100%;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
-  text-transform: uppercase; text-decoration: none;
-  transition: all 0.3s; border-radius: 2px;
-}
-.btn-wa:hover { background: var(--gold2); transform: translateY(-2px); }
-.btn-wa.directiva { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
-.btn-wa.directiva:hover { background: var(--gold); color: var(--black); }
+.precio-inner{max-width:860px;margin:0 auto;}
+.precio-header{text-align:center;margin-bottom:56px;}
+.precio-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.7;}
+.precio-cards{display:flex;flex-direction:column;gap:2px;}
+.precio-card{border:1px solid var(--border);padding:48px;background:var(--black);transition:border-color 0.3s;}
+.precio-card:hover{border-color:rgba(201,149,42,0.3);}
+.precio-card.dir{border-color:var(--border2);background:var(--black2);}
+.precio-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block;}
+.precio-tier{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,42px);font-weight:300;margin-bottom:8px;}
+.precio-tier em{color:var(--gold);font-style:italic;}
+.precio-amount{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,84px);font-weight:300;color:var(--gold);line-height:1;margin-bottom:4px;}
+.precio-amount.d{color:var(--gold2);}
+.precio-note{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.1em;margin-bottom:32px;}
+.precio-div{height:1px;background:var(--border);margin-bottom:24px;}
+.precio-includes{margin-bottom:32px;}
+.precio-include{display:flex;align-items:flex-start;gap:14px;padding:10px 0;font-size:14px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.45);border-bottom:1px solid rgba(255,255,255,0.04);}
+.precio-include:last-child{border-bottom:none;}
+.precio-include::before{content:'—';color:var(--gold);flex-shrink:0;}
+.precio-include.hi{color:var(--white2);}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--gold);color:var(--black);padding:20px;width:100%;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+.btn-wa:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-wa.d{background:transparent;border:1px solid var(--gold);color:var(--gold);}
+.btn-wa.d:hover{background:var(--gold);color:var(--black);}
+.precio-scarcity{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-top:14px;text-align:center;}
+.precio-scarcity span{color:var(--red);}
 
-.precio-scarcity {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--gray); letter-spacing: 0.1em;
-  text-transform: uppercase; margin-top: 20px; text-align: center;
-}
-.precio-scarcity span { color: var(--red); }
+footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.footer-logo span{color:var(--gold);}
+.footer-text{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.08em;}
 
-/* ── FOOTER ── */
-footer {
-  padding: 48px 56px;
-  background: var(--black);
-  border-top: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 16px;
-}
-.footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: rgba(255,255,255,0.3);
-}
-.footer-logo span { color: var(--gold); }
-.footer-text {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--gray); letter-spacing: 0.08em;
-}
-.footer-link {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--gray); letter-spacing: 0.08em;
-  text-decoration: none; transition: color 0.2s;
-}
-.footer-link:hover { color: var(--gold); }
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── FADE IN ── */
-.fade-in {
-  opacity: 0; transform: translateY(32px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  .hero { padding: 110px 24px 80px; }
-  .hero-line { display: none; }
-  .problema { padding: 80px 24px; }
-  .problema-item { grid-template-columns: 50px 1fr; }
-  .alejandro { padding: 80px 24px; grid-template-columns: 1fr; gap: 56px; }
-  .sesion { padding: 80px 24px; }
-  .sesion-grid { grid-template-columns: 1fr; }
-  .casos { padding: 80px 24px; }
-  .casos-grid { grid-template-columns: 1fr; }
-  .precio { padding: 80px 24px; }
-  .precio-card { padding: 36px 24px; }
-  footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .hero{padding:100px 20px 60px;}
+  .hero-inner{grid-template-columns:1fr;gap:48px;}
+  .analyzing-section,.linkedin-section,.results-section{padding:60px 20px;}
+  .sec-pad{padding:60px 20px;}
+  .ale-grid{grid-template-columns:1fr;gap:40px;}
+  .sesion-grid,.casos-grid{grid-template-columns:1fr;}
+  .precio-card{padding:32px 20px;}
+  .incon-row{grid-template-columns:1fr;}
+  .cta-result{padding:36px 20px;}
+  footer{padding:32px 20px;flex-direction:column;text-align:center;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">HirePilot<span>MX</span></div>
-  <a href="https://wa.me/523320658076?text=Hola%20Alejandro%2C%20quiero%20información%20sobre%20la%20Sesión%20Élite" 
-     class="nav-cta" target="_blank">Reservar lugar</a>
+  <a href="https://wa.me/523320658076?text=Hola%20Alejandro%2C%20quiero%20la%20Sesión%20Élite" class="nav-cta" target="_blank">Sesión Élite</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO + ATS -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-line"></div>
-  <p class="hero-eyebrow">Sesión Élite · HirePilotMX</p>
-  <h1 class="hero-title">
-    Tu CV tiene<br>
-    <span class="gold">6 segundos.</span><br>
-    <span class="dim">Esto es lo que<br>ve el sistema.</span>
-  </h1>
-  <p class="hero-sub">
-    El algoritmo te descarta antes de que un humano te lea.
-    <strong>En 60 minutos identificamos exactamente por qué</strong> — 
-    y construimos el perfil que sí pasa el filtro.
-  </p>
-  <div class="hero-actions">
-    <a href="https://wa.me/523320658076?text=Hola%20Alejandro%2C%20quiero%20información%20sobre%20la%20Sesión%20Élite" 
-       class="btn-primary" target="_blank">
-      Quiero que me vean
-    </a>
-    <p class="hero-badge"><span>Solo 3 lugares</span> disponibles esta semana</p>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- PROBLEMA -->
-<section class="problema">
-  <div class="problema-inner">
-    <p class="label">El problema real</p>
-    <h2 class="problema-title">Por qué los buenos<br>perfiles no pasan.</h2>
-    <div class="problema-items">
-      <div class="problema-item fade-in">
-        <div class="problema-num">01</div>
-        <div class="problema-content">
-          <p class="problema-head">Sin impacto financiero, no existes</p>
-          <p class="problema-body">El CV habla de responsabilidades, no de resultados. Los que contratan buscan cifras — y si no las ven en 6 segundos, pasas al siguiente candidato sin que nadie te haya leído.</p>
-        </div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">HirePilotMX · Análisis de Perfil</p>
+      <h1 class="hero-title">
+        Tu CV tiene<br>
+        <span class="gold">6 segundos.</span><br>
+        <span class="dim">Esto es lo que<br>ve el sistema.</span>
+      </h1>
+      <p class="hero-sub">El algoritmo te descarta antes de que un humano te lea. <strong>Descubre exactamente por qué</strong> — y qué está fallando en tu CV y LinkedIn.</p>
+      <p class="hero-badge"><span>Solo 3 lugares</span> disponibles esta semana para la Sesión Élite</p>
+    </div>
+    <div class="ats-widget">
+      <p class="widget-label">Simula tu análisis ATS</p>
+      <div class="ats-mini-grid">
+        <div class="ats-mini" data-ats="workforce" onclick="selectATS(this)"><div class="ats-mini-name">WorkForce Pro</div><div class="ats-mini-sector">Manufactura · Automotriz</div></div>
+        <div class="ats-mini" data-ats="talentcore" onclick="selectATS(this)"><div class="ats-mini-name">TalentCore</div><div class="ats-mini-sector">Multinacionales · Retail</div></div>
+        <div class="ats-mini" data-ats="hireflow" onclick="selectATS(this)"><div class="ats-mini-name">HireFlow</div><div class="ats-mini-sector">Tech · Startups</div></div>
+        <div class="ats-mini" data-ats="apexrecruit" onclick="selectATS(this)"><div class="ats-mini-name">ApexRecruit</div><div class="ats-mini-sector">Corporativos · Banca</div></div>
       </div>
-      <div class="problema-item fade-in">
-        <div class="problema-num">02</div>
-        <div class="problema-content">
-          <p class="problema-head">CV y LinkedIn cuentan historias distintas</p>
-          <p class="problema-body">Los reclutadores cruzan ambos perfiles de forma rutinaria. Fechas que no coinciden, títulos distintos, información que falta — cada inconsistencia es una duda que destruye credibilidad.</p>
-        </div>
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="file-input" accept=".pdf,.doc,.docx" onchange="handleFile(this)">
+        <div class="upload-icon">📄</div>
+        <p class="upload-text">Arrastra tu CV o haz clic</p>
+        <p class="upload-sub">PDF o Word · Gratis · Sin registro</p>
+        <p class="upload-filename" id="file-name-display"></p>
       </div>
-      <div class="problema-item fade-in">
-        <div class="problema-num">03</div>
-        <div class="problema-content">
-          <p class="problema-head">El mercado oculto no funciona por portales</p>
-          <p class="problema-body">El 70% de las posiciones senior se cubren por red antes de publicarse. Si nadie te está buscando activamente — si tu nombre no aparece en conversaciones entre headhunters — no existes.</p>
-        </div>
-      </div>
+      <button class="btn-analyze" id="btn-analyze" disabled onclick="startAnalysis()">Analizar mi CV →</button>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<div class="sdiv"></div>
+
+<!-- ANALYZING -->
+<div class="analyzing-section" id="analyzing-section">
+  <p class="prog-label" id="prog-label">Iniciando análisis...</p>
+  <div class="prog-wrap"><div class="prog-bar" id="prog-bar"></div></div>
+  <div class="mockup">
+    <div class="mock-topbar"><div class="m-dot" style="background:#ef4444"></div><div class="m-dot" style="background:#f59e0b"></div><div class="m-dot" style="background:#22c55e"></div><span class="mock-name" id="mock-ats-name"></span></div>
+    <div class="mock-body">
+      <div class="mock-row">
+        <div><div class="mock-cand-name" id="mock-cand-name">Candidato</div><div class="mock-cand-pos" id="mock-cand-pos">Analizando...</div></div>
+        <div class="mock-score" id="mock-score"><span class="mock-score-num" id="mock-score-num">—</span><span class="mock-score-lbl">score</span></div>
+      </div>
+      <div class="mock-flags" id="mock-flags"></div>
+      <div class="mock-decision" id="mock-decision"><span class="mock-dec-text" id="mock-dec-text"></span><button class="mock-dec-btn" id="mock-dec-btn"></button></div>
+    </div>
+  </div>
+</div>
+
+<div class="sdiv"></div>
+
+<!-- LINKEDIN -->
+<div class="linkedin-section" id="linkedin-section">
+  <div class="li-inner">
+    <p class="label">Paso 2 de 2 — LinkedIn</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;line-height:0.9;margin-bottom:14px;">Ahora cruza tu <em style="color:var(--gold);font-style:italic;">LinkedIn.</em></h2>
+    <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.4);margin-bottom:32px;line-height:1.8;">Los reclutadores cruzan ambos perfiles. Si no coinciden, la credibilidad cae antes de que te llamen.</p>
+    <label class="li-label">Pega el contenido de tu perfil de LinkedIn</label>
+    <textarea class="li-input" id="li-content" rows="7" placeholder="Copia y pega tu sección Acerca de + experiencia de LinkedIn aquí..." oninput="checkLI()"></textarea>
+    <button class="btn-li" id="btn-li" disabled onclick="startLIAnalysis()">Cruzar con LinkedIn →</button>
+    <button class="btn-skip" onclick="skipLI()">Continuar sin LinkedIn →</button>
+  </div>
+</div>
+
+<div class="sdiv"></div>
+
+<!-- RESULTS -->
+<div class="results-section" id="results-section">
+  <div class="verdict-wrap">
+    <p class="verdict-eyebrow">Veredicto Final</p>
+    <h2 class="verdict-main red" id="verdict-main">DESCARTADO.</h2>
+    <p class="verdict-score" id="verdict-score"></p>
+    <p class="verdict-problem" id="verdict-problem"></p>
+  </div>
+  <div class="incons-block" id="incons-block" style="display:none;">
+    <p class="incons-title">⚠ Inconsistencias CV vs LinkedIn</p>
+    <div class="incons-grid" id="incons-grid"></div>
+  </div>
+  <div class="result-secs" id="result-secs"></div>
+  <div class="cta-result">
+    <h2 class="cta-result-title">Esto tiene<br><em>solución.</em></h2>
+    <p class="cta-result-sub">En una <strong>Sesión Élite de 60 minutos</strong> identificamos exactamente qué está fallando y entregamos tu CV optimizado en 24 horas.</p>
+    <a href="https://wa.me/523320658076?text=Acabo%20de%20ver%20mi%20análisis%20ATS%20y%20quiero%20la%20Sesión%20Élite" class="btn-wa-big" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Quiero resolver esto
+    </a>
+    <p class="cta-scarcity"><span>Solo 3 lugares</span> por semana · Fines de semana</p>
+  </div>
+</div>
+
+<div class="sdiv"></div>
 
 <!-- ALEJANDRO -->
-<section style="background:var(--black);padding:120px 0;">
-  <div class="alejandro">
-    <div class="ale-left fade-in">
-      <p class="ale-tag-top">Quién está detrás</p>
-      <h2 class="ale-title">Alejandro<br><em>Vivanco</em></h2>
-      <p class="ale-body">
-        Gerente de Recursos Humanos activo con <strong>más de 15 años</strong> 
-        contratando y rechazando perfiles en empresas reales de México. 
-        Fundador de HirePilotMX — no un coach de internet, 
-        alguien que <strong>hoy mismo</strong> ve CVs desde el otro lado de la mesa y sabe exactamente por qué los buenos no pasan.
-      </p>
+<section class="sec-pad sec-dark fade-in">
+  <div class="ale-grid">
+    <div>
+      <p class="sec-label">Quién está detrás</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5vw,72px);font-weight:300;line-height:0.9;margin-bottom:24px;">Alejandro<br><em style="color:var(--gold);font-style:italic;">Vivanco</em></h2>
+      <p class="ale-body">Gerente de Recursos Humanos activo con <strong>más de 15 años</strong> contratando y rechazando perfiles en empresas reales de México. Fundador de HirePilotMX — no un coach de internet, alguien que <strong>hoy mismo</strong> ve CVs desde el otro lado de la mesa y sabe exactamente por qué los buenos no pasan.</p>
       <div class="ale-stats">
-        <div class="ale-stat">
-          <div class="ale-stat-num">15+</div>
-          <div class="ale-stat-label">Años en RR.HH.</div>
-        </div>
-        <div class="ale-stat">
-          <div class="ale-stat-num">500+</div>
-          <div class="ale-stat-label">Perfiles revisados</div>
-        </div>
-        <div class="ale-stat">
-          <div class="ale-stat-num">24h</div>
-          <div class="ale-stat-label">Entrega de CV</div>
-        </div>
-        <div class="ale-stat">
-          <div class="ale-stat-num">3</div>
-          <div class="ale-stat-label">Lugares por semana</div>
-        </div>
+        <div class="ale-stat"><div class="ale-stat-num">15+</div><div class="ale-stat-lbl">Años en RR.HH.</div></div>
+        <div class="ale-stat"><div class="ale-stat-num">24h</div><div class="ale-stat-lbl">Entrega CV</div></div>
+        <div class="ale-stat"><div class="ale-stat-num">3</div><div class="ale-stat-lbl">Lugares/semana</div></div>
+        <div class="ale-stat"><div class="ale-stat-num">100%</div><div class="ale-stat-lbl">Personalizado</div></div>
       </div>
     </div>
-    <div class="ale-right fade-in">
-      <div class="ale-quote-card">
-        <span class="ale-quote-mark">"</span>
-        <p class="ale-quote-text">He visto por qué los mejores perfiles no son seleccionados. No es falta de experiencia — es falta de posicionamiento correcto. Eso tiene solución en 60 minutos.</p>
-        <p class="ale-quote-author">Alejandro Vivanco · Fundador HirePilotMX</p>
-      </div>
+    <div class="ale-quote">
+      <div class="ale-qmark">"</div>
+      <p class="ale-qtext">He visto por qué los mejores perfiles no son seleccionados. No es falta de experiencia — es falta de posicionamiento correcto. Eso tiene solución en 60 minutos.</p>
+      <p class="ale-qauthor">Alejandro Vivanco · Fundador HirePilotMX</p>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<div class="sdiv"></div>
 
 <!-- SESIÓN ÉLITE -->
-<section class="sesion">
-  <div class="sesion-inner">
-    <div class="sesion-header fade-in">
-      <p class="label">Lo que incluye</p>
-      <h2 class="sesion-title">Sesión<br><em>Élite.</em></h2>
-    </div>
+<section class="sec-pad sec-dark2 fade-in">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="sec-label">Lo que incluye</p>
+    <h2 class="sec-title">Sesión <em>Élite.</em></h2>
     <div class="sesion-grid">
-      <div class="sesion-item fade-in">
-        <div class="sesion-num">01</div>
-        <p class="sesion-item-title">Sesión 1:1 · 60 minutos</p>
-        <p class="sesion-item-desc">Diagnóstico completo de tu perfil, estrategia personalizada y mapa de empresas objetivo — con Alejandro directamente.</p>
-      </div>
-      <div class="sesion-item fade-in">
-        <div class="sesion-num">02</div>
-        <p class="sesion-item-title">Reporte ejecutivo de diagnóstico</p>
-        <p class="sesion-item-desc">Documento profesional con hallazgos críticos, oportunidades de posicionamiento y plan de acción concreto.</p>
-      </div>
-      <div class="sesion-item fade-in">
-        <div class="sesion-num">03</div>
-        <p class="sesion-item-title">CV optimizado en 24 horas</p>
-        <p class="sesion-item-desc">Español e inglés. Formato ATS-limpio, lenguaje de impacto financiero, diseño ejecutivo. Sin marca de agua.</p>
-      </div>
-      <div class="sesion-item fade-in">
-        <div class="sesion-num">04</div>
-        <p class="sesion-item-title">Guía Maestra de LinkedIn</p>
-        <p class="sesion-item-desc">Paso a paso para que reclutadores te encuentren a ti — headline, About, keywords, Open to Work estratégico.</p>
-      </div>
-      <div class="sesion-item fade-in">
-        <div class="sesion-num">05</div>
-        <p class="sesion-item-title">Acceso a La Telaraña</p>
-        <p class="sesion-item-desc">Red personal de headhunters y tomadores de decisión que contratan perfiles como el tuyo. Llegas directo — sin formulario.</p>
-      </div>
-      <div class="sesion-item fade-in">
-        <div class="sesion-num">06</div>
-        <p class="sesion-item-title">Seguimiento WhatsApp 30 días</p>
-        <p class="sesion-item-desc">Feedback real después de cada entrevista. Ajuste de estrategia en tiempo real. Alejandro directamente.</p>
-      </div>
+      <div class="sesion-item"><div class="sesion-num">01</div><p class="sesion-item-title">Sesión 1:1 · 60 minutos</p><p class="sesion-item-desc">Diagnóstico completo, estrategia personalizada y mapa de empresas objetivo con Alejandro directamente.</p></div>
+      <div class="sesion-item"><div class="sesion-num">02</div><p class="sesion-item-title">Reporte ejecutivo de diagnóstico</p><p class="sesion-item-desc">Documento profesional con hallazgos críticos, oportunidades y plan de acción concreto.</p></div>
+      <div class="sesion-item"><div class="sesion-num">03</div><p class="sesion-item-title">CV optimizado en 24 horas</p><p class="sesion-item-desc">Español e inglés. Formato ATS-limpio, impacto financiero real. Sin marca de agua.</p></div>
+      <div class="sesion-item"><div class="sesion-num">04</div><p class="sesion-item-title">Guía Maestra de LinkedIn</p><p class="sesion-item-desc">Paso a paso para que reclutadores te encuentren a ti — headline, About, keywords.</p></div>
+      <div class="sesion-item"><div class="sesion-num">05</div><p class="sesion-item-title">Acceso a La Telaraña</p><p class="sesion-item-desc">Red personal de headhunters y tomadores de decisión. Llegas directo — sin formulario.</p></div>
+      <div class="sesion-item"><div class="sesion-num">06</div><p class="sesion-item-title">Seguimiento WhatsApp 30 días</p><p class="sesion-item-desc">Feedback real después de cada entrevista. Ajuste de estrategia en tiempo real.</p></div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<div class="sdiv"></div>
 
 <!-- CASOS -->
-<section class="casos">
-  <div class="casos-inner">
-    <div class="fade-in">
-      <p class="label">Perfiles recientes</p>
-      <h2 class="casos-title">Lo que<br><em>cambia.</em></h2>
-    </div>
+<section class="sec-pad sec-dark fade-in">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="sec-label">Perfiles recientes</p>
+    <h2 class="sec-title">Lo que <em>cambia.</em></h2>
     <div class="casos-grid">
-      <div class="caso-card fade-in">
-        <p class="caso-industry">Manufactura Automotriz</p>
-        <p class="caso-role">Supplier Development Manager</p>
-        <p class="caso-location">Monterrey, NL</p>
-        <div class="caso-divider"></div>
-        <p class="caso-before"><strong>Antes:</strong> CV sin una sola cifra de impacto. LinkedIn inactivo con 487 seguidores.</p>
-        <p class="caso-after"><strong>Hoy:</strong> Perfil ejecutivo en español e inglés. LinkedIn optimizado con keywords ATS y narrativa de impacto financiero real.</p>
-      </div>
-      <div class="caso-card fade-in">
-        <p class="caso-industry">Homologación Automotriz</p>
-        <p class="caso-role">Especialista Senior · VW & Daimler</p>
-        <p class="caso-location">Puebla, Pue.</p>
-        <div class="caso-divider"></div>
-        <p class="caso-before"><strong>Antes:</strong> 20 años en OEMs globales invisible para el mercado europeo. CV y LinkedIn con inconsistencias críticas.</p>
-        <p class="caso-after"><strong>Hoy:</strong> Perfil reposicionado para mercado internacional con estrategia de visibilidad global.</p>
-      </div>
-      <div class="caso-card fade-in">
-        <p class="caso-industry">Operaciones & Franquicias</p>
-        <p class="caso-role">Director de Operaciones</p>
-        <p class="caso-location">Ciudad de México</p>
-        <div class="caso-divider"></div>
-        <p class="caso-before"><strong>Antes:</strong> 35 años operando franquicias globales sin una sola cifra en el CV. LinkedIn prácticamente vacío.</p>
-        <p class="caso-after"><strong>Hoy:</strong> Perfil que comunica exactamente lo que vale — con números, narrativa y estrategia.</p>
-      </div>
+      <div class="caso-card"><p class="caso-industry">Manufactura Automotriz</p><p class="caso-role">Supplier Development Manager</p><p class="caso-loc">Monterrey, NL</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> CV sin cifras. LinkedIn inactivo.</p><p class="caso-after"><strong>Hoy:</strong> Perfil ejecutivo en español e inglés con impacto financiero real.</p></div>
+      <div class="caso-card"><p class="caso-industry">Homologación Automotriz</p><p class="caso-role">Especialista Senior · VW & Daimler</p><p class="caso-loc">Puebla, Pue.</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> 20 años en OEMs globales invisible para el mercado europeo.</p><p class="caso-after"><strong>Hoy:</strong> Reposicionado para mercado internacional con estrategia de visibilidad global.</p></div>
+      <div class="caso-card"><p class="caso-industry">Operaciones & Franquicias</p><p class="caso-role">Director de Operaciones</p><p class="caso-loc">Ciudad de México</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> 35 años en franquicias globales sin una sola cifra en el CV.</p><p class="caso-after"><strong>Hoy:</strong> Perfil que comunica exactamente lo que vale — con números y estrategia.</p></div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- ATS CTA SECTION -->
-<section style="padding:80px 56px;background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
-    <div>
-      <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px;"><span style='display:inline-block;width:24px;height:1px;background:var(--gold);'></span>Antes de decidir</p>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;line-height:0.9;color:var(--white);margin-bottom:20px;">¿Sabes cómo te ve<br><em style='color:var(--gold);font-style:italic;'>el sistema?</em></h2>
-      <p style="font-size:14px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);margin-bottom:0;">El algoritmo evalúa tu CV antes de que un humano lo lea. Descubre tu score ATS, cruza tu CV con tu LinkedIn y ve exactamente qué está fallando — gratis, en 2 minutos.</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="border:1px solid var(--border2);padding:48px 40px;background:var(--black2);position:relative;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:300;color:var(--red);line-height:1;margin-bottom:4px;">5.2</div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:24px;">Score ATS promedio sin optimizar</div>
-        <div style="background:var(--red);color:white;padding:10px 24px;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:28px;display:inline-block;">DESCARTADO</div>
-        <br>
-        <a href="/ats" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--black);padding:18px 36px;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;">
-          Analiza tu CV gratis →
-        </a>
-        <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-top:16px;">CV + LinkedIn · 2 minutos · Sin registro</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="sdiv"></div>
 
 <!-- PRECIO -->
-<section class="precio">
+<section class="sec-pad sec-dark2 fade-in">
   <div class="precio-inner">
-    <div class="precio-header fade-in">
-      <p class="label" style="justify-content:center;">Tu lugar. Esta semana.</p>
-      <h2 class="precio-title">Elige tu<br><em>nivel.</em></h2>
+    <div class="precio-header">
+      <p class="sec-label" style="justify-content:center;">Tu lugar. Esta semana.</p>
+      <h2 class="sec-title" style="text-align:center;margin-bottom:14px;">Elige tu <em>nivel.</em></h2>
       <p class="precio-sub">Una inversión que se recupera en los primeros días del siguiente empleo.</p>
     </div>
-
     <div class="precio-cards">
-      <!-- SESIÓN ÉLITE -->
-      <div class="precio-card fade-in">
+      <div class="precio-card">
         <span class="precio-badge">· Sesión Élite · Gerentes & Mandos Senior ·</span>
         <p class="precio-tier">Sesión <em>Élite</em></p>
         <div class="precio-amount">$3,499</div>
         <p class="precio-note">MXN · pago único</p>
-        <div class="precio-divider"></div>
+        <div class="precio-div"></div>
         <div class="precio-includes">
           <div class="precio-include">Sesión 1:1 de 60 minutos con Alejandro</div>
           <div class="precio-include">Reporte ejecutivo de diagnóstico profesional</div>
-          <div class="precio-include">CV optimizado en español e inglés — entregado en 24 horas</div>
+          <div class="precio-include">CV optimizado en español e inglés — 24 horas</div>
           <div class="precio-include">Guía Maestra de LinkedIn paso a paso</div>
-          <div class="precio-include">Acceso a La Telaraña — red de headhunters y decisores</div>
-          <div class="precio-include">Seguimiento por WhatsApp 30 días</div>
+          <div class="precio-include">Acceso a La Telaraña — headhunters y decisores</div>
+          <div class="precio-include">Seguimiento WhatsApp 30 días</div>
         </div>
-        <a href="https://wa.me/523320658076?text=Hola%20Alejandro%2C%20quiero%20la%20Sesión%20Élite%20%243%2C499" 
-           class="btn-wa" target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
+        <a href="https://wa.me/523320658076?text=Quiero%20la%20Sesión%20Élite%20%243%2C499" class="btn-wa" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Reservar Sesión Élite
         </a>
-        <p class="precio-scarcity">⚡ <span>Solo 3 lugares</span> por semana · Fines de semana</p>
+        <p class="precio-scarcity"><span>Solo 3 lugares</span> por semana · Fines de semana</p>
       </div>
-
-      <!-- SESIÓN ÉLITE DIRECTIVA -->
-      <div class="precio-card directiva fade-in">
-        <span class="precio-badge directiva-badge">· Sesión Élite Directiva · Directores / VP / C-Level ·</span>
+      <div class="precio-card dir">
+        <span class="precio-badge" style="color:var(--gold2);">· Sesión Élite Directiva · Directores / VP / C-Level ·</span>
         <p class="precio-tier">Sesión Élite <em>Directiva</em></p>
-        <div class="precio-amount directiva">$4,999</div>
+        <div class="precio-amount d">$4,999</div>
         <p class="precio-note">MXN · pago único</p>
-        <div class="precio-divider"></div>
+        <div class="precio-div"></div>
         <div class="precio-includes">
           <div class="precio-include">Todo lo incluido en Sesión Élite</div>
-          <div class="precio-include highlight">CV en versión internacional — además de español e inglés</div>
-          <div class="precio-include highlight">Mapeo personalizado de headhunters especializados en tu industria y nivel — con nombre, LinkedIn y nota de contacto sugerida para cada uno</div>
-          <div class="precio-include highlight">Seguimiento por WhatsApp 45 días</div>
+          <div class="precio-include hi">CV en versión internacional — además de español e inglés</div>
+          <div class="precio-include hi">Mapeo personalizado de headhunters — nombre, LinkedIn y nota de contacto</div>
+          <div class="precio-include hi">Seguimiento WhatsApp 45 días</div>
         </div>
-        <a href="https://wa.me/523320658076?text=Hola%20Alejandro%2C%20quiero%20la%20Sesión%20Élite%20Directiva%20%244%2C999" 
-           class="btn-wa directiva" target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
+        <a href="https://wa.me/523320658076?text=Quiero%20la%20Sesión%20Élite%20Directiva%20%244%2C999" class="btn-wa d" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Reservar Sesión Élite Directiva
         </a>
-        <p class="precio-scarcity">⚡ <span>Solo 3 lugares</span> por semana · Fines de semana</p>
+        <p class="precio-scarcity"><span>Solo 3 lugares</span> por semana · Fines de semana</p>
       </div>
     </div>
-
-
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">HirePilot<span>MX</span></div>
   <p class="footer-text">© 2026 HirePilotMX · Guadalajara, México</p>
-  <a href="https://hirepilot.mx" class="footer-link">hirepilot.mx</a>
+  <p class="footer-text">hirepilot.mx</p>
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+let selectedATS=null,cvText='',cvResult=null,liResult=null;
+const atsConfig={workforce:{name:'WorkForce Pro'},talentcore:{name:'TalentCore'},hireflow:{name:'HireFlow'},apexrecruit:{name:'ApexRecruit'}};
+
+function selectATS(card){
+  document.querySelectorAll('.ats-mini').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');selectedATS=card.dataset.ats;checkReady();
+}
+
+function handleFile(input){
+  const file=input.files[0];if(!file)return;
+  document.getElementById('file-name-display').textContent='✓ '+file.name;
+  document.getElementById('upload-zone').classList.add('has-file');
+  if(file.name.endsWith('.pdf')){
+    const reader=new FileReader();
+    reader.onload=async(e)=>{
+      try{
+        const pdf=await pdfjsLib.getDocument({data:e.target.result}).promise;
+        let text='';
+        for(let i=1;i<=Math.min(pdf.numPages,6);i++){
+          const pg=await pdf.getPage(i);const ct=await pg.getTextContent();
+          text+=ct.items.map(x=>x.str).join(' ')+'\n';
+        }
+        cvText=text;
+      }catch{cvText='CV cargado';}
+      checkReady();
+    };
+    reader.readAsArrayBuffer(file);
+  }else{
+    const reader=new FileReader();
+    reader.onload=e=>{cvText=e.target.result;checkReady();};
+    reader.readAsText(file);
+  }
+}
+
+function checkReady(){document.getElementById('btn-analyze').disabled=!(selectedATS&&cvText);}
+function checkLI(){document.getElementById('btn-li').disabled=document.getElementById('li-content').value.trim().length<50;}
+
+async function startAnalysis(){
+  document.querySelector('.hero').style.display='none';
+  const as=document.getElementById('analyzing-section');
+  as.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});
+  const ats=atsConfig[selectedATS];
+  document.getElementById('mock-ats-name').textContent=ats.name+' · ATS';
+  const steps=[
+    {label:'Parseando documento...',pct:18},{label:'Detectando formato y estructura...',pct:35},
+    {label:'Escaneando keywords...',pct:52},{label:'Evaluando impacto financiero...',pct:68},
+    {label:'Aplicando criterios '+ats.name+'...',pct:85},{label:'Generando veredicto...',pct:97},
+  ];
+  for(const s of steps){document.getElementById('prog-label').textContent=s.label;document.getElementById('prog-bar').style.width=s.pct+'%';await sleep(580);}
+  try{
+    const res=await fetch('/.netlify/functions/ai',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        prompt:`Eres un sistema ATS llamado "${ats.name}". Analiza este CV con criterio real de reclutamiento ejecutivo en México.\n\nCV:\n${cvText.slice(0,4000)}\n\nResponde SOLO JSON válido sin texto adicional:\n{"candidateName":"nombre","position":"cargo","score":número,"verdict":"DESCARTADO o EN REVISIÓN o AVANZA","flags":[{"type":"red|yellow|green","text":"hallazgo"}],"sections":[{"title":"Impacto Financiero","score":"X/10","status":"bad|ok|good","findings":["f1","f2","f3"]},{"title":"Formato ATS","score":"X/10","status":"bad|ok|good","findings":["f1","f2","f3"]},{"title":"Keywords","score":"X/10","status":"bad|ok|good","findings":["f1","f2","f3"]},{"title":"Narrativa Ejecutiva","score":"X/10","status":"bad|ok|good","findings":["f1","f2","f3"]}],"mainProblem":"problema principal"}\n\nScore realista: sin optimizar 3.5-6.5. Menor a 6 = DESCARTADO.`,
+        system:`Eres ${ats.name}, sistema ATS empresarial. Evalúas CVs ejecutivos con criterio estricto. Responde SOLO JSON válido, sin texto adicional ni backticks.`
+      })
+    });
+    const data=await res.json();
+    cvResult=JSON.parse(data.text.replace(/```json|```/g,'').trim());
+  }catch{cvResult=fallbackCV();}
+  showMockup(cvResult);await sleep(2800);
+  as.classList.remove('active');
+  document.getElementById('linkedin-section').classList.add('active');
+  window.scrollTo({top:document.getElementById('linkedin-section').offsetTop-68,behavior:'smooth'});
+}
+
+async function startLIAnalysis(){
+  const liText=document.getElementById('li-content').value.trim();
+  document.getElementById('linkedin-section').classList.remove('active');
+  try{
+    const res=await fetch('/.netlify/functions/ai',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        prompt:`Reclutador ejecutivo senior. Cruza CV y LinkedIn.\n\nCV: ${cvText.slice(0,2000)}\nLinkedIn: ${liText.slice(0,2000)}\n\nResponde SOLO JSON:\n{"liScore":número,"liStatus":"bad|ok|good","liFindings":["f1","f2","f3","f4"],"inconsistencies":[{"field":"campo","cv":"valor","linkedin":"valor"}],"combinedScore":número,"combinedVerdict":"DESCARTADO o EN REVISIÓN o AVANZA","combinedProblem":"problema"}`,
+        system:'Reclutador ejecutivo senior 15 años en México. Detectas inconsistencias críticas CV vs LinkedIn. Responde SOLO JSON válido.'
+      })
+    });
+    const data=await res.json();
+    liResult=JSON.parse(data.text.replace(/```json|```/g,'').trim());
+  }catch{liResult=fallbackLI();}
+  showResults();
+}
+
+function skipLI(){document.getElementById('linkedin-section').classList.remove('active');liResult=null;showResults();}
+
+function showMockup(result){
+  document.getElementById('mock-cand-name').textContent=result.candidateName;
+  document.getElementById('mock-cand-pos').textContent=result.position;
+  const isRed=result.score<6,isYellow=result.score<7.5;
+  const color=isRed?'#c53030':isYellow?'#744210':'#276749';
+  const sc=document.getElementById('mock-score');
+  sc.style.borderColor=color;sc.style.color=color;
+  document.getElementById('mock-score-num').textContent=result.score.toFixed(1);
+  const flagsEl=document.getElementById('mock-flags');flagsEl.innerHTML='';
+  const icons={red:'🚫',yellow:'⚠️',green:'✓'};
+  (result.flags||[]).slice(0,4).forEach((f,i)=>{
+    const el=document.createElement('div');el.className=`mock-flag ${f.type}`;
+    el.innerHTML=`<span>${icons[f.type]}</span><span>${f.text}</span>`;
+    flagsEl.appendChild(el);setTimeout(()=>el.classList.add('show'),300+i*220);
   });
-}, { threshold: 0.08 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  setTimeout(()=>{
+    const dec=document.getElementById('mock-decision');
+    const dt=document.getElementById('mock-dec-text');const db=document.getElementById('mock-dec-btn');
+    if(result.verdict==='DESCARTADO'){dec.className='mock-decision reject show';dt.style.color='#c53030';dt.textContent='⛔ DESCARTADO';db.style.cssText='background:#e53e3e;color:white';db.textContent='DESCARTAR';}
+    else if(result.verdict==='EN REVISIÓN'){dec.className='mock-decision warn show';dt.style.color='#744210';dt.textContent='⚠️ EN REVISIÓN';db.style.cssText='background:#ca8a04;color:white';db.textContent='EN ESPERA';}
+    else{dec.className='mock-decision approve show';dt.style.color='#276749';dt.textContent='✓ AVANZA';db.style.cssText='background:#16a34a;color:white';db.textContent='AVANZAR';}
+  },300+(result.flags||[]).length*220+300);
+}
+
+function showResults(){
+  const rs=document.getElementById('results-section');rs.classList.add('active');
+  window.scrollTo({top:rs.offsetTop-68,behavior:'smooth'});
+  const hasLI=liResult!==null;
+  const verdict=hasLI?liResult.combinedVerdict:cvResult.verdict;
+  const score=hasLI?liResult.combinedScore:cvResult.score;
+  const problem=hasLI?liResult.combinedProblem:cvResult.mainProblem;
+  const vm=document.getElementById('verdict-main');
+  vm.textContent=verdict+'.';
+  vm.className='verdict-main '+(verdict==='DESCARTADO'?'red':verdict==='EN REVISIÓN'?'yellow':'green');
+  document.getElementById('verdict-score').innerHTML=`Score <span>${score.toFixed(1)}</span>/10${hasLI?' · CV + LinkedIn':''}`;
+  document.getElementById('verdict-problem').textContent=problem;
+  if(hasLI&&liResult.inconsistencies&&liResult.inconsistencies.length>0){
+    document.getElementById('incons-block').style.display='block';
+    const grid=document.getElementById('incons-grid');grid.innerHTML='';
+    liResult.inconsistencies.forEach(inc=>{
+      const row=document.createElement('div');row.className='incon-row';
+      row.innerHTML=`<div class="incon-cell"><div class="incon-lbl">CV — ${inc.field}</div><div class="incon-val">${inc.cv}</div></div><div class="incon-cell li-cell"><div class="incon-lbl">LinkedIn — ${inc.field}</div><div class="incon-val">${inc.linkedin}</div></div>`;
+      grid.appendChild(row);
+    });
+  }
+  const secsEl=document.getElementById('result-secs');secsEl.innerHTML='';
+  const icons={bad:'🚫',ok:'⚠️',good:'✓'};
+  (cvResult.sections||[]).forEach(s=>{
+    const div=document.createElement('div');div.className='result-sec';
+    div.innerHTML=`<div class="rs-head"><span class="rs-title">${s.title}</span><span class="rs-score ${s.status}">${s.score}/10</span></div><div class="rs-body">${(s.findings||[]).map(f=>`<div class="rs-finding"><span>${icons[s.status]}</span><span>${f}</span></div>`).join('')}</div>`;
+    secsEl.appendChild(div);
+  });
+  if(hasLI&&liResult.liFindings){
+    const liDiv=document.createElement('div');liDiv.className='result-sec';
+    liDiv.innerHTML=`<div class="rs-head"><span class="rs-title">Perfil LinkedIn</span><span class="rs-score ${liResult.liStatus}">${liResult.liScore}/10</span></div><div class="rs-body">${(liResult.liFindings||[]).map(f=>`<div class="rs-finding"><span>${icons[liResult.liStatus]}</span><span>${f}</span></div>`).join('')}</div>`;
+    secsEl.appendChild(liDiv);
+  }
+}
+
+function fallbackCV(){
+  return{candidateName:'Candidato',position:'Perfil analizado',score:5.1,verdict:'DESCARTADO',
+    flags:[{type:'red',text:'Sin cifras de impacto financiero'},{type:'red',text:'Formato incompatible con ATS'},{type:'yellow',text:'Keywords insuficientes'},{type:'yellow',text:'Narrativa ejecutiva débil'}],
+    sections:[
+      {title:'Impacto Financiero',score:'2',status:'bad',findings:['Sin cifras de ahorro o resultado','Bullets de responsabilidades, no logros','Sin cuantificación de alcance']},
+      {title:'Formato ATS',score:'4',status:'bad',findings:['Posibles tablas que el parser no lee','Estructura no estándar','Riesgo de pérdida de información']},
+      {title:'Keywords',score:'5',status:'ok',findings:['Keywords presentes pero sin jerarquía','Faltan términos de industrias objetivo','Headline no refleja búsquedas activas']},
+      {title:'Narrativa Ejecutiva',score:'3',status:'bad',findings:['Summary genérico','Sin propuesta de valor diferenciada','Falta gancho ejecutivo']},
+    ],mainProblem:'El CV describe responsabilidades cuando el mercado contrata resultados medibles.'};
+}
+
+function fallbackLI(){
+  return{liScore:4.5,liStatus:'bad',
+    liFindings:['Sección Acerca de sin propuesta de valor','Perfil inactivo sin publicaciones','Inconsistencias con el CV','Keywords no optimizados'],
+    inconsistencies:[{field:'Empresa actual',cv:'Según CV',linkedin:'Diferente en LinkedIn'}],
+    combinedScore:4.8,combinedVerdict:'DESCARTADO',
+    combinedProblem:'CV y LinkedIn cuentan historias distintas — eso destruye credibilidad antes de que alguien te llame.'};
+}
+
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+
+const uz=document.getElementById('upload-zone');
+uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('drag');});
+uz.addEventListener('dragleave',()=>uz.classList.remove('drag'));
+uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag');const f=e.dataTransfer.files[0];if(f){document.getElementById('file-input').files=e.dataTransfer.files;handleFile(document.getElementById('file-input'));}});
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
