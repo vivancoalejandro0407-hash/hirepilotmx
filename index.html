@@ -107,20 +107,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mock-dec-btn{padding:8px 18px;border-radius:3px;border:none;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;cursor:default;}
 
 /* LINKEDIN */
-.linkedin-section{display:none;padding:80px 56px;background:var(--black);}
-.linkedin-section.active{display:block;animation:fadeUp 0.6s ease both;}
-.li-inner{max-width:680px;margin:0 auto;}
+
 .label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px;}
 .label::before{content:'';width:24px;height:1px;background:var(--gold);}
-.li-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;}
-.li-input{width:100%;padding:16px 20px;background:var(--black2);border:1px solid var(--border);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color 0.3s;margin-bottom:14px;}
-.li-input:focus{border-color:var(--gold);}
-.li-input::placeholder{color:var(--gray);}
-.btn-li{width:100%;padding:17px;background:var(--gold);color:var(--black);border:none;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-bottom:10px;}
-.btn-li:hover:not(:disabled){background:var(--gold2);}
-.btn-li:disabled{opacity:0.3;cursor:not-allowed;}
-.btn-skip{width:100%;padding:15px;background:transparent;border:1px solid var(--border);color:rgba(255,255,255,0.3);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
-.btn-skip:hover{border-color:var(--gold);color:var(--gold);}
+
 
 /* RESULTS */
 .results-section{display:none;padding:80px 56px;background:var(--black2);}
@@ -252,7 +242,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   nav{padding:0 20px;}
   .hero{padding:100px 20px 60px;}
   .hero-inner{grid-template-columns:1fr;gap:48px;}
-  .analyzing-section,.linkedin-section,.results-section{padding:60px 20px;}
+  .analyzing-section,.results-section{padding:60px 20px;}
   .sec-pad{padding:60px 20px;}
   .ale-grid{grid-template-columns:1fr;gap:40px;}
   .sesion-grid,.casos-grid{grid-template-columns:1fr;}
@@ -355,21 +345,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       <div class="mock-flags" id="mock-flags"></div>
       <div class="mock-decision" id="mock-decision"><span class="mock-dec-text" id="mock-dec-text"></span><button class="mock-dec-btn" id="mock-dec-btn"></button></div>
     </div>
-  </div>
-</div>
-
-<div class="sdiv"></div>
-
-<!-- LINKEDIN -->
-<div class="linkedin-section" id="linkedin-section">
-  <div class="li-inner">
-    <p class="label">Paso 2 de 2 — LinkedIn</p>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;line-height:0.9;margin-bottom:14px;">Ahora cruza tu <em style="color:var(--gold);font-style:italic;">LinkedIn.</em></h2>
-    <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.4);margin-bottom:32px;line-height:1.8;">Los reclutadores cruzan ambos perfiles. Si no coinciden, la credibilidad cae antes de que te llamen.</p>
-    <label class="li-label">Pega el contenido de tu perfil de LinkedIn</label>
-    <textarea class="li-input" id="li-content" rows="7" placeholder="Copia y pega tu sección Acerca de + experiencia de LinkedIn aquí..." oninput="checkLI()"></textarea>
-    <button class="btn-li" id="btn-li" disabled onclick="startLIAnalysis()">Cruzar con LinkedIn →</button>
-    <button class="btn-skip" onclick="skipLI()">Continuar sin LinkedIn →</button>
   </div>
 </div>
 
@@ -554,7 +529,7 @@ function handleFile(input){
 }
 
 function checkReady(){document.getElementById('btn-analyze').disabled=!(selectedATS&&cvText);}
-function checkLI(){document.getElementById('btn-li').disabled=document.getElementById('li-content').value.trim().length<50;}
+
 
 async function startAnalysis(){
   document.querySelector('.hero').style.display='none';
@@ -580,27 +555,11 @@ async function startAnalysis(){
   }catch{cvResult=fallbackCV();}
   showMockup(cvResult);await sleep(2800);
   as.classList.remove('active');
-  document.getElementById('linkedin-section').classList.add('active');
-  window.scrollTo({top:document.getElementById('linkedin-section').offsetTop-68,behavior:'smooth'});
-}
-
-async function startLIAnalysis(){
-  const liText=document.getElementById('li-content').value.trim();
-  document.getElementById('linkedin-section').classList.remove('active');
-  try{
-    const res=await fetch('/.netlify/functions/ai',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        prompt:`Reclutador ejecutivo senior. Cruza CV y LinkedIn.\n\nCV: ${cvText.slice(0,2000)}\nLinkedIn: ${liText.slice(0,2000)}\n\nResponde SOLO JSON:\n{"liScore":número,"liStatus":"bad|ok|good","liFindings":["f1","f2","f3","f4"],"inconsistencies":[{"field":"campo","cv":"valor","linkedin":"valor"}],"combinedScore":número,"combinedVerdict":"DESCARTADO o EN REVISIÓN o AVANZA","combinedProblem":"problema"}`,
-        system:'Reclutador ejecutivo senior 15 años en México. Detectas inconsistencias críticas CV vs LinkedIn. Responde SOLO JSON válido.'
-      })
-    });
-    const data=await res.json();
-    liResult=JSON.parse(data.text.replace(/```json|```/g,'').trim());
-  }catch{liResult=fallbackLI();}
+  liResult=null;
   showResults();
 }
 
-function skipLI(){document.getElementById('linkedin-section').classList.remove('active');liResult=null;showResults();}
+
 
 function showMockup(result){
   document.getElementById('mock-cand-name').textContent=result.candidateName;
@@ -672,13 +631,7 @@ function fallbackCV(){
     ],mainProblem:'El CV describe responsabilidades cuando el mercado contrata resultados medibles.'};
 }
 
-function fallbackLI(){
-  return{liScore:4.5,liStatus:'bad',
-    liFindings:['Sección Acerca de sin propuesta de valor','Perfil inactivo sin publicaciones','Inconsistencias con el CV','Keywords no optimizados'],
-    inconsistencies:[{field:'Empresa actual',cv:'Según CV',linkedin:'Diferente en LinkedIn'}],
-    combinedScore:4.8,combinedVerdict:'DESCARTADO',
-    combinedProblem:'CV y LinkedIn cuentan historias distintas — eso destruye credibilidad antes de que alguien te llame.'};
-}
+
 
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
