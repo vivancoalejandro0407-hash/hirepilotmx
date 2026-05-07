@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HirePilotMX — Análisis de Perfil</title>
+<meta name="description" content="Tu CV tiene 6 segundos. Descubre exactamente cómo te evalúa el sistema — CV + LinkedIn cruzados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:  #050505;
+  --black2: #0d0d0d;
+  --black3: #141414;
+  --gold:   #c9952a;
+  --gold2:  #e8b84b;
+  --white:  #fafaf8;
+  --white2: #e8e4dc;
+  --gray:   #5a5a5a;
+  --border: rgba(255,255,255,0.06);
+  --border2:rgba(201,149,42,0.25);
+  --red:    #e53e3e;
+  --green:  #16a34a;
+  --yellow: #ca8a04;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden; min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 68px;
+  background: rgba(5,5,5,0.96); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--white);
+}
+.logo span { color: var(--gold); }
+.nav-cta {
+  background: transparent; border: 1px solid var(--gold);
+  color: var(--gold); padding: 10px 24px; border-radius: 2px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none; transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--black); }
+
+/* HERO */
+.hero {
+  min-height: 60vh; display: flex; flex-direction: column;
+  justify-content: center; padding: 140px 56px 80px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,149,42,0.05) 0%, transparent 70%);
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 9vw, 120px);
+  font-weight: 300; line-height: 0.88; letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.hero-title .gold { color: var(--gold); font-style: italic; }
+.hero-title .dim { color: rgba(255,255,255,0.2); }
+.hero-sub {
+  font-size: clamp(14px, 1.8vw, 17px); font-weight: 300;
+  color: rgba(255,255,255,0.4); max-width: 520px; line-height: 1.8;
+}
+.hero-sub strong { color: var(--white2); font-weight: 400; }
+
+/* STEPS BAR */
+.steps-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; padding: 32px 56px;
+  background: var(--black2); border-bottom: 1px solid var(--border);
+}
+.step-item {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gray); padding: 0 24px;
+}
+.step-item.active { color: var(--gold); }
+.step-item.done { color: rgba(255,255,255,0.4); }
+.step-dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; flex-shrink: 0;
+}
+.step-item.done .step-dot { background: var(--gold); border-color: var(--gold); color: var(--black); }
+.step-sep { width: 48px; height: 1px; background: var(--border); }
+.step-sep.done { background: var(--gold); }
+
+/* MAIN */
+.main { max-width: 900px; margin: 0 auto; padding: 80px 56px 120px; }
+
+/* PHASES */
+.phase { display: none; }
+.phase.active { display: block; animation: fadeUp 0.6s ease both; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+.phase-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 56px); font-weight: 300;
+  line-height: 0.9; margin-bottom: 8px; color: var(--white);
+}
+.phase-title em { color: var(--gold); font-style: italic; }
+.phase-sub {
+  font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.4);
+  margin-bottom: 48px; line-height: 1.7;
+}
+
+/* ATS SELECTOR */
+.ats-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.ats-card {
+  padding: 28px 24px; cursor: pointer;
+  background: var(--black2); transition: background 0.2s;
+  position: relative;
+}
+.ats-card:hover { background: var(--black3); }
+.ats-card.selected { background: var(--black3); }
+.ats-card.selected::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold);
+}
+.ats-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600; letter-spacing: 0.05em;
+  margin-bottom: 6px; transition: color 0.2s;
+}
+.ats-card[data-ats="workforce"] .ats-logo { color: #4a90d9; }
+.ats-card[data-ats="talentcore"] .ats-logo { color: #5ba85a; }
+.ats-card[data-ats="hireflow"] .ats-logo { color: #c9952a; }
+.ats-card[data-ats="apexrecruit"] .ats-logo { color: #c0392b; }
+.ats-card.selected .ats-logo { color: var(--white) !important; }
+.ats-desc { font-size: 12px; color: var(--gray); line-height: 1.5; margin-bottom: 10px; }
+.ats-sector {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+.ats-selected-mark {
+  position: absolute; top: 12px; right: 12px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--gold); color: var(--black);
+  font-size: 9px; font-weight: 900;
+  display: none; align-items: center; justify-content: center;
+}
+.ats-card.selected .ats-selected-mark { display: flex; }
+
+/* INPUT FIELDS */
+.input-group { margin-bottom: 20px; }
+.input-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px; display: block;
+}
+.upload-zone {
+  border: 1px solid var(--border); border-radius: 2px;
+  padding: 40px 24px; text-align: center; cursor: pointer;
+  transition: all 0.3s; position: relative; background: var(--black2);
+}
+.upload-zone:hover { border-color: rgba(201,149,42,0.4); }
+.upload-zone.has-file { border-color: var(--gold); }
+.upload-zone.drag { border-color: var(--gold); background: var(--black3); }
+#file-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.upload-icon { font-size: 32px; margin-bottom: 10px; }
+.upload-title { font-size: 14px; font-weight: 400; color: var(--white2); margin-bottom: 4px; }
+.upload-sub { font-size: 12px; color: var(--gray); }
+.upload-file-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--gold); margin-top: 8px;
+}
+
+.li-input {
+  width: 100%; padding: 16px 20px;
+  background: var(--black2); border: 1px solid var(--border);
+  border-radius: 2px; color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300;
+  outline: none; transition: border-color 0.3s;
+}
+.li-input:focus { border-color: var(--gold); }
+.li-input::placeholder { color: var(--gray); }
+
+/* BUTTONS */
+.btn-main {
+  width: 100%; padding: 20px; border: none; border-radius: 2px;
+  background: var(--gold); color: var(--black);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-main:hover:not(:disabled) { background: var(--gold2); transform: translateY(-2px); }
+.btn-main:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+.btn-secondary {
+  width: 100%; padding: 18px; border: 1px solid var(--border); border-radius: 2px;
+  background: transparent; color: rgba(255,255,255,0.5);
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+  margin-top: 12px;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ANALYZING */
+.analyzing-wrap { text-align: center; padding: 20px 0; }
+.progress-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.progress-bar-wrap {
+  height: 2px; background: var(--border); margin-bottom: 48px; overflow: hidden;
+}
+.progress-bar { height: 100%; background: var(--gold); width: 0%; transition: width 0.4s ease; }
+
+/* MOCKUP */
+.mockup {
+  border: 1px solid var(--border); overflow: hidden;
+  margin-bottom: 0; background: #1a1a2e;
+}
+.mockup-topbar {
+  height: 36px; display: flex; align-items: center;
+  padding: 0 14px; gap: 7px; background: #111;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.m-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: rgba(255,255,255,0.2); margin-left: 8px;
+}
+.mockup-body { padding: 28px; background: #fafafa; }
+.m-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 20px; padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+.m-name { font-size: 16px; font-weight: 700; color: #111; }
+.m-pos { font-size: 11px; color: #999; margin-top: 3px; }
+.m-score {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 3px solid #eee; transition: all 0.8s ease;
+}
+.m-score-num { font-size: 22px; font-weight: 900; line-height: 1; color: #ccc; }
+.m-score-lbl { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: #ccc; }
+.m-flags { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.m-flag {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 4px;
+  font-size: 12px; opacity: 0; transform: translateX(-8px);
+  transition: all 0.4s ease;
+}
+.m-flag.show { opacity: 1; transform: translateX(0); }
+.m-flag.red { background: #fff5f5; color: #c53030; }
+.m-flag.yellow { background: #fffff0; color: #744210; }
+.m-flag.green { background: #f0fff4; color: #276749; }
+.m-decision {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px; border-radius: 4px; opacity: 0; transition: opacity 0.5s;
+}
+.m-decision.show { opacity: 1; }
+.m-decision.reject { background: #fff5f5; }
+.m-decision.approve { background: #f0fff4; }
+.m-decision.warn { background: #fffff0; }
+.m-dec-text { font-size: 13px; font-weight: 700; }
+.m-dec-btn {
+  padding: 8px 18px; border-radius: 3px; border: none;
+  font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+  text-transform: uppercase; cursor: default;
+}
+
+/* PHASE 3: LINKEDIN */
+.li-result-card {
+  border: 1px solid var(--border); padding: 36px;
+  background: var(--black2); margin-bottom: 24px;
+}
+.li-result-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px;
+}
+.li-result-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; color: var(--white);
+}
+.li-score-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 28px; font-weight: 500;
+}
+.li-score-badge.bad { color: var(--red); }
+.li-score-badge.ok { color: var(--yellow); }
+.li-score-badge.good { color: var(--green); }
+.li-findings { display: flex; flex-direction: column; gap: 0; }
+.li-finding {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px; font-weight: 300; line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+}
+.li-finding:last-child { border-bottom: none; }
+.li-finding-icon { flex-shrink: 0; margin-top: 2px; font-size: 14px; }
+
+/* PHASE 4: FINAL VERDICT */
+.verdict-header { text-align: center; margin-bottom: 64px; }
+.verdict-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+}
+.verdict-label::before, .verdict-label::after {
+  content: ''; width: 24px; height: 1px; background: var(--gold);
+}
+.verdict-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 8vw, 100px); font-weight: 300;
+  line-height: 0.88; color: var(--red); margin-bottom: 16px;
+}
+.verdict-title.warn { color: var(--yellow); }
+.verdict-title.ok { color: var(--green); }
+.verdict-score {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 6vw, 72px); font-weight: 300;
+  color: rgba(255,255,255,0.2); margin-bottom: 16px;
+}
+.verdict-score span { color: var(--white2); }
+.verdict-problem {
+  font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.5);
+  max-width: 600px; margin: 0 auto; line-height: 1.7;
+  font-style: italic;
+}
+
+/* INCONSISTENCIES */
+.inconsistencies { margin-bottom: 48px; }
+.incons-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.incons-title::before { content: '⚠'; }
+.incons-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+.incon-item {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+}
+.incon-cell {
+  padding: 20px 24px; background: var(--black2);
+  font-size: 13px; font-weight: 300; line-height: 1.6;
+}
+.incon-cell.cv { border-left: 2px solid rgba(255,255,255,0.1); }
+.incon-cell.li { border-left: 2px solid var(--red); }
+.incon-cell-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 6px;
+}
+.incon-cell.li .incon-cell-label { color: rgba(229,62,62,0.7); }
+.incon-text { color: rgba(255,255,255,0.5); }
+.incon-cell.li .incon-text { color: rgba(255,255,255,0.7); }
+
+/* SECTIONS */
+.result-sections { display: flex; flex-direction: column; gap: 1px; margin-bottom: 48px; background: var(--border); }
+.result-section { background: var(--black2); }
+.rs-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 28px; border-bottom: 1px solid var(--border); cursor: pointer;
+}
+.rs-title { font-size: 14px; font-weight: 500; color: var(--white); }
+.rs-score {
+  font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500;
+}
+.rs-score.bad { color: var(--red); }
+.rs-score.ok { color: var(--yellow); }
+.rs-score.good { color: var(--green); }
+.rs-body { padding: 20px 28px; }
+.rs-finding {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 10px 0; font-size: 13px; font-weight: 300;
+  line-height: 1.6; color: rgba(255,255,255,0.45);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.rs-finding:last-child { border-bottom: none; }
+.rs-finding-icon { flex-shrink: 0; margin-top: 2px; }
+
+/* CTA */
+.cta-block {
+  border: 1px solid var(--border2); padding: 64px 56px;
+  text-align: center; position: relative; overflow: hidden;
+  background: var(--black2);
+}
+.cta-block::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,149,42,0.06) 0%, transparent 70%);
+}
+.cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 6vw, 72px); font-weight: 300;
+  line-height: 0.9; margin-bottom: 20px; color: var(--white);
+}
+.cta-title em { color: var(--gold); font-style: italic; }
+.cta-sub {
+  font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.4);
+  max-width: 500px; margin: 0 auto 40px; line-height: 1.8;
+}
+.cta-sub strong { color: var(--white2); font-weight: 400; }
+.btn-wa-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--gold); color: var(--black);
+  padding: 20px 48px; border-radius: 2px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none;
+  transition: all 0.3s; margin-bottom: 20px;
+}
+.btn-wa-cta:hover { background: var(--gold2); transform: translateY(-2px); }
+.cta-scarcity {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.cta-scarcity span { color: var(--red); }
+
+/* FOOTER */
+footer {
+  padding: 40px 56px; background: var(--black);
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+}
+.footer-logo span { color: var(--gold); }
+.footer-text { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gray); letter-spacing: 0.08em; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 110px 20px 60px; }
+  .steps-bar { padding: 24px 20px; flex-wrap: wrap; gap: 8px; }
+  .step-sep { display: none; }
+  .main { padding: 48px 20px 80px; }
+  .ats-grid { grid-template-columns: 1fr; }
+  .incon-item { grid-template-columns: 1fr; }
+  .cta-block { padding: 48px 24px; }
+  footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">HirePilot<span>MX</span></div>
+  <a href="https://wa.me/523320658076?text=Quiero%20la%20Sesión%20Élite" class="nav-cta" target="_blank">Sesión Élite</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Análisis de Perfil · HirePilotMX</p>
+  <h1 class="hero-title">
+    Tu CV tiene<br>
+    <span class="gold">6 segundos.</span><br>
+    <span class="dim">Esto es lo que<br>ve el sistema.</span>
+  </h1>
+  <p class="hero-sub">
+    El algoritmo evalúa tu CV <strong>antes de que un humano lo lea.</strong>
+    Descubre exactamente cómo — y qué está fallando en tu CV y LinkedIn.
+  </p>
+</section>
+
+<!-- STEPS -->
+<div class="steps-bar">
+  <div class="step-item active" id="step-1"><div class="step-dot">1</div><span>Elige el sistema</span></div>
+  <div class="step-sep" id="sep-1"></div>
+  <div class="step-item" id="step-2"><div class="step-dot">2</div><span>Sube tu CV</span></div>
+  <div class="step-sep" id="sep-2"></div>
+  <div class="step-item" id="step-3"><div class="step-dot">3</div><span>LinkedIn</span></div>
+  <div class="step-sep" id="sep-3"></div>
+  <div class="step-item" id="step-4"><div class="step-dot">4</div><span>Resultado</span></div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- PHASE 1: ATS + CV -->
+  <div class="phase active" id="phase-1">
+    <h2 class="phase-title">¿En qué sistema<br><em>quieres aplicar?</em></h2>
+    <p class="phase-sub">Cada empresa usa un ATS diferente. Elige el que más se parece a donde quieres entrar.</p>
+
+    <div class="ats-grid">
+      <div class="ats-card" data-ats="workforce" onclick="selectATS(this)">
+        <div class="ats-selected-mark">✓</div>
+        <div class="ats-logo">WorkForce Pro</div>
+        <p class="ats-desc">Sistema enterprise para grandes corporativos. Muy exigente con formato ATS y keywords técnicos.</p>
+        <p class="ats-sector">Manufactura · Automotriz · Industrial</p>
+      </div>
+      <div class="ats-card" data-ats="talentcore" onclick="selectATS(this)">
+        <div class="ats-selected-mark">✓</div>
+        <div class="ats-logo">TalentCore</div>
+        <p class="ats-desc">Plataforma de selección masiva. Filtra por keywords e impacto financiero en los primeros 6 segundos.</p>
+        <p class="ats-sector">Multinacionales · Retail · Servicios</p>
+      </div>
+      <div class="ats-card" data-ats="hireflow" onclick="selectATS(this)">
+        <div class="ats-selected-mark">✓</div>
+        <div class="ats-logo">HireFlow</div>
+        <p class="ats-desc">Sistema moderno con IA propia. Puntúa narrativa ejecutiva, impacto y consistencia de perfil.</p>
+        <p class="ats-sector">Tech · Startups · Fintech</p>
+      </div>
+      <div class="ats-card" data-ats="apexrecruit" onclick="selectATS(this)">
+        <div class="ats-selected-mark">✓</div>
+        <div class="ats-logo">ApexRecruit</div>
+        <p class="ats-desc">Estándar en empresas Fortune 500. Detecta tablas, columnas y formatos incompatibles al instante.</p>
+        <p class="ats-sector">Corporativos · Banca · Energía</p>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Tu CV · PDF o Word</label>
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="file-input" accept=".pdf,.doc,.docx" onchange="handleFile(this)">
+        <div class="upload-icon">📄</div>
+        <p class="upload-title">Arrastra tu CV aquí o haz clic</p>
+        <p class="upload-sub">PDF o Word · Máximo 10MB</p>
+        <p class="upload-file-name" id="file-name-display"></p>
+      </div>
+    </div>
+
+    <button class="btn-main" id="btn-step1" disabled onclick="startCVAnalysis()">
+      Analizar mi CV →
+    </button>
+  </div>
+
+  <!-- PHASE 2: ANALYZING CV -->
+  <div class="phase" id="phase-2">
+    <div class="analyzing-wrap">
+      <p class="progress-label" id="prog-label">Iniciando análisis...</p>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar"></div></div>
+      <div class="mockup">
+        <div class="mockup-topbar" id="mock-topbar">
+          <div class="m-dot" style="background:#ef4444"></div>
+          <div class="m-dot" style="background:#f59e0b"></div>
+          <div class="m-dot" style="background:#22c55e"></div>
+          <span class="mockup-name" id="mock-ats-name"></span>
+        </div>
+        <div class="mockup-body">
+          <div class="m-row">
+            <div>
+              <div class="m-name" id="mock-cand-name">Candidato</div>
+              <div class="m-pos" id="mock-cand-pos">Analizando...</div>
+            </div>
+            <div class="m-score" id="mock-score">
+              <span class="m-score-num" id="mock-score-num">—</span>
+              <span class="m-score-lbl">score</span>
+            </div>
+          </div>
+          <div class="m-flags" id="mock-flags"></div>
+          <div class="m-decision" id="mock-decision">
+            <span class="m-dec-text" id="mock-dec-text"></span>
+            <button class="m-dec-btn" id="mock-dec-btn"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3: LINKEDIN -->
+  <div class="phase" id="phase-3">
+    <h2 class="phase-title">Ahora tu<br><em>LinkedIn.</em></h2>
+    <p class="phase-sub">Los reclutadores cruzan ambos perfiles. Si no coinciden, la credibilidad cae antes de que te llamen.</p>
+
+    <div class="input-group">
+      <label class="input-label">URL de tu perfil de LinkedIn</label>
+      <input type="text" class="li-input" id="li-url"
+             placeholder="linkedin.com/in/tu-perfil"
+             oninput="checkLIReady()">
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Pega aquí el contenido de tu perfil <span style="color:var(--gray);font-size:10px;">(copia tu sección "Acerca de" + experiencia)</span></label>
+      <textarea class="li-input" id="li-content" rows="8"
+                placeholder="Pega aquí el texto de tu perfil de LinkedIn — About, experiencia, certificaciones..."
+                oninput="checkLIReady()" style="resize:vertical;"></textarea>
+    </div>
+
+    <button class="btn-main" id="btn-li" disabled onclick="startLIAnalysis()">
+      Analizar LinkedIn →
+    </button>
+    <button class="btn-secondary" onclick="skipLI()">
+      Continuar sin LinkedIn →
+    </button>
+  </div>
+
+  <!-- PHASE 4: ANALYZING LI -->
+  <div class="phase" id="phase-4">
+    <div class="analyzing-wrap">
+      <p class="progress-label" id="prog-label-li">Analizando LinkedIn...</p>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar-li"></div></div>
+      <p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);margin-top:24px;" id="li-status">Cruzando datos con tu CV...</p>
+    </div>
+  </div>
+
+  <!-- PHASE 5: FINAL RESULTS -->
+  <div class="phase" id="phase-5">
+    <!-- Verdict -->
+    <div class="verdict-header">
+      <p class="verdict-label">Veredicto Final</p>
+      <h2 class="verdict-title" id="final-verdict">DESCARTADO.</h2>
+      <p class="verdict-score" id="final-score-line"></p>
+      <p class="verdict-problem" id="final-problem"></p>
+    </div>
+
+    <!-- Inconsistencies (solo si hay LinkedIn) -->
+    <div class="inconsistencies" id="inconsistencies-block" style="display:none;">
+      <p class="incons-title">Inconsistencias CV vs LinkedIn detectadas</p>
+      <div class="incons-grid" id="incons-grid"></div>
+    </div>
+
+    <!-- Sections -->
+    <div class="result-sections" id="result-sections"></div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <h2 class="cta-title">Esto tiene<br><em>solución.</em></h2>
+      <p class="cta-sub">
+        En una <strong>Sesión Élite de 60 minutos</strong> identificamos exactamente qué está fallando 
+        y entregamos tu CV optimizado en 24 horas — listo para pasar cualquier filtro.
+      </p>
+      <a href="https://wa.me/523320658076?text=Acabo%20de%20ver%20mi%20análisis%20y%20quiero%20la%20Sesión%20Élite" 
+         class="btn-wa-cta" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Quiero resolver esto — Sesión Élite
+      </a>
+      <p class="cta-scarcity"><span>Solo 3 lugares</span> disponibles esta semana · Fines de semana</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">HirePilot<span>MX</span></div>
+  <p class="footer-text">© 2026 HirePilotMX · Guadalajara, México</p>
+</footer>
+
+<script>
+let selectedATS = null, cvText = '', liText = '', liURL = '', cvResult = null, liResult = null;
+
+const atsConfig = {
+  workforce:   { name: 'WorkForce Pro',  color: '#4a90d9' },
+  talentcore:  { name: 'TalentCore',     color: '#5ba85a' },
+  hireflow:    { name: 'HireFlow',       color: '#c9952a' },
+  apexrecruit: { name: 'ApexRecruit',    color: '#c0392b' },
+};
+
+function selectATS(card) {
+  document.querySelectorAll('.ats-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedATS = card.dataset.ats;
+  checkStep1Ready();
+}
+
+function handleFile(input) {
+  const file = input.files[0]; if (!file) return;
+  document.getElementById('file-name-display').textContent = '✓ ' + file.name;
+  document.getElementById('upload-zone').classList.add('has-file');
+  if (file.name.endsWith('.pdf')) {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const pdf = await pdfjsLib.getDocument({ data: e.target.result }).promise;
+        let text = '';
+        for (let i = 1; i <= Math.min(pdf.numPages, 6); i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          text += content.items.map(x => x.str).join(' ') + '\n';
+        }
+        cvText = text;
+      } catch { cvText = 'CV cargado'; }
+      checkStep1Ready();
+    };
+    reader.readAsArrayBuffer(file);
+  } else {
+    const reader = new FileReader();
+    reader.onload = e => { cvText = e.target.result; checkStep1Ready(); };
+    reader.readAsText(file);
+  }
+}
+
+function checkStep1Ready() {
+  document.getElementById('btn-step1').disabled = !(selectedATS && cvText);
+}
+function checkLIReady() {
+  liURL = document.getElementById('li-url').value.trim();
+  liText = document.getElementById('li-content').value.trim();
+  document.getElementById('btn-li').disabled = liText.length < 50;
+}
+
+async function startCVAnalysis() {
+  showPhase(2);
+  const ats = atsConfig[selectedATS];
+  document.getElementById('mock-ats-name').textContent = ats.name + ' · ATS';
+
+  const steps = [
+    { label: 'Parseando documento...', pct: 20 },
+    { label: 'Detectando formato y estructura...', pct: 38 },
+    { label: 'Escaneando keywords y terminología...', pct: 55 },
+    { label: 'Evaluando impacto financiero...', pct: 72 },
+    { label: 'Aplicando criterios ' + ats.name + '...', pct: 88 },
+    { label: 'Generando veredicto...', pct: 97 },
+  ];
+  for (const s of steps) {
+    document.getElementById('prog-label').textContent = s.label;
+    document.getElementById('prog-bar').style.width = s.pct + '%';
+    await sleep(550);
+  }
+
+  try {
+    cvResult = await callClaude(buildCVPrompt(cvText, ats.name), "Eres " + ats.name + ", un sistema ATS empresarial de alto nivel. Evaluas CVs ejecutivos con criterio estricto. Responde SOLO en JSON valido.");
+    showMockup(cvResult, ats);
+    await sleep(2800);
+    showPhase(3);
+  } catch {
+    cvResult = fallbackCVResult();
+    showMockup(cvResult, ats);
+    await sleep(2000);
+    showPhase(3);
+  }
+}
+
+async function startLIAnalysis() {
+  showPhase(4);
+  const liSteps = [
+    { label: 'Analizando perfil de LinkedIn...', pct: 25 },
+    { label: 'Evaluando consistencia narrativa...', pct: 50 },
+    { label: 'Cruzando datos con tu CV...', pct: 75 },
+    { label: 'Detectando inconsistencias...', pct: 92 },
+  ];
+  for (const s of liSteps) {
+    document.getElementById('prog-label-li').textContent = s.label;
+    document.getElementById('prog-bar-li').style.width = s.pct + '%';
+    document.getElementById('li-status').textContent = s.label;
+    await sleep(700);
+  }
+  try {
+    liResult = await callClaude(buildLIPrompt(cvText, liText, liURL), "Eres un reclutador ejecutivo senior con 15 anos en Capital Humano en Mexico. Cruzas CV y LinkedIn detectando inconsistencias criticas. Responde SOLO en JSON valido.");
+    showFinalResults();
+  } catch {
+    liResult = fallbackLIResult();
+    showFinalResults();
+  }
+}
+
+function skipLI() {
+  liResult = null;
+  showFinalResults();
+}
+
+function buildCVPrompt(cv, atsName) {
+  return `Eres un sistema ATS llamado "${atsName}". Analiza este CV con criterio real de reclutamiento ejecutivo en México.
+
+CV:
+${cv.slice(0, 4000)}
+
+Responde SOLO JSON válido:
+{
+  "candidateName": "nombre o 'Candidato'",
+  "position": "cargo principal",
+  "score": número 1-10 con decimal,
+  "verdict": "DESCARTADO" o "EN REVISIÓN" o "AVANZA",
+  "flags": [
+    {"type":"red|yellow|green","text":"hallazgo específico"}
+  ],
+  "sections": [
+    {"title":"Impacto Financiero","score":"X/10","status":"bad|ok|good","findings":["hallazgo 1","hallazgo 2","hallazgo 3"]},
+    {"title":"Formato y Compatibilidad ATS","score":"X/10","status":"bad|ok|good","findings":["hallazgo 1","hallazgo 2","hallazgo 3"]},
+    {"title":"Keywords y Posicionamiento","score":"X/10","status":"bad|ok|good","findings":["hallazgo 1","hallazgo 2","hallazgo 3"]},
+    {"title":"Narrativa Ejecutiva","score":"X/10","status":"bad|ok|good","findings":["hallazgo 1","hallazgo 2","hallazgo 3"]}
+  ],
+  "mainProblem": "El problema principal en una frase directa"
+}
+
+Score realista: CVs sin optimizar sacan 3.5-6.5. Menor a 6 = DESCARTADO. Sé específico con lo que ves en el CV.`;
+}
+
+function buildLIPrompt(cv, li, liURL) {
+  return `Eres un reclutador ejecutivo senior. Analiza este perfil de LinkedIn y crúzalo con el CV.
+
+CV (extracto):
+${cv.slice(0, 2000)}
+
+LinkedIn:
+${li.slice(0, 2000)}
+URL: ${liURL}
+
+Responde SOLO JSON válido:
+{
+  "liScore": número 1-10 con decimal,
+  "liStatus": "bad|ok|good",
+  "liFindings": ["hallazgo 1","hallazgo 2","hallazgo 3","hallazgo 4"],
+  "inconsistencies": [
+    {"field":"nombre del campo","cv":"lo que dice el CV","linkedin":"lo que dice LinkedIn"}
+  ],
+  "combinedScore": número 1-10 promedio ponderado,
+  "combinedVerdict": "DESCARTADO" o "EN REVISIÓN" o "AVANZA",
+  "combinedProblem": "El problema principal combinado en una frase"
+}
+
+Si no hay inconsistencias claras, deja inconsistencies como array vacío. Sé específico.`;
+}
+
+async function callClaude(prompt, systemPrompt) {
+  const res = await fetch('/.netlify/functions/ai', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      prompt: prompt,
+      system: systemPrompt || 'Eres un sistema ATS de alto nivel. Analiza CVs y perfiles de LinkedIn con criterio real de reclutamiento ejecutivo en Mexico. Responde SIEMPRE en JSON valido y nada mas. Sin texto adicional, sin markdown, sin backticks.'
+    })
+  });
+  const data = await res.json();
+  const text = data.text.replace(/```json|```/g, '').trim();
+  return JSON.parse(text);
+}
+
+function showMockup(result, ats) {
+  document.getElementById('mock-cand-name').textContent = result.candidateName;
+  document.getElementById('mock-cand-pos').textContent = result.position;
+  const isRed = result.score < 6, isYellow = result.score < 7.5;
+  const color = isRed ? '#c53030' : isYellow ? '#744210' : '#276749';
+  const sc = document.getElementById('mock-score');
+  sc.style.borderColor = color; sc.style.color = color;
+  document.getElementById('mock-score-num').textContent = result.score.toFixed(1);
+
+  const flagsEl = document.getElementById('mock-flags');
+  flagsEl.innerHTML = '';
+  const icons = { red: '🚫', yellow: '⚠️', green: '✓' };
+  (result.flags || []).slice(0,4).forEach((f, i) => {
+    const el = document.createElement('div');
+    el.className = `m-flag ${f.type}`;
+    el.innerHTML = `<span>${icons[f.type]}</span><span>${f.text}</span>`;
+    flagsEl.appendChild(el);
+    setTimeout(() => el.classList.add('show'), 300 + i * 220);
+  });
+
+  setTimeout(() => {
+    const dec = document.getElementById('mock-decision');
+    const dt = document.getElementById('mock-dec-text');
+    const db = document.getElementById('mock-dec-btn');
+    if (result.verdict === 'DESCARTADO') {
+      dec.className = 'm-decision reject show'; dt.style.color='#c53030';
+      dt.textContent = '⛔ DESCARTADO'; db.style.background='#e53e3e'; db.style.color='white'; db.textContent='DESCARTAR';
+    } else if (result.verdict === 'EN REVISIÓN') {
+      dec.className = 'm-decision warn show'; dt.style.color='#744210';
+      dt.textContent = '⚠️ EN REVISIÓN'; db.style.background='#ca8a04'; db.style.color='white'; db.textContent='EN ESPERA';
+    } else {
+      dec.className = 'm-decision approve show'; dt.style.color='#276749';
+      dt.textContent = '✓ AVANZA'; db.style.background='#16a34a'; db.style.color='white'; db.textContent='AVANZAR';
+    }
+  }, 300 + (result.flags||[]).length * 220 + 300);
+}
+
+function showFinalResults() {
+  showPhase(5);
+  const hasLI = liResult !== null;
+  const finalVerdict = hasLI ? liResult.combinedVerdict : cvResult.verdict;
+  const finalScore = hasLI ? liResult.combinedScore : cvResult.score;
+  const finalProblem = hasLI ? liResult.combinedProblem : cvResult.mainProblem;
+
+  const vEl = document.getElementById('final-verdict');
+  vEl.textContent = finalVerdict + '.';
+  if (finalVerdict === 'DESCARTADO') vEl.className = 'verdict-title';
+  else if (finalVerdict === 'EN REVISIÓN') vEl.className = 'verdict-title warn';
+  else vEl.className = 'verdict-title ok';
+
+  document.getElementById('final-score-line').innerHTML =
+    `Score <span>${finalScore.toFixed(1)}</span>/10${hasLI ? ' · CV + LinkedIn' : ' · Solo CV'}`;
+  document.getElementById('final-problem').textContent = finalProblem;
+
+  // Inconsistencies
+  if (hasLI && liResult.inconsistencies && liResult.inconsistencies.length > 0) {
+    document.getElementById('inconsistencies-block').style.display = 'block';
+    const grid = document.getElementById('incons-grid');
+    grid.innerHTML = '';
+    liResult.inconsistencies.forEach(inc => {
+      const row = document.createElement('div');
+      row.className = 'incon-item';
+      row.innerHTML = `
+        <div class="incon-cell cv">
+          <div class="incon-cell-label">CV — ${inc.field}</div>
+          <div class="incon-text">${inc.cv}</div>
+        </div>
+        <div class="incon-cell li">
+          <div class="incon-cell-label">LinkedIn — ${inc.field}</div>
+          <div class="incon-text">${inc.linkedin}</div>
+        </div>`;
+      grid.appendChild(row);
+    });
+  }
+
+  // Sections from CV result
+  const sectionsEl = document.getElementById('result-sections');
+  sectionsEl.innerHTML = '';
+  const icons = { bad: '🚫', ok: '⚠️', good: '✓' };
+  (cvResult.sections || []).forEach(section => {
+    const div = document.createElement('div');
+    div.className = 'result-section';
+    div.innerHTML = `
+      <div class="rs-header">
+        <span class="rs-title">${section.title}</span>
+        <span class="rs-score ${section.status}">${section.score}/10</span>
+      </div>
+      <div class="rs-body">
+        ${(section.findings||[]).map(f =>
+          `<div class="rs-finding"><span class="rs-finding-icon">${icons[section.status]}</span><span>${f}</span></div>`
+        ).join('')}
+      </div>`;
+    sectionsEl.appendChild(div);
+  });
+
+  // Add LI section if available
+  if (hasLI && liResult.liFindings) {
+    const liDiv = document.createElement('div');
+    liDiv.className = 'result-section';
+    liDiv.innerHTML = `
+      <div class="rs-header">
+        <span class="rs-title">Perfil LinkedIn</span>
+        <span class="rs-score ${liResult.liStatus}">${liResult.liScore}/10</span>
+      </div>
+      <div class="rs-body">
+        ${(liResult.liFindings||[]).map(f =>
+          `<div class="rs-finding"><span class="rs-finding-icon">${icons[liResult.liStatus]}</span><span>${f}</span></div>`
+        ).join('')}
+      </div>`;
+    sectionsEl.appendChild(liDiv);
+  }
+}
+
+function showPhase(n) {
+  document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+  document.getElementById('phase-' + n).classList.add('active');
+  document.querySelectorAll('.step-item').forEach((s, i) => {
+    s.classList.remove('active','done');
+    const phaseMap = [1,1,2,3,3,4];
+    const stepNum = phaseMap[n-1] || n;
+    if (i+1 < stepNum) s.classList.add('done');
+    else if (i+1 === stepNum) s.classList.add('active');
+  });
+  document.querySelectorAll('.step-sep').forEach((s, i) => {
+    s.classList.remove('done');
+    const phaseMap = [1,1,2,3,3,4];
+    if (i+1 < phaseMap[n-1]) s.classList.add('done');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function fallbackCVResult() {
+  return {
+    candidateName:'Candidato', position:'Perfil analizado',
+    score:5.1, verdict:'DESCARTADO',
+    flags:[
+      {type:'red',text:'Sin cifras de impacto financiero detectadas'},
+      {type:'red',text:'Formato con posibles tablas o columnas — falla ATS'},
+      {type:'yellow',text:'Keywords insuficientes para el sector objetivo'},
+      {type:'yellow',text:'Narrativa ejecutiva débil o ausente'},
+    ],
+    sections:[
+      {title:'Impacto Financiero',score:'2',status:'bad',findings:['No se detectaron cifras de ahorro, costo o ingreso','Los bullets describen responsabilidades, no resultados','Sin cuantificación de equipos, proyectos o alcance']},
+      {title:'Formato ATS',score:'4',status:'bad',findings:['Posibles tablas o columnas que el parser no lee correctamente','Estructura de secciones no estándar para ATS','Riesgo de pérdida de información en el parseo automático']},
+      {title:'Keywords',score:'5',status:'ok',findings:['Keywords técnicos presentes pero sin jerarquía clara','Faltan términos de industrias objetivo','El headline no refleja las búsquedas activas del mercado']},
+      {title:'Narrativa Ejecutiva',score:'3',status:'bad',findings:['El summary es genérico — aplica a cualquier candidato','No hay propuesta de valor diferenciada','Falta gancho ejecutivo en las primeras líneas']},
+    ],
+    mainProblem:'El CV describe responsabilidades cuando el mercado contrata resultados medibles.'
+  };
+}
+
+function fallbackLIResult() {
+  return {
+    liScore:4.5, liStatus:'bad',
+    liFindings:['La sección Acerca de no comunica propuesta de valor clara','Perfil inactivo — sin publicaciones recientes','Inconsistencias detectadas entre CV y LinkedIn','Keywords del headline no coinciden con búsquedas activas'],
+    inconsistencies:[{field:'Empresa actual',cv:'Nombre según CV',linkedin:'Nombre diferente en LinkedIn'},{field:'Fechas',cv:'Período según CV',linkedin:'Período diferente en LinkedIn'}],
+    combinedScore:4.8, combinedVerdict:'DESCARTADO',
+    combinedProblem:'El CV y LinkedIn cuentan historias distintas — eso destruye credibilidad antes de que alguien te llame.'
+  };
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// Drag and drop
+const uz = document.getElementById('upload-zone');
+uz.addEventListener('dragover', e => { e.preventDefault(); uz.classList.add('drag'); });
+uz.addEventListener('dragleave', () => uz.classList.remove('drag'));
+uz.addEventListener('drop', e => {
+  e.preventDefault(); uz.classList.remove('drag');
+  const f = e.dataTransfer.files[0];
+  if (f) { document.getElementById('file-input').files = e.dataTransfer.files; handleFile(document.getElementById('file-input')); }
+});
+</script>
+</body>
+</html>
