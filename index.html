@@ -285,11 +285,21 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
     </div>
     <div class="ats-widget">
       <p class="widget-label">Simula tu análisis ATS</p>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--black);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Elige el sistema ATS</span>
+        </div>
+      </div>
       <div class="ats-mini-grid">
         <div class="ats-mini" data-ats="workforce" onclick="selectATS(this)"><div class="ats-mini-name">WorkForce Pro</div><div class="ats-mini-sector">Manufactura · Automotriz</div></div>
         <div class="ats-mini" data-ats="talentcore" onclick="selectATS(this)"><div class="ats-mini-name">TalentCore</div><div class="ats-mini-sector">Multinacionales · Retail</div></div>
         <div class="ats-mini" data-ats="hireflow" onclick="selectATS(this)"><div class="ats-mini-name">HireFlow</div><div class="ats-mini-sector">Tech · Startups</div></div>
         <div class="ats-mini" data-ats="apexrecruit" onclick="selectATS(this)"><div class="ats-mini-name">ApexRecruit</div><div class="ats-mini-sector">Corporativos · Banca</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--black);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+        <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Sube tu CV</span>
       </div>
       <div class="upload-zone" id="upload-zone">
         <input type="file" id="file-input" accept=".pdf,.doc,.docx" onchange="handleFile(this)">
@@ -297,6 +307,10 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         <p class="upload-text">Arrastra tu CV o haz clic</p>
         <p class="upload-sub">PDF o Word · Gratis · Sin registro</p>
         <p class="upload-filename" id="file-name-display"></p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--black);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+        <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Analiza — gratis, sin registro</span>
       </div>
       <button class="btn-analyze" id="btn-analyze" disabled onclick="startAnalysis()">Analizar mi CV →</button>
     </div>
