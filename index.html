@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HirePilotMX — Posicionamiento Ejecutivo con Alejandro Vivanco</title>
-<meta name="description" content="Reposicionamiento ejecutivo personalizado. Diagnóstico de perfil, CV optimizado y estrategia de visibilidad con Alejandro Vivanco, 15 años contratando en México.">
+<title>HirePilotMX — Posicionamiento Ejecutivo</title>
+<meta name="description" content="Reposicionamiento ejecutivo personalizado. Diagnóstico de perfil, CV optimizado y estrategia de visibilidad. 15 años contratando en México.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -42,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-badge{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.08em;}
 .hero-badge span{color:var(--red);}
 
-/* SCAN WIDGET — GANCHO ATS (reposicionado) */
+/* SCAN WIDGET */
 .scan-widget{border:1px solid var(--border2);background:var(--black2);padding:36px;position:relative;}
 .scan-widget::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
 .widget-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
@@ -141,7 +140,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .tension-title{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,22px);font-style:italic;font-weight:300;color:var(--white2);margin-bottom:10px;line-height:1.4;}
 .tension-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.8;}
 
-/* GATE FORM */
+/* GATE FORM — simplificado */
 .gate-block{border:1px solid var(--border2);background:var(--black2);padding:40px;position:relative;overflow:hidden;}
 .gate-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
 .gate-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,38px);font-weight:300;line-height:1.1;margin-bottom:10px;}
@@ -151,7 +150,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .gate-input{width:100%;padding:15px 18px;background:var(--black3);border:1px solid var(--border);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color 0.3s;}
 .gate-input::placeholder{color:var(--gray);}
 .gate-input:focus{border-color:rgba(201,149,42,0.5);}
-.gate-input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .btn-gate{width:100%;padding:18px;background:var(--gold);color:var(--black);border:none;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;}
 .btn-gate:hover{background:var(--gold2);}
 .gate-privacy{font-family:'DM Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:0.08em;text-align:center;margin-top:10px;}
@@ -201,7 +199,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:0.88;color:var(--white);margin-bottom:60px;}
 .sec-title em{color:var(--gold);font-style:italic;}
 
-/* PROBLEMA — nueva sección copy */
+/* PROBLEMA */
 .problema-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);max-width:1100px;margin:0 auto;}
 .prob-item{padding:36px 30px;background:var(--black2);position:relative;}
 .prob-item::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--border);}
@@ -209,25 +207,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .prob-title{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--white2);}
 .prob-desc{font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.3);}
 .prob-desc strong{color:rgba(255,255,255,0.55);font-weight:400;}
-
-/* ANTES / DESPUÉS */
-.transforms-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);max-width:1100px;margin:0 auto;}
-.transform-col{background:var(--black2);padding:36px 30px;}
-.transform-col.after-col{background:var(--black3);border-left:2px solid var(--gold);}
-.transform-col-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:10px;}
-.transform-col.before-col .transform-col-label{color:var(--gray);}
-.transform-col.after-col .transform-col-label{color:var(--gold);}
-.transform-item{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}
-.transform-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
-.transform-item-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:8px;}
-.transform-item-text{font-size:14px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.35);}
-.transform-col.after-col .transform-item-text{color:rgba(255,255,255,0.75);}
-.transform-item-text strong{color:rgba(255,255,255,0.55);font-weight:400;}
-.transform-col.after-col .transform-item-text strong{color:var(--gold);font-weight:500;}
-
-/* Screenshot placeholder */
-.screenshot-placeholder{height:180px;border:1px dashed rgba(201,149,42,0.2);display:flex;align-items:center;justify-content:center;margin-top:20px;background:rgba(201,149,42,0.02);}
-.screenshot-placeholder-text{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,149,42,0.25);text-align:center;line-height:1.8;}
 
 /* TESTIMONIOS */
 .testi-section{padding:100px 56px;background:var(--black);}
@@ -334,7 +313,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   .ale-grid{grid-template-columns:1fr;gap:40px;}
   .sesion-grid,.casos-grid,.problema-grid{grid-template-columns:1fr;}
   .testi-grid{grid-template-columns:1fr;}
-  .transforms-grid{grid-template-columns:1fr;}
   .precio-card{padding:32px 20px;}
   .gate-input-row{grid-template-columns:1fr;}
   .cta-result{padding:36px 20px;}
@@ -344,13 +322,14 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 </head>
 <body>
 
+<!-- ═══ CAMBIO 2: Nav — sin mencionar "diagnóstico" como CTA, porque ya lo hicieron ═══ -->
 <nav>
   <div class="logo">HirePilot<span>MX</span></div>
-  <a href="https://wa.me/523320658076?text=Hola%20Alejandro%2C%20quiero%20mi%20diagnóstico%20ejecutivo" class="nav-cta" target="_blank">Diagnóstico Ejecutivo</a>
+  <a href="https://wa.me/523320658076?text=Hola%2C%20vi%20mi%20resultado%20en%20HirePilotMX%20y%20quiero%20reposicionar%20mi%20perfil" class="nav-cta" target="_blank">Agendar sesión</a>
 </nav>
 
 <!-- ═══════════════════════════════════════════
-     HERO — Mensaje reposicionado
+     HERO — Primera persona + Alejandro solo aquí
 ════════════════════════════════════════════ -->
 <section class="hero">
   <canvas id="hero-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.25;z-index:0;"></canvas>
@@ -378,19 +357,20 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
     <div>
       <p class="hero-eyebrow">HirePilotMX · Posicionamiento Ejecutivo</p>
       <h1 class="hero-title">
-        El mercado no<br>
-        <span class="gold">te ve bien.</span><br>
-        <span class="dim">Eso tiene<br>solución exacta.</span>
+        Más de 15 años<br>
+        <span class="gold">evaluando perfiles.</span><br>
+        <span class="dim">Ahora trabajo el tuyo.</span>
       </h1>
+
       <p class="hero-sub">
-        Tu experiencia es real. Tu trayectoria vale. El problema es cómo está <strong>posicionada, narrada y percibida</strong> por quienes toman decisiones.<br><br>
-        Alejandro Vivanco lleva <strong>15 años en el otro lado de la mesa</strong> — sabe exactamente qué hace que un perfil ejecutivo sea ignorado, y cómo revertirlo.
+        Soy <strong>Alejandro Vivanco</strong>, Gerente de RR.HH. con más de 15 años evaluando y contratando perfiles en México — manufactura, automotriz, operaciones, supply chain y corporativos.<br><br>
+        Trabajo con gerentes y directores senior que tienen trayectoria real pero cuyo perfil no la comunica con claridad. Reviso tu CV y LinkedIn, identifico qué no está funcionando y lo reescribo con criterio de quien contrata.
       </p>
-      <p class="hero-badge"><span>Solo 3 lugares</span> disponibles esta semana · Fines de semana</p>
+      <p class="hero-badge">3 lugares por semana · Sesiones en fin de semana</p>
     </div>
     <div class="scan-widget">
-      <p class="widget-label">Diagnóstico de visibilidad — gratis</p>
-      <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.3);line-height:1.7;margin-bottom:20px;">Analiza cómo percibe el mercado tu perfil hoy. El sistema detecta patrones reales que usan las empresas para filtrar candidatos ejecutivos.</p>
+      <p class="widget-label">Diagnóstico de perfil — gratis</p>
+      <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.3);line-height:1.7;margin-bottom:20px;">Sube tu CV y recibe un análisis de cómo está comunicada tu experiencia — qué funciona y qué conviene mejorar.</p>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div style="width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--black);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
         <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Tipo de empresa objetivo</span>
@@ -423,9 +403,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     ANALYZING
-════════════════════════════════════════════ -->
+<!-- ANALYZING -->
 <div class="analyzing-section" id="analyzing-section">
   <p class="prog-label" id="prog-label">Iniciando análisis...</p>
   <div class="prog-wrap"><div class="prog-bar" id="prog-bar"></div></div>
@@ -445,16 +423,15 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 <div class="sdiv"></div>
 
 <!-- ═══════════════════════════════════════════
-     PARTIAL RESULTS — Resultados con gate
+     PARTIAL RESULTS — Gate simplificado
 ════════════════════════════════════════════ -->
 <div class="partial-section" id="partial-section">
   <div class="partial-inner">
 
-    <!-- Score parcial -->
     <div class="partial-score-block">
-      <p class="partial-eyebrow">Diagnóstico Parcial</p>
+      <p class="partial-eyebrow">Tu diagnóstico de posicionamiento</p>
       <h2 class="partial-verdict red" id="partial-verdict">DESCARTADO.</h2>
-      <p class="partial-score-line">Visibilidad ejecutiva: <span id="partial-score-num">—</span>/10</p>
+      <p class="partial-score-line">Posicionamiento ejecutivo: <span id="partial-score-num">—</span>/10</p>
     </div>
 
     <!-- 1 hallazgo visible -->
@@ -498,27 +475,40 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       </div>
     </div>
 
-    <!-- Tensión emocional -->
+    <!-- Tensión -->
     <div class="tension-block">
-      <p class="tension-title" id="tension-text">"Detectamos factores críticos que afectan cómo el mercado percibe tu perfil — y no son evidentes desde adentro."</p>
-      <p class="tension-sub">El diagnóstico completo incluye hallazgos específicos, plan de acción y la brecha exacta entre cómo te ves tú y cómo te evalúan los que toman decisiones.</p>
+      <p class="tension-title" id="tension-text">"Detecté factores críticos que afectan cómo el mercado percibe tu perfil — y no son evidentes desde adentro."</p>
+      <p class="tension-sub">El análisis completo incluye hallazgos específicos por sección, entregables concretos y el plan de acción para mejorar cómo te percibe el mercado ejecutivo.</p>
     </div>
 
-    <!-- Gate form — exclusivo -->
+    <!-- Gate form — Netlify capture + WhatsApp -->
     <div class="gate-block">
-      <h3 class="gate-title">Desbloquea tu<br>diagnóstico <em>completo.</em></h3>
-      <p class="gate-sub">Deja tu nombre y WhatsApp. Alejandro revisará el análisis personalmente y te enviará el desglose completo en menos de 24 horas — sin costo.</p>
-      <div class="gate-form">
-        <div class="gate-input-row">
-          <input class="gate-input" type="text" id="gate-name" placeholder="Tu nombre" autocomplete="name">
-          <input class="gate-input" type="tel" id="gate-phone" placeholder="WhatsApp (10 dígitos)" autocomplete="tel">
-        </div>
-        <button class="btn-gate" onclick="submitGate()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quiero mi diagnóstico completo
-        </button>
-        <p class="gate-privacy">Sin spam · Sin ventas automáticas · Revisión personal de Alejandro</p>
+      <h3 class="gate-title">Recibe tu análisis<br><em>completo.</em></h3>
+      <p class="gate-sub">Déjame tu WhatsApp. Te envío el análisis completo en menos de 24 horas — yo directamente, sin automatizaciones.</p>
+
+      <!-- Estado inicial: form -->
+      <div id="gate-form-wrap">
+        <form name="gate-leads" netlify data-netlify="true" onsubmit="submitGate(event)" class="gate-form">
+          <input type="hidden" name="form-name" value="gate-leads">
+          <input type="hidden" name="veredicto" id="gate-veredicto">
+          <input type="hidden" name="score" id="gate-score">
+          <input class="gate-input" type="tel" name="whatsapp" id="gate-phone" placeholder="Tu WhatsApp (10 dígitos)" autocomplete="tel" required>
+          <button type="submit" class="btn-gate">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Envíame el análisis completo
+          </button>
+          <p class="gate-privacy">Sin spam · Te escribo yo directamente · En menos de 24h</p>
+        </form>
       </div>
+
+      <!-- Estado confirmación: se muestra después del submit -->
+      <div id="gate-confirm" style="display:none;text-align:center;padding:24px 0;">
+        <div style="font-size:32px;margin-bottom:12px;">✓</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--white2);margin-bottom:8px;">Listo, te escribo pronto.</p>
+        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.7;margin-bottom:20px;">Recibí tu número. Te mando el análisis completo en menos de 24 horas — yo personalmente.</p>
+        <a id="gate-wa-link" href="#" target="_blank" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,149,42,0.3);padding-bottom:2px;">¿Prefieres escribirme ahorita? Abre WhatsApp →</a>
+      </div>
+
     </div>
 
   </div>
@@ -526,23 +516,23 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     FULL RESULTS (cuando viene referido)
-════════════════════════════════════════════ -->
+<!-- FULL RESULTS -->
 <div class="results-section" id="results-section">
   <div class="verdict-wrap">
-    <p class="verdict-eyebrow">Diagnóstico de Posicionamiento</p>
+    <!-- CAMBIO 1: Primera persona -->
+    <p class="verdict-eyebrow">Análisis de posicionamiento</p>
     <h2 class="verdict-main red" id="verdict-main">DESCARTADO.</h2>
     <p class="verdict-score" id="verdict-score"></p>
     <p class="verdict-problem" id="verdict-problem"></p>
   </div>
   <div class="result-secs" id="result-secs"></div>
   <div class="cta-result">
-    <h2 class="cta-result-title">Esto tiene<br><em>solución exacta.</em></h2>
-    <p class="cta-result-sub">En una <strong>Sesión Élite de 60 minutos</strong> identificamos la brecha, construimos la narrativa correcta y entregamos tu CV reposicionado en 24 horas.</p>
-    <a href="https://wa.me/523320658076?text=Acabo%20de%20ver%20mi%20diagnóstico%20y%20quiero%20analizar%20mi%20posicionamiento" class="btn-wa-big" target="_blank">
+    <!-- CAMBIO 1+3: Primera persona, CTA ya no dice "diagnóstico" sino siguiente paso -->
+    <h2 class="cta-result-title">Hay aspectos<br><em>concretos por trabajar.</em></h2>
+    <p class="cta-result-sub">En una <strong>sesión de 60 minutos</strong> revisamos juntos qué mejorar, y entrego el CV reescrito en menos de 24 horas.</p>
+    <a href="https://wa.me/523320658076?text=Acabo%20de%20ver%20mi%20resultado%20en%20HirePilotMX%20y%20quiero%20trabajar%20mi%20reposicionamiento" class="btn-wa-big" target="_blank">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Quiero descubrir qué frena mi perfil
+      Quiero trabajar mi perfil
     </a>
     <p class="cta-scarcity"><span>Solo 3 lugares</span> por semana · Fines de semana</p>
   </div>
@@ -550,62 +540,114 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     EL PROBLEMA REAL — nueva sección
-════════════════════════════════════════════ -->
+<!-- PROBLEMA REAL -->
 <section class="sec-pad sec-dark fade-in">
   <div style="max-width:1100px;margin:0 auto;">
-    <p class="sec-label">Por qué pasa esto</p>
-    <h2 class="sec-title">No es tu<br><em>experiencia.</em></h2>
-    <div class="problema-grid">
+    <p class="sec-label">Lo que encuentro al revisar un perfil</p>
+    <h2 class="sec-title">Patrones<br><em>que se repiten.</em></h2>
+    <div class="problema-grid" style="grid-template-columns:repeat(2,1fr);">
+
       <div class="prob-item">
         <div class="prob-num">01</div>
-        <p class="prob-title">Tu narrativa no tiene tracción</p>
-        <p class="prob-desc">Tienes los logros, pero están enterrados en descripción de funciones. <strong>El mercado contrata resultados,</strong> no responsabilidades.</p>
+        <p class="prob-title">Funciones bien descritas, impacto poco visible</p>
+        <p class="prob-desc">La mayoría de los CVs que reviso describen lo que el perfil hacía, no lo que logró. Un reclutador necesita entender el resultado, no solo la responsabilidad. <strong>Son dos cosas distintas y se escriben diferente.</strong></p>
       </div>
+
       <div class="prob-item">
         <div class="prob-num">02</div>
-        <p class="prob-title">El mercado no te encuentra</p>
-        <p class="prob-desc">Los headhunters buscan activamente. Si tu perfil no tiene las keywords correctas en las posiciones correctas, <strong>eres invisible para las búsquedas.</strong></p>
+        <p class="prob-title">El nivel real no siempre queda claro en el perfil</p>
+        <p class="prob-desc">Con frecuencia, un gerente con diez años de experiencia tiene un CV que podría confundirse con el de un coordinador. <strong>El nivel se construye en cómo se presenta la experiencia,</strong> no solo en el título del puesto.</p>
       </div>
+
       <div class="prob-item">
         <div class="prob-num">03</div>
-        <p class="prob-title">Tu percepción de valor no se lee</p>
-        <p class="prob-desc">15 segundos es todo lo que tienes. Si tu propuesta de valor ejecutiva no es inmediata y clara, <strong>el perfil pasa al siguiente.</strong></p>
+        <p class="prob-title">CV y LinkedIn no están alineados</p>
+        <p class="prob-desc">Cuando ambos documentos difieren en tono, cargos o logros descritos, <strong>generan dudas en quien evalúa.</strong> No es un problema grave, pero sí es señal de que el perfil no está trabajado con intención.</p>
       </div>
+
       <div class="prob-item">
         <div class="prob-num">04</div>
-        <p class="prob-title">No hay estrategia de acceso</p>
-        <p class="prob-desc">El 70% de los puestos directivos se cubren sin publicarse. <strong>Sin acceso a la red correcta,</strong> compites solo por el 30% que sí ves.</p>
+        <p class="prob-title">Un reclutador evalúa rápido — y con criterio</p>
+        <p class="prob-desc">No es falta de atención. Es que quienes contratan aprenden a identificar señales de nivel en los primeros párrafos. <strong>Si esas señales no están visibles desde el inicio,</strong> el perfil requiere más esfuerzo de interpretación del que normalmente se le da.</p>
       </div>
-      <div class="prob-item">
-        <div class="prob-num">05</div>
-        <p class="prob-title">CV y LinkedIn no hablan el mismo idioma</p>
-        <p class="prob-desc">Inconsistencia entre documentos genera desconfianza inmediata. <strong>El reclutador lo nota en segundos</strong> — aunque tú no lo veas.</p>
-      </div>
-      <div class="prob-item">
-        <div class="prob-num">06</div>
-        <p class="prob-title">Tu perfil no está listo para mercados internacionales</p>
-        <p class="prob-desc">Si tu objetivo es internacional, el estándar es diferente. <strong>Sin reposicionamiento explícito,</strong> queda fuera del radar europeo y americano.</p>
-      </div>
+
     </div>
   </div>
 </section>
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     ANTES / DESPUÉS
-════════════════════════════════════════════ -->
+<!-- TESTIMONIOS -->
+<section class="testi-section fade-in">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="sec-label">Quienes han trabajado conmigo</p>
+    <h2 class="sec-title" style="margin-bottom:48px;">Lo que dicen<br><em>en sus palabras.</em></h2>
+
+    <!-- Dos testimonios principales: Yonathan + Guadalupe -->
+    <div class="testi-grid" style="margin-bottom:1px;">
+
+      <!-- Yonathan — principal -->
+      <div class="testi-main">
+        <div class="testi-qmark">"</div>
+        <p class="testi-text">Me ayudó a estructurar mejor mi experiencia y a destacar mis logros de forma más efectiva. Me orientó para alinear mi trayectoria con oportunidades de mayor nivel y mejorar cómo me perciben los reclutadores. Lo recomiendo por su capacidad de análisis y enfoque práctico.</p>
+        <div class="testi-author">
+          <span class="testi-name">Yonathan Valle Molina</span>
+          <span class="testi-role">Sr. Supplier Development &amp; Quality Manager</span>
+          <span class="testi-company">Automotriz · Aerospace · Industrial — Monterrey, NL</span>
+        </div>
+      </div>
+
+      <!-- Guadalupe — secundario pero completo -->
+      <div class="testi-main" style="border-left:1px solid var(--border);">
+        <div class="testi-qmark">"</div>
+        <p class="testi-text">Excelente análisis, muy objetivo. Le agradezco mucho.</p>
+        <div class="testi-author" style="margin-top:auto;">
+          <span class="testi-name">Guadalupe Curiel</span>
+          <span class="testi-role">Gerente Regional Comercial y Desarrollo de Franquicias</span>
+          <span class="testi-company">México</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Referencias adicionales — compactas -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:56px;">
+      <div style="background:var(--black2);padding:20px 28px;display:flex;align-items:center;gap:20px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);opacity:0.4;line-height:1;flex-shrink:0;">"</div>
+        <div>
+          <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:10px;">Lo recomiendo ampliamente por su dedicación, profesionalismo y capacidad para obtener resultados.</p>
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);">Tomás Rodrigo Román de la Torre</p>
+        </div>
+      </div>
+      <div style="background:var(--black2);padding:20px 28px;display:flex;align-items:center;gap:20px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);opacity:0.4;line-height:1;flex-shrink:0;">"</div>
+        <div>
+          <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:10px;">Profesional dedicado y apasionado, con gran capacidad analítica y enfoque colaborativo.</p>
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);">Luis Fabián Mercado del Ángel</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transición hacia CTA -->
+    <div style="max-width:600px;margin:0 auto;text-align:center;padding-bottom:48px;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,26px);font-weight:300;font-style:italic;color:rgba(255,255,255,0.35);line-height:1.6;margin-bottom:32px;">Cada perfil tiene una historia distinta.<br>El trabajo es hacer que el mercado la entienda correctamente.</p>
+      <a href="https://wa.me/523320658076?text=Quiero%20trabajar%20mi%20perfil" class="btn-wa" target="_blank" style="display:inline-flex;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Agendar una conversación</a>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="sdiv"></div>
+
+<!-- ANTES / DESPUÉS -->
 <section class="sec-pad sec-dark2 fade-in">
   <div style="max-width:1100px;margin:0 auto;">
     <p class="sec-label">La diferencia visible</p>
     <h2 class="sec-title">Lo que<br><em>cambia.</em></h2>
 
-    <!-- Transform rows — text only, no screenshots -->
     <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
 
-      <!-- ROW 1: Bullet de logro -->
       <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:1px;background:var(--border);">
         <div style="background:var(--black3);display:flex;align-items:center;justify-content:center;padding:20px 16px;">
           <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);writing-mode:vertical-rl;transform:rotate(180deg);">CV · Logro</span>
@@ -620,7 +662,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         </div>
       </div>
 
-      <!-- ROW 2: About LinkedIn -->
       <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:1px;background:var(--border);">
         <div style="background:var(--black3);display:flex;align-items:center;justify-content:center;padding:20px 16px;">
           <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);writing-mode:vertical-rl;transform:rotate(180deg);">LinkedIn · About</span>
@@ -631,44 +672,41 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         </div>
         <div style="background:var(--black3);padding:28px 30px;border-left:2px solid var(--gold);position:relative;">
           <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">✓ Después</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--white2);">"Director de Operaciones con track record comprobable en reducción de costos, expansión de planta y liderazgo de equipos +80 personas en entornos Tier 1 y OEM globales."</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--white2);">"Director de Operaciones con historial comprobable en reducción de costos, expansión de operaciones y liderazgo de equipos de más de 80 personas."</p>
         </div>
       </div>
 
-      <!-- ROW 3: Percepción del reclutador -->
       <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:1px;background:var(--border);">
         <div style="background:var(--black3);display:flex;align-items:center;justify-content:center;padding:20px 16px;">
           <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);writing-mode:vertical-rl;transform:rotate(180deg);">Reclutador</span>
         </div>
         <div style="background:var(--black2);padding:28px 30px;border-left:1px solid var(--border);">
           <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:14px;">— Antes</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;line-height:1.6;color:rgba(229,62,62,0.45);">"Perfil genérico. No comunica impacto ni diferenciación ejecutiva. Paso al siguiente."</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;line-height:1.6;color:rgba(229,62,62,0.45);">"Perfil orientado a funciones. No comunica claramente el nivel ni el impacto. Difícil de evaluar."</p>
         </div>
         <div style="background:var(--black3);padding:28px 30px;border-left:2px solid var(--gold);position:relative;">
           <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">✓ Después</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1.6;color:rgba(22,163,74,0.8);">"Perfil ejecutivo con impacto cuantificable y posicionamiento claro. Lo llamo hoy."</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1.6;color:rgba(22,163,74,0.8);">"Perfil con trayectoria clara, logros cuantificados y nivel legible desde el primer párrafo."</p>
         </div>
       </div>
 
     </div>
 
-    <!-- Nota al pie -->
-    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;margin-top:28px;">Estos son ejemplos reales del tipo de transformación que trabajamos en la sesión.</p>
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;margin-top:28px;">Ejemplos del tipo de ajustes que se trabajan en la sesión — no son casos genéricos, son el tipo de intervención que hacemos.</p>
   </div>
 </section>
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     ALEJANDRO — primera persona
-════════════════════════════════════════════ -->
+<!-- ═══ ALEJANDRO — primera persona, sin repetir su nombre completo ═══ -->
 <section class="sec-pad sec-dark fade-in">
   <div class="ale-grid">
     <div>
+
       <p class="sec-label">Con quién trabajas</p>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5vw,72px);font-weight:300;line-height:0.9;margin-bottom:24px;">Soy<br><em style="color:var(--gold);font-style:italic;">Alejandro.</em></h2>
-      <p class="ale-body">Llevo <strong>más de 15 años</strong> contratando — y rechazando — perfiles ejecutivos en empresas reales de México. Hoy sigo activo como Gerente de RR.HH., lo que significa que <strong>esta semana</strong> estoy viendo CVs desde el otro lado de la mesa.</p>
-      <p class="ale-body">No soy un coach de internet. Sé exactamente qué hace que un perfil ejecutivo sea ignorado — y cómo construir uno que genere conversaciones con las personas correctas. He trabajado con perfiles en manufactura automotriz, corporativos, tecnología, operaciones y dirección general, en México y mercados internacionales.</p>
+      <p class="ale-body">Llevo <strong>más de 15 años</strong> evaluando y contratando perfiles ejecutivos en empresas reales de México. Hoy sigo activo como Gerente de RR.HH., lo que significa que <strong>esta semana</strong> estoy viendo CVs desde el otro lado de la mesa.</p>
+      <p class="ale-body">No es coaching. Es trabajo directo sobre tu perfil: reviso tu CV, identifico qué no está comunicando bien y lo reescribo. He trabajado con perfiles de manufactura automotriz, supply chain, calidad, operaciones y corporativos en México.</p>
       <div class="ale-stats">
         <div class="ale-stat"><div class="ale-stat-num">15+</div><div class="ale-stat-lbl">Años en RR.HH.</div></div>
         <div class="ale-stat"><div class="ale-stat-num">24h</div><div class="ale-stat-lbl">Entrega CV</div></div>
@@ -678,102 +716,114 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
     </div>
     <div class="ale-quote">
       <div class="ale-qmark">"</div>
-      <p class="ale-qtext">He visto de cerca por qué los mejores perfiles no avanzan. No es falta de experiencia. Es que nadie les enseñó a comunicar lo que realmente valen — en el idioma que usa quien toma decisiones. Eso es exactamente lo que trabajamos juntos.</p>
-      <p class="ale-qauthor">Alejandro Vivanco · Fundador HirePilotMX</p>
+      <!-- CAMBIO 1: Primera persona en la cita -->
+      <p class="ale-qtext">He visto perfiles con 20 años de experiencia real que no consiguen respuesta — no porque la trayectoria sea débil, sino porque el CV no comunica el nivel. Eso tiene solución concreta, y es en lo que trabajo.</p>
+      <p class="ale-qauthor">Alejandro · Fundador HirePilotMX</p>
     </div>
   </div>
 </section>
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     SESIÓN ÉLITE — Lo que incluye
-════════════════════════════════════════════ -->
+<!-- CÓMO TRABAJAMOS + QUÉ INCLUYE -->
 <section class="sec-pad sec-dark2 fade-in">
   <div style="max-width:1100px;margin:0 auto;">
-    <p class="sec-label">Lo que incluye</p>
-    <h2 class="sec-title">Sesión <em>Élite.</em></h2>
-    <div class="sesion-grid">
-      <div class="sesion-item"><div class="sesion-num">01</div><p class="sesion-item-title">Sesión 1:1 · 60 minutos con Alejandro</p><p class="sesion-item-desc">Diagnóstico completo de posicionamiento, narrativa ejecutiva y estrategia personalizada según tu mercado objetivo — con Alejandro directamente, no un asistente.</p></div>
-      <div class="sesion-item"><div class="sesion-num">02</div><p class="sesion-item-title">Reporte ejecutivo de diagnóstico</p><p class="sesion-item-desc">Documento con hallazgos críticos, brechas detectadas y plan de acción específico para tu perfil y sector.</p></div>
-      <div class="sesion-item"><div class="sesion-num">03</div><p class="sesion-item-title">CV reposicionado en 24 horas</p><p class="sesion-item-desc">Español e inglés. Narrativa ejecutiva real con impacto cuantificado. Formato limpio. Sin marca de agua.</p></div>
-      <div class="sesion-item"><div class="sesion-num">04</div><p class="sesion-item-title">Estrategia completa de LinkedIn</p><p class="sesion-item-desc">Headline, About y keywords para que reclutadores activos te encuentren — no solo para que el perfil "se vea bien".</p></div>
-      <div class="sesion-item"><div class="sesion-num">05</div><p class="sesion-item-title">Acceso a La Telaraña</p><p class="sesion-item-desc">Red personal de headhunters y tomadores de decisión de Alejandro. Acceso directo — sin formulario, sin cola.</p></div>
-      <div class="sesion-item"><div class="sesion-num">06</div><p class="sesion-item-title">Seguimiento WhatsApp 30 días</p><p class="sesion-item-desc">Feedback real después de cada proceso. Ajuste de estrategia en tiempo real mientras buscas.</p></div>
+    <p class="sec-label">El proceso y los entregables</p>
+    <h2 class="sec-title" style="margin-bottom:48px;">Cómo<br><em>trabajamos.</em></h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:1px;">
+
+      <div style="background:var(--black2);padding:28px 32px;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">01</p>
+        <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">Sesión 1:1 de 60 minutos</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Revisamos tu trayectoria, qué no está comunicando bien tu perfil y qué mejorar — conmigo directamente.</p>
+      </div>
+
+      <div style="background:var(--black2);padding:28px 32px;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">02</p>
+        <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">CV reescrito en 24 horas</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Español e inglés. Logros con impacto concreto, no funciones. Formato limpio, listo para usar.</p>
+      </div>
+
+      <div style="background:var(--black2);padding:28px 32px;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">03</p>
+        <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">LinkedIn optimizado</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Headline, About y palabras clave para que un reclutador entienda tu nivel y lo que haces desde el primer vistazo.</p>
+      </div>
+
+      <div style="background:var(--black2);padding:28px 32px;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">04</p>
+        <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">Estrategia de búsqueda + red de contactos</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Definimos hacia dónde buscar y, según tu perfil e industria, comparto contactos relevantes de mi red de reclutadores. Seguimiento por WhatsApp 30 días.</p>
+      </div>
+
     </div>
+
+    <div style="background:var(--black3);border:1px solid var(--border2);padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.6;max-width:560px;">Todo en una sola sesión. Sin contratos, sin mensualidades. El CV llega en menos de 24 horas.</p>
+      <a href="https://wa.me/523320658076?text=Quiero%20agendar%20mi%20sesi%C3%B3n%20%E2%80%94%20HirePilotMX" class="btn-wa" target="_blank" style="white-space:nowrap;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Agendar sesión</a>
+    </div>
+
   </div>
 </section>
-
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     CASOS REALES
-════════════════════════════════════════════ -->
+<!-- CASOS REALES -->
 <section class="sec-pad sec-dark fade-in">
   <div style="max-width:1100px;margin:0 auto;">
+    <!-- CAMBIO 1: Primera persona -->
     <p class="sec-label">Perfiles reposicionados</p>
-    <h2 class="sec-title">Resultados<br><em>reales.</em></h2>
+    <h2 class="sec-title">Perfiles con los<br><em>que he trabajado.</em></h2>
     <div class="casos-grid">
-      <div class="caso-card"><p class="caso-industry">Manufactura Automotriz</p><p class="caso-role">Supplier Development Manager</p><p class="caso-loc">Monterrey, NL</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> CV sin cifras de impacto. LinkedIn inactivo. Invisible para búsquedas ejecutivas.</p><p class="caso-after"><strong>Hoy:</strong> Perfil ejecutivo bilingüe con impacto financiero real — encontrado por headhunters en menos de 3 semanas.</p></div>
-      <div class="caso-card"><p class="caso-industry">Homologación Automotriz</p><p class="caso-role">Especialista Senior · VW & Daimler</p><p class="caso-loc">Puebla, Pue.</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> 20 años en OEMs globales, invisible para el mercado europeo sin estrategia de reposicionamiento internacional.</p><p class="caso-after"><strong>Hoy:</strong> Posicionado para mercado internacional con narrativa ejecutiva y visibilidad en búsquedas activas globales.</p></div>
-      <div class="caso-card"><p class="caso-industry">Operaciones & Franquicias</p><p class="caso-role">Director de Operaciones</p><p class="caso-loc">Ciudad de México</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> 35 años en franquicias globales. El CV no comunicaba una sola cifra de impacto real.</p><p class="caso-after"><strong>Hoy:</strong> Perfil directivo que comunica exactamente lo que vale — con números, narrativa y estrategia de acceso.</p></div>
+      <div class="caso-card"><p class="caso-industry">Manufactura Automotriz · Aerospace · Industrial</p><p class="caso-role">Sr. Supplier Development &amp; Quality</p><p class="caso-loc">Nissan · Kia · Ford · GM · Tesla</p><div class="caso-div"></div><p class="caso-before"><strong>Situación inicial:</strong> CV con estructura problemática para ATS, sin narrativa financiera y trayectoria sólida mal comunicada. Perfil encerrado en automotriz sin estrategia de expansión.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reestructuración del CV, reescritura de logros con impacto concreto, optimización de LinkedIn y estrategia de búsqueda para ampliar industrias objetivo.</p></div>
+      <div class="caso-card"><p class="caso-industry">Homologación Automotriz</p><p class="caso-role">Especialista Senior · VW & Daimler</p><p class="caso-loc">Puebla, Pue.</p><div class="caso-div"></div><p class="caso-before"><strong>Situación inicial:</strong> 20 años de trayectoria en industria automotriz, con un CV orientado a funciones y sin claridad sobre el nivel de impacto real.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reescritura del CV con logros cuantificados, optimización de LinkedIn y definición de mercados objetivo en México.</p></div>
+      <div class="caso-card"><p class="caso-industry">Operaciones & Franquicias</p><p class="caso-role">Director de Operaciones</p><p class="caso-loc">Ciudad de México</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> 35 años en franquicias globales. El CV no comunicaba una sola cifra de impacto real.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reescritura del CV con impacto financiero real, optimización de LinkedIn y clarificación de la propuesta de valor directiva.</p></div>
     </div>
   </div>
 </section>
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     TESTIMONIOS PREMIUM
-════════════════════════════════════════════ -->
-<section class="testi-section fade-in">
-  <div style="max-width:1100px;margin:0 auto;">
-    <p class="sec-label">Quienes ya lo vivieron</p>
-    <h2 class="sec-title" style="margin-bottom:48px;">Lo que dicen<br><em>ellos.</em></h2>
-    <div class="testi-grid">
-      <!-- Testimonio principal — Yonathan -->
-      <div class="testi-main">
-        <div class="testi-qmark">"</div>
-        <p class="testi-text">Tuve la oportunidad de recibir asesoría de Alejandro Vivanco para mejorar mi CV y optimizar mi perfil de LinkedIn. Su apoyo fue muy profesional, claro y estratégico, ayudándome a estructurar mejor mi experiencia, destacar mis principales logros y proyectar de manera más efectiva mi perfil profesional.<br><br>También me brindó recomendaciones muy valiosas para alinear mi trayectoria con oportunidades de mayor nivel y mejorar mi posicionamiento ante reclutadores y empresas. Recomiendo ampliamente a Alejandro por su capacidad de análisis, orientación profesional y enfoque práctico para impulsar el desarrollo de carrera.</p>
-        <div class="testi-author">
-          <span class="testi-name">Yonathan Valle Molina</span>
-          <span class="testi-role">Sr. Supplier Development & Quality Manager</span>
-          <span class="testi-company">Automotive · Aerospace · Industrial — Monterrey, NL</span>
-        </div>
+
+<div class="sdiv"></div>
+
+<!-- FAQ EJECUTIVO -->
+<section class="sec-pad sec-dark fade-in">
+  <div style="max-width:760px;margin:0 auto;">
+    <p class="sec-label">Preguntas frecuentes</p>
+    <h2 class="sec-title" style="margin-bottom:48px;">Lo que suelen<br><em>preguntar.</em></h2>
+    <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+
+      <div style="background:var(--black2);padding:28px 32px;">
+        <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:10px;">¿Para quién es este servicio?</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Para gerentes, directores y especialistas senior con trayectoria real en manufactura, automotriz, supply chain, operaciones, calidad o corporativos. No es para recién egresados ni para quienes buscan su primer empleo.</p>
       </div>
-      <!-- Testimonio secundario — Guadalupe -->
-      <div class="testi-side">
-        <div class="testi-side-qmark">"</div>
-        <p class="testi-side-text">Excelente análisis, muy objetivo. Le agradezco mucho.</p>
-        <div class="testi-side-author">
-          <span class="testi-side-name">Guadalupe Curiel</span>
-          <span class="testi-side-role">Gerente Regional Comercial<br>y Desarrollo de Franquicias</span>
-        </div>
-        <div style="height:1px;background:var(--border);margin:28px 0;"></div>
-        <!-- Mini CTA dentro del bloque de testimonios -->
-        <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:14px;">¿Listo para reposicionar tu perfil?</p>
-        <a href="https://wa.me/523320658076?text=Hola%20Alejandro%2C%20quiero%20revisar%20mi%20posicionamiento%20ejecutivo" class="btn-wa" target="_blank" style="font-size:11px;padding:16px 20px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Revisar mi posicionamiento
-        </a>
+
+      <div style="background:var(--black2);padding:28px 32px;">
+        <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:10px;">¿Esto es solo para mejorar el CV?</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">No. El CV es un entregable, no el objetivo. El trabajo parte de entender cómo está comunicada tu experiencia hoy y qué necesita ajustarse para que un reclutador entienda rápido tu nivel y tu valor. El CV, LinkedIn y la estrategia de búsqueda son consecuencia de esa revisión.</p>
       </div>
+
+      <div style="background:var(--black2);padding:28px 32px;">
+        <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:10px;">¿Garantizan que consigo empleo?</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">No, y desconfía de quien lo prometa. Lo que sí cambia es cómo está presentada tu experiencia — que es lo que determina si un reclutador te considera o no. El resto depende del mercado, tu búsqueda activa y el momento del sector.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
-<div class="sdiv"></div>
-
-<!-- ═══════════════════════════════════════════
-     PRECIO
-════════════════════════════════════════════ -->
+<!-- PRECIO -->
 <section class="sec-pad sec-dark2 fade-in">
   <div class="precio-inner">
     <div class="precio-header">
-      <p class="sec-label" style="justify-content:center;">Tu lugar. Esta semana.</p>
-      <h2 class="sec-title" style="text-align:center;margin-bottom:14px;">Elige tu <em>nivel.</em></h2>
-      <p class="precio-sub">Una inversión que se recupera en los primeros días del siguiente empleo. El costo de quedarte posicionado mal es mucho mayor.</p>
+      <p class="sec-label" style="justify-content:center;">El servicio</p>
+      <h2 class="sec-title" style="text-align:center;margin-bottom:14px;">Una sola sesión.<br><em>Dos niveles.</em></h2>
+      <p class="precio-sub">Una sesión de trabajo directo sobre tu perfil, con entregables concretos. Sin contratos ni mensualidades.</p>
     </div>
     <div class="precio-cards">
+
+      <!-- SESIÓN ÉLITE -->
       <div class="precio-card">
         <span class="precio-badge">· Sesión Élite · Gerentes & Mandos Senior ·</span>
         <p class="precio-tier">Sesión <em>Élite</em></p>
@@ -781,38 +831,41 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         <p class="precio-note">MXN · pago único</p>
         <div class="precio-div"></div>
         <div class="precio-includes">
-          <div class="precio-include">Sesión 1:1 de 60 minutos con Alejandro</div>
+          <div class="precio-include">Sesión 1:1 de 60 minutos conmigo</div>
           <div class="precio-include">Reporte ejecutivo de diagnóstico de posicionamiento</div>
-          <div class="precio-include">CV reposicionado en español e inglés — entrega 24h</div>
+          <div class="precio-include">Tu CV reposicionado en español e inglés — entrega 24h</div>
           <div class="precio-include">Estrategia completa de LinkedIn — headline, About, keywords</div>
-          <div class="precio-include">Acceso a La Telaraña — headhunters y decisores</div>
+          <div class="precio-include">Contactos de mi red de reclutadores — según tu industria y objetivo</div>
           <div class="precio-include">Seguimiento WhatsApp 30 días</div>
         </div>
-        <a href="https://wa.me/523320658076?text=Quiero%20mi%20diagnóstico%20ejecutivo%20%E2%80%94%20Sesión%20Élite%20%243%2C499" class="btn-wa" target="_blank">
+        <a href="https://wa.me/523320658076?text=Quiero%20mi%20Sesión%20Élite%20%243%2C499%20%E2%80%94%20HirePilotMX" class="btn-wa" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quiero mi diagnóstico ejecutivo
+          Quiero mi Sesión Élite
         </a>
-        <p class="precio-scarcity"><span>Solo 3 lugares</span> por semana · Fines de semana</p>
+        <p class="precio-scarcity">Cupo limitado · Sesiones fines de semana</p>
       </div>
+
+      <!-- SESIÓN ÉLITE DIRECTIVA -->
       <div class="precio-card dir">
-        <span class="precio-badge" style="color:var(--gold2);">· Sesión Élite Directiva · Directores / VP / C-Level ·</span>
+        <span class="precio-badge" style="color:var(--gold2);">· Sesión Élite Directiva · Directores y perfiles senior ·</span>
         <p class="precio-tier">Sesión Élite <em>Directiva</em></p>
         <div class="precio-amount d">$4,999</div>
         <p class="precio-note">MXN · pago único</p>
         <div class="precio-div"></div>
         <div class="precio-includes">
           <div class="precio-include">Todo lo incluido en Sesión Élite</div>
-          <div class="precio-include hi">CV en versión internacional — además de español e inglés</div>
+          <div class="precio-include hi">Diagnóstico de perfil escrito — hallazgos y plan de acción detallado</div>
           <div class="precio-include hi">Mapeo personalizado de headhunters — nombre, LinkedIn y nota de contacto directa</div>
-          <div class="precio-include hi">Estrategia de reposicionamiento para mercados internacionales</div>
+          <div class="precio-include hi">Mapeo de industrias y empresas objetivo según tu trayectoria</div>
           <div class="precio-include hi">Seguimiento WhatsApp 45 días</div>
         </div>
-        <a href="https://wa.me/523320658076?text=Quiero%20analizar%20mi%20perfil%20profesional%20%E2%80%94%20Sesión%20Élite%20Directiva%20%244%2C999" class="btn-wa d" target="_blank">
+        <a href="https://wa.me/523320658076?text=Quiero%20mi%20Sesión%20Élite%20Directiva%20%244%2C999%20%E2%80%94%20HirePilotMX" class="btn-wa d" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Analizar mi perfil profesional
+          Quiero mi Sesión Élite Directiva
         </a>
-        <p class="precio-scarcity"><span>Solo 3 lugares</span> por semana · Fines de semana</p>
+        <p class="precio-scarcity">Cupo limitado · Sesiones fines de semana</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -943,13 +996,11 @@ function showPartialResults(){
   ps.classList.add('active');
   window.scrollTo({top:ps.offsetTop-68,behavior:'smooth'});
 
-  // Veredicto y score parcial
   const pv=document.getElementById('partial-verdict');
   pv.textContent=cvResult.verdict+'.';
   pv.className='partial-verdict '+(cvResult.verdict==='DESCARTADO'?'red':cvResult.verdict==='EN REVISIÓN'?'yellow':'green');
   document.getElementById('partial-score-num').textContent=cvResult.score.toFixed(1);
 
-  // Solo 1 hallazgo visible (primera sección, primer finding)
   const firstSection=cvResult.sections&&cvResult.sections[0];
   if(firstSection){
     document.getElementById('partial-finding-title').textContent=firstSection.title;
@@ -959,27 +1010,39 @@ function showPartialResults(){
     pft.innerHTML=`<span>${icon}</span><span>${(firstSection.findings&&firstSection.findings[0])||'Análisis de narrativa ejecutiva completado.'}</span>`;
   }
 
-  // Tensión emocional personalizada
   const tensionMap={
     'DESCARTADO':'Tu perfil tiene señales que generan descarte inmediato en el tipo de empresa que elegiste. El problema no es tu experiencia — es cómo está comunicada.',
-    'EN REVISIÓN':'Tu perfil no genera descarte inmediato, pero tampoco genera interés ejecutivo claro. En el mercado de alta competencia, "en revisión" equivale a no avanzar.',
-    'AVANZA':'Tu perfil tiene elementos positivos, pero detectamos brechas específicas de posicionamiento que limitan el nivel de oportunidades a las que puedes acceder.'
+    'EN REVISIÓN':'Tu perfil no genera descarte inmediato, pero tampoco genera interés ejecutivo claro. En el mercado de alta competencia, quedar en revisión equivale a no avanzar.',
+    'AVANZA':'Tu perfil tiene elementos positivos, pero detecté brechas específicas de posicionamiento que limitan el nivel de oportunidades a las que puedes acceder.'
   };
   document.getElementById('tension-text').textContent=tensionMap[cvResult.verdict]||tensionMap['DESCARTADO'];
 }
 
-function submitGate(){
-  const name=document.getElementById('gate-name').value.trim();
+// Gate: Netlify form submit + abrir WhatsApp
+function submitGate(e){
+  e.preventDefault();
   const phone=document.getElementById('gate-phone').value.trim();
-  if(!name||!phone){
-    alert('Por favor ingresa tu nombre y WhatsApp para continuar.');
-    return;
-  }
-  // Construir mensaje con contexto del análisis
+  if(!phone){return;}
   const verdict=cvResult?cvResult.verdict:'—';
   const score=cvResult?cvResult.score.toFixed(1):'—';
-  const msg=encodeURIComponent(`Hola Alejandro, acabo de analizar mi perfil en HirePilotMX.\n\nMi nombre es ${name}.\nResultado: ${verdict} (${score}/10)\n\nMe interesa recibir mi diagnóstico completo.`);
-  window.open(`https://wa.me/523320658076?text=${msg}`,'_blank');
+
+  // Inyectar veredicto y score en campos ocultos antes de enviar
+  document.getElementById('gate-veredicto').value=verdict;
+  document.getElementById('gate-score').value=score;
+
+  // Enviar a Netlify Forms via fetch (sin redirigir la página)
+  const form=e.target;
+  const data=new FormData(form);
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()})
+  .catch(()=>{}); // silencioso si falla
+
+  // Mostrar confirmación en página
+  document.getElementById('gate-form-wrap').style.display='none';
+  document.getElementById('gate-confirm').style.display='block';
+
+  // Preparar link de WhatsApp (por si quieren escribir ahorita)
+  const msg=encodeURIComponent(`Hola, acabo de analizar mi perfil en HirePilotMX.\nResultado: ${verdict} (${score}/10)\n\nQuiero recibir mi análisis completo.`);
+  document.getElementById('gate-wa-link').href=`https://wa.me/523320658076?text=${msg}`;
 }
 
 function fallbackCV(){
