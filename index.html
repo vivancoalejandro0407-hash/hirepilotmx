@@ -429,12 +429,12 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   <div class="partial-inner">
 
     <div class="partial-score-block">
-      <p class="partial-eyebrow">Tu diagnóstico de posicionamiento</p>
+      <p class="partial-eyebrow" id="partial-eyebrow">Tu diagnóstico de posicionamiento</p>
       <h2 class="partial-verdict red" id="partial-verdict">DESCARTADO.</h2>
       <p class="partial-score-line">Posicionamiento ejecutivo: <span id="partial-score-num">—</span>/10</p>
     </div>
 
-    <!-- 1 hallazgo visible -->
+    <!-- Hallazgos visibles -->
     <div class="partial-findings" style="margin-bottom:16px;">
       <div class="partial-findings-head">
         <span class="pf-title" id="partial-finding-title">Posicionamiento de perfil</span>
@@ -442,6 +442,9 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       </div>
       <div class="partial-finding-visible" id="partial-finding-text">
         <span>🚫</span><span>Cargando hallazgo...</span>
+      </div>
+      <div class="partial-finding-visible" id="partial-finding-text2" style="display:none;">
+        <span>🚫</span><span></span>
       </div>
     </div>
 
@@ -996,26 +999,57 @@ function showPartialResults(){
   ps.classList.add('active');
   window.scrollTo({top:ps.offsetTop-68,behavior:'smooth'});
 
+  // Personalizar con nombre y cargo
+  const nombre=cvResult.candidateName&&cvResult.candidateName!=='Candidato'?cvResult.candidateName.split(' ')[0]:null;
+  const cargo=cvResult.position||null;
+  const eyebrow=document.getElementById('partial-eyebrow');
+  if(nombre&&cargo){
+    eyebrow.textContent=nombre+', esto es lo que encontré en tu perfil';
+  } else if(nombre){
+    eyebrow.textContent=nombre+', esto es lo que encontré en tu perfil';
+  } else {
+    eyebrow.textContent='Tu diagnóstico de posicionamiento';
+  }
+
   const pv=document.getElementById('partial-verdict');
   pv.textContent=cvResult.verdict+'.';
   pv.className='partial-verdict '+(cvResult.verdict==='DESCARTADO'?'red':cvResult.verdict==='EN REVISIÓN'?'yellow':'green');
   document.getElementById('partial-score-num').textContent=cvResult.score.toFixed(1);
 
+  // Mostrar hasta 2 hallazgos visibles
   const firstSection=cvResult.sections&&cvResult.sections[0];
+  const secondSection=cvResult.sections&&cvResult.sections[1];
+  const icons={bad:'🚫',ok:'⚠️',good:'✓'};
+
   if(firstSection){
     document.getElementById('partial-finding-title').textContent=firstSection.title;
     document.getElementById('partial-finding-score').textContent=firstSection.score+'/10';
-    const pft=document.getElementById('partial-finding-text');
-    const icon=firstSection.status==='bad'?'🚫':firstSection.status==='ok'?'⚠️':'✓';
-    pft.innerHTML=`<span>${icon}</span><span>${(firstSection.findings&&firstSection.findings[0])||'Análisis de narrativa ejecutiva completado.'}</span>`;
+    const icon=icons[firstSection.status]||'🚫';
+    const finding1=firstSection.findings&&firstSection.findings[0]||'Análisis completado.';
+    document.getElementById('partial-finding-text').innerHTML=`<span>${icon}</span><span>${finding1}</span>`;
+  }
+  if(secondSection&&secondSection.findings&&secondSection.findings[0]){
+    const el2=document.getElementById('partial-finding-text2');
+    const icon2=icons[secondSection.status]||'⚠️';
+    const finding2=secondSection.findings[0];
+    el2.innerHTML=`<span>${icon2}</span><span>${finding2}</span>`;
+    el2.style.display='flex';
   }
 
+  // Tensión personalizada con cargo si existe
+  const cargoStr=cargo?` para un perfil de ${cargo}`:'';
   const tensionMap={
-    'DESCARTADO':'Tu perfil tiene señales que generan descarte inmediato en el tipo de empresa que elegiste. El problema no es tu experiencia — es cómo está comunicada.',
-    'EN REVISIÓN':'Tu perfil no genera descarte inmediato, pero tampoco genera interés ejecutivo claro. En el mercado de alta competencia, quedar en revisión equivale a no avanzar.',
-    'AVANZA':'Tu perfil tiene elementos positivos, pero detecté brechas específicas de posicionamiento que limitan el nivel de oportunidades a las que puedes acceder.'
+    'DESCARTADO':`Encontré aspectos concretos en tu perfil que conviene trabajar${cargoStr}. El problema no es tu trayectoria — es cómo está comunicada.`,
+    'EN REVISIÓN':`Tu perfil no genera rechazo inmediato, pero tampoco comunica con claridad el nivel que tienes${cargoStr}. Eso se puede corregir.`,
+    'AVANZA':`Tu perfil tiene una base sólida${cargoStr}, pero hay brechas específicas que limitan el nivel de oportunidades al que puedes acceder.`
   };
   document.getElementById('tension-text').textContent=tensionMap[cvResult.verdict]||tensionMap['DESCARTADO'];
+
+  // Personalizar también el gate title con nombre
+  if(nombre){
+    const gateTitle=document.querySelector('.gate-title');
+    if(gateTitle) gateTitle.innerHTML=`${nombre}, recibe tu análisis<br><em>completo.</em>`;
+  }
 }
 
 // Gate: Netlify form submit + abrir WhatsApp
