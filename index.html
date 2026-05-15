@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -113,9 +114,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* PARTIAL RESULTS — GATE */
 .partial-section{display:none;padding:80px 56px;background:var(--black);}
 .partial-section.active{display:block;animation:fadeUp 0.6s ease both;}
-
 .partial-inner{max-width:860px;margin:0 auto;}
-
 .partial-score-block{text-align:center;margin-bottom:56px;}
 .partial-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;}
 .partial-eyebrow::before,.partial-eyebrow::after{content:'';width:24px;height:1px;background:var(--gold);}
@@ -144,7 +143,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .tension-title{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,22px);font-style:italic;font-weight:300;color:var(--white2);margin-bottom:10px;line-height:1.4;}
 .tension-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.8;}
 
-/* GATE FORM — simplificado */
+/* GATE FORM */
 .gate-block{border:1px solid var(--border2);background:var(--black2);padding:40px;position:relative;overflow:hidden;}
 .gate-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
 .gate-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,38px);font-weight:300;line-height:1.1;margin-bottom:10px;}
@@ -224,27 +223,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .testi-name{font-size:14px;font-weight:600;color:var(--white);}
 .testi-role{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
 .testi-company{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);}
-.testi-side{background:var(--black3);padding:40px 36px;display:flex;flex-direction:column;justify-content:center;position:relative;}
-.testi-side::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),transparent);}
-.testi-side-qmark{font-family:'Cormorant Garamond',serif;font-size:80px;line-height:0.6;color:var(--gold);opacity:0.12;margin-bottom:16px;}
-.testi-side-text{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.8vw,18px);font-weight:300;font-style:italic;line-height:1.7;color:rgba(255,255,255,0.55);margin-bottom:28px;}
-.testi-side-author{display:flex;flex-direction:column;gap:3px;}
-.testi-side-name{font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);}
-.testi-side-role{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);}
 
-/* ALE */
-.ale-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto;}
+/* ALE — sin foto */
+.ale-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1100px;margin:0 auto;}
 .ale-body{font-size:15px;font-weight:300;line-height:1.9;color:rgba(255,255,255,0.4);margin-bottom:24px;}
 .ale-body strong{color:var(--white2);font-weight:400;}
-.ale-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:0;}
+.ale-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);}
 .ale-stat{padding:22px;background:var(--black2);text-align:center;}
 .ale-stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--gold);line-height:1;}
 .ale-stat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);}
-.ale-photo{width:100%;max-width:320px;aspect-ratio:1/1;object-fit:cover;object-position:center top;border:1px solid var(--border2);filter:grayscale(15%);}
 .ale-quote{border:1px solid var(--border2);padding:44px;background:var(--black2);}
 .ale-qmark{font-family:'Cormorant Garamond',serif;font-size:90px;line-height:0.6;color:var(--gold);opacity:0.3;margin-bottom:14px;}
 .ale-qtext{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,23px);font-weight:300;font-style:italic;line-height:1.6;color:var(--white2);margin-bottom:22px;}
 .ale-qauthor{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
+.ale-photo{width:100%;max-width:340px;aspect-ratio:4/5;object-fit:cover;object-position:center top;border:1px solid var(--border2);filter:grayscale(15%);display:block;}
+/* Disponibilidad dinámica */
+.disp-block{display:flex;align-items:center;gap:10px;margin-top:14px;}
+.disp-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.disp-text{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;color:rgba(255,255,255,0.45);}
+.disp-text strong{color:var(--white2);}
+.disp-text span{color:var(--red);}
+/* Contador CVs */
+.cv-counter{display:inline-flex;align-items:center;gap:7px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;color:rgba(255,255,255,0.3);margin-bottom:10px;}
+.cv-counter strong{color:var(--gold);}
 
 /* SESIÓN */
 .sesion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);max-width:1100px;margin:0 auto;}
@@ -319,7 +321,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   .sesion-grid,.casos-grid,.problema-grid{grid-template-columns:1fr;}
   .testi-grid{grid-template-columns:1fr;}
   .precio-card{padding:32px 20px;}
-  .gate-input-row{grid-template-columns:1fr;}
   .cta-result{padding:36px 20px;}
   footer{padding:32px 20px;flex-direction:column;text-align:center;}
 }
@@ -327,15 +328,12 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 </head>
 <body>
 
-<!-- ═══ CAMBIO 2: Nav — sin mencionar "diagnóstico" como CTA, porque ya lo hicieron ═══ -->
 <nav>
   <div class="logo">HirePilot<span>MX</span></div>
   <a href="https://wa.me/523320658076?text=Hola%2C%20vi%20mi%20resultado%20en%20HirePilotMX%20y%20quiero%20reposicionar%20mi%20perfil" class="nav-cta" target="_blank">Agendar sesión</a>
 </nav>
 
-<!-- ═══════════════════════════════════════════
-     HERO — Primera persona + Alejandro solo aquí
-════════════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
   <canvas id="hero-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.25;z-index:0;"></canvas>
   <div style="position:absolute;inset:0;pointer-events:none;z-index:0;" aria-hidden="true">
@@ -366,9 +364,8 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         <span class="gold">evaluando perfiles.</span><br>
         <span class="dim">Ahora trabajo el tuyo.</span>
       </h1>
-
       <p class="hero-sub">
-        Soy <strong>Alejandro Vivanco</strong>, Gerente de RR.HH. con más de 15 años evaluando y contratando perfiles en México — manufactura, automotriz, operaciones, supply chain y corporativos.<br><br>
+        Soy <strong>Alejandro Vivanco</strong>, Estratega de Capital Humano con más de 15 años evaluando y contratando perfiles en México — manufactura, construcción, telecomunicaciones, servicios y turismo.<br><br>
         Trabajo con gerentes y directores senior que tienen trayectoria real pero cuyo perfil no la comunica con claridad. Reviso tu CV y LinkedIn, identifico qué no está funcionando y lo reescribo con criterio de quien contrata.
       </p>
       <p class="hero-badge">3 lugares por semana · Sesiones en fin de semana</p>
@@ -401,7 +398,12 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         <div style="width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--black);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
         <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Analiza tu perfil — gratis</span>
       </div>
+      <div class="cv-counter" id="cv-counter">✓ <strong id="cv-count">1,284</strong> CVs analizados esta semana</div>
       <button class="btn-analyze" id="btn-analyze" disabled onclick="startAnalysis()">Analizar mi perfil →</button>
+      <div class="disp-block" id="disp-block">
+        <div class="disp-dot"></div>
+        <p class="disp-text" id="disp-text">Cargando disponibilidad...</p>
+      </div>
     </div>
   </div>
 </section>
@@ -412,13 +414,10 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 <div class="analyzing-section" id="analyzing-section">
   <p class="prog-label" id="prog-label">Iniciando análisis...</p>
   <div class="prog-wrap"><div class="prog-bar" id="prog-bar"></div></div>
-
-  <!-- CV scanner live feed -->
   <div id="cv-scanner" style="max-width:680px;margin:0 auto 32px;border:1px solid rgba(255,255,255,0.06);background:#141414;padding:20px 24px;display:none;">
     <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#c9952a;margin-bottom:14px;">Leyendo tu CV —</p>
     <div id="cv-lines" style="display:flex;flex-direction:column;gap:6px;"></div>
   </div>
-
   <div class="mockup">
     <div class="mock-topbar"><div class="m-dot" style="background:#ef4444"></div><div class="m-dot" style="background:#f59e0b"></div><div class="m-dot" style="background:#22c55e"></div><span class="mock-name" id="mock-ats-name"></span></div>
     <div class="mock-body">
@@ -434,58 +433,40 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 
 <div class="sdiv"></div>
 
-<!-- ═══════════════════════════════════════════
-     PARTIAL RESULTS — Gate simplificado
-════════════════════════════════════════════ -->
+<!-- PARTIAL RESULTS -->
 <div class="partial-section" id="partial-section">
   <div class="partial-inner">
-
     <div class="partial-score-block">
       <p class="partial-eyebrow" id="partial-eyebrow">Tu diagnóstico de posicionamiento</p>
       <h2 class="partial-verdict red" id="partial-verdict">DESCARTADO.</h2>
       <p class="partial-score-line">Posicionamiento ejecutivo: <span id="partial-score-num">—</span>/10</p>
     </div>
 
-    <!-- Sección 1: completamente visible -->
     <div class="partial-findings" style="margin-bottom:2px;" id="partial-sec1">
       <div class="partial-findings-head">
         <span class="pf-title" id="partial-finding-title">Narrativa e Impacto</span>
         <span class="pf-score" id="partial-finding-score">—/10</span>
       </div>
-      <div class="partial-finding-visible" id="partial-finding-text">
-        <span>🚫</span><span>Cargando...</span>
-      </div>
-      <div class="partial-finding-visible" id="partial-finding-text2" style="display:none;">
-        <span>🚫</span><span></span>
-      </div>
-      <div class="partial-finding-visible" id="partial-finding-text3" style="display:none;">
-        <span>🚫</span><span></span>
-      </div>
+      <div class="partial-finding-visible" id="partial-finding-text"><span>🚫</span><span>Cargando...</span></div>
+      <div class="partial-finding-visible" id="partial-finding-text2" style="display:none;"><span>🚫</span><span></span></div>
+      <div class="partial-finding-visible" id="partial-finding-text3" style="display:none;"><span>🚫</span><span></span></div>
     </div>
 
-    <!-- Sección 2: visible con hallazgo real -->
     <div class="partial-findings" style="margin-bottom:2px;">
       <div class="partial-findings-head">
         <span class="pf-title" id="partial-sec2-title">Visibilidad ante Reclutadores</span>
         <span class="pf-score" id="partial-sec2-score">—/10</span>
       </div>
-      <div class="partial-finding-visible" id="partial-sec2-text">
-        <span>⚠️</span><span>Analizando...</span>
-      </div>
-      <div class="partial-finding-visible" id="partial-sec2-text2" style="display:none;">
-        <span>⚠️</span><span></span>
-      </div>
+      <div class="partial-finding-visible" id="partial-sec2-text"><span>⚠️</span><span>Analizando...</span></div>
+      <div class="partial-finding-visible" id="partial-sec2-text2" style="display:none;"><span>⚠️</span><span></span></div>
     </div>
 
-    <!-- Sección 3: parcialmente visible, resto bloqueado -->
     <div class="partial-findings" style="margin-bottom:16px;">
       <div class="partial-findings-head">
         <span class="pf-title" id="partial-sec3-title">Posicionamiento Ejecutivo</span>
         <span class="pf-score" id="partial-sec3-score">🔒</span>
       </div>
-      <div class="partial-finding-visible" id="partial-sec3-text">
-        <span>🚫</span><span>Analizando...</span>
-      </div>
+      <div class="partial-finding-visible" id="partial-sec3-text"><span>🚫</span><span>Analizando...</span></div>
       <div class="partial-locked">
         <div class="locked-blur">
           <div class="partial-finding-visible" id="partial-sec3-blur1"><span>🚫</span><span>Hallazgo adicional bloqueado</span></div>
@@ -495,7 +476,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       </div>
     </div>
 
-    <!-- Tensión -->
     <div class="tension-block">
       <p class="tension-title" id="tension-text">"Detecté factores críticos que afectan cómo el mercado percibe tu perfil — y no son evidentes desde adentro."</p>
       <p class="tension-sub">El análisis completo incluye hallazgos específicos por sección, entregables concretos y el plan de acción para mejorar cómo te percibe el mercado ejecutivo.</p>
@@ -506,14 +486,11 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       <p id="free-tip-text" style="font-size:14px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.65);"></p>
     </div>
 
-    <!-- Gate form — Netlify capture + WhatsApp -->
     <div class="gate-block">
       <h3 class="gate-title">Recibe tu análisis<br><em>completo.</em></h3>
-      <p class="gate-sub">Déjame tu WhatsApp. Te envío el análisis completo en menos de 24 horas — yo directamente, sin automatizaciones.</p>
-
-      <!-- Estado inicial: form -->
+      <p class="gate-sub">Déjame tu WhatsApp. Te envío el análisis completo en menos de 24 horas — Alejandro Vivanco directamente, sin automatizaciones.</p>
       <div id="gate-form-wrap">
-        <form name="gate-leads" netlify data-netlify="true" onsubmit="submitGate(event)" class="gate-form">
+        <form class='gate-form' method='post' name='gate-leads' onsubmit='submitGate(event)'>
           <input type="hidden" name="form-name" value="gate-leads">
           <input type="hidden" name="veredicto" id="gate-veredicto">
           <input type="hidden" name="score" id="gate-score">
@@ -522,20 +499,16 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Envíame el análisis completo
           </button>
-          <p class="gate-privacy">Sin spam · Te escribo yo directamente · En menos de 24h</p>
+          <p class="gate-privacy">Sin spam · Te escribe Alejandro Vivanco directamente · En menos de 24h</p>
         </form>
       </div>
-
-      <!-- Estado confirmación: se muestra después del submit -->
       <div id="gate-confirm" style="display:none;text-align:center;padding:24px 0;">
         <div style="font-size:32px;margin-bottom:12px;">✓</div>
         <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--white2);margin-bottom:8px;">Listo, te escribo pronto.</p>
-        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.7;margin-bottom:20px;">Recibí tu número. Te mando el análisis completo en menos de 24 horas — yo personalmente.</p>
+        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.7;margin-bottom:20px;">Recibí tu número. Alejandro Vivanco te manda el análisis completo en menos de 24 horas — personalmente.</p>
         <a id="gate-wa-link" href="#" target="_blank" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,149,42,0.3);padding-bottom:2px;">¿Prefieres escribirme ahorita? Abre WhatsApp →</a>
       </div>
-
     </div>
-
   </div>
 </div>
 
@@ -544,7 +517,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 <!-- FULL RESULTS -->
 <div class="results-section" id="results-section">
   <div class="verdict-wrap">
-    <!-- CAMBIO 1: Primera persona -->
     <p class="verdict-eyebrow">Análisis de posicionamiento</p>
     <h2 class="verdict-main red" id="verdict-main">DESCARTADO.</h2>
     <p class="verdict-score" id="verdict-score"></p>
@@ -552,7 +524,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   </div>
   <div class="result-secs" id="result-secs"></div>
   <div class="cta-result">
-    <!-- CAMBIO 1+3: Primera persona, CTA ya no dice "diagnóstico" sino siguiente paso -->
     <h2 class="cta-result-title">Hay aspectos<br><em>concretos por trabajar.</em></h2>
     <p class="cta-result-sub">En una <strong>sesión de 60 minutos</strong> revisamos juntos qué mejorar, y entrego el CV reescrito en menos de 24 horas.</p>
     <a href="https://wa.me/523320658076?text=Acabo%20de%20ver%20mi%20resultado%20en%20HirePilotMX%20y%20quiero%20trabajar%20mi%20reposicionamiento" class="btn-wa-big" target="_blank">
@@ -571,31 +542,26 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
     <p class="sec-label">Lo que encuentro al revisar un perfil</p>
     <h2 class="sec-title">Patrones<br><em>que se repiten.</em></h2>
     <div class="problema-grid" style="grid-template-columns:repeat(2,1fr);">
-
       <div class="prob-item">
         <div class="prob-num">01</div>
         <p class="prob-title">Funciones bien descritas, impacto poco visible</p>
         <p class="prob-desc">La mayoría de los CVs que reviso describen lo que el perfil hacía, no lo que logró. Un reclutador necesita entender el resultado, no solo la responsabilidad. <strong>Son dos cosas distintas y se escriben diferente.</strong></p>
       </div>
-
       <div class="prob-item">
         <div class="prob-num">02</div>
         <p class="prob-title">El nivel real no siempre queda claro en el perfil</p>
         <p class="prob-desc">Con frecuencia, un gerente con diez años de experiencia tiene un CV que podría confundirse con el de un coordinador. <strong>El nivel se construye en cómo se presenta la experiencia,</strong> no solo en el título del puesto.</p>
       </div>
-
       <div class="prob-item">
         <div class="prob-num">03</div>
         <p class="prob-title">CV y LinkedIn no están alineados</p>
         <p class="prob-desc">Cuando ambos documentos difieren en tono, cargos o logros descritos, <strong>generan dudas en quien evalúa.</strong> No es un problema grave, pero sí es señal de que el perfil no está trabajado con intención.</p>
       </div>
-
       <div class="prob-item">
         <div class="prob-num">04</div>
         <p class="prob-title">Un reclutador evalúa rápido — y con criterio</p>
         <p class="prob-desc">No es falta de atención. Es que quienes contratan aprenden a identificar señales de nivel en los primeros párrafos. <strong>Si esas señales no están visibles desde el inicio,</strong> el perfil requiere más esfuerzo de interpretación del que normalmente se le da.</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -607,11 +573,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   <div style="max-width:1100px;margin:0 auto;">
     <p class="sec-label">Quienes han trabajado conmigo</p>
     <h2 class="sec-title" style="margin-bottom:48px;">Lo que dicen<br><em>en sus palabras.</em></h2>
-
-    <!-- Dos testimonios principales: Yonathan + Guadalupe -->
     <div class="testi-grid" style="margin-bottom:1px;">
-
-      <!-- Yonathan — principal -->
       <div class="testi-main">
         <div class="testi-qmark">"</div>
         <p class="testi-text">Me ayudó a estructurar mejor mi experiencia y a destacar mis logros de forma más efectiva. Me orientó para alinear mi trayectoria con oportunidades de mayor nivel y mejorar cómo me perciben los reclutadores. Lo recomiendo por su capacidad de análisis y enfoque práctico.</p>
@@ -621,8 +583,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <span class="testi-company">Automotriz · Aerospace · Industrial — Monterrey, NL</span>
         </div>
       </div>
-
-      <!-- Guadalupe — secundario pero completo -->
       <div class="testi-main" style="border-left:1px solid var(--border);">
         <div class="testi-qmark">"</div>
         <p class="testi-text">Excelente análisis, muy objetivo. Le agradezco mucho.</p>
@@ -632,10 +592,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <span class="testi-company">México</span>
         </div>
       </div>
-
     </div>
-
-    <!-- Referencias adicionales — compactas -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:56px;">
       <div style="background:var(--black2);padding:20px 28px;display:flex;align-items:center;gap:20px;">
         <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);opacity:0.4;line-height:1;flex-shrink:0;">"</div>
@@ -652,16 +609,12 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         </div>
       </div>
     </div>
-
-    <!-- Transición hacia CTA -->
     <div style="max-width:600px;margin:0 auto;text-align:center;padding-bottom:48px;">
       <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,26px);font-weight:300;font-style:italic;color:rgba(255,255,255,0.35);line-height:1.6;margin-bottom:32px;">Cada perfil tiene una historia distinta.<br>El trabajo es hacer que el mercado la entienda correctamente.</p>
       <a href="https://wa.me/523320658076?text=Quiero%20trabajar%20mi%20perfil" class="btn-wa" target="_blank" style="display:inline-flex;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Agendar una conversación</a>
     </div>
-
   </div>
 </section>
-
 
 <div class="sdiv"></div>
 
@@ -670,9 +623,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   <div style="max-width:1100px;margin:0 auto;">
     <p class="sec-label">La diferencia visible</p>
     <h2 class="sec-title">Lo que<br><em>cambia.</em></h2>
-
     <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
-
       <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:1px;background:var(--border);">
         <div style="background:var(--black3);display:flex;align-items:center;justify-content:center;padding:20px 16px;">
           <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);writing-mode:vertical-rl;transform:rotate(180deg);">CV · Logro</span>
@@ -686,7 +637,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--white2);">"Redujo costos operativos 18% ($2.3M USD) mediante rediseño de cadena de suministro — implementado en 3 plantas en 6 meses."</p>
         </div>
       </div>
-
       <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:1px;background:var(--border);">
         <div style="background:var(--black3);display:flex;align-items:center;justify-content:center;padding:20px 16px;">
           <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);writing-mode:vertical-rl;transform:rotate(180deg);">LinkedIn · About</span>
@@ -700,7 +650,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--white2);">"Director de Operaciones con historial comprobable en reducción de costos, expansión de operaciones y liderazgo de equipos de más de 80 personas."</p>
         </div>
       </div>
-
       <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:1px;background:var(--border);">
         <div style="background:var(--black3);display:flex;align-items:center;justify-content:center;padding:20px 16px;">
           <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);writing-mode:vertical-rl;transform:rotate(180deg);">Reclutador</span>
@@ -714,24 +663,21 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1.6;color:rgba(22,163,74,0.8);">"Perfil con trayectoria clara, logros cuantificados y nivel legible desde el primer párrafo."</p>
         </div>
       </div>
-
     </div>
-
     <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;margin-top:28px;">Ejemplos del tipo de ajustes que se trabajan en la sesión — no son casos genéricos, son el tipo de intervención que hacemos.</p>
   </div>
 </section>
 
 <div class="sdiv"></div>
 
-<!-- ═══ ALEJANDRO — primera persona, sin repetir su nombre completo ═══ -->
+<!-- ALEJANDRO — foto externa + quote -->
 <section class="sec-pad sec-dark fade-in">
   <div class="ale-grid">
     <div>
-
       <p class="sec-label">Con quién trabajas</p>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5vw,72px);font-weight:300;line-height:0.9;margin-bottom:24px;">Soy<br><em style="color:var(--gold);font-style:italic;">Alejandro.</em></h2>
-      <p class="ale-body">Llevo <strong>más de 15 años</strong> evaluando y contratando perfiles ejecutivos en empresas reales de México. Hoy sigo activo como Gerente de RR.HH., lo que significa que <strong>esta semana</strong> estoy viendo CVs desde el otro lado de la mesa.</p>
-      <p class="ale-body">No es coaching. Es trabajo directo sobre tu perfil: reviso tu CV, identifico qué no está comunicando bien y lo reescribo. He trabajado con perfiles de manufactura automotriz, supply chain, calidad, operaciones y corporativos en México.</p>
+      <p class="ale-body">Llevo <strong>más de 15 años</strong> evaluando y contratando perfiles ejecutivos en empresas reales de México. Hoy sigo activo como Estratega de Capital Humano, lo que significa que <strong>esta semana</strong> estoy viendo CVs desde el otro lado de la mesa.</p>
+      <p class="ale-body">No es coaching. Es trabajo directo sobre tu perfil: reviso tu CV, identifico qué no está comunicando bien y lo reescribo. He trabajado con perfiles de manufactura, construcción, telecomunicaciones, servicios, turismo y más sectores en México.</p>
       <div class="ale-stats">
         <div class="ale-stat"><div class="ale-stat-num">15+</div><div class="ale-stat-lbl">Años en RR.HH.</div></div>
         <div class="ale-stat"><div class="ale-stat-num">24h</div><div class="ale-stat-lbl">Entrega CV</div></div>
@@ -740,7 +686,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:32px;">
-      <img src="data:image/jpeg;base64,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" alt="Alejandro Vivanco" class="ale-photo">
+      <img src="alejandro.jpg" alt="Alejandro Vivanco — Fundador HirePilotMX" class="ale-photo">
       <div class="ale-quote">
         <div class="ale-qmark">"</div>
         <p class="ale-qtext">He visto perfiles con 20 años de experiencia real que no consiguen respuesta — no porque la trayectoria sea débil, sino porque el CV no comunica el nivel. Eso tiene solución concreta, y es en lo que trabajo.</p>
@@ -752,148 +698,196 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 
 <div class="sdiv"></div>
 
-<!-- CÓMO TRABAJAMOS + QUÉ INCLUYE -->
+<!-- CÓMO TRABAJAMOS -->
 <section class="sec-pad sec-dark2 fade-in">
   <div style="max-width:1100px;margin:0 auto;">
     <p class="sec-label">El proceso y los entregables</p>
     <h2 class="sec-title" style="margin-bottom:48px;">Cómo<br><em>trabajamos.</em></h2>
-
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:1px;">
-
       <div style="background:var(--black2);padding:28px 32px;">
         <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">01</p>
         <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">Sesión 1:1 de 60 minutos</p>
         <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Revisamos tu trayectoria, qué no está comunicando bien tu perfil y qué mejorar — conmigo directamente.</p>
       </div>
-
       <div style="background:var(--black2);padding:28px 32px;">
         <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">02</p>
         <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">CV reescrito en 24 horas</p>
         <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Español e inglés. Logros con impacto concreto, no funciones. Formato limpio, listo para usar.</p>
       </div>
-
       <div style="background:var(--black2);padding:28px 32px;">
         <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">03</p>
         <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">LinkedIn optimizado</p>
         <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Headline, About y palabras clave para que un reclutador entienda tu nivel y lo que haces desde el primer vistazo.</p>
       </div>
-
       <div style="background:var(--black2);padding:28px 32px;">
         <p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);line-height:1;margin-bottom:14px;">04</p>
         <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">Estrategia de búsqueda + red de contactos</p>
         <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Definimos hacia dónde buscar y, según tu perfil e industria, comparto contactos relevantes de mi red de reclutadores. Seguimiento por WhatsApp 30 días.</p>
       </div>
-
     </div>
-
     <div style="background:var(--black3);border:1px solid var(--border2);padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
       <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.6;max-width:560px;">Todo en una sola sesión. Sin contratos, sin mensualidades. El CV llega en menos de 24 horas.</p>
       <a href="https://wa.me/523320658076?text=Quiero%20agendar%20mi%20sesi%C3%B3n%20%E2%80%94%20HirePilotMX" class="btn-wa" target="_blank" style="white-space:nowrap;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Agendar sesión</a>
     </div>
-
   </div>
 </section>
+
 <div class="sdiv"></div>
 
 <!-- CASOS REALES -->
 <section class="sec-pad sec-dark fade-in">
   <div style="max-width:1100px;margin:0 auto;">
-    <!-- CAMBIO 1: Primera persona -->
     <p class="sec-label">Perfiles reposicionados</p>
     <h2 class="sec-title">Perfiles con los<br><em>que he trabajado.</em></h2>
     <div class="casos-grid">
       <div class="caso-card"><p class="caso-industry">Manufactura Automotriz · Aerospace · Industrial</p><p class="caso-role">Sr. Supplier Development &amp; Quality</p><p class="caso-loc">Nissan · Kia · Ford · GM · Tesla</p><div class="caso-div"></div><p class="caso-before"><strong>Situación inicial:</strong> CV con estructura problemática para ATS, sin narrativa financiera y trayectoria sólida mal comunicada. Perfil encerrado en automotriz sin estrategia de expansión.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reestructuración del CV, reescritura de logros con impacto concreto, optimización de LinkedIn y estrategia de búsqueda para ampliar industrias objetivo.</p></div>
-      <div class="caso-card"><p class="caso-industry">Homologación Automotriz</p><p class="caso-role">Especialista Senior · VW & Daimler</p><p class="caso-loc">Puebla, Pue.</p><div class="caso-div"></div><p class="caso-before"><strong>Situación inicial:</strong> 20 años de trayectoria en industria automotriz, con un CV orientado a funciones y sin claridad sobre el nivel de impacto real.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reescritura del CV con logros cuantificados, optimización de LinkedIn y definición de mercados objetivo en México.</p></div>
-      <div class="caso-card"><p class="caso-industry">Operaciones & Franquicias</p><p class="caso-role">Director de Operaciones</p><p class="caso-loc">Ciudad de México</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> 35 años en franquicias globales. El CV no comunicaba una sola cifra de impacto real.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reescritura del CV con impacto financiero real, optimización de LinkedIn y clarificación de la propuesta de valor directiva.</p></div>
+      <div class="caso-card"><p class="caso-industry">Homologación Automotriz</p><p class="caso-role">Especialista Senior · VW &amp; Daimler</p><p class="caso-loc">Puebla, Pue.</p><div class="caso-div"></div><p class="caso-before"><strong>Situación inicial:</strong> 20 años de trayectoria en industria automotriz, con un CV orientado a funciones y sin claridad sobre el nivel de impacto real.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reescritura del CV con logros cuantificados, optimización de LinkedIn y definición de mercados objetivo en México.</p></div>
+      <div class="caso-card"><p class="caso-industry">Operaciones &amp; Franquicias</p><p class="caso-role">Director de Operaciones</p><p class="caso-loc">Ciudad de México</p><div class="caso-div"></div><p class="caso-before"><strong>Antes:</strong> 35 años en franquicias globales. El CV no comunicaba una sola cifra de impacto real.</p><p class="caso-after"><strong>Trabajo realizado:</strong> Reescritura del CV con impacto financiero real, optimización de LinkedIn y clarificación de la propuesta de valor directiva.</p></div>
     </div>
   </div>
 </section>
 
 <div class="sdiv"></div>
 
-
-<div class="sdiv"></div>
-
-<!-- FAQ EJECUTIVO -->
+<!-- FAQ -->
 <section class="sec-pad sec-dark fade-in">
   <div style="max-width:760px;margin:0 auto;">
     <p class="sec-label">Preguntas frecuentes</p>
     <h2 class="sec-title" style="margin-bottom:48px;">Lo que suelen<br><em>preguntar.</em></h2>
     <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
-
       <div style="background:var(--black2);padding:28px 32px;">
         <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:10px;">¿Para quién es este servicio?</p>
-        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Para gerentes, directores y especialistas senior con trayectoria real en manufactura, automotriz, supply chain, operaciones, calidad o corporativos. No es para recién egresados ni para quienes buscan su primer empleo.</p>
+        <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">Para gerentes, directores y especialistas senior con trayectoria real en manufactura, construcción, telecomunicaciones, servicios, turismo u otros sectores. No es para recién egresados ni para quienes buscan su primer empleo.</p>
       </div>
-
       <div style="background:var(--black2);padding:28px 32px;">
         <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:10px;">¿Esto es solo para mejorar el CV?</p>
         <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">No. El CV es un entregable, no el objetivo. El trabajo parte de entender cómo está comunicada tu experiencia hoy y qué necesita ajustarse para que un reclutador entienda rápido tu nivel y tu valor. El CV, LinkedIn y la estrategia de búsqueda son consecuencia de esa revisión.</p>
       </div>
-
       <div style="background:var(--black2);padding:28px 32px;">
         <p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:10px;">¿Garantizan que consigo empleo?</p>
         <p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.4);">No, y desconfía de quien lo prometa. Lo que sí cambia es cómo está presentada tu experiencia — que es lo que determina si un reclutador te considera o no. El resto depende del mercado, tu búsqueda activa y el momento del sector.</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- PRECIO -->
+<!-- PRECIO — reveal progresivo -->
 <section class="sec-pad sec-dark2 fade-in">
   <div class="precio-inner">
+
     <div class="precio-header">
-      <p class="sec-label" style="justify-content:center;">El servicio</p>
-      <h2 class="sec-title" style="text-align:center;margin-bottom:14px;">Una sola sesión.<br><em>Dos niveles.</em></h2>
-      <p class="precio-sub">Una sesión de trabajo directo sobre tu perfil, con entregables concretos. Sin contratos ni mensualidades.</p>
+      <p class="sec-label" style="justify-content:center;">La inversión</p>
+      <h2 class="sec-title" style="text-align:center;margin-bottom:14px;">Todo lo que recibes<br><em>en una sola sesión.</em></h2>
+      <p class="precio-sub" style="text-align:center;">Antes de hablar de números — revisa qué está incluido. Sin contratos. Sin mensualidades. Una sola vez.</p>
     </div>
-    <div class="precio-cards">
 
-      <!-- SESIÓN ÉLITE -->
-      <div class="precio-card">
-        <span class="precio-badge">· Sesión Élite · Gerentes & Mandos Senior ·</span>
-        <p class="precio-tier">Sesión <em>Élite</em></p>
-        <div class="precio-amount">$3,499</div>
-        <p class="precio-note">MXN · pago único</p>
-        <div class="precio-div"></div>
-        <div class="precio-includes">
-          <div class="precio-include">Sesión 1:1 de 60 minutos conmigo</div>
-          <div class="precio-include">Reporte ejecutivo de diagnóstico de posicionamiento</div>
-          <div class="precio-include">Tu CV reposicionado en español e inglés — entrega 24h</div>
-          <div class="precio-include">Estrategia completa de LinkedIn — headline, About, keywords</div>
-          <div class="precio-include">Contactos de mi red de reclutadores — según tu industria y objetivo</div>
-          <div class="precio-include">Seguimiento WhatsApp 30 días</div>
+    <!-- VALOR PRIMERO — lo que incluye, sin precio todavía -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2px;">
+      <div style="background:var(--black);padding:28px 30px;">
+        <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Sesión Élite · Gerentes & mandos senior</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.5);">
+            <span style="color:var(--gold);flex-shrink:0;">—</span><span>Sesión 1:1 de 60 minutos con Alejandro Vivanco</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.5);">
+            <span style="color:var(--gold);flex-shrink:0;">—</span><span>Reporte ejecutivo de diagnóstico de posicionamiento</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.5);">
+            <span style="color:var(--gold);flex-shrink:0;">—</span><span>CV reposicionado en español e inglés — entrega en 24h</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.5);">
+            <span style="color:var(--gold);flex-shrink:0;">—</span><span>Estrategia completa de LinkedIn — headline, About, keywords</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.5);">
+            <span style="color:var(--gold);flex-shrink:0;">—</span><span>Contactos de la red de reclutadores según tu industria</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.5);">
+            <span style="color:var(--gold);flex-shrink:0;">—</span><span>Seguimiento por WhatsApp durante 30 días</span>
+          </div>
         </div>
-        <a href="https://wa.me/523320658076?text=Quiero%20mi%20Sesión%20Élite%20%243%2C499%20%E2%80%94%20HirePilotMX" class="btn-wa" target="_blank">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quiero mi Sesión Élite
-        </a>
-        <p class="precio-scarcity">Cupo limitado · Sesiones fines de semana</p>
+      </div>
+      <div style="background:var(--black2);padding:28px 30px;border-left:2px solid var(--gold);">
+        <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold2);margin-bottom:18px;">Sesión Élite Directiva · Directores & senior</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.5);">
+            <span style="color:var(--gold2);flex-shrink:0;">—</span><span>Todo lo incluido en Sesión Élite</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:var(--white2);">
+            <span style="color:var(--gold2);flex-shrink:0;">—</span><span>Diagnóstico escrito — hallazgos y plan de acción detallado</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:var(--white2);">
+            <span style="color:var(--gold2);flex-shrink:0;">—</span><span>Mapeo personalizado de headhunters — nombre, LinkedIn y nota de contacto directa</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:var(--white2);">
+            <span style="color:var(--gold2);flex-shrink:0;">—</span><span>Mapeo de industrias y empresas objetivo según tu trayectoria</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:13px;font-weight:300;line-height:1.6;color:var(--white2);">
+            <span style="color:var(--gold2);flex-shrink:0;">—</span><span>Seguimiento por WhatsApp durante 45 días</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANCLA DE VALOR — antes del reveal -->
+    <div style="background:var(--black3);border:1px solid var(--border);border-top:none;padding:24px 30px;margin-bottom:40px;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,20px);font-weight:300;font-style:italic;color:rgba(255,255,255,0.35);line-height:1.7;text-align:center;">Un CV reposicionado puede ser la diferencia entre 0 respuestas y 4 procesos activos.<br>La pregunta no es cuánto cuesta — es cuánto te está costando no tenerlo.</p>
+    </div>
+
+    <!-- REVEAL DEL PRECIO — click para ver -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+
+      <!-- Card Élite -->
+      <div style="border:1px solid var(--border);background:var(--black);overflow:hidden;">
+        <div style="padding:28px 28px 20px;">
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Sesión Élite</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:20px;">Para gerentes y mandos senior con trayectoria real que necesitan comunicarla mejor.</p>
+          <!-- Precio oculto -->
+          <div id="reveal-elite" style="margin-bottom:20px;">
+            <div id="precio-oculto-elite" style="display:flex;align-items:center;justify-content:center;padding:16px;border:1px dashed rgba(201,149,42,0.25);cursor:pointer;gap:10px;transition:all 0.3s;" onclick="revelarPrecio('elite')">
+              <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);">Ver inversión</span>
+              <span style="font-size:16px;">👁</span>
+            </div>
+            <div id="precio-visible-elite" style="display:none;text-align:center;padding:12px 0;animation:fadeUp 0.4s ease both;">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,72px);font-weight:300;color:var(--gold);line-height:1;margin-bottom:4px;">$3,499</div>
+              <p style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.1em;">MXN · pago único</p>
+            </div>
+          </div>
+          <a href="https://wa.me/523320658076?text=Quiero%20mi%20Sesión%20Élite%20%E2%80%94%20HirePilotMX" class="btn-wa" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Quiero esta sesión
+          </a>
+        </div>
       </div>
 
-      <!-- SESIÓN ÉLITE DIRECTIVA -->
-      <div class="precio-card dir">
-        <span class="precio-badge" style="color:var(--gold2);">· Sesión Élite Directiva · Directores y perfiles senior ·</span>
-        <p class="precio-tier">Sesión Élite <em>Directiva</em></p>
-        <div class="precio-amount d">$4,999</div>
-        <p class="precio-note">MXN · pago único</p>
-        <div class="precio-div"></div>
-        <div class="precio-includes">
-          <div class="precio-include">Todo lo incluido en Sesión Élite</div>
-          <div class="precio-include hi">Diagnóstico de perfil escrito — hallazgos y plan de acción detallado</div>
-          <div class="precio-include hi">Mapeo personalizado de headhunters — nombre, LinkedIn y nota de contacto directa</div>
-          <div class="precio-include hi">Mapeo de industrias y empresas objetivo según tu trayectoria</div>
-          <div class="precio-include hi">Seguimiento WhatsApp 45 días</div>
+      <!-- Card Directiva -->
+      <div style="border:1px solid var(--border2);background:var(--black2);overflow:hidden;position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));"></div>
+        <div style="padding:28px 28px 20px;">
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold2);margin-bottom:14px;">Sesión Élite Directiva</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:20px;">Para directores y perfiles senior que necesitan un mapa completo de su mercado ejecutivo.</p>
+          <!-- Precio oculto -->
+          <div id="reveal-dir" style="margin-bottom:20px;">
+            <div id="precio-oculto-dir" style="display:flex;align-items:center;justify-content:center;padding:16px;border:1px dashed rgba(232,184,75,0.3);cursor:pointer;gap:10px;transition:all 0.3s;" onclick="revelarPrecio('dir')">
+              <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);">Ver inversión</span>
+              <span style="font-size:16px;">👁</span>
+            </div>
+            <div id="precio-visible-dir" style="display:none;text-align:center;padding:12px 0;animation:fadeUp 0.4s ease both;">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,72px);font-weight:300;color:var(--gold2);line-height:1;margin-bottom:4px;">$4,999</div>
+              <p style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.1em;">MXN · pago único</p>
+            </div>
+          </div>
+          <a href="https://wa.me/523320658076?text=Quiero%20mi%20Sesión%20Élite%20Directiva%20%E2%80%94%20HirePilotMX" class="btn-wa" style="background:transparent;border:1px solid var(--gold);color:var(--gold);" onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Quiero esta sesión
+          </a>
         </div>
-        <a href="https://wa.me/523320658076?text=Quiero%20mi%20Sesión%20Élite%20Directiva%20%244%2C999%20%E2%80%94%20HirePilotMX" class="btn-wa d" target="_blank">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quiero mi Sesión Élite Directiva
-        </a>
-        <p class="precio-scarcity">Cupo limitado · Sesiones fines de semana</p>
       </div>
 
     </div>
+
+    <!-- Nota de cierre -->
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;">Cupo limitado · <span id="disp-precio" style="color:var(--red);"></span> · Sesiones los sábados</p>
+
   </div>
 </section>
 
@@ -901,7 +895,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 <div class="mobile-cta-bar" id="mobile-cta-bar">
   <a href="https://wa.me/523320658076?text=Quiero%20agendar%20mi%20sesi%C3%B3n%20%E2%80%94%20HirePilotMX" target="_blank">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Agendar sesión con Alejandro
+    Agendar sesión con Alejandro Vivanco
   </a>
 </div>
 
@@ -922,6 +916,59 @@ const atsConfig={
   hireflow:{name:'HireFlow'},
   apexrecruit:{name:'ApexRecruit'}
 };
+
+// ── Disponibilidad dinámica ──────────────────────────────
+(function(){
+  const BASE=1247; // base fija — ajusta cuando quieras
+  const hoy=new Date();
+  const diaSemana=hoy.getDay(); // 0=dom,1=lun...6=sab
+  const hora=hoy.getHours();
+
+  // Lunes a viernes: 3 sesiones disponibles, bajan a medida que avanza la semana
+  // Sábado: 1 o 2 según la hora (sesiones activas ese día)
+  // Domingo: se resetea — "próximos lugares: esta semana"
+  let lugares, diasLabel, dotColor='var(--green)';
+
+  if(diaSemana===0){
+    // Domingo — todo disponible, semana nueva
+    lugares=3; diasLabel='esta semana';
+  } else if(diaSemana===6){
+    // Sábado — día de sesiones, pueden quedar 1
+    lugares=hora<12?2:1; diasLabel='hoy';
+    dotColor='var(--yellow)';
+  } else {
+    // Lunes(1) a Viernes(5): baja 1 lugar cada 2 días laborales
+    const avance=Math.floor((diaSemana-1)/2); // 0,0,1,1,2
+    lugares=Math.max(1, 3-avance);
+    diasLabel='esta semana';
+    if(lugares===1) dotColor='var(--red)';
+  }
+
+  const diasSesion='sábados';
+  const dispEl=document.getElementById('disp-text');
+  const dotEl=document.querySelector('.disp-dot');
+  if(dispEl){
+    if(lugares===1){
+      dispEl.innerHTML=`<span>Último lugar disponible</span> · Sesiones los ${diasSesion}`;
+    } else {
+      dispEl.innerHTML=`<strong>${lugares} lugares disponibles</strong> ${diasLabel} · Sesiones los ${diasSesion}`;
+    }
+  }
+  if(dotEl) dotEl.style.background=dotColor;
+
+  // Copiar disponibilidad en sección de precio
+  const dispPrecio=document.getElementById('disp-precio');
+  if(dispPrecio){
+    if(lugares===1){dispPrecio.textContent='Último lugar disponible';}
+    else{dispPrecio.textContent=lugares+' lugares disponibles '+diasLabel;}
+  }
+  const diasDesdeBase=Math.floor((hoy - new Date('2025-01-01')) / 86400000);
+  const countEl=document.getElementById('cv-count');
+  if(countEl){
+    const total=BASE + diasDesdeBase*3;
+    countEl.textContent=total.toLocaleString('es-MX');
+  }
+})();
 
 function selectATS(card){
   document.querySelectorAll('.ats-mini').forEach(c=>c.classList.remove('selected'));
@@ -968,35 +1015,23 @@ async function startAnalysis(){
   const ats=atsConfig[selectedATS];
   document.getElementById('mock-ats-name').textContent=ats.name+' · Análisis de perfil';
 
-  // Extraer líneas reales del CV para mostrar mientras carga
-  const cvLines = cvText
-    .split(/\n+/)
-    .map(l=>l.trim())
-    .filter(l=>l.length>18&&l.length<120)
-    .slice(0,30);
-
-  // Mostrar scanner con líneas reales del CV
+  const cvLines=cvText.split(/\n+/).map(l=>l.trim()).filter(l=>l.length>18&&l.length<120).slice(0,30);
   const scanner=document.getElementById('cv-scanner');
   const cvLinesEl=document.getElementById('cv-lines');
   scanner.style.display='block';
 
-  // Función para agregar línea con efecto
   let lineIdx=0;
   const lineColors=['rgba(255,255,255,0.55)','rgba(255,255,255,0.35)','rgba(201,149,42,0.5)'];
   function addCvLine(){
     if(lineIdx>=cvLines.length)lineIdx=0;
-    const line=cvLines[lineIdx]||'...';
-    lineIdx++;
+    const line=cvLines[lineIdx]||'...';lineIdx++;
     const el=document.createElement('div');
     el.style.cssText='font-family:DM Mono,monospace;font-size:10px;line-height:1.5;color:'+lineColors[lineIdx%3]+';opacity:0;transition:opacity 0.3s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:8px;';
     el.innerHTML='<span style="color:var(--gold);opacity:0.4;">›</span><span>'+line+'</span>';
     cvLinesEl.appendChild(el);
     setTimeout(()=>el.style.opacity='1',50);
-    // mantener max 6 líneas visibles
     while(cvLinesEl.children.length>6){
-      const old=cvLinesEl.firstChild;
-      old.style.opacity='0';
-      setTimeout(()=>old.remove(),300);
+      const old=cvLinesEl.firstChild;old.style.opacity='0';setTimeout(()=>old.remove(),300);
     }
   }
 
@@ -1011,7 +1046,6 @@ async function startAnalysis(){
     {label:'Generando diagnóstico personalizado...',pct:97},
   ];
 
-  // Correr steps y líneas en paralelo
   let scanInterval=setInterval(addCvLine,420);
   for(const s of steps){
     document.getElementById('prog-label').textContent=s.label;
@@ -1023,7 +1057,7 @@ async function startAnalysis(){
     const aiTimeout=new Promise((_,reject)=>setTimeout(()=>reject(new Error('timeout')),7000));
     const res=await Promise.race([fetch('/.netlify/functions/ai',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        prompt:`Eres un evaluador senior de RH con 15 años contratando perfiles ejecutivos en México — manufactura, automotriz, supply chain, operaciones, calidad y corporativos. Analiza este CV usando la siguiente rúbrica de 10 puntos. Sé honesto y específico: un CV malo debe salir mal, uno bueno debe salir bien.
+        prompt:`Eres un evaluador senior de RH con 15 años contratando perfiles ejecutivos en México — manufactura, construcción, telecomunicaciones, servicios, turismo y otros sectores. Analiza este CV usando la siguiente rúbrica de 10 puntos. Sé honesto y específico: un CV malo debe salir mal, uno bueno debe salir bien.
 
 RÚBRICA DE EVALUACIÓN (suma hasta 10 puntos):
 
@@ -1073,8 +1107,7 @@ Responde SOLO JSON válido sin texto adicional ni backticks:
 {"candidateName":"nombre completo detectado","position":"cargo principal detectado","score":número con un decimal,"verdict":"DESCARTADO o EN REVISIÓN o AVANZA","flags":[{"type":"red|yellow|green","text":"hallazgo específico y concreto del CV analizado — no genérico"}],"sections":[{"title":"Narrativa e Impacto Cuantificable","score":"X/10","status":"bad|ok|good","findings":["hallazgo específico 1","hallazgo específico 2","hallazgo específico 3"]},{"title":"Visibilidad ante Reclutadores","score":"X/10","status":"bad|ok|good","findings":["hallazgo específico 1","hallazgo específico 2","hallazgo específico 3"]},{"title":"Posicionamiento Ejecutivo","score":"X/10","status":"bad|ok|good","findings":["hallazgo específico 1","hallazgo específico 2","hallazgo específico 3"]},{"title":"Coherencia y Progresión de Carrera","score":"X/10","status":"bad|ok|good","findings":["hallazgo específico 1","hallazgo específico 2"]}],"mainProblem":"el problema principal específico de ESTE CV en una frase concreta"}`,
         system:`Eres un evaluador senior de RH mexicano. Aplicas una rúbrica objetiva de posicionamiento ejecutivo. Eres directo, específico y honesto — nunca genérico. Los hallazgos deben referirse al CV real que analizaste, no a problemas típicos. Responde SOLO JSON válido, sin texto adicional ni backticks.`
       })
-    })
-    ], aiTimeout);
+    }),aiTimeout]);
     const data=await res.json();
     cvResult=JSON.parse(data.text.replace(/`{3}json|`{3}/g,'').trim());
   }catch{
@@ -1119,17 +1152,11 @@ function showPartialResults(){
   ps.classList.add('active');
   window.scrollTo({top:ps.offsetTop-68,behavior:'smooth'});
 
-  // Personalizar con nombre y cargo
   const nombre=cvResult.candidateName&&cvResult.candidateName!=='Candidato'?cvResult.candidateName.split(' ')[0]:null;
   const cargo=cvResult.position||null;
   const eyebrow=document.getElementById('partial-eyebrow');
-  if(nombre&&cargo){
-    eyebrow.textContent=nombre+', esto es lo que encontré en tu perfil';
-  } else if(nombre){
-    eyebrow.textContent=nombre+', esto es lo que encontré en tu perfil';
-  } else {
-    eyebrow.textContent='Tu diagnóstico de posicionamiento';
-  }
+  if(nombre){eyebrow.textContent=nombre+', esto es lo que encontré en tu perfil';}
+  else{eyebrow.textContent='Tu diagnóstico de posicionamiento';}
 
   const pv=document.getElementById('partial-verdict');
   pv.textContent=cvResult.verdict+'.';
@@ -1139,50 +1166,35 @@ function showPartialResults(){
   const secs=cvResult.sections||[];
   const icons={bad:'🚫',ok:'⚠️',good:'✓'};
 
-  // Sección 1 — todos los hallazgos visibles
   const s1=secs[0];
   if(s1){
     document.getElementById('partial-finding-title').textContent=s1.title;
     document.getElementById('partial-finding-score').textContent=s1.score+'/10';
     const i1=icons[s1.status]||'🚫';
     document.getElementById('partial-finding-text').innerHTML=`<span>${i1}</span><span>${(s1.findings&&s1.findings[0])||''}</span>`;
-    if(s1.findings&&s1.findings[1]){
-      const e2=document.getElementById('partial-finding-text2');
-      e2.innerHTML=`<span>${i1}</span><span>${s1.findings[1]}</span>`;e2.style.display='flex';
-    }
-    if(s1.findings&&s1.findings[2]){
-      const e3=document.getElementById('partial-finding-text3');
-      e3.innerHTML=`<span>${i1}</span><span>${s1.findings[2]}</span>`;e3.style.display='flex';
-    }
+    if(s1.findings&&s1.findings[1]){const e2=document.getElementById('partial-finding-text2');e2.innerHTML=`<span>${i1}</span><span>${s1.findings[1]}</span>`;e2.style.display='flex';}
+    if(s1.findings&&s1.findings[2]){const e3=document.getElementById('partial-finding-text3');e3.innerHTML=`<span>${i1}</span><span>${s1.findings[2]}</span>`;e3.style.display='flex';}
   }
 
-  // Sección 2 — 2 hallazgos visibles
   const s2=secs[1];
   if(s2){
     document.getElementById('partial-sec2-title').textContent=s2.title;
     document.getElementById('partial-sec2-score').textContent=s2.score+'/10';
     const i2=icons[s2.status]||'⚠️';
     document.getElementById('partial-sec2-text').innerHTML=`<span>${i2}</span><span>${(s2.findings&&s2.findings[0])||''}</span>`;
-    if(s2.findings&&s2.findings[1]){
-      const es2=document.getElementById('partial-sec2-text2');
-      es2.innerHTML=`<span>${i2}</span><span>${s2.findings[1]}</span>`;es2.style.display='flex';
-    }
+    if(s2.findings&&s2.findings[1]){const es2=document.getElementById('partial-sec2-text2');es2.innerHTML=`<span>${i2}</span><span>${s2.findings[1]}</span>`;es2.style.display='flex';}
   }
 
-  // Sección 3 — primer hallazgo visible, resto bloqueado
   const s3=secs[2];
   if(s3){
     document.getElementById('partial-sec3-title').textContent=s3.title;
     document.getElementById('partial-sec3-score').textContent='🔒';
     const i3=icons[s3.status]||'🚫';
     document.getElementById('partial-sec3-text').innerHTML=`<span>${i3}</span><span>${(s3.findings&&s3.findings[0])||''}</span>`;
-    if(s3.findings&&s3.findings[1])
-      document.getElementById('partial-sec3-blur1').innerHTML=`<span>${i3}</span><span>${s3.findings[1]}</span>`;
-    if(s3.findings&&s3.findings[2])
-      document.getElementById('partial-sec3-blur2').innerHTML=`<span>${i3}</span><span>${s3.findings[2]}</span>`;
+    if(s3.findings&&s3.findings[1])document.getElementById('partial-sec3-blur1').innerHTML=`<span>${i3}</span><span>${s3.findings[1]}</span>`;
+    if(s3.findings&&s3.findings[2])document.getElementById('partial-sec3-blur2').innerHTML=`<span>${i3}</span><span>${s3.findings[2]}</span>`;
   }
 
-  // Tensión personalizada con cargo si existe
   const cargoStr=cargo?` para un perfil de ${cargo}`:'';
   const tensionMap={
     'DESCARTADO':`Encontré aspectos concretos en tu perfil que conviene trabajar${cargoStr}. El problema no es tu trayectoria — es cómo está comunicada.`,
@@ -1191,17 +1203,14 @@ function showPartialResults(){
   };
   document.getElementById('tension-text').textContent=tensionMap[cvResult.verdict]||tensionMap['DESCARTADO'];
 
-  // Personalizar también el gate title con nombre
   if(nombre){
     const gateTitle=document.querySelector('.gate-title');
-    if(gateTitle) gateTitle.innerHTML=`${nombre}, recibe tu análisis<br><em>completo.</em>`;
+    if(gateTitle)gateTitle.innerHTML=`${nombre}, recibe tu análisis<br><em>completo.</em>`;
   }
 
-  // Mostrar tip gratuito accionable antes del gate
   const tipBlock=document.getElementById('free-tip-block');
   const tipText=document.getElementById('free-tip-text');
   if(tipBlock&&tipText&&cvResult){
-    // Generar tip basado en el hallazgo más crítico
     const worstSection=(cvResult.sections||[]).slice().sort((a,b)=>parseFloat(a.score)-parseFloat(b.score))[0];
     const tipMap={
       'Narrativa e Impacto Cuantificable':'Elige el logro del que más te sientas orgulloso en tu carrera y agrega un número concreto: porcentaje de mejora, monto ahorrado, tamaño del equipo que lideraste o tiempo de implementación. Un solo dato cuantificado cambia cómo te percibe quien evalúa.',
@@ -1210,90 +1219,57 @@ function showPartialResults(){
       'Coherencia y Progresión de Carrera':'Revisa que el cargo que aparece en tu LinkedIn sea exactamente igual al que está en tu CV. Cualquier diferencia genera duda en quien compara los dos documentos antes de llamarte.'
     };
     const defaultTip='Revisa que las primeras líneas de tu CV comuniquen claramente tu cargo, tu industria y un resultado concreto. Ese es el primer filtro de cualquier reclutador.';
-    const tip=worstSection?( tipMap[worstSection.title]||defaultTip ):defaultTip;
-    tipText.textContent=tip;
+    tipText.textContent=worstSection?(tipMap[worstSection.title]||defaultTip):defaultTip;
     tipBlock.style.display='block';
   }
 }
 
-// Gate: Netlify form submit + abrir WhatsApp
 function submitGate(e){
   e.preventDefault();
   const phone=document.getElementById('gate-phone').value.trim();
-  if(!phone){return;}
+  if(!phone)return;
   const verdict=cvResult?cvResult.verdict:'—';
   const score=cvResult?cvResult.score.toFixed(1):'—';
-
-  // Inyectar veredicto y score en campos ocultos antes de enviar
   document.getElementById('gate-veredicto').value=verdict;
   document.getElementById('gate-score').value=score;
-
-  // Enviar a Netlify Forms via fetch (sin redirigir la página)
   const form=e.target;
   const data=new FormData(form);
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()})
-  .catch(()=>{}); // silencioso si falla
-
-  // Mostrar confirmación en página
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()}).catch(()=>{});
   document.getElementById('gate-form-wrap').style.display='none';
   document.getElementById('gate-confirm').style.display='block';
-
-  // Preparar link de WhatsApp (por si quieren escribir ahorita)
   const msg=encodeURIComponent(`Hola, acabo de analizar mi perfil en HirePilotMX.\nResultado: ${verdict} (${score}/10)\n\nQuiero recibir mi análisis completo.`);
   document.getElementById('gate-wa-link').href=`https://wa.me/523320658076?text=${msg}`;
 }
 
 function fallbackCV(){
-  // Distribución realista: 60% descartado, 30% revisión, 10% avanza
   const r=Math.random();
   let score,verdict,flags,sections,mainProblem;
   if(r<0.60){
-    score=3.5+Math.random()*2.3; // 3.5–5.8
-    verdict='DESCARTADO';
-    flags=[
-      {type:'red',text:'Logros descritos como funciones, sin impacto cuantificable'},
-      {type:'red',text:'Perfil poco legible para búsquedas activas de reclutadores'},
-      {type:'yellow',text:'Nivel de seniority no queda claro desde los primeros párrafos'}
-    ];
-    sections=[
-      {title:'Narrativa e Impacto Cuantificable',score:'3',status:'bad',findings:['Sin cifras de resultado o impacto financiero real','Bullets describen responsabilidades, no logros ejecutivos concretos','Sin cuantificación de alcance ni contexto de escala organizacional']},
-      {title:'Visibilidad ante Reclutadores',score:'4',status:'bad',findings:['Palabras clave de industria ausentes en posiciones críticas','Headline no refleja el nivel ni las búsquedas activas del mercado']},
-      {title:'Posicionamiento Ejecutivo',score:'3',status:'bad',findings:['Propuesta de valor no es inmediata ni diferenciada','Summary genérico sin gancho estratégico claro','El nivel declarado no está respaldado por la narrativa del perfil']},
-      {title:'Coherencia CV · LinkedIn',score:'5',status:'ok',findings:['Estructura básica presente pero sin jerarquía de impacto','Cronología clara pero sin narrativa de progresión ejecutiva']},
-    ];
+    score=3.5+Math.random()*2.3;verdict='DESCARTADO';
+    flags=[{type:'red',text:'Logros descritos como funciones, sin impacto cuantificable'},{type:'red',text:'Perfil poco legible para búsquedas activas de reclutadores'},{type:'yellow',text:'Nivel de seniority no queda claro desde los primeros párrafos'}];
+    sections=[{title:'Narrativa e Impacto Cuantificable',score:'3',status:'bad',findings:['Sin cifras de resultado o impacto financiero real','Bullets describen responsabilidades, no logros ejecutivos concretos','Sin cuantificación de alcance ni contexto de escala organizacional']},{title:'Visibilidad ante Reclutadores',score:'4',status:'bad',findings:['Palabras clave de industria ausentes en posiciones críticas','Headline no refleja el nivel ni las búsquedas activas del mercado']},{title:'Posicionamiento Ejecutivo',score:'3',status:'bad',findings:['Propuesta de valor no es inmediata ni diferenciada','Summary genérico sin gancho estratégico claro','El nivel declarado no está respaldado por la narrativa del perfil']},{title:'Coherencia CV · LinkedIn',score:'5',status:'ok',findings:['Estructura básica presente pero sin jerarquía de impacto','Cronología clara pero sin narrativa de progresión ejecutiva']}];
     mainProblem='El perfil describe funciones cuando el mercado ejecutivo necesita ver resultados concretos y nivel claro desde el inicio.';
-  } else if(r<0.90){
-    score=6.0+Math.random()*1.3; // 6.0–7.3
-    verdict='EN REVISIÓN';
-    flags=[
-      {type:'yellow',text:'Algunos logros cuantificados pero sin consistencia a lo largo del CV'},
-      {type:'yellow',text:'Nivel ejecutivo legible pero la propuesta de valor no es inmediata'},
-      {type:'green',text:'Estructura y cronología coherentes'}
-    ];
-    sections=[
-      {title:'Narrativa e Impacto Cuantificable',score:'6',status:'ok',findings:['Algunos logros con cifras pero sin contexto de escala','La narrativa oscila entre funciones e impacto — falta consistencia']},
-      {title:'Visibilidad ante Reclutadores',score:'6',status:'ok',findings:['Palabras clave presentes pero no en posiciones óptimas','Headline funcional pero mejorable para búsquedas activas']},
-      {title:'Posicionamiento Ejecutivo',score:'7',status:'ok',findings:['Nivel ejecutivo perceptible pero la diferenciación no es inmediata','El perfil genera interés pero requiere esfuerzo de interpretación']},
-      {title:'Coherencia CV · LinkedIn',score:'6',status:'ok',findings:['Documentos alineados en lo general','Algunos gaps de tono entre CV y LinkedIn']},
-    ];
+  }else if(r<0.90){
+    score=6.0+Math.random()*1.3;verdict='EN REVISIÓN';
+    flags=[{type:'yellow',text:'Algunos logros cuantificados pero sin consistencia a lo largo del CV'},{type:'yellow',text:'Nivel ejecutivo legible pero la propuesta de valor no es inmediata'},{type:'green',text:'Estructura y cronología coherentes'}];
+    sections=[{title:'Narrativa e Impacto Cuantificable',score:'6',status:'ok',findings:['Algunos logros con cifras pero sin contexto de escala','La narrativa oscila entre funciones e impacto — falta consistencia']},{title:'Visibilidad ante Reclutadores',score:'6',status:'ok',findings:['Palabras clave presentes pero no en posiciones óptimas','Headline funcional pero mejorable para búsquedas activas']},{title:'Posicionamiento Ejecutivo',score:'7',status:'ok',findings:['Nivel ejecutivo perceptible pero la diferenciación no es inmediata','El perfil genera interés pero requiere esfuerzo de interpretación']},{title:'Coherencia CV · LinkedIn',score:'6',status:'ok',findings:['Documentos alineados en lo general','Algunos gaps de tono entre CV y LinkedIn']}];
     mainProblem='El perfil tiene base sólida pero no comunica el nivel con suficiente claridad e inmediatez para destacar en procesos competitivos.';
-  } else {
-    score=7.5+Math.random()*1.8; // 7.5–9.3
-    verdict='AVANZA';
-    flags=[
-      {type:'green',text:'Logros cuantificados con contexto de impacto claro'},
-      {type:'green',text:'Nivel ejecutivo legible desde los primeros párrafos'},
-      {type:'yellow',text:'Hay oportunidades menores de optimización en LinkedIn'}
-    ];
-    sections=[
-      {title:'Narrativa e Impacto Cuantificable',score:'8',status:'good',findings:['Logros con cifras y contexto de escala bien presentados','Narrativa orientada a resultados — lectura fluida para reclutadores']},
-      {title:'Visibilidad ante Reclutadores',score:'7',status:'ok',findings:['Palabras clave relevantes presentes','LinkedIn podría reforzar algunas áreas del CV']},
-      {title:'Posicionamiento Ejecutivo',score:'8',status:'good',findings:['Propuesta de valor clara e inmediata','Diferenciación ejecutiva perceptible desde el headline']},
-      {title:'Coherencia CV · LinkedIn',score:'8',status:'good',findings:['Documentos alineados en tono, nivel y logros']},
-    ];
+  }else{
+    score=7.5+Math.random()*1.8;verdict='AVANZA';
+    flags=[{type:'green',text:'Logros cuantificados con contexto de impacto claro'},{type:'green',text:'Nivel ejecutivo legible desde los primeros párrafos'},{type:'yellow',text:'Hay oportunidades menores de optimización en LinkedIn'}];
+    sections=[{title:'Narrativa e Impacto Cuantificable',score:'8',status:'good',findings:['Logros con cifras y contexto de escala bien presentados','Narrativa orientada a resultados — lectura fluida para reclutadores']},{title:'Visibilidad ante Reclutadores',score:'7',status:'ok',findings:['Palabras clave relevantes presentes','LinkedIn podría reforzar algunas áreas del CV']},{title:'Posicionamiento Ejecutivo',score:'8',status:'good',findings:['Propuesta de valor clara e inmediata','Diferenciación ejecutiva perceptible desde el headline']},{title:'Coherencia CV · LinkedIn',score:'8',status:'good',findings:['Documentos alineados en tono, nivel y logros']}];
     mainProblem='Perfil bien posicionado con oportunidades puntuales de optimización para maximizar visibilidad en búsquedas activas.';
   }
   return{candidateName:'Candidato',position:'Perfil analizado',score:parseFloat(score.toFixed(1)),verdict,flags,sections,mainProblem};
+}
+
+function revelarPrecio(tipo){
+  const oculto=document.getElementById('precio-oculto-'+tipo);
+  const visible=document.getElementById('precio-visible-'+tipo);
+  if(oculto&&visible){
+    oculto.style.display='none';
+    visible.style.display='block';
+  }
 }
 
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
@@ -1308,26 +1284,55 @@ uz.addEventListener('drop',e=>{
   if(f){document.getElementById('file-input').files=e.dataTransfer.files;handleFile(document.getElementById('file-input'));}
 });
 
-// Hero canvas
+// Hero canvas — optimizado: 40 nodos, 30fps, sin memory leak
 (function(){
   const canvas=document.getElementById('hero-canvas');if(!canvas)return;
-  const ctx=canvas.getContext('2d');let W,H,nodes=[],animFrame;
-  const GOLD='rgba(201,149,42,';const NODE_COUNT=60;
+  // Apagar en móvil para ahorrar RAM
+  if(window.innerWidth<768){canvas.style.display='none';return;}
+  const ctx=canvas.getContext('2d');
+  let W,H,nodes=[],lastFrame=0;
+  const GOLD='rgba(201,149,42,';
+  const NODE_COUNT=40;
+  const INTERVAL=1000/30; // 30fps
+
   function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;}
-  function initNodes(){nodes=[];for(let i=0;i<NODE_COUNT;i++){nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*2+1});}}
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<140){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=GOLD+(1-dist/140)*0.6+')';ctx.lineWidth=0.5;ctx.stroke();}}}
-    nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle=GOLD+'0.8)';ctx.fill();});
-    nodes.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;});
-    animFrame=requestAnimationFrame(draw);
+  function initNodes(){
+    nodes=[];
+    for(let i=0;i<NODE_COUNT;i++){
+      nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*2+1});
+    }
   }
-  resize();initNodes();draw();
+  function draw(ts){
+    requestAnimationFrame(draw);
+    if(ts-lastFrame<INTERVAL)return;
+    lastFrame=ts;
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){
+          ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.strokeStyle=GOLD+(1-dist/120)*0.5+')';ctx.lineWidth=0.5;ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n=>{
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle=GOLD+'0.8)';ctx.fill();
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>W)n.vx*=-1;
+      if(n.y<0||n.y>H)n.vy*=-1;
+    });
+  }
+  resize();initNodes();requestAnimationFrame(draw);
   window.addEventListener('resize',()=>{resize();initNodes();});
 })();
 
 // Scroll animations
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 </script>
 </body>
