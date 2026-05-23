@@ -152,10 +152,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .prob-title{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--white);}
 .prob-desc{font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.65);}
 .prob-desc strong{color:var(--white);font-weight:500;}
-.testi-main{background:var(--black2);padding:52px 48px;position:relative;overflow:hidden;}
+.testi-main{background:var(--black2);padding:36px 40px;position:relative;overflow:hidden;}
 .testi-main::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),transparent);}
-.testi-qmark{font-family:'Cormorant Garamond',serif;font-size:110px;line-height:0.6;color:var(--gold);opacity:0.12;margin-bottom:18px;user-select:none;}
-.testi-text{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,20px);font-weight:300;font-style:italic;line-height:1.7;color:var(--white2);margin-bottom:28px;}
+.testi-qmark{display:none;}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,19px);font-weight:300;font-style:italic;line-height:1.7;color:var(--white2);margin-bottom:20px;}
 .testi-name{font-size:14px;font-weight:600;color:var(--white);}
 .testi-role{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-top:3px;}
 .testi-company{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:1px;}
@@ -166,7 +166,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .ale-stat{padding:22px;background:var(--black2);text-align:center;}
 .ale-stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--gold);line-height:1;}
 .ale-stat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);}
-.ale-photo{width:100%;max-width:340px;aspect-ratio:4/5;object-fit:cover;object-position:center top;border:1px solid var(--border2);filter:grayscale(15%);display:block;}
+.ale-photo-wrap{position:relative;width:100%;max-width:340px;}
+.ale-photo-wrap::before{content:'';position:absolute;top:12px;left:12px;right:-12px;bottom:-12px;border:1px solid var(--border2);z-index:0;}
+.ale-photo{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;border:1px solid var(--gold);filter:grayscale(8%);display:block;position:relative;z-index:1;}
 .ale-quote{border:1px solid var(--border2);padding:40px;background:var(--black2);}
 .ale-qmark{font-family:'Cormorant Garamond',serif;font-size:80px;line-height:0.6;color:var(--gold);opacity:0.3;margin-bottom:14px;}
 .ale-qtext{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,20px);font-weight:300;font-style:italic;line-height:1.6;color:var(--white2);margin-bottom:18px;}
@@ -260,6 +262,8 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   .testi-main{padding:32px 20px;}
   footer{padding:28px 20px;flex-direction:column;text-align:center;}
   .ale-photo{max-width:100%;}
+  .ale-photo-wrap{max-width:100%;margin-bottom:12px;}
+  .ale-photo-wrap::before{display:none;}
   .empresa-grid{grid-template-columns:1fr;}
 
   /* Legibilidad mobile — textos más claros y grandes */
@@ -511,32 +515,31 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   <div style="max-width:1100px;margin:0 auto;">
     <p class="sec-label">Quienes han trabajado con Alejandro Vivanco</p>
     <h2 class="sec-title" style="margin-bottom:48px;">Lo que dicen<br><em>en sus palabras.</em></h2>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1px;background:var(--border);margin-bottom:1px;" class="grid-testi">
+
+    <!-- Christopher — grande, solo -->
+    <div class="testi-main" style="margin-bottom:1px;">
+      <p class="testi-text">"Alejandro tiene una capacidad clínica para diseccionar la estrategia de posicionamiento ejecutivo. Su análisis no se basa en lo que 'se acostumbra' escribir, sino en la coherencia entre la voz de negocios y la percepción del mercado."</p>
+      <div class="testi-name">Christopher Navarro Fregoso</div>
+      <div class="testi-role">Líder Comercial y Operativo · P&amp;L · Expansión</div>
+      <div class="testi-company">Mayo 2026</div>
+    </div>
+
+    <!-- Yonathan y Guadalupe -->
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1px;background:var(--border);margin-bottom:48px;" class="grid-testi">
       <div class="testi-main">
-        <div class="testi-qmark">"</div>
-        <p class="testi-text">Me ayudó a estructurar mejor mi experiencia y a destacar mis logros de forma más efectiva. Me orientó para alinear mi trayectoria con oportunidades de mayor nivel. Lo recomiendo por su capacidad de análisis y enfoque práctico.</p>
+        <p class="testi-text">"Su apoyo fue muy profesional, claro y estratégico. Me ayudó a estructurar mejor mi experiencia, destacar mis principales logros y proyectar de manera más efectiva mi perfil."</p>
         <div class="testi-name">Yonathan Valle Molina</div>
         <div class="testi-role">Sr. Supplier Development &amp; Quality Manager</div>
-        <div class="testi-company">Automotriz · Aerospace · Industrial — Monterrey, NL</div>
+        <div class="testi-company">Automotriz · Aerospace · Monterrey, NL</div>
       </div>
       <div class="testi-main" style="border-left:1px solid var(--border);">
-        <div class="testi-qmark">"</div>
-        <p class="testi-text">Excelente análisis, muy objetivo. Le agradezco mucho.</p>
+        <p class="testi-text">"Excelente análisis, muy objetivo. Le agradezco mucho."</p>
         <div class="testi-name">Guadalupe Curiel</div>
-        <div class="testi-role">Gerente Regional Comercial y Desarrollo de Franquicias</div>
-        <div class="testi-company">México</div>
+        <div class="testi-role">Directora Comercial &amp; Operaciones</div>
+        <div class="testi-company">+25 años · Franquicias</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:48px;" class="grid-2col">
-      <div style="background:var(--black2);padding:20px 28px;display:flex;align-items:center;gap:16px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);opacity:0.4;flex-shrink:0;">"</div>
-        <div><p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:8px;">Lo recomiendo ampliamente por su dedicación, profesionalismo y capacidad para obtener resultados.</p><p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);">Tomás Rodrigo Román de la Torre</p></div>
-      </div>
-      <div style="background:var(--black2);padding:20px 28px;display:flex;align-items:center;gap:16px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);opacity:0.4;flex-shrink:0;">"</div>
-        <div><p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:8px;">Profesional dedicado y apasionado, con gran capacidad analítica y enfoque colaborativo.</p><p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);">Luis Fabián Mercado del Ángel</p></div>
-      </div>
-    </div>
+
     <div style="text-align:center;">
       <a href="https://wa.me/523320658076?text=Quiero%20trabajar%20mi%20perfil" class="btn-wa" style="display:inline-flex;max-width:320px;" target="_blank">
         <svg class="wa-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -605,7 +608,9 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:28px;">
-      <img src="alejandro.jpg" alt="Alejandro Vivanco — Fundador HirePilotMX" class="ale-photo">
+      <div class="ale-photo-wrap">
+        <img src="alejandro.jpg" alt="Alejandro Vivanco — Fundador HirePilotMX" class="ale-photo">
+      </div>
       <div class="ale-quote">
         <div class="ale-qmark">"</div>
         <p class="ale-qtext">He visto perfiles con 20 años de experiencia real que no consiguen respuesta — no porque la trayectoria sea débil, sino porque el CV no comunica el nivel. Eso tiene solución concreta.</p>
