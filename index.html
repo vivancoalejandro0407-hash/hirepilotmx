@@ -18,9 +18,9 @@
 }
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
-.mobile-cta-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;padding:12px 20px;background:rgba(5,5,5,0.97);border-top:1px solid rgba(201,149,42,0.25);}
+.mobile-cta-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;padding:12px 16px;background:rgba(5,5,5,0.97);border-top:1px solid rgba(201,149,42,0.25);flex-direction:column;gap:8px;}
 .mobile-cta-bar a{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:#c9952a;color:#050505;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
-@media(max-width:768px){.mobile-cta-bar{display:block;}}
+@media(max-width:768px){.mobile-cta-bar{display:flex;}}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:68px;background:rgba(5,5,5,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
 .scroll-progress{position:fixed;top:68px;left:0;right:0;z-index:99;height:2px;background:transparent;}
 .scroll-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 0.1s linear;}
@@ -495,6 +495,9 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <div class="gate-urgency-dot"></div>
           <p class="gate-urgency-text" id="gate-urgency-txt"><strong>Solo 3 lugares esta semana</strong> · Sesiones los sábados</p>
         </div>
+
+        <!-- Opción 1: WhatsApp -->
+        <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Contacto directo — Alejandro te escribe hoy</p>
         <form class="gate-form" method="post" name="gate-leads" onsubmit="submitGate(event)">
           <input type="hidden" name="form-name" value="gate-leads">
           <input type="hidden" name="veredicto" id="gate-veredicto">
@@ -502,10 +505,25 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <input class="gate-input" type="tel" name="whatsapp" id="gate-phone" placeholder="Tu WhatsApp (10 dígitos)" autocomplete="tel" required>
           <button type="submit" class="btn-gate">
             <svg class="wa-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Quiero que Alejandro revise mi perfil
+            Quiero que Alejandro me contacte
           </button>
           <p class="gate-privacy">Sin spam · Alejandro te escribe directo · Hoy mismo</p>
         </form>
+
+        <!-- Divisor -->
+        <div style="display:flex;align-items:center;gap:12px;margin:20px 0;">
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);">o prefiero elegir yo</p>
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+        </div>
+
+        <!-- Opción 2: Calendly -->
+        <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:10px;">Agenda tu sesión a tu ritmo</p>
+        <a href="https://calendly.com/vivancoalejandro0407" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--border2);color:var(--white2);padding:16px 24px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;width:100%;background:transparent;" onmouseover="this.style.borderColor='rgba(201,149,42,0.5)'" onmouseout="this.style.borderColor='var(--border2)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Ver disponibilidad en Calendly
+        </a>
+        <p class="gate-privacy" style="margin-top:8px;">Sin dar tu número · Elige día y hora · Confirmación automática</p>
       </div>
       <div id="gate-confirm" style="display:none;padding:8px 0;">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
@@ -515,14 +533,20 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
             <p style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.06em;">Te escribe hoy con lo que encontró en tu perfil.</p>
           </div>
         </div>
-        <div style="background:rgba(201,149,42,0.06);border:1px solid var(--border2);padding:20px 22px;margin-bottom:16px;">
-          <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.7;margin-bottom:4px;">¿No quieres esperar? Escríbele tú ahora — ya sabe quién eres y cuál es tu resultado.</p>
-        </div>
-        <a id="gate-wa-link" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--black);padding:18px 24px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;width:100%;">
+        <a id="gate-wa-link" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--black);padding:18px 24px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;width:100%;margin-bottom:10px;">
           <svg class="wa-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Escribirle ahora a Alejandro
         </a>
-        <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:0.08em;text-align:center;margin-top:10px;">El mensaje ya incluye tu resultado — solo envíalo</p>
+        <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:0.08em;text-align:center;margin-bottom:16px;">El mensaje ya incluye tu resultado — solo envíalo</p>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);">o agenda directo</p>
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+        </div>
+        <a href="https://calendly.com/vivancoalejandro0407" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--border2);color:var(--white2);padding:14px 24px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;width:100%;background:transparent;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Ver disponibilidad en Calendly
+        </a>
       </div>
     </div>
   </div>
@@ -783,16 +807,28 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         </div>
       </div>
     </div>
-    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;">Cupo limitado · <span id="disp-precio" style="color:var(--red);"></span> · Sesiones los sábados</p>
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;margin-bottom:24px;">Cupo limitado · <span id="disp-precio" style="color:var(--red);"></span> · Sesiones los sábados</p>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);white-space:nowrap;">¿Prefieres elegir tú el horario?</p>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+    </div>
+    <a href="https://calendly.com/vivancoalejandro0407" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--border2);color:var(--white2);padding:16px 24px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;width:100%;max-width:400px;margin:0 auto;" onmouseover="this.style.borderColor='rgba(201,149,42,0.5)'" onmouseout="this.style.borderColor='var(--border2)'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Ver disponibilidad en Calendly
+    </a>
   </div>
 </section>
 
-<div class="mobile-cta-bar">
-  <a href="https://wa.me/523320658076?text=Quiero%20agendar%20mi%20sesi%C3%B3n%20%E2%80%94%20HirePilotMX" target="_blank">
+<div class="mobile-cta-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--black);border-top:1px solid var(--border);padding:12px 16px;gap:8px;flex-direction:column;">
+  <a href="https://wa.me/523320658076?text=Quiero%20agendar%20mi%20sesi%C3%B3n%20%E2%80%94%20HirePilotMX" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--black);padding:14px;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">
     <svg class="wa-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Agendar sesión con Alejandro Vivanco
+    WhatsApp directo
   </a>
-</div>
+  <a href="https://calendly.com/vivancoalejandro0407" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border2);color:var(--white2);padding:12px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Agendar en Calendly
+  </a>
 
 <footer>
   <div class="footer-logo">HirePilot<span>MX</span></div>
