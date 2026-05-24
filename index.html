@@ -176,10 +176,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .caso-card{padding:30px;background:var(--black2);}
 .caso-industry{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
 .caso-role{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;margin-bottom:4px;line-height:1.2;}
-.caso-loc{font-size:12px;color:var(--gray);margin-bottom:16px;}
+.caso-loc{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:16px;}
 .caso-div{height:1px;background:var(--border);margin-bottom:14px;}
-.caso-before{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.3);margin-bottom:8px;}
-.caso-before strong{color:rgba(255,255,255,0.5);font-weight:400;}
+.caso-before{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.6);margin-bottom:8px;}
+.caso-before strong{color:rgba(255,255,255,0.8);font-weight:500;}
 .caso-after{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.6);}
 .caso-after strong{color:var(--gold);font-weight:500;}
 .btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--black);padding:18px 24px;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;border:none;cursor:pointer;}
@@ -254,78 +254,132 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 @keyframes shimmer{0%{opacity:0.06;}50%{opacity:0.1;}100%{opacity:0.06;}}
 .hero::before{animation:shimmer 6s ease-in-out infinite;}
 @media(max-width:768px){
-  nav{padding:0 20px;}
-  .hero{padding:100px 20px 60px;}
-  .hero-inner{grid-template-columns:1fr;gap:40px;}
-  .analyzing-section,.partial-section,.sec-pad{padding:56px 20px;}
-  .ale-grid{grid-template-columns:1fr;gap:32px;}
-  .testi-main{padding:32px 20px;}
-  footer{padding:28px 20px;flex-direction:column;text-align:center;}
-  .ale-photo{max-width:100%;}
-  .ale-photo-wrap{max-width:100%;margin-bottom:12px;}
-  .ale-photo-wrap::before{display:none;}
-  .empresa-grid{grid-template-columns:1fr;}
 
-  /* Legibilidad mobile — textos más claros y grandes */
-  body{font-size:16px;}
-  .hero-sub{font-size:16px;color:rgba(255,255,255,0.65);}
+  /* NAV */
+  nav{padding:0 16px;}
+  .logo{font-size:17px;}
+  .nav-cta{padding:8px 14px;font-size:10px;}
+
+  /* HERO */
+  .hero{padding:90px 20px 48px;}
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .hero-eyebrow{font-size:10px;margin-bottom:18px;}
+  .hero-title{font-size:clamp(40px,11vw,56px);line-height:0.92;}
+  .hero-sub{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.65);}
   .hero-sub strong{color:var(--white);}
-  .hero-eyebrow{font-size:11px;}
 
-  /* Textos de sección */
+  /* WIDGET */
+  .scan-widget{padding:24px 18px;}
+  .widget-label{font-size:10px;}
+  .empresa-grid{grid-template-columns:1fr;}
+  .empresa-opt{padding:12px;}
+  .empresa-nombre{font-size:13px;}
+  .empresa-desc{font-size:8px;}
+  .upload-zone{padding:20px 12px;}
+  .upload-text{font-size:14px;}
+  .upload-sub{font-size:11px;color:rgba(255,255,255,0.45);}
+  .step-txt{font-size:11px;color:rgba(255,255,255,0.6);}
+  .btn-analyze{font-size:12px;padding:16px;}
+  .disp-text{font-size:11px;color:rgba(255,255,255,0.55);}
+  .cv-counter{font-size:10px;}
+
+  /* ANALYZING */
+  .analyzing-section,.partial-section,.sec-pad{padding:48px 20px;}
+  .countdown-num{font-size:clamp(80px,20vw,140px);}
+  .mockup-wrap{margin:32px auto 0;}
+
+  /* PARTIAL RESULTS */
+  .partial-inner{max-width:100%;}
+  .partial-findings-head{padding:12px 16px;}
+  .partial-finding-visible{padding:12px 16px;font-size:14px;color:rgba(255,255,255,0.7);}
+  .partial-locked{padding:12px 16px;}
+  .tension-block{padding:22px 20px;}
+  .tension-title{font-size:clamp(15px,4vw,18px);}
+  .tension-sub{font-size:14px;color:rgba(255,255,255,0.55);}
+
+  /* GATE */
+  .gate-block{padding:28px 20px;}
+  .gate-title{font-size:clamp(24px,7vw,32px);}
+  .gate-sub{font-size:14px;color:rgba(255,255,255,0.6);}
+  .gate-input{padding:14px 16px;font-size:14px;}
+  .btn-gate{padding:16px;font-size:11px;}
+  .gate-privacy{font-size:10px;}
+  .gate-urgency{padding:10px 14px;}
+  .gate-urgency-text{font-size:11px;color:rgba(255,255,255,0.65);}
+
+  /* SECCIONES */
+  .sec-title{font-size:clamp(38px,10vw,56px);}
+  .sec-label{font-size:10px;}
+
+  /* PATRONES */
+  .grid-2col{grid-template-columns:1fr !important;}
+  .prob-item{padding:24px 20px;}
+  .prob-num{font-size:40px;}
+  .prob-title{font-size:15px;color:var(--white);}
   .prob-desc{font-size:14px;color:rgba(255,255,255,0.7);}
   .prob-desc strong{color:var(--white);}
-  .prob-title{font-size:15px;color:var(--white);}
+
+  /* TESTIMONIOS */
+  .grid-testi{grid-template-columns:1fr !important;}
+  .testi-main{padding:28px 20px;}
+  .testi-main[style*="border-left"]{border-left:none !important;border-top:1px solid var(--border);}
+  .testi-text{font-size:16px;line-height:1.7;}
+  .testi-name{font-size:14px;}
+  .testi-role{font-size:9px;}
+  .testi-company{font-size:9px;}
+
+  /* ALEJANDRO */
+  .ale-grid{grid-template-columns:1fr;gap:28px;}
+  .ale-photo-wrap{max-width:100%;margin-bottom:0;}
+  .ale-photo-wrap::before{display:none;}
+  .ale-photo{aspect-ratio:4/3;}
   .ale-body{font-size:15px;color:rgba(255,255,255,0.6);}
   .ale-body strong{color:var(--white);}
-  .ale-stat-lbl{font-size:10px;color:rgba(255,255,255,0.5);}
+  .ale-stats{grid-template-columns:1fr 1fr !important;}
+  .ale-stat{padding:16px;}
+  .ale-stat-num{font-size:36px;}
+  .ale-stat-lbl{font-size:9px;color:rgba(255,255,255,0.5);}
+  .ale-quote{padding:24px 20px;}
+  .ale-qtext{font-size:15px;}
 
-  /* Testimonios */
-  .testi-text{font-size:17px;color:var(--white2);}
+  /* PROCESO */
+  .grid-2col{grid-template-columns:1fr !important;}
 
-  /* Partial results — findings */
-  .partial-finding-visible{font-size:14px;color:rgba(255,255,255,0.7);}
-  .tension-sub{font-size:14px;color:rgba(255,255,255,0.55);}
-  .gate-sub{font-size:14px;color:rgba(255,255,255,0.6);}
-  .gate-privacy{font-size:10px;color:rgba(255,255,255,0.45);}
+  /* CASO YONATHAN */
+  .grid-yonathan{grid-template-columns:1fr !important;padding:24px 20px !important;}
+  .grid-yonathan > div:first-child{padding-right:0 !important;border-right:none !important;padding-bottom:24px;border-bottom:1px solid var(--border);}
+  .grid-yonathan > div:last-child{padding-left:0 !important;}
 
-  /* FAQ */
-  .faq-q-text{font-size:15px;}
-  .faq-a-text{font-size:14px;color:rgba(255,255,255,0.6);padding:0 20px 20px;}
-  .faq-question{padding:22px 20px;}
-
-  /* Casos y proceso */
+  /* CASOS */
+  .caso-card{padding:22px 18px;}
+  .caso-role{font-size:18px;}
   .caso-before{font-size:13px;color:rgba(255,255,255,0.5);}
   .caso-after{font-size:13px;color:rgba(255,255,255,0.75);}
   .caso-after strong{color:var(--gold);}
 
-  /* Widget upload y steps */
-  .step-txt{font-size:11px;color:rgba(255,255,255,0.6);}
-  .upload-text{font-size:14px;}
-  .upload-sub{font-size:12px;color:rgba(255,255,255,0.45);}
+  /* COMPARACION ANTES/DESPUÉS */
+  .comp-par{grid-template-columns:1fr !important;}
+  .comp-despues{border-left:none !important;border-top:2px solid var(--gold);}
+  .comp-texto-antes{font-size:15px;color:rgba(255,255,255,0.5);}
+  .comp-texto-despues{font-size:15px;}
+  .comp-antes,.comp-despues{padding:20px;}
 
-  /* Proceso items */
-  .disp-text{font-size:11px;color:rgba(255,255,255,0.55);}
+  /* FAQ */
+  .faq-question{padding:20px 18px;}
+  .faq-q-text{font-size:15px;}
+  .faq-a-text{font-size:14px;color:rgba(255,255,255,0.65);padding:0 18px 20px;}
+  .faq-item.open .faq-answer{max-height:300px;}
 
-  /* El caso Yonathan en mobile — stack vertical */
-  .caso-yonathan-grid{grid-template-columns:1fr !important;}
-  .caso-yonathan-right{padding-left:0 !important;border-left:none !important;padding-top:24px;border-top:1px solid var(--border);}
+  /* PRECIOS */
+  .sec-pad p[style*="rgba(255,255,255,0.4)"]{color:rgba(255,255,255,0.65)!important;}
+  .sec-pad p[style*="rgba(255,255,255,0.35)"]{color:rgba(255,255,255,0.6)!important;}
 
-  /* Todos los grids de 2 columnas → 1 columna en mobile */
-  .grid-2col{grid-template-columns:1fr !important;}
-  .grid-testi{grid-template-columns:1fr !important;}
-  .grid-yonathan{grid-template-columns:1fr !important;padding:28px 20px !important;}
-  .grid-yonathan > div:first-child{padding-right:0 !important;border-right:none !important;padding-bottom:24px;border-bottom:1px solid var(--border);}
-  .grid-yonathan > div:last-child{padding-left:0 !important;}
-  .testi-main[style*="border-left"]{border-left:none !important;border-top:1px solid var(--border);}
-  .ale-stats{grid-template-columns:1fr 1fr !important;}
+  /* FOOTER */
+  footer{padding:24px 20px;flex-direction:column;text-align:center;gap:12px;}
 
-  /* Precios */
-  .sec-pad p[style*="rgba(255,255,255,0.4)"]{color:rgba(255,255,255,0.6)!important;}
-  .sec-pad p[style*="rgba(255,255,255,0.35)"]{color:rgba(255,255,255,0.55)!important;}
-
-  /* Urgencia gate */
-  .gate-urgency-text{font-size:11px;color:rgba(255,255,255,0.65);}
+  /* MOBILE CTA BAR */
+  .mobile-cta-bar{display:block;}
+  .mobile-cta-bar a{font-size:12px;padding:16px;}
 }
 </style>
 </head>
@@ -344,32 +398,13 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
   <div class="hero-inner" style="position:relative;z-index:1;">
     <div>
       <p class="hero-eyebrow">HirePilotMX · Posicionamiento Ejecutivo</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.8vw,18px);font-weight:300;font-style:italic;color:rgba(255,255,255,0.6);margin-bottom:16px;line-height:1.5;">La brecha entre quien eres y cómo te percibe el mercado<br>no se cierra sola.</p>
       <h1 class="hero-title">Más de 15 años<br><span class="gold">evaluando perfiles.</span><br><span class="dim">Ahora trabajo el tuyo.</span></h1>
       <p class="hero-sub">Soy <strong>Alejandro Vivanco</strong>, Estratega de Capital Humano con más de 15 años evaluando y contratando perfiles en México — manufactura, construcción, telecomunicaciones, servicios y turismo.<br><br>Trabajo con gerentes y directores senior que tienen trayectoria real pero cuyo perfil no la comunica con claridad.</p>
     </div>
     <div class="scan-widget">
       <p class="widget-label">Diagnóstico de perfil — gratis</p>
       <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:20px;">Sube tu CV y recibe un análisis de cómo está comunicada tu experiencia.</p>
-      <div class="step-row"><div class="step-num">1</div><span class="step-txt">¿A qué tipo de empresa te diriges?</span></div>
-      <div class="empresa-grid">
-        <div class="empresa-opt" data-empresa="corporativo" onclick="selectEmpresa(this)">
-          <div class="empresa-nombre">Corporativo / Multinacional</div>
-          <div class="empresa-desc">Grupo industrial · holding · empresa global</div>
-        </div>
-        <div class="empresa-opt" data-empresa="crecimiento" onclick="selectEmpresa(this)">
-          <div class="empresa-nombre">Empresa en crecimiento</div>
-          <div class="empresa-desc">Empresa mediana · familia escalando · expansión</div>
-        </div>
-        <div class="empresa-opt" data-empresa="extranjera" onclick="selectEmpresa(this)">
-          <div class="empresa-nombre">Empresa extranjera</div>
-          <div class="empresa-desc">Subsidiaria · maquiladora · operación regional</div>
-        </div>
-        <div class="empresa-opt" data-empresa="consultoria" onclick="selectEmpresa(this)">
-          <div class="empresa-nombre">Consultoría / Despacho</div>
-          <div class="empresa-desc">Proyectos · clientes · metodologías propias</div>
-        </div>
-      </div>
-      <div class="step-row"><div class="step-num">2</div><span class="step-txt">Sube tu CV</span></div>
       <div class="upload-zone" id="upload-zone">
         <input type="file" id="file-input" accept=".pdf,.doc,.docx" onchange="handleFile(this)">
         <p style="font-size:22px;margin-bottom:6px;">📄</p>
@@ -377,7 +412,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         <p class="upload-sub">PDF o Word · Gratis · Sin registro</p>
         <p class="upload-filename" id="file-name-display"></p>
       </div>
-      <div class="step-row" style="margin-bottom:8px;"><div class="step-num">3</div><span class="step-txt">Analiza tu perfil — gratis</span></div>
       <p class="cv-counter">✓ <strong id="cv-count">1,284</strong> CVs analizados</p>
       <button class="btn-analyze" id="btn-analyze" disabled onclick="startAnalysis()">Analizar mi perfil →</button>
       <div class="disp-block">
@@ -513,8 +547,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 
 <section class="sec-pad sec-dark fade-in">
   <div style="max-width:1100px;margin:0 auto;">
-    <p class="sec-label">Quienes han trabajado con Alejandro Vivanco</p>
-    <h2 class="sec-title" style="margin-bottom:48px;">Lo que dicen<br><em>en sus palabras.</em></h2>
+    <p class="sec-label" style="margin-bottom:36px;">Lo que dicen quienes ya lo hicieron.</p>
 
     <!-- Christopher — grande, solo -->
     <div class="testi-main" style="margin-bottom:1px;">
@@ -538,55 +571,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
         <div class="testi-role">Directora Comercial &amp; Operaciones</div>
         <div class="testi-company">+25 años · Franquicias</div>
       </div>
-    </div>
-
-    <div style="text-align:center;">
-      <a href="https://wa.me/523320658076?text=Quiero%20trabajar%20mi%20perfil" class="btn-wa" style="display:inline-flex;max-width:320px;" target="_blank">
-        <svg class="wa-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Agendar una conversación
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="sdiv"></div>
-
-<section class="sec-pad sec-dark2 fade-in">
-  <div style="max-width:1100px;margin:0 auto;">
-    <p class="sec-label">La diferencia visible</p>
-    <h2 class="sec-title">Lo que<br><em>cambia.</em></h2>
-    <div style="display:flex;flex-direction:column;gap:2px;">
-
-      <!-- CV · Logro -->
-      <div class="comparacion-bloque">
-        <div class="comp-etiqueta">CV · Logro</div>
-        <div class="comp-par">
-          <div class="comp-antes">
-            <p class="comp-label-antes">— Antes</p>
-            <p class="comp-texto-antes">"Responsable de la gestión del equipo de operaciones y coordinación con proveedores."</p>
-          </div>
-          <div class="comp-despues">
-            <p class="comp-label-despues">✓ Después</p>
-            <p class="comp-texto-despues">"Redujo costos operativos 18% ($2.3M USD) mediante rediseño de cadena de suministro — implementado en 3 plantas en 6 meses."</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- LinkedIn -->
-      <div class="comparacion-bloque">
-        <div class="comp-etiqueta">LinkedIn · Headline</div>
-        <div class="comp-par">
-          <div class="comp-antes">
-            <p class="comp-label-antes">— Antes</p>
-            <p class="comp-texto-antes">"Profesional con amplia trayectoria en el sector industrial y enfoque en resultados..."</p>
-          </div>
-          <div class="comp-despues">
-            <p class="comp-label-despues">✓ Después</p>
-            <p class="comp-texto-despues">"Director de Operaciones con historial comprobable en reducción de costos y liderazgo de equipos de más de 80 personas."</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -630,7 +614,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       <div style="background:var(--black2);padding:28px 32px;"><p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);margin-bottom:14px;">01</p><p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">Sesión 1:1 de 60 minutos</p><p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.5);">Revisamos tu trayectoria, qué no está comunicando bien tu perfil y qué mejorar — con Alejandro Vivanco directamente.</p></div>
       <div style="background:var(--black2);padding:28px 32px;"><p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);margin-bottom:14px;">02</p><p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">CV reescrito en 24 horas</p><p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.5);">Español e inglés. Logros con impacto concreto, no funciones. Formato limpio, listo para usar.</p></div>
       <div style="background:var(--black2);padding:28px 32px;"><p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);margin-bottom:14px;">03</p><p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">LinkedIn optimizado</p><p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.5);">Headline, About y palabras clave para que un reclutador entienda tu nivel desde el primer vistazo.</p></div>
-      <div style="background:var(--black2);padding:28px 32px;"><p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);margin-bottom:14px;">04</p><p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">Estrategia + red de contactos</p><p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.5);">Definimos hacia dónde buscar y compartimos contactos relevantes de la red de reclutadores. Seguimiento por WhatsApp 30 días.</p></div>
+      <div style="background:var(--black2);padding:28px 32px;"><p style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,149,42,0.3);margin-bottom:14px;">04</p><p style="font-size:14px;font-weight:500;color:var(--white2);margin-bottom:8px;">Estrategia + red de contactos</p><p style="font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.5);">Definimos hacia dónde buscar y compartimos contactos relevantes de la red de reclutadores. Seguimiento por WhatsApp <strong style="color:var(--white2);">30 días</strong> (Élite) o <strong style="color:var(--gold);">45 días</strong> (Directiva).</p></div>
     </div>
     <div style="background:var(--black3);border:1px solid var(--border2);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
       <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.6;">Todo en una sola sesión. Sin contratos, sin mensualidades.</p>
@@ -659,10 +643,10 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <div style="height:1px;background:var(--border);margin-bottom:18px;"></div>
           <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);margin-bottom:10px;">Lo que tenía — y nadie veía</p>
           <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:20px;">
-            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.3);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>20 años gestionando OEMs globales, sin una sola cifra de impacto financiero en el CV</span></div>
-            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.3);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>CV en Word con tablas — Workday y SAP SuccessFactors lo descartaban automáticamente</span></div>
-            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.3);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>LinkedIn con 487 contactos y sin actividad — invisible para los headhunters que buscaban activamente</span></div>
-            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.3);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>Perfil anclado 100% al automotriz — sin señal de transferibilidad a otras industrias</span></div>
+            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>20 años gestionando OEMs globales, sin una sola cifra de impacto financiero en el CV</span></div>
+            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>CV en Word con tablas — Workday y SAP SuccessFactors lo descartaban automáticamente</span></div>
+            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>LinkedIn con 487 contactos y sin actividad — invisible para los headhunters que buscaban activamente</span></div>
+            <div style="display:flex;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.5;"><span style="color:var(--red);flex-shrink:0;">✗</span><span>Perfil anclado 100% al automotriz — sin señal de transferibilidad a otras industrias</span></div>
           </div>
         </div>
         <div style="padding-left:40px;">
@@ -710,20 +694,6 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
     <div style="border:1px solid var(--border);overflow:hidden;">
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Para quién es este servicio?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer"><p class="faq-a-text">Para gerentes, directores y especialistas senior con trayectoria real en manufactura, construcción, telecomunicaciones, servicios, turismo u otros sectores. No es para recién egresados ni para quienes buscan su primer empleo.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Esto es solo para mejorar el CV?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer"><p class="faq-a-text">No. El CV es un entregable, no el objetivo. El trabajo parte de entender cómo está comunicada tu experiencia. El CV, LinkedIn y la estrategia de búsqueda son consecuencia de esa revisión.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿Garantizan que consigo empleo?</span>
           <span class="faq-icon">+</span>
         </div>
@@ -731,31 +701,17 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Cuánto tiempo toma el proceso?</span>
+          <span class="faq-q-text">¿En qué se diferencia de otros servicios de CV?</span>
           <span class="faq-icon">+</span>
         </div>
-        <div class="faq-answer"><p class="faq-a-text">La sesión es de 60 minutos. El CV reescrito se entrega en 24 horas. LinkedIn y la estrategia se completan en la misma semana. Todo el proceso ocurre en menos de 7 días desde que agendas.</p></div>
+        <div class="faq-answer"><p class="faq-a-text">Sigo activo contratando — esta semana estoy revisando CVs desde el otro lado de la mesa. No es teoría ni plantillas. Sé exactamente qué hace que un perfil sea ignorado porque lo veo todos los días.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Trabajan solo con perfiles de Guadalajara?</span>
+          <span class="faq-q-text">¿Hay opciones de pago?</span>
           <span class="faq-icon">+</span>
         </div>
-        <div class="faq-answer"><p class="faq-a-text">No. La sesión es por videollamada. Se ha trabajado con perfiles de Guadalajara, CDMX, Monterrey, Querétaro y otras ciudades. La industria y el nivel importan más que la ubicación.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿El precio es negociable o hay opciones de pago?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer"><p class="faq-a-text">El precio refleja el trabajo real que hay detrás — no es un template ni un algoritmo. Sí manejamos 6 meses sin intereses con MercadoPago. Si tienes dudas sobre cuál sesión aplica a tu caso, escríbeme y lo vemos directo.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿En qué se diferencia de otros servicios de CV o coaching?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer"><p class="faq-a-text">La diferencia es que sigo activo contratando — esta semana estoy revisando CVs desde el otro lado de la mesa. No es teoría ni plantillas. Sé exactamente qué hace que un perfil como el tuyo sea ignorado, porque lo veo todos los días. Eso no lo puede replicar quien solo asesora carrera sin contratar.</p></div>
+        <div class="faq-answer"><p class="faq-a-text">Sí. Manejamos 6 meses sin intereses con MercadoPago. Si tienes dudas sobre cuál sesión aplica a tu caso, escríbeme y lo vemos directo.</p></div>
       </div>
     </div>
   </div>
@@ -848,7 +804,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 </footer>
 
 <script>
-var selectedEmpresa=null,cvText='',cvResult=null;
+var cvText='',cvResult=null;
 
 var empresaConfig={
   corporativo:{label:'Corporativo / Multinacional',criterios:'keywords ATS estrictos, logros con escala global, nivel de reporte claro, inglés sólido en CV'},
@@ -912,7 +868,7 @@ function handleFile(input){
 }
 
 function checkReady(){
-  document.getElementById('btn-analyze').disabled=!(selectedEmpresa&&cvText);
+  document.getElementById('btn-analyze').disabled=!cvText;
 }
 
 function startAnalysis(){
@@ -920,7 +876,7 @@ function startAnalysis(){
   var as=document.getElementById('analyzing-section');
   as.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
-  document.getElementById('mock-ats-name').textContent=empresaConfig[selectedEmpresa].label;
+  document.getElementById('mock-ats-name').textContent='ATS · Evaluación ejecutiva';
   var numEl=document.getElementById('countdown-num');
   var stepEl=document.getElementById('countdown-step');
   var barEl=document.getElementById('prog-bar');
@@ -931,7 +887,7 @@ function startAnalysis(){
   fetch('/.netlify/functions/ai',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
       system:'Eres Alejandro Vivanco, evaluador senior de Capital Humano con 15 años contratando en México. Analizas CVs con ojo clínico: directo, específico, sin eufemismos. Cada hallazgo debe referirse al CV real del candidato, no a generalidades. Responde SOLO JSON válido sin backticks ni markdown.',
-      prompt:'Analiza este CV para posicionarse en: '+empresaConfig[selectedEmpresa].label+'.\nCriterios específicos del tipo de empresa: '+empresaConfig[selectedEmpresa].criterios+'.\n\nRÚBRICA DE EVALUACIÓN:\n1. Impacto cuantificable (0–2.5): logros con cifras, porcentajes, montos, tiempos\n2. Claridad de nivel ejecutivo (0–2): ¿se entiende el rango desde las primeras 3 líneas?\n3. Narrativa y diferenciación (0–2): ¿hay propuesta de valor? ¿o es una lista de funciones?\n4. Visibilidad para reclutadores (0–2): keywords de industria, headline, densidad de señales\n5. Coherencia y progresión (0–1.5): ¿la trayectoria tiene lógica de ascenso?\n\nVEREDICTO: Descartado <6.0 | En Revisión 6.0–7.4 | Avanza 7.5+\n\nCV DEL CANDIDATO:\n'+cvText.slice(0,5000)+'\n\nResponde EXACTAMENTE con este JSON (sin cambios en la estructura):\n{"candidateName":"Nombre completo si está en el CV, si no Candidato","position":"Cargo más reciente detectado","score":7.0,"verdict":"DESCARTADO","flags":[{"type":"red","text":"Hallazgo específico referido al CV — máx 12 palabras"},{"type":"yellow","text":"Hallazgo específico referido al CV — máx 12 palabras"},{"type":"green","text":"Punto positivo específico — máx 12 palabras"}],"sections":[{"title":"Narrativa e Impacto","score":"4","status":"bad","findings":["Hallazgo 1 específico del CV real (máx 18 palabras)","Hallazgo 2 específico (máx 18 palabras)","Hallazgo 3 específico (máx 18 palabras)"]},{"title":"Visibilidad ante Reclutadores","score":"5","status":"bad","findings":["Hallazgo 1 sobre keywords y visibilidad (máx 18 palabras)","Hallazgo 2 sobre headline o LinkedIn (máx 18 palabras)"]},{"title":"Posicionamiento Ejecutivo","score":"4","status":"bad","findings":["Hallazgo 1 sobre nivel y diferenciación (máx 18 palabras)","Hallazgo 2 sobre propuesta de valor (máx 18 palabras)"]}],"mainProblem":"Una frase que resume el problema principal (máx 20 palabras)"}'
+      prompt:'Analiza este CV para posicionamiento ejecutivo senior en México.\n\nRÚBRICA DE EVALUACIÓN:\n1. Impacto cuantificable (0–2.5): logros con cifras, porcentajes, montos, tiempos\n2. Claridad de nivel ejecutivo (0–2): ¿se entiende el rango desde las primeras 3 líneas?\n3. Narrativa y diferenciación (0–2): ¿hay propuesta de valor? ¿o es una lista de funciones?\n4. Visibilidad para reclutadores (0–2): keywords de industria, headline, densidad de señales\n5. Coherencia y progresión (0–1.5): ¿la trayectoria tiene lógica de ascenso?\n\nVEREDICTO: Descartado <6.0 | En Revisión 6.0–7.4 | Avanza 7.5+\n\nCV DEL CANDIDATO:\n'+cvText.slice(0,5000)+'\n\nResponde EXACTAMENTE con este JSON (sin cambios en la estructura):\n{"candidateName":"Nombre completo si está en el CV, si no Candidato","position":"Cargo más reciente detectado","score":7.0,"verdict":"DESCARTADO","flags":[{"type":"red","text":"Hallazgo específico referido al CV — máx 12 palabras"},{"type":"yellow","text":"Hallazgo específico referido al CV — máx 12 palabras"},{"type":"green","text":"Punto positivo específico — máx 12 palabras"}],"sections":[{"title":"Narrativa e Impacto","score":"4","status":"bad","findings":["Hallazgo 1 específico del CV real (máx 18 palabras)","Hallazgo 2 específico (máx 18 palabras)","Hallazgo 3 específico (máx 18 palabras)"]},{"title":"Visibilidad ante Reclutadores","score":"5","status":"bad","findings":["Hallazgo 1 sobre keywords y visibilidad (máx 18 palabras)","Hallazgo 2 sobre headline o LinkedIn (máx 18 palabras)"]},{"title":"Posicionamiento Ejecutivo","score":"4","status":"bad","findings":["Hallazgo 1 sobre nivel y diferenciación (máx 18 palabras)","Hallazgo 2 sobre propuesta de valor (máx 18 palabras)"]}],"mainProblem":"Una frase que resume el problema principal (máx 20 palabras)"}'
     })
   }).then(function(r){return r.json();}).then(function(d){
     try{aiResult=JSON.parse((d.text||'').replace(/```json|```/g,'').trim());}catch(e){aiResult=fallbackCV();}
