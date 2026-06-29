@@ -539,7 +539,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
       <div id="gate-form-wrap">
         <div class="gate-urgency">
           <div class="gate-urgency-dot"></div>
-          <p class="gate-urgency-text" id="gate-urgency-txt"><strong>Solo 3 lugares esta semana</strong> · Sesiones los sábados</p>
+          <p class="gate-urgency-text" id="gate-urgency-txt"><strong>Solo 3 lugares esta semana</strong> · Sesiones los fines de semana</p>
         </div>
 
         <!-- Opción 1: WhatsApp -->
@@ -877,7 +877,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
           <span class="faq-q-text">¿Cuándo tienes disponibilidad?</span>
           <span class="faq-icon">+</span>
         </div>
-        <div class="faq-answer"><p class="faq-a-text">Las sesiones son los sábados con cupo limitado. También hay lugar algunos viernes después de las 7pm y domingos. La mejor forma de asegurar tu lugar es escribirme por WhatsApp o agendar directo en Calendly.</p></div>
+        <div class="faq-answer"><p class="faq-a-text">Las sesiones son los fines de semana — sábados, viernes después de las 7pm y domingos. La mejor forma de asegurar tu lugar es escribirme por WhatsApp o agendar directo en Calendly.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
@@ -948,7 +948,7 @@ footer{padding:40px 56px;background:var(--black);border-top:1px solid var(--bord
 
     </div>
     <div style="background:var(--black3);border:1px solid var(--border);border-top:none;padding:20px 28px;margin-bottom:36px;"><p style="font-family:'Cormorant Garamond',serif;font-size:clamp(14px,1.6vw,18px);font-weight:300;font-style:italic;color:rgba(255,255,255,0.5);line-height:1.7;text-align:center;">La pregunta no es cuánto cuesta — es cuánto te está costando no tenerlo.</p></div>
-    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;margin-bottom:24px;">Cupo limitado · <span id="disp-precio" style="color:var(--red);"></span> · Sesiones los sábados</p>
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-align:center;margin-bottom:24px;">Cupo limitado · <span id="disp-precio" style="color:var(--red);"></span> · Sesiones los fines de semana</p>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
       <div style="flex:1;height:1px;background:var(--border);"></div>
       <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);white-space:nowrap;">¿Prefieres elegir tú el horario?</p>
@@ -1212,14 +1212,14 @@ function fallbackCV(){
   else if(d===6){l=hr<12?2:1;dl='hoy';dc='#ca8a04';}
   else{var av=Math.floor((d-1)/2);l=Math.max(1,3-av);dl='esta semana';if(l===1)dc='#e53e3e';}
   var dt=document.getElementById('disp-text'),dot=document.getElementById('disp-dot'),dp=document.getElementById('disp-precio');
-  if(dt)dt.innerHTML=l===1?'<span style="color:var(--red);">Último lugar disponible</span> · Sesiones los sábados':'<strong>'+l+' lugares disponibles</strong> '+dl+' · Sesiones los sábados';
+  if(dt)dt.innerHTML=l===1?'<span style="color:var(--red);">Último lugar disponible</span> · Sesiones los fines de semana':'<strong>'+l+' lugares disponibles</strong> '+dl+' · Sesiones los fines de semana';
   if(dot)dot.style.background=dc;
   if(dp)dp.textContent=l===1?'Último lugar disponible':l+' lugares disponibles '+dl;
   // Urgencia del gate
   var gu=document.getElementById('gate-urgency-txt');
   if(gu){
-    if(l===1)gu.innerHTML='<strong style="color:var(--red);">Último lugar disponible esta semana</strong> · Sesiones los sábados';
-    else gu.innerHTML='<strong>'+l+' lugares disponibles</strong> '+dl+' · Sesiones los sábados';
+    if(l===1)gu.innerHTML='<strong style="color:var(--red);">Último lugar disponible esta semana</strong> · Sesiones los fines de semana';
+    else gu.innerHTML='<strong>'+l+' lugares disponibles</strong> '+dl+' · Sesiones los fines de semana';
   }
   var cc=document.getElementById('cv-count');
   if(cc)cc.textContent=(BASE+Math.floor((h-new Date('2025-01-01'))/86400000)*3).toLocaleString('es-MX');
